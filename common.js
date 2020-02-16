@@ -15,10 +15,6 @@ function setDefault() {
 
 
 
-
-
-
-
 function saveFirstTime() {
   /*
     odpalana Creating Entry, After Save
@@ -30,14 +26,36 @@ function saveFirstTime() {
 
 
 
+/*
+*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+
+    BAZA BUDŻET, FUNCKJE I WARTOŚCI PÓL OBLICZANYCH
+
+ *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+*/
+
+function addBudgetSpending(entryBudget, entrySpending) {
+
+  if (entryBudget !== undefined)
+    entryBudget = entry();
+
+  if (entrySpending !== undefined)
+    entrySpending = masterEntry();
+
+  var newBalance = 0;
+
+  newBalance = entryBudget.field(B_FIELD_BALANCE) + Math.abs(entrySpending.field(S_FIELD_AMOUNT));    //plus bo wydatki są zawsze ujemne
+  entryBudget.set(B_FIELD_BALANCE, newBalance);
+  entryBudget.set(B_FIELD_LEFT, entryBudget.field(B_FIELD_LIMIT) - newBalance );
+}
 
 
 
 
 
 
-function testuj() {
-  entryDefault().set(FIELD_EDITOR, arrEditors);
+function updateBalance_unlinked() {
+
 }
 
 

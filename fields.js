@@ -3,7 +3,7 @@
 const FIELD_EDITOR = "Edytor";
 const FIELD_IS_NEW = "Nowy";
 
-// ***** baza wydatki SPENDING
+// ***** baza wydatki
 const S_FIELD_IMPORTED = "Rozliczony";
 const S_FIELD_AMOUNT = "Kwota";
 const S_FIELD_DATE = "Data transakcji";
@@ -23,6 +23,12 @@ const S_FIELD_REINVOICE_CONTRACT_LINK = "Osiedle do faktury";
 const S_FIELD_NR = "Nr";
 const S_FIELD_NR_ASSIGNED = "Nr powiązany";
 const S_FIELD_DESCRIPTION_DISPLAY = "Opis";
+
+// ***** baza BUDŻET
+const B_FIELD_LIMIT = "Limit";
+const B_FIELD_BALANCE = "Saldo";
+const B_FIELD_LEFT = "Zostało";
+const B_FIELD_AMOUNT = "Kwota"
 
 // zmienne
 var arrEditors = ["MalgorzataG", "ElzbietaZ", "trzystaIZABELA", "trzysta"];
