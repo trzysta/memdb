@@ -4,10 +4,10 @@
 */
 
 
+
+
+// *^*^*^*  odpalana Creating Entry, Opening an Entry Card
 function setDefault() {
-/*
-  odpalana Creating Entry, Opening an Entry Card
-*/
   var e = entryDefault();
   e.set(FIELD_EDITOR, arrEditors);
   e.set(FIELD_IS_NEW, true);
@@ -15,10 +15,8 @@ function setDefault() {
 
 
 
+// *^*^*^*  odpalana Creating Entry, After Save
 function saveFirstTime() {
-  /*
-    odpalana Creating Entry, After Save
-  */
   var e = entry();
   e.set(FIELD_IS_NEW, false);
 }
@@ -51,12 +49,15 @@ function addBudgetSpending(entryBudget, entrySpending) {
 
 
 
-
-
-
-function updateBalance_unlinked() {
+function removeBudgetSpending(entryBudget, entrySpending) {
 
 }
+
+
+
+
+
+
 
 
 function postSave() {
