@@ -9,7 +9,6 @@ function setDefault() {
   odpalana Creating Entry, Opening an Entry Card
 */
   var e = entryDefault();
-  var isNew = true;
   e.set(FIELD_EDITOR, arrEditors);
   e.set(FIELD_IS_NEW, true);
 }
