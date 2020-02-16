@@ -1,6 +1,7 @@
 
 // wspólne
-const FIELD_EDITOR = "Editor";
+const FIELD_EDITOR = "Edytor";
+const FIELD_IS_NEW = "Nowy"
 
 // ***** baza wydatki SPENDING
 const S_FIELD_IMPORTED = "Rozliczony";
