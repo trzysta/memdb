@@ -15,6 +15,17 @@ function setDefault() {
 
 
 
+function saveFirstTime() {
+  var e = entryDefault();
+  e.set(FIELD_IS_NEW, false);
+
+
+
+
+}
+
+
+
 
 
 
