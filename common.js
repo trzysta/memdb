@@ -15,7 +15,14 @@ function setDefault() {
 
 
 
+
+
+
+
 function saveFirstTime() {
+  /*
+    odpalana Creating Entry, After Save
+  */
   var e = entry();
   e.set(FIELD_IS_NEW, false);
 }
