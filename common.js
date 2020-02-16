@@ -16,12 +16,8 @@ function setDefault() {
 
 
 function saveFirstTime() {
-  var e = entryDefault();
+  var e = entry();
   e.set(FIELD_IS_NEW, false);
-
-
-
-
 }
 
 
