@@ -1,7 +1,11 @@
 /*
-  EV_new_poZapisaniu
   zapisanie linka do bieżącego entry w nowym
 */
+
+function testuj() {
+  message ( entry().id );
+}
+
 
 function postSave() {
   var currentEntry = entry();
