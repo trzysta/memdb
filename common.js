@@ -1,9 +1,16 @@
 /*
-  zapisanie linka do bieżącego entry w nowym
+  wszelkie prawa zastrzeżone, biblioteka funkcji wykorzystywanych przez
+  aplikację utworzoną dla 300 Sp. z o.o.
 */
 
+
+
+
+
+
+
 function testuj() {
-  message ( entry().id );
+  entryDefault().set(FIELD_EDITOR, arrEditors);
 }
 
 
