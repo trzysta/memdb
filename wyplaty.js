@@ -1,5 +1,9 @@
 
 
+
+
+// dodać że ja nie ma osiedla to wtedy budżet wynagrodzenia bez Osiedla
+
 function closePayment() {
 
   var isTransferLink = false;

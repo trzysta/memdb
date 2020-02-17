@@ -1,6 +1,6 @@
 
 // wspólne
-const FIELD_EDITOR = "Edytor";
+const FIELD_EDITOR = "Editor";
 const FIELD_IS_NEW = "Nowy";
 const FIELD_IS_HIDDEN = "Ukryte";
 const FIELD_CAN_ACCESS = "canAccess";
