@@ -18,7 +18,7 @@ function closePayment() {
 
   // sprawdzenie czy są wpisane kwoty, musi być coś wpisane jeśli nie ma wypłąt należy wpisać zero, pole nie może być puste
   } else if ( (entryPayout.field("Wypłacono w gotówce") == null) && (entryPayout.field("Wpłacono na konto") == null)  ) {
-  
+
     message("Uzupełnij kwoty wypłat, gotówka lub przelew. Jeśli rozliczenie jest bez wypłaty w polach kwot wstaw zero");
     cancel();
 
@@ -67,8 +67,8 @@ function closePayment() {
           var prevMonthBudget = moment(entBudget.field("Miesiąc")).startOf('month').add(-1, 'month').format("MMYYYY");
           var currentMonthWyplata = moment(entryPayout.field("Miesiąc")).format("MMYYYY");
 
-          if ( prevMonthBudget == currentMonthWyplata ) {
-            message ("znaleziono budzet:" + prevMonthBudget +" "+currentMonthWyplata);
+          if ( prevMonthBudget == currentMonthWyplata ) { // trzeba odfiltrować zakupy
+            message ("znaleziono budzet: " + prevMonthBudget +" "+currentMonthWyplata);
             entWydatek.link("Budżet", entBudget );
             entBudget.set("Saldo", (entBudget.field("Saldo") + Math.abs(entWydatek.field("Kwota"))));
             entBudget.set("Zostało", (entBudget.field("Limit") - entBudget.field("Saldo")));
