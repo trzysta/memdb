@@ -8,7 +8,8 @@
 // *^*^*^*  funkcja zwraca czy może widzieć wartość pola czy nie
 function canSee() {
   var can = false;
-  if ( arrEditors.indexOf(user().username) > 0 )  can = true;
+  var u = user().username;
+  if ( arrEditors.indexOf(u) > 0 )  can = true;
   return can;
 }
 
