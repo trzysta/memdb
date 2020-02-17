@@ -1,6 +1,5 @@
 
 
-
 function closePayment() {
 
   var dokonujacyPrzelewu = "Marceli Matynia"
@@ -126,3 +125,4 @@ function closePayment() {
 
       entryPayout.recalc();
   }
+}
