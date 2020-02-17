@@ -2,9 +2,9 @@
 
 function closePayment() {
 
-  var dokonujacyPrzelewu = "Marceli Matynia"
+  var dokonujacyPrzelewu = "Marceli Matynia";
   var selected = selectedEntries();
-  var srch, rok, tag, mc
+  var srch, rok, tag, mc;
   var isTransferLink = false;
   var notVisible = false;
 
@@ -67,7 +67,7 @@ function closePayment() {
         entWydatek.set("Opis", opis);
 
         // dodawanie budzetu do rozliczenia
-        var allBugetsByOsiedle = new Array
+        var allBugetsByOsiedle = new Array;
         allBugetsByOsiedle = libBudzet.linksTo( entryPayout.field("Osiedle")[0] );
 
         for (i=0; i < allBugetsByOsiedle.length; i++) {
@@ -108,7 +108,7 @@ function closePayment() {
       entWydatek.set("Opis", opis);
 
       // dodawanie budzetu do rozliczenia
-      var allBugetsByOsiedle = new Array
+      var allBugetsByOsiedle = new Array;
 
       allBugetsByOsiedle = libBudzet.linksTo( entryPayout.field("Osiedle")[0] );
       for (i=0; i < allBugetsByOsiedle.length; i++) {
