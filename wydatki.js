@@ -2,15 +2,21 @@
 
 
 
-function displayForEditors() {
-  var u = user();
 
 
+function getfFieldValue( fieldName ) {
 
+  var result = 0;
+  var e = entry();
 
-
-  message ( user() + " " +  arrEditors.indexOf( user() ));
-
-
-
+  if (canSee) {
+    switch (fieldName) {
+      case S_FIELD_AMOUNT:
+        var editAmount = e.field(S_FIELD_AMOUNT);
+        result = editAmount;
+        break;
+      default:
+      }
+    }
+    return result;
 }

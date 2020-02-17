@@ -5,6 +5,14 @@
 
 
 
+// *^*^*^*  funkcja zwraca czy może widzieć wartość pola czy nie
+function canSee() {
+  var can = false;
+  if ( arrEditors.indexOf(user().username) > 0 )  can = true;
+  return can;
+}
+
+
 
 // *^*^*^*  odpalana Creating Entry, Opening an Entry Card
 function setDefault() {
