@@ -78,9 +78,9 @@ function closePayment() {
         // koniec rozliczenia przelewu
 
 
-    // tworzenie wpisu gotówki
-    if ((entryPayout.field("Data wypłaty gotówki") != null) ) {
-        var entWydatek = new Object;
+        // tworzenie wpisu gotówki
+        if ((entryPayout.field("Data wypłaty gotówki") != null) ) {
+          var entWydatek = new Object;
         entWydatek = libWydatki.create(entWydatek);
         entryPayout.link("Wydatek", entWydatek );
         entWydatek.set("Kwota", (0 - entryPayout.field("Wypłacono w gotówce")));
@@ -116,13 +116,11 @@ function closePayment() {
         }
         // koniec tworzenia gotówki
 
-      if (notVisible)  {
-         entryPayout.set("canAccess", false);
-         }
-      entryPayout.set("Editor", "");
-      entryPayout.set("Rozliczony", "Rozliczony");
-
-
-      entryPayout.recalc();
+  if (notVisible)  {
+      entryPayout.set("canAccess", false);
+  }
+  entryPayout.set("Editor", "");
+  entryPayout.set("Rozliczony", "Rozliczony");
+  entryPayout.recalc();
   }
 }
