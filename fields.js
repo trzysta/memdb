@@ -5,7 +5,6 @@ const FIELD_IS_NEW = "Nowy";
 const FIELD_IS_HIDDEN = "Ukryte";
 const FIELD_CAN_ACCESS = "canAccess";
 
-
 // ***** baza wydatki
 const S_FIELD_IMPORTED = "Rozliczony";
 const S_FIELD_AMOUNT = "Kwota";
@@ -28,7 +27,6 @@ const S_FIELD_REINVOICE_CONTRACT_LINK = "Osiedle do faktury";
 const S_FIELD_NR = "Nr";
 const S_FIELD_NR_ASSIGNED = "Nr powiązany";
 const S_FIELD_DESCRIPTION_DISPLAY = "Opis";
-
 
 // ***** baza WYPŁATY
 const P_FIELD_CLOSED = "Rozliczony";
