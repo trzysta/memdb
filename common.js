@@ -9,7 +9,7 @@
 function isEditor() {
   var u = user().username;
   var is = false;
-  if ( arrEditors.indexOf(u) > 0 ) is = true;
+  if ( arrEditors.indexOf(u) >= 0 ) is = true;
   return is;
   }
 
@@ -17,10 +17,9 @@ function isEditor() {
 function isManager() {
   var u = user().username;
   var is = false;
-  if ( arrManagers.indexOf(u) > 0 ) is = true;
+  if ( arrManagers.indexOf(u) >= 0 ) is = true;
   return is;
-  message(is);
-  }
+}
 
 
 
