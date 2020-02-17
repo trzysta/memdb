@@ -6,9 +6,8 @@
 
 
 // *^*^*^*  funkcja zwraca czy może widzieć wartość pola czy nie
-function canSee() {
-  var can = false;
-  var u = user().username;
+function canSee( u ) {
+  var can = false;e;
   if ( arrEditors.indexOf(u) > 0 )  can = true;
   return can;
 }
