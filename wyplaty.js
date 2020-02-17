@@ -14,7 +14,7 @@ function closePayment() {
     cancel();
 
   // sprawdzenie czy są wpisane kwoty, musi być coś wpisane jeśli nie ma wypłąt należy wpisać zero, pole nie może być puste
-  } else if ((entryPayout.field(P_FIELD_CASH) == null) && (entryPayout.field(P_FIELD_WITHDRAWAL) == null)) {
+  } else if ((entryPayout.field(P_FIELD_CASH_AMOUNT) == null) && (entryPayout.field(P_FIELD_WITHDRAWAL) == null)) {
 
     message(P_MSG_NO_AMONT);
     cancel();
