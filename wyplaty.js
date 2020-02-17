@@ -10,15 +10,17 @@ function closePayment() {
   var isTransferLink = false;
   var notVisible = false;
 
+  var entWyplata = entry();
+
+
   // sprawdzanie warunków czy może zamykać rozliczenie i czy rozliczenie jest otwarte
   var entryPayout = entry();
-  if ((entryPayout.field(P_FIELD_CLOSED) == P_FIELD_CLOSED_VALUE_YES) || (!isManager())) {
+  if ( (entryPayout.field(P_FIELD_CLOSED) == P_FIELD_CLOSED_VALUE_YES) || ( !isManager() ) ) {
     message(P_MSG_CLOSED_NOACCESS);
     cancel();
 
-  } else if {
-    message ( "zamykam rozliczenie " + ": "+ entWyplata.field("Pracownik")[0].field("Imie i nazwisko") );
-    var entWyplata = entry();
+
+
 
   } else if ( (entWyplata.field("Wypłacono w gotówce") == null) && (entWyplata.field("Wpłacono na konto") == null)  ) {
     // sprawdzenie czy są wpisane kwoty, musi być coś wpisane jeśli nie ma wypłąt należy wpisać zero, pole nie może być puste
@@ -26,6 +28,8 @@ function closePayment() {
     cancel();
 
   } else {
+
+    message ( "zamykam rozliczenie " + ": "+ entWyplata.field("Pracownik")[0].field("Imie i nazwisko") );
     // któreś z pól gotówka lub przelew nie jest NULL więc zamykam rozliczenie
 
     // rozliczenie przelewu sprawdzenie czy przelew już jest

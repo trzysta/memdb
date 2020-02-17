@@ -26,8 +26,10 @@ const S_FIELD_NR_ASSIGNED = "Nr powiązany";
 const S_FIELD_DESCRIPTION_DISPLAY = "Opis";
 
 // ***** baza WYPŁATY
-
-
+const P_FIELD_CLOSED = "Rozliczony";
+  const P_FIELD_CLOSED_VALUE_YES  = "Rozliczony";
+  const P_FIELD_CLOSED_VALUE_NO   = "W trakcie rozliczania"
+  const P_MSG_CLOSED_NOACCESS = "Wpis już rozliczony lub nie masz uprawnień do zamknięcia rozliczenia";
 
 
 // ***** baza BUDŻET
