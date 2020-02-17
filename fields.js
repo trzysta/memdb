@@ -25,6 +25,11 @@ const S_FIELD_NR = "Nr";
 const S_FIELD_NR_ASSIGNED = "Nr powiązany";
 const S_FIELD_DESCRIPTION_DISPLAY = "Opis";
 
+// ***** baza WYPŁATY
+
+
+
+
 // ***** baza BUDŻET
 const B_FIELD_LIMIT = "Limit";
 const B_FIELD_BALANCE = "Saldo";
@@ -32,5 +37,11 @@ const B_FIELD_LEFT = "Zostało";
 const B_FIELD_AMOUNT = "Kwota"
 
 // zmienne
+var arrMonths_pl = ["styczeń", "luty", "marzec", "kwiecien", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "listopad", "grudzień"];
 var arrEditors = ["MalgorzataG", "ElzbietaZ", "trzystaIZABELA", "trzysta"];
+var arrManagers = ["trzysta"];
 var arrManagers = ["Małgorzata Grabowska", "Elżbieta Zdziech", "Izabela Skowrońska", "Marceli Matynia"];
+var libWyplaty = libByName("Wypłaty");
+var libWydatki = libByName("Wydatki");
+var libBudzet =  libByName("Budżet");
+var libOsiedla = libByName("Osiedla");

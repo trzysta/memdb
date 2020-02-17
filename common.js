@@ -5,12 +5,21 @@
 
 
 
-// *^*^*^*  funkcja zwraca czy może widzieć wartość pola czy nie
-function canSee( u ) {
-  var can = false;
-  if ( arrEditors.indexOf(u) > 0 )  can = true;
-  return can;
-}
+// *^*^*^*  sprawdza czy jest Edytorem
+function isEditor() {
+  var u = user().username;
+  var is = false;
+  if ( arrEditors.indexOf(u) > 0 ) is = true;
+  return is;
+  }
+
+// *^*^*^*  sprawdza czy jest Managerem
+function isManager() {
+  var u = user().username;
+  var is = false;
+  if ( arrManagers.indexOf(u) > 0 ) is = true;
+  return is;
+  }
 
 
 
