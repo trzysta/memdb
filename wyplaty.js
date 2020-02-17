@@ -5,19 +5,18 @@ function closePayment() {
 
   var dokonujacyPrzelewu = "Marceli Matynia"
   var selected = selectedEntries();
-
   var srch, rok, tag, mc
   var isTransferLink = false;
   var notVisible = false;
 
   // sprawdzanie warunków czy może zamykać rozliczenie i czy rozliczenie jest otwarte
   var entryPayout = entry();
-  if ( (entryPayout.field(P_FIELD_CLOSED) == P_FIELD_CLOSED_VALUE_YES) || ( !isManager() ) ) {
+  if ((entryPayout.field(P_FIELD_CLOSED) == P_FIELD_CLOSED_VALUE_YES) || ( !isManager() ) ) {
     message(P_MSG_CLOSED_NOACCESS);
     cancel();
 
   // sprawdzenie czy są wpisane kwoty, musi być coś wpisane jeśli nie ma wypłąt należy wpisać zero, pole nie może być puste
-  } else if ( (entryPayout.field("Wypłacono w gotówce") == null) && (entryPayout.field("Wpłacono na konto") == null)  ) {
+  } else if ((entryPayout.field("Wypłacono w gotówce") == null) && (entryPayout.field("Wpłacono na konto") == null)) {
 
     message("Uzupełnij kwoty wypłat, gotówka lub przelew. Jeśli rozliczenie jest bez wypłaty w polach kwot wstaw zero");
     cancel();
