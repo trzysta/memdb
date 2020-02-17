@@ -17,15 +17,11 @@ function closePayment() {
 
   // sprawdzenie czy są wpisane kwoty, musi być coś wpisane jeśli nie ma wypłąt należy wpisać zero, pole nie może być puste
   } else if ((entryPayout.field("Wypłacono w gotówce") == null) && (entryPayout.field("Wpłacono na konto") == null)) {
-
     message("Uzupełnij kwoty wypłat, gotówka lub przelew. Jeśli rozliczenie jest bez wypłaty w polach kwot wstaw zero");
     cancel();
-
   } else {
-
     message ( "zamykam rozliczenie " + ": "+ entryPayout.field("Pracownik")[0].field("Imie i nazwisko") );
     // któreś z pól gotówka lub przelew nie jest NULL więc zamykam rozliczenie
-
     // rozliczenie przelewu sprawdzenie czy przelew już jest
     for (i=0; i < entryPayout.field("Wydatek").length; i++) {
         var e = entryPayout.field("Wydatek")[i];
@@ -130,8 +126,3 @@ function closePayment() {
 
       entryPayout.recalc();
   }
-
-
-
-
-}
