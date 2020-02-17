@@ -10,67 +10,62 @@ function closePayment() {
   var isTransferLink = false;
   var notVisible = false;
 
-  var entWyplata = entry();
-
-
   // sprawdzanie warunków czy może zamykać rozliczenie i czy rozliczenie jest otwarte
   var entryPayout = entry();
   if ( (entryPayout.field(P_FIELD_CLOSED) == P_FIELD_CLOSED_VALUE_YES) || ( !isManager() ) ) {
     message(P_MSG_CLOSED_NOACCESS);
     cancel();
 
-
-
-
-  } else if ( (entWyplata.field("Wypłacono w gotówce") == null) && (entWyplata.field("Wpłacono na konto") == null)  ) {
-    // sprawdzenie czy są wpisane kwoty, musi być coś wpisane jeśli nie ma wypłąt należy wpisać zero, pole nie może być puste
+  // sprawdzenie czy są wpisane kwoty, musi być coś wpisane jeśli nie ma wypłąt należy wpisać zero, pole nie może być puste
+  } else if ( (entryPayout.field("Wypłacono w gotówce") == null) && (entryPayout.field("Wpłacono na konto") == null)  ) {
+  
     message("Uzupełnij kwoty wypłat, gotówka lub przelew. Jeśli rozliczenie jest bez wypłaty w polach kwot wstaw zero");
     cancel();
 
   } else {
 
-    message ( "zamykam rozliczenie " + ": "+ entWyplata.field("Pracownik")[0].field("Imie i nazwisko") );
+    message ( "zamykam rozliczenie " + ": "+ entryPayout.field("Pracownik")[0].field("Imie i nazwisko") );
     // któreś z pól gotówka lub przelew nie jest NULL więc zamykam rozliczenie
 
     // rozliczenie przelewu sprawdzenie czy przelew już jest
-    for (i=0; i < entWyplata.field("Wydatek").length; i++) {
-        var e = entWyplata.field("Wydatek")[i];
-        if ((Math.abs(e.field("Kwota")) == entWyplata.field("Kwota")) &&
-            (e.field("Data transakcji") == entWyplata.field("Data przelewu"))) {
+    for (i=0; i < entryPayout.field("Wydatek").length; i++) {
+        var e = entryPayout.field("Wydatek")[i];
+        if ((Math.abs(e.field("Kwota")) == entryPayout.field("Kwota")) &&
+            (e.field("Data transakcji") == entryPayout.field("Data przelewu"))) {
            isTransferLink = true; // jest już link do przelewu
            }
         }
-    if (entWyplata.field("canAccess") == false )  {
-        entWyplata.set("canAccess", true);
+    if (entryPayout.field("canAccess") == false )  {
+        entryPayout.set("canAccess", true);
         notVisible = true;
         }
 
-    entWyplata.recalc();
-    if ((!isTransferLink) && (entWyplata.field("Data przelewu") != null) ) {
-        var entPracownik = entWyplata.field("Pracownik")[0];
+    entryPayout.recalc();
+    if ((!isTransferLink) && (entryPayout.field("Data przelewu") != null) ) {
+        var entPracownik = entryPayout.field("Pracownik")[0];
         var entWydatek = new Object;
         entWydatek = libWydatki.create(entWydatek);
-        entWyplata.link("Wydatek", entWydatek );
-        if (entWyplata.field("Data przelewu") != "") {
-          dtTransfer = entWyplata.field("Data przelewu");
+        entryPayout.link("Wydatek", entWydatek );
+        if (entryPayout.field("Data przelewu") != "") {
+          dtTransfer = entryPayout.field("Data przelewu");
           }
-        entWydatek.set("Kwota", (0 - entWyplata.field("Wpłacono na konto")));
-        entWydatek.set("Data transakcji", entWyplata.field("Data przelewu"));
+        entWydatek.set("Kwota", (0 - entryPayout.field("Wpłacono na konto")));
+        entWydatek.set("Data transakcji", entryPayout.field("Data przelewu"));
         entWydatek.set("Typ transakcji", "Rozliczenie przelewem z pracownikiem");
         entWydatek.set("Dokonujący transakcji", dokonujacyPrzelewu);    // do bazy wypłat dodać wypłacającego
-        entWydatek.set("Pracownik", entWyplata.field("Pracownik"));
+        entWydatek.set("Pracownik", entryPayout.field("Pracownik"));
 
-        var opis =  entWyplata.field("Uwagi") + ' wypłata przelewem za ' + moment(entWyplata.field("Miesiąc")).format('MM') +
-                    "-" + moment(entWyplata.field("Miesiąc")).format('YYYY');
+        var opis =  entryPayout.field("Uwagi") + ' wypłata przelewem za ' + moment(entryPayout.field("Miesiąc")).format('MM') +
+                    "-" + moment(entryPayout.field("Miesiąc")).format('YYYY');
         entWydatek.set("Opis", opis);
 
         // dodawanie budzetu do rozliczenia
         var allBugetsByOsiedle = new Array
-        allBugetsByOsiedle = libBudzet.linksTo( entWyplata.field("Osiedle")[0] );
+        allBugetsByOsiedle = libBudzet.linksTo( entryPayout.field("Osiedle")[0] );
         for (i=0; i < allBugetsByOsiedle.length; i++) {
           var entBudget = allBugetsByOsiedle[i];
           var prevMonthBudget = moment(entBudget.field("Miesiąc")).startOf('month').add(-1, 'month').format("MMYYYY");
-          var currentMonthWyplata = moment(entWyplata.field("Miesiąc")).format("MMYYYY");
+          var currentMonthWyplata = moment(entryPayout.field("Miesiąc")).format("MMYYYY");
 
           if ( prevMonthBudget == currentMonthWyplata ) {
             message ("znaleziono budzet:" + prevMonthBudget +" "+currentMonthWyplata);
@@ -90,27 +85,27 @@ function closePayment() {
 
 
     // tworzenie wpisu gotówki
-    if ((entWyplata.field("Data wypłaty gotówki") != null) ) {
+    if ((entryPayout.field("Data wypłaty gotówki") != null) ) {
         var entWydatek = new Object;
         entWydatek = libWydatki.create(entWydatek);
-        entWyplata.link("Wydatek", entWydatek );
-        entWydatek.set("Kwota", (0 - entWyplata.field("Wypłacono w gotówce")));
-        entWydatek.set("Data transakcji", entWyplata.field("Data wypłaty gotówki"));
+        entryPayout.link("Wydatek", entWydatek );
+        entWydatek.set("Kwota", (0 - entryPayout.field("Wypłacono w gotówce")));
+        entWydatek.set("Data transakcji", entryPayout.field("Data wypłaty gotówki"));
         entWydatek.set("Typ transakcji", "Rozliczenie gotówką z pracownikiem");
-        entWydatek.set("Dokonujący transakcji", entWyplata.field("Dokonujący wypłaty"));    // do bazy wypłat dodać wypłacającego
-        entWydatek.set("Pracownik", entWyplata.field("Pracownik"));
+        entWydatek.set("Dokonujący transakcji", entryPayout.field("Dokonujący wypłaty"));    // do bazy wypłat dodać wypłacającego
+        entWydatek.set("Pracownik", entryPayout.field("Pracownik"));
 
-        var opis =  entWyplata.field("Uwagi") + ' wypłata gotówki za ' + moment(entWyplata.field("Miesiąc")).format('MM') +
-                    "-" + moment(entWyplata.field("Miesiąc")).format('YYYY');
+        var opis =  entryPayout.field("Uwagi") + ' wypłata gotówki za ' + moment(entryPayout.field("Miesiąc")).format('MM') +
+                    "-" + moment(entryPayout.field("Miesiąc")).format('YYYY');
         entWydatek.set("Opis", opis);
 
         // dodawanie budzetu do rozliczenia
         var allBugetsByOsiedle = new Array
-        allBugetsByOsiedle = libBudzet.linksTo( entWyplata.field("Osiedle")[0] );
+        allBugetsByOsiedle = libBudzet.linksTo( entryPayout.field("Osiedle")[0] );
         for (i=0; i < allBugetsByOsiedle.length; i++) {
           var entBudget = allBugetsByOsiedle[i];
           var prevMonthBudget = moment(entBudget.field("Miesiąc")).startOf('month').add(-1, 'month').format("MMYYYY");
-          var currentMonthWyplata = moment(entWyplata.field("Miesiąc")).format("MMYYYY");
+          var currentMonthWyplata = moment(entryPayout.field("Miesiąc")).format("MMYYYY");
 
           if ( prevMonthBudget == currentMonthWyplata ) {
             message ("znaleziono budzet:" + prevMonthBudget +" "+currentMonthWyplata);
@@ -128,13 +123,13 @@ function closePayment() {
         // koniec tworzenia gotówki
 
       if (notVisible)  {
-         entWyplata.set("canAccess", false);
+         entryPayout.set("canAccess", false);
          }
-      entWyplata.set("Editor", "");
-      entWyplata.set("Rozliczony", "Rozliczony");
+      entryPayout.set("Editor", "");
+      entryPayout.set("Rozliczony", "Rozliczony");
 
 
-      entWyplata.recalc();
+      entryPayout.recalc();
   }
 
 
