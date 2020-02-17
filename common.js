@@ -19,6 +19,7 @@ function isManager() {
   var is = false;
   if ( arrManagers.indexOf(u) > 0 ) is = true;
   return is;
+  message(is);
   }
 
 
