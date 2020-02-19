@@ -143,9 +143,9 @@ function findAdvancePayment() {
         var momStart = moment().startOf('month').add({days:18,months:-1});
         var momEnd = moment();
 
-        message( "szukam" + momEntry + " jest miedzy " + momStart + " a " + momEnd );
+        message( "szukam" + momEntry + " jest miedzy " + momStart + " a " + momEnd + " index:" + entrySpend.field(P_FIELD_ADVANCE_PAYMENT).indexOf(entrySpend) );
         if ( (arrAdvancePaymentSpendType.indexOf(entrySpend.field(S_FIELD_TYPE)) >= 0 ) &&
-              momEntry.isBetween(momStart, momEnd) ) {
+              momEntry.isBetween(momStart, momEnd) {
               entryPayout.link( P_FIELD_ADVANCE_PAYMENT, entrySpend );
         }
      }
