@@ -144,7 +144,7 @@ function findAdvancePayment() {
         var momEnd = moment();
 
         message( "szukam" + momEntry + " jest miedzy " + momStart + " a " + momEnd );
-        if ( (arrAdvancePaymentSpendType.indexOf(entrySpend.field("S_FIELD_TYPE")) > 0 ) &&
+        if ( (arrAdvancePaymentSpendType.indexOf(entrySpend.field("S_FIELD_TYPE")) >= 0 ) &&
               momEntry.isBetween(momStart, momEnd) ) {
               entryPayout.link( P_FIELD_ADVANCE_PAYMENT, entrySpend );
         }
