@@ -27,7 +27,7 @@ function isManager() {
 function isLinkMember( arrayOfLinks, searchedEntry ) {
   var is = -1;
   var i = 0;
-  if isArray(arrayOfLinks) {
+  if ( isArray(arrayOfLinks) ) {
     while ( i < arrayOfLinks.length ) {
       if (arrayOfLinks[i].id == searchedEntry.id ) {
          is = i;
