@@ -7,7 +7,7 @@ function closePayment() {
 
   // sprawdzanie warunków czy może zamykać rozliczenie i czy rozliczenie jest otwarte
   var entryPayout = entry();
-  log(user().username + " zamykanie rozliczenia");
+  log(user().username + " closePayment() START");
 
   if ((entryPayout.field(P_FIELD_CLOSED) == P_FIELD_CLOSED_VALUE_YES) || ( !isManager() ) ) {
 
@@ -115,4 +115,6 @@ function closePayment() {
   entryPayout.recalc();
   entryPayout.show();
   }
+  log(user().username + " closePayment() STOP");
+
 }
