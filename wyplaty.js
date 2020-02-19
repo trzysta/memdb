@@ -133,11 +133,11 @@ function findAdvancePayment() {
   var entryPayout = entry();
 
   if (entryPayout.field(P_FIELD_EMPLOYEE_LINK).length > 0) {
-     var entriesSpend = libWydatki.linksTo( entryPayout.field( P_FIELD_EMPLOYEE_LINK)[0] );
+     var entriesSpend = libWydatki.linksTo( entryPayout.field(P_FIELD_EMPLOYEE_LINK)[0] );
      for (i=0; i < entriesSpend.length; i++ ) {
         var entrySpend = entriesSpend[i];
 
-        message( "szukam zaliczek " + i + ": " + entrySpend.field(S_FIELD_TYPE) + " " + entrySpend.field(S_FIELD_DATE) + " " + entrySpend.field(S_FIELD_AMOUNT) );
+        //message( "szukam zaliczek " + i + ": " + entrySpend.field(S_FIELD_TYPE) + " " + entrySpend.field(S_FIELD_DATE) + " " + entrySpend.field(S_FIELD_AMOUNT) );
 
         var momEntry = moment( entrySpend.field(S_FIELD_DATE) );
         var momStart = moment().startOf('month').add({days:18,months:-1});
