@@ -134,7 +134,7 @@ function findAdvancePayment( entryPayout ) {
   if ( (entryPayout.field(P_FIELD_EMPLOYEE_LINK).length > 0) &&
        (entryPayout.field(P_FIELD_CLOSED) != P_FIELD_CLOSED_VALUE_YES) ) {
 
-     message(P_MSG_ADVANCE_PAYMENT + entryPayout.field(P_FIELD_EMPLOYEE_LINK)[0].field(E_FIELD_FULLNAME) );
+     message( entryPayout.field(P_FIELD_EMPLOYEE_LINK)[0].field(E_FIELD_FULLNAME) );
      var entriesSpend = libWydatki.linksTo( entryPayout.field(P_FIELD_EMPLOYEE_LINK)[0] );
      for (i=0; i < entriesSpend.length; i++ ) {
         var entrySpend = entriesSpend[i];
