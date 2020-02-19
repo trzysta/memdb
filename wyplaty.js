@@ -127,15 +127,14 @@ funkcja wyszukująca w bazie wydatków wpisów o zaliczkach i dodająca do wypł
 zakres wyszukiwania jest od 18 dnia poprzedniego miesiąca do bieżącej daty
 */
 
-function findAdvancePayment() {
+function findAdvancePayment( entryPayout ) {
 
   var arrAdvancePaymentSpendType = new Array(S_FIELD_TYPE_VALUE_ADVANCEPAYMENT_CASH, S_FIELD_TYPE_VALUE_ADVANCEPAYMENT_WITHDRAWAL);
-  var entryPayout = entry();
 
   if ( (entryPayout.field(P_FIELD_EMPLOYEE_LINK).length > 0) &&
        (entryPayout.field(P_FIELD_CLOSED) != P_FIELD_CLOSED_VALUE_YES) ) {
 
-    // message(P_MSG_ADVANCE_PAYMENT);
+     message(P_MSG_ADVANCE_PAYMENT + entryPayout.field(P_FIELD_EMPLOYEE_LINK)[0].field(E_FIELD_FULLNAME) );
      var entriesSpend = libWydatki.linksTo( entryPayout.field(P_FIELD_EMPLOYEE_LINK)[0] );
      for (i=0; i < entriesSpend.length; i++ ) {
         var entrySpend = entriesSpend[i];
