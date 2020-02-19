@@ -149,10 +149,11 @@ function findAdvancePayment() {
 
         if ( (arrAdvancePaymentSpendType.indexOf(entrySpend.field(S_FIELD_TYPE)) >= 0 ) &&
               momEntry.isBetween(momStart, momEnd) &&
-              (isLinkMember( entryPayout.field(P_FIELD_ADVANCE_PAYMENT), entrySpend) >= 0)) {
+              (isLinkMember( entryPayout.field(P_FIELD_ADVANCE_PAYMENT), entrySpend) < 0)) {
               entryPayout.link( P_FIELD_ADVANCE_PAYMENT, entrySpend );
         }
      }
   entryPayout.recalc();
+  entryPayout.show();
   }
 }
