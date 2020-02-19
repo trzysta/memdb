@@ -127,7 +127,7 @@ funkcja wyszukująca w bazie wydatków wpisów o zaliczkach i dodająca do wypł
 zakres wyszukiwania jest od 18 dnia poprzedniego miesiąca do bieżącej daty
 */
 
-function findAdvancePayment () {
+function findAdvancePayment() {
 
   var arrAdvancePaymentSpendType = new Array(S_FIELD_TYPE_VALUE_ADVANCEPAYMENT_CASH, S_FIELD_TYPE_VALUE_ADVANCEPAYMENT_WITHDRAWAL);
   var entryPayout = entry();
@@ -137,7 +137,7 @@ function findAdvancePayment () {
      for (i=0; i < entriesSpend.length; i++ ) {
         var entrySpend = entriesSpend[i];
 
-        message( "szukam zaliczek " + i + ": " + entrySpend.field(S_FIELD_TYPE) + " " + entrySpend.field(S_FIELD_DATE) " " + entrySpend.field(S_FIELD_AMOUNT));
+        message( "szukam zaliczek " + i + ": " + entrySpend.field(S_FIELD_TYPE) + " " + entrySpend.field(S_FIELD_DATE) + " " + entrySpend.field(S_FIELD_AMOUNT));
 
         var momEntry = moment( entrySpend.field(S_FIELD_DATE) );
         var momStart = moment().startOf('month').add({days:18,months:-1});
