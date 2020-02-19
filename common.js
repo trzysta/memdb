@@ -13,6 +13,7 @@ function isEditor() {
   return is;
   }
 
+
 // *^*^*^*  sprawdza czy jest Managerem
 function isManager() {
   var u = user().username;
@@ -20,6 +21,24 @@ function isManager() {
   if ( arrManagers.indexOf(u) >= 0 ) is = true;
   return is;
 }
+
+
+// *^*^*^*  sprawdza czy searchedEntry jest w arrayOfLinks
+function isLinkMember( arrayOfLinks, searchedEntry ) {
+  var is = -1;
+  var i = 0;
+  if isArray(arrayOfLinks) {
+    while ( i < arrayOfLinks.length ) {
+      if (arrayOfLinks[i].id == searchedEntry.id ) {
+         is = i;
+         i = arrayOfLinks.length + 1;
+      } else {
+        i++;
+      }
+    }
+  }
+  return is;
+};
 
 
 
