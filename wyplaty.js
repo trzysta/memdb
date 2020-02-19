@@ -1,7 +1,3 @@
-
-
-
-
 // dodać że ja nie ma osiedla to wtedy budżet wynagrodzenia bez Osiedla
 
 function closePayment() {
@@ -11,6 +7,7 @@ function closePayment() {
 
   // sprawdzanie warunków czy może zamykać rozliczenie i czy rozliczenie jest otwarte
   var entryPayout = entry();
+  log(user().username + " zamykanie rozliczenia");
 
   if ((entryPayout.field(P_FIELD_CLOSED) == P_FIELD_CLOSED_VALUE_YES) || ( !isManager() ) ) {
 
@@ -74,7 +71,6 @@ function closePayment() {
     }
     // koniec rozliczenia przelewu
 
-
     // tworzenie wpisu gotówki
     if ( (entryPayout.field(P_FIELD_CASH_DATE) != null) ) {
 
@@ -117,6 +113,6 @@ function closePayment() {
   entryPayout.set(FIELD_EDITOR, "");
   entryPayout.set(P_FIELD_CLOSED, P_FIELD_CLOSED_VALUE_YES);
   entryPayout.recalc();
+  entryPayout.show();
   }
-
 }
