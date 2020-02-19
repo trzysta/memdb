@@ -132,21 +132,17 @@ function findAdvancePayment() {
   var arrAdvancePaymentSpendType = new Array(S_FIELD_TYPE_VALUE_ADVANCEPAYMENT_CASH, S_FIELD_TYPE_VALUE_ADVANCEPAYMENT_WITHDRAWAL);
   var entryPayout = entry();
 
-  if (entryPayout.field(P_FIELD_EMPLOYEE_LINK).length > 0) {
+  if ( (entryPayout.field(P_FIELD_EMPLOYEE_LINK).length > 0) &&
+       (entryPayout.field(P_FIELD_CLOSED) == P_FIELD_CLOSED_VALUE_NO) ) {
+
+     message( P_MSG_ADVANCE_PAYMENT );
      var entriesSpend = libWydatki.linksTo( entryPayout.field(P_FIELD_EMPLOYEE_LINK)[0] );
      for (i=0; i < entriesSpend.length; i++ ) {
         var entrySpend = entriesSpend[i];
-
-        //message( "szukam zaliczek " + i + ": " + entrySpend.field(S_FIELD_TYPE) + " " + entrySpend.field(S_FIELD_DATE) + " " + entrySpend.field(S_FIELD_AMOUNT) );
-
         var momEntry = moment( entrySpend.field(S_FIELD_DATE) );
         var momStart = moment().startOf('month').add({days:18,months:-1});
         var momEnd = moment();
-
         var is = isLinkMember( entryPayout.field(P_FIELD_ADVANCE_PAYMENT), entrySpend);
-
-        message( "szukam" + momEntry + " jest miedzy " + momStart + " a " + momEnd + " index: " + is );
-
         if ( (arrAdvancePaymentSpendType.indexOf(entrySpend.field(S_FIELD_TYPE)) >= 0 ) &&
               momEntry.isBetween(momStart, momEnd) &&
               (isLinkMember( entryPayout.field(P_FIELD_ADVANCE_PAYMENT), entrySpend) < 0)) {
@@ -154,6 +150,5 @@ function findAdvancePayment() {
         }
      }
   entryPayout.recalc();
-  entryPayout.show();
   }
 }

@@ -29,7 +29,6 @@ function isLinkMember( arrayOfLinks, searchedEntry ) {
   var i = 0;
 
   while ( i < arrayOfLinks.length ) {
-    message( i + " " + arrayOfLinks[i].id + " " + searchedEntry.id  );
     if (arrayOfLinks[i].id == searchedEntry.id ) {
        is = i;
        i = arrayOfLinks.length + 1;
