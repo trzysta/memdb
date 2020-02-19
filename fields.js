@@ -35,7 +35,7 @@ const S_FIELD_DESCRIPTION_DISPLAY = "Opis";
 // ***** baza WYPŁATY
 const P_FIELD_CLOSED = "Rozliczony";
 const P_FIELD_CLOSED_VALUE_YES  = "Rozliczony";
-const P_FIELD_CLOSED_VALUE_NO   = "W trakcie rozliczania"
+const P_FIELD_CLOSED_VALUE_NO   = "W trakcie rozliczania";
 const P_FIELD_CASH_AMOUNT = "Wypłacono w gotówce";
 const P_FIELD_CASH_DATE = "Data wypłaty gotówki";
 const P_FIELD_WITHDRAWAL_AMOUNT = "Wpłacono na konto";
@@ -53,6 +53,7 @@ const P_ADD_DESCRIPTION_CASH = " wypłata gotówki za ";
 const P_MSG_CLOSED_OR_NOACCESS = "Wpis już rozliczony lub nie masz uprawnień do zamknięcia rozliczenia";
 const P_MSG_NO_AMONT = "Uzupełnij kwoty wypłat, gotówka lub przelew. Jeśli rozliczenie jest bez wypłaty w polach kwot wstaw zero";
 const P_MSG_CLOSING = "Zamykam rozliczenie: ";
+const P_MSG_ADVANCE_PAYMENT = "Szukam zaliczek...";
 
 // ***** baza PRACOWNICY
 const E_FIELD_FULLNAME = "Imie i nazwisko";
