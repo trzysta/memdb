@@ -7,7 +7,7 @@ function closePayment() {
 
   // sprawdzanie warunków czy może zamykać rozliczenie i czy rozliczenie jest otwarte
   var entryPayout = entry();
-  log(user().username + " closePayment() START");
+  //log(user().username + " closePayment() START");
 
   if ((entryPayout.field(P_FIELD_CLOSED) == P_FIELD_CLOSED_VALUE_YES) || ( !isManager() ) ) {
 
@@ -21,7 +21,7 @@ function closePayment() {
     cancel();
 
   } else {
-    message ( P_MSG_CLOSING + entryPayout.field(P_EMPLOYEE_LINK)[0].field(E_FIELD_FULLNAME) );
+    message ( P_MSG_CLOSING + entryPayout.field(P_FIELD_EMPLOYEE_LINK)[0].field(E_FIELD_FULLNAME) );
     // któreś z pól gotówka lub przelew nie jest NULL więc zamykam rozliczenie
 
     if (entryPayout.field(FIELD_CAN_ACCESS) == false )  {
@@ -34,7 +34,7 @@ function closePayment() {
     // dodawanie wpisu do bazy wydatków o przelewie
     if ( entryPayout.field(P_FIELD_WITHDRAWAL_DATE) != null ) {
 
-        var entPracownik = entryPayout.field(P_EMPLOYEE_LINK)[0];
+        var entPracownik = entryPayout.field(P_FIELD_EMPLOYEE_LINK)[0];
         var entrySpend = new Object;
 
         entrySpend = libWydatki.create(entrySpend);
@@ -45,7 +45,7 @@ function closePayment() {
         entrySpend.set(S_FIELD_DATE, entryPayout.field(P_FIELD_WITHDRAWAL_DATE));
         entrySpend.set(S_FIELD_TYPE, S_FIELD_TYPE_VALUE_EMPLOYEE_WITHDRAWAL);
         entrySpend.set(S_FIELD_CREATOR, withdrawalMaker);    // do bazy wypłat dodać wypłacającego
-        entrySpend.set(S_FIELD_EMPLOYEE_LINK, entryPayout.field(P_EMPLOYEE_LINK));
+        entrySpend.set(S_FIELD_EMPLOYEE_LINK, entryPayout.field(P_FIELD_EMPLOYEE_LINK));
 
         var desc =  entryPayout.field(P_FIELD_DESCRIPTION) + P_ADD_DESCRIPTION_WITHDRAWAL + moment(entryPayout.field(P_FIELD_MONTH)).format('MM') +
                     "-" + moment(entryPayout.field(P_FIELD_MONTH)).format('YYYY');
@@ -81,7 +81,7 @@ function closePayment() {
       entrySpend.set(S_FIELD_DATE, entryPayout.field(P_FIELD_CASH_DATE));
       entrySpend.set(S_FIELD_TYPE, S_FIELD_TYPE_VALUE_EMPLOYEE_CASH);
       entrySpend.set(S_FIELD_CREATOR, entryPayout.field(P_FIELD_PAYER));    // do bazy wypłat dodać wypłacającego
-      entrySpend.set(S_FIELD_EMPLOYEE_LINK, entryPayout.field(P_EMPLOYEE_LINK));
+      entrySpend.set(S_FIELD_EMPLOYEE_LINK, entryPayout.field(P_FIELD_EMPLOYEE_LINK));
 
       var desc =  entryPayout.field(P_FIELD_DESCRIPTION) + P_ADD_DESCRIPTION_CASH + moment(entryPayout.field(P_FIELD_MONTH)).format('MM') +
                     "-" + moment(entryPayout.field(P_FIELD_MONTH)).format('YYYY');
@@ -115,6 +115,41 @@ function closePayment() {
   entryPayout.recalc();
   entryPayout.show();
   }
-  log(user().username + " closePayment() STOP");
+  //log(user().username + " closePayment() STOP");
+}
+
+
+// *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+// *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+// *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+/*
+funkcja wyszukująca w bazie wydatków wpisów o zaliczkach i dodająca do wypłaty
+zakres wyszukiwania jest od 18 dnia poprzedniego miesiąca do bieżącej daty
+*/
+
+function findAdvancePayment () {
+
+  var arrAdvancePaymentSpendType = new Array(S_FIELD_TYPE_VALUE_ADVANCEPAYMENT_CASH, S_FIELD_TYPE_VALUE_ADVANCEPAYMENT_WITHDRAWAL);
+  var entryPayout = entry();
+
+  if (entryPayout.field(P_FIELD_EMPLOYEE_LINK).length > 0) {
+     var entriesSpend = libWydatki.linksTo( entryPayout.field( P_FIELD_EMPLOYEE_LINK)[0] );
+     for (i=0; i < entriesSpend.length; i++ ) {
+        var entrySpend = entriesSpend[i];
+
+        message( "szukam zaliczek " + i + ": " + entrySpend.field(S_FIELD_TYPE) + " " + entrySpend.field(S_FIELD_DATE) " " + entrySpend.field(S_FIELD_AMOUNT));
+
+        var momEntry = moment( entrySpend.field(S_FIELD_DATE) );
+        var momStart = moment().startOf('month').add({days:18,months:-1});
+        var momEnd = moment();
+
+        message( "szukam" + momEntry + " jest miedzy " + momStart +' a ' + momEnd);
+        if (  arrAdvancePaymentSpendType.includes(entrySpend.field("S_FIELD_TYPE")) &&
+              momEntry.isBetween(momStart, momEnd) ) {
+              entryPayout.link( P_FIELD_ADVANCE_PAYMENT, entrySpend);
+        }
+     }
+  entryPayout.recalc();
+  }
 
 }

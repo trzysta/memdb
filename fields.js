@@ -12,6 +12,10 @@ const S_FIELD_DATE = "Data transakcji";
 const S_FIELD_TYPE = "Typ transakcji";
 const S_FIELD_TYPE_VALUE_EMPLOYEE_WITHDRAWAL = "Rozliczenie przelewem z pracownikiem"; // wartość pola
 const S_FIELD_TYPE_VALUE_EMPLOYEE_CASH = "Rozliczenie gotówką z pracownikiem";
+const S_FIELD_TYPE_VALUE_ADVANCEPAYMENT_CASH = "Wypłacona gotówką zaliczka";
+const S_FIELD_TYPE_VALUE_ADVANCEPAYMENT_WITHDRAWAL = "Wypłacona przelewem zaliczka";
+
+
 const S_FIELD_BUDGET_LINK = "Budżet";
 const S_FIELD_CREATOR = "Dokonujący transakcji";
 const S_FIELD_CATEGORY = "Kategoria";
@@ -36,11 +40,12 @@ const P_FIELD_CASH_AMOUNT = "Wypłacono w gotówce";
 const P_FIELD_CASH_DATE = "Data wypłaty gotówki";
 const P_FIELD_WITHDRAWAL_AMOUNT = "Wpłacono na konto";
 const P_FIELD_WITHDRAWAL_DATE = "Data przelewu";
-const P_EMPLOYEE_LINK = "Pracownik";
+const P_FIELD_EMPLOYEE_LINK = "Pracownik";
 const P_SPEND_LINK = "Wydatek";
 const P_FIELD_DESCRIPTION = "Uwagi";
 const P_FIELD_MONTH = "Miesiąc";
 const P_FIELD_PAYER = "Dokonujący wypłaty";
+const P_FIELD_ADVANCE_PAYMENT = "Zaliczki";
 
 const P_ADD_DESCRIPTION_WITHDRAWAL = " wypłata przelewem za ";
 const P_ADD_DESCRIPTION_CASH = " wypłata gotówki za ";
