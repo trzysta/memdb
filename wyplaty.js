@@ -144,7 +144,7 @@ function findAdvancePayment( entryPayout ) {
         var is = isLinksMember( entryPayout.field(P_FIELD_ADVANCE_PAYMENT), entrySpend);
         if ( (arrAdvancePaymentSpendType.indexOf(entrySpend.field(S_FIELD_TYPE)) >= 0 ) &&
               momEntry.isBetween(momStart, momEnd) &&
-              (!isEntryLinked( entryPayout.field(P_FIELD_ADVANCE_PAYMENT), entrySpend)) {
+              (!isEntryLinked( entryPayout.field(P_FIELD_ADVANCE_PAYMENT), entrySpend))) {
               entryPayout.link( P_FIELD_ADVANCE_PAYMENT, entrySpend );
         }
      }
