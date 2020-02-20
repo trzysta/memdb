@@ -9,7 +9,7 @@ function closePayment() {
   var entryPayout = entry();
   //log(user().username + " closePayment() START");
 
-  if ((entryPayout.field(P_FIELD_CLOSED) == P_FIELD_CLOSED_VALUE_YES) || ( !isManager() ) ) {
+  if ((entryPayout.field(P_FIELD_CLOSED) == P_FIELD_CLOSED_VALUE_YES) || ( !isEditor() ) ) {
 
     message(P_MSG_CLOSED_OR_NOACCESS);
     cancel();
@@ -119,6 +119,12 @@ function closePayment() {
 };
 
 
+
+
+
+
+
+
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
@@ -150,5 +156,39 @@ function findAdvancePayment() {
         }
      }
   entryPayout.recalc();
+  entryPayout.show();
   }
+}
+
+
+
+
+
+
+
+// *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+// *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+// *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+
+function newPayoutOpening () {
+
+  var prevMonth = moment().startOf('month').add(-1, 'month');
+  var entryPayout = entryDefault();
+  var dayEnd = parseInt(moment().startOf('month').add(-1, 'month').endOf('month').format('D'));
+  var weekendDays = new Array();
+  var payer = arrNames[arrEditors.idenxOf(user().username)];
+
+  entryPayout.set(P_FIELD_PAYER, payer);
+  entryPayout.set(P_FIELD_MONTH, prevMonth.toDate()) ;
+  setDefault(entryPayout);
+
+  var i = 1;
+
+  while ( i <= dayEnd ) {
+    if ( prevMonth.isoWeekday() == 6 || prevMonth.isoWeekday() == 7 ) {   weekendDays.push(i); };
+    prevMonth = prevMonth.add(1, 'day');
+    i++;
+  };
+  entryPayout.set(P_FILED_WEEKENDDAYS, weekendDays )
+
 }

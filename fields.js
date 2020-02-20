@@ -46,6 +46,7 @@ const P_FIELD_DESCRIPTION = "Uwagi";
 const P_FIELD_MONTH = "Miesiąc";
 const P_FIELD_PAYER = "Dokonujący wypłaty";
 const P_FIELD_ADVANCE_PAYMENT = "Zaliczki";
+const P_FILED_WEEKENDDAYS = "Dni wolne";
 
 const P_ADD_DESCRIPTION_WITHDRAWAL = " wypłata przelewem za ";
 const P_ADD_DESCRIPTION_CASH = " wypłata gotówki za ";
