@@ -44,7 +44,7 @@ function closePayment() {
         entrySpend.set(S_FIELD_AMOUNT,(0 - entryPayout.field(P_FIELD_WITHDRAWAL_AMOUNT)));
         entrySpend.set(S_FIELD_DATE, entryPayout.field(P_FIELD_WITHDRAWAL_DATE));
         entrySpend.set(S_FIELD_TYPE, S_FIELD_TYPE_VALUE_EMPLOYEE_WITHDRAWAL);
-        entrySpend.set(S_FIELD_CREATOR, withdrawalMaker);    // do bazy wypłat dodać wypłacającego
+        entrySpend.set(S_FIELD_CREATOR, withdrawalMaker);    z // do bazy wypłat dodać wypłacającego
         entrySpend.set(S_FIELD_EMPLOYEE_LINK, entryPayout.field(P_FIELD_EMPLOYEE_LINK));
 
         var desc =  entryPayout.field(P_FIELD_DESCRIPTION) + P_ADD_DESCRIPTION_WITHDRAWAL + moment(entryPayout.field(P_FIELD_MONTH)).format('MM') +
@@ -141,10 +141,10 @@ function findAdvancePayment( entryPayout ) {
         var momEntry = moment( entrySpend.field(S_FIELD_DATE) );
         var momStart = moment().startOf('month').add({days:18,months:-1});
         var momEnd = moment();
-        var is = isLinkMember( entryPayout.field(P_FIELD_ADVANCE_PAYMENT), entrySpend);
+        var is = isLinksMember( entryPayout.field(P_FIELD_ADVANCE_PAYMENT), entrySpend);
         if ( (arrAdvancePaymentSpendType.indexOf(entrySpend.field(S_FIELD_TYPE)) >= 0 ) &&
               momEntry.isBetween(momStart, momEnd) &&
-              (isLinkMember( entryPayout.field(P_FIELD_ADVANCE_PAYMENT), entrySpend) < 0)) {
+              (!isEntryLinked( entryPayout.field(P_FIELD_ADVANCE_PAYMENT), entrySpend)) {
               entryPayout.link( P_FIELD_ADVANCE_PAYMENT, entrySpend );
         }
      }

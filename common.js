@@ -23,14 +23,14 @@ function isManager() {
 }
 
 
-// *^*^*^*  sprawdza czy searchedEntry jest w arrayOfLinks
-function isLinkMember( arrayOfLinks, searchedEntry ) {
-  var is = -1;
-  var i = 0;
+// *^*^*^*  sprawdza czy entrySearchFor jest w arrayOfLinks
+function isEntryLinked( arrayOfLinks, entrySearchFor ) {
 
+  var is = false;
+  var i = 0;
   while ( i < arrayOfLinks.length ) {
     if (arrayOfLinks[i].id == searchedEntry.id ) {
-       is = i;
+       is = true;
        i = arrayOfLinks.length + 1;
     } else {
        i++;
