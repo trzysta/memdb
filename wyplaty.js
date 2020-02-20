@@ -131,7 +131,7 @@ function findAdvancePayment() {
 
   var entryPayout = entry();
   var arrAdvancePaymentSpendType = new Array(S_FIELD_TYPE_VALUE_ADVANCEPAYMENT_CASH, S_FIELD_TYPE_VALUE_ADVANCEPAYMENT_WITHDRAWAL);
-       
+
   if ( (entryPayout.field(P_FIELD_EMPLOYEE_LINK).length > 0) &&
        (entryPayout.field(P_FIELD_CLOSED) != P_FIELD_CLOSED_VALUE_YES) ) {
 
@@ -142,7 +142,7 @@ function findAdvancePayment() {
         var momEntry = moment( entrySpend.field(S_FIELD_DATE) );
         var momStart = moment().startOf('month').add({days:18,months:-1});
         var momEnd = moment();
-        var is = isLinksMember( entryPayout.field(P_FIELD_ADVANCE_PAYMENT), entrySpend);
+
         if ( (arrAdvancePaymentSpendType.indexOf(entrySpend.field(S_FIELD_TYPE)) >= 0 ) &&
               momEntry.isBetween(momStart, momEnd) &&
               (!isEntryLinked( entryPayout.field(P_FIELD_ADVANCE_PAYMENT), entrySpend))) {
