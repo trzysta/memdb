@@ -192,7 +192,6 @@ function newPayoutOpening() {
 
   message (payer + " " + prevMonth.toDate() + " " + dayEnd + "" + weekends );
   entryPayout.set( P_FIELD_WEEKENDS, weekends );
-  entryPayout.recalc();
 }
 
 
