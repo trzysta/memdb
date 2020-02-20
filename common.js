@@ -43,17 +43,14 @@ function isEntryLinked( arrayOfLinks, entrySearchFor ) {
 
 
 // *^*^*^*  odpalana Creating Entry, Opening an Entry Card
-function setDefault() {
-  var e = entryDefault();
+function setDefault(e) {
   e.set(FIELD_EDITOR, arrEditors);
   e.set(FIELD_IS_NEW, true);
 }
 
 
-
 // *^*^*^*  odpalana Creating Entry, After Save
-function saveFirstTime() {
-  var e = entry();
+function saveFirstTime(e) {
   e.set(FIELD_IS_NEW, false);
 }
 

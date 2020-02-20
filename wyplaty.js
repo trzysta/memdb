@@ -172,14 +172,18 @@ function findAdvancePayment() {
 
 function newPayoutOpening() {
 
-  var prevMonth = moment().startOf('month').add(-1, 'month');
   var entryPayout = entryDefault();
+  var prevMonth = moment().startOf('month').add(-1, 'month');
   var dayEnd = parseInt(moment().startOf('month').add(-1, 'month').endOf('month').format('D'));
   var weekendDays = new Array();
   var payer = arrNames[arrEditors.indexOf( user().username )];
+  message (payer + " " + prevMonth + " " + dayEnd);
+
   entryPayout.set(P_FIELD_PAYER, payer);
   entryPayout.set(P_FIELD_MONTH, prevMonth.toDate()) ;
+
   setDefault(entryPayout);
+
   var i = 1;
   while ( i <= dayEnd ) {
     if ( prevMonth.isoWeekday() == 6 || prevMonth.isoWeekday() == 7 ) {   weekendDays.push(i); };
@@ -187,4 +191,5 @@ function newPayoutOpening() {
     i++;
   };
   entryPayout.set(P_FILED_WEEKENDDAYS, weekendDays );
+
 }
