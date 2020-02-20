@@ -189,12 +189,43 @@ function newPayoutOpening() {
     prevMonth = prevMonth.add(1, 'day');
     i++;
   };
-
-  message (payer + " " + prevMonth.toDate() + " " + dayEnd + "" + weekends );
   entryPayout.set( P_FIELD_WEEKENDS, weekends );
 }
 
 
+
+
+
+// *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+// *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+// *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+
+function validateSaving() {
+
+  var entryPayout     = entry();
+  var amountWithdrwal = entryPayout.field(P_FIELD_WITHDRAWAL_AMOUNT);
+  var amountCash      = entryPayout.field(P_FIELD_CASH_AMOUNT);
+  var canSave         = false;
+  var msg             = P_MSG_VALIDATION_ERR;
+
+  if ( (amountWithdrwal > 0) && (entryPayout.field(P_FIELD_WITHDRAWAL_DATE) == null) ) {
+    msg += "\n" + P_MSG_VALIDATION_ERR_NO_WITHDRWAL;
+    canSave = false;
+  } else {
+    canSave = true;
+  }
+
+  if ( (amountCash > 0) && (entryPayout.field(P_FIELD_CASH_DATE) == null) ) {
+    msg += "\n" + P_MSG_VALIDATION_ERR_NO_CASH;
+    canSave = false;
+  } else {
+    canSave = true;
+  }
+
+  if (!canSave) { message(msg) };
+  return canSave;
+
+}
 
 
 

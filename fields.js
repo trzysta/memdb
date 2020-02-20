@@ -55,6 +55,9 @@ const P_MSG_CLOSED_OR_NOACCESS = "Wpis już rozliczony lub nie masz uprawnień d
 const P_MSG_NO_AMONT = "Uzupełnij kwoty wypłat, gotówka lub przelew. Jeśli rozliczenie jest bez wypłaty w polach kwot wstaw zero";
 const P_MSG_CLOSING = "Zamykam rozliczenie: ";
 const P_MSG_ADVANCE_PAYMENT = "Szukam zaliczek... ";
+const P_MSG_VALIDATION_ERR = "Nie można zapisać, popraw następujące błędy:";
+const P_MSG_VALIDATION_ERR_NO_WITHDRWAL = "- podaj datę i kwotę przelewu";
+const P_MSG_VALIDATION_ERR_NO_CASH = "- podaj datę i kwotę wypłaty gotówki";
 
 // ***** baza PRACOWNICY
 const E_FIELD_FULLNAME = "Imie i nazwisko";
