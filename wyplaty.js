@@ -175,7 +175,7 @@ function newPayoutOpening() {
   var entryPayout = entryDefault();
   var prevMonth   = moment().startOf('month').add(-1, 'month');
   var dayEnd      = parseInt(moment().startOf('month').add(-1, 'month').endOf('month').format('D'));
-  var weekendDays = new Array();
+  var weekends    = new Array();
   var payer       = arrNames[ arrEditors.indexOf( user().username ) ];
 
   entryPayout.set( P_FIELD_PAYER, payer );
@@ -185,14 +185,14 @@ function newPayoutOpening() {
 
   var i = 1;
   while ( i <= dayEnd ) {
-    if ( prevMonth.isoWeekday() == 6 || prevMonth.isoWeekday() == 7 ) {   weekendDays.push(i); };
+    if ( prevMonth.isoWeekday() == 6 || prevMonth.isoWeekday() == 7 ) {   weekends.push(i); };
     prevMonth = prevMonth.add(1, 'day');
     i++;
   };
 
-  message (payer + " " + prevMonth.toDate() + " " + dayEnd + "" + weekendDays );
-  entryPayout.set(P_FILED_WEEKENDDAYS, weekendDays );
-
+  message (payer + " " + prevMonth.toDate() + " " + dayEnd + "" + weekends );
+  entryPayout.set( P_FIELD_WEEKENDS, weekends );
+  entryPayout.recalc();
 }
 
 
