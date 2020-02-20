@@ -131,7 +131,7 @@ function findAdvancePayment() {
 
   var entryPayout = entry();
   var arrAdvancePaymentSpendType = new Array(S_FIELD_TYPE_VALUE_ADVANCEPAYMENT_CASH, S_FIELD_TYPE_VALUE_ADVANCEPAYMENT_WITHDRAWAL);
-
+       
   if ( (entryPayout.field(P_FIELD_EMPLOYEE_LINK).length > 0) &&
        (entryPayout.field(P_FIELD_CLOSED) != P_FIELD_CLOSED_VALUE_YES) ) {
 
