@@ -29,7 +29,7 @@ function isEntryLinked( arrayOfLinks, entrySearchFor ) {
   var is = false;
   var i = 0;
   while ( i < arrayOfLinks.length ) {
-    if (arrayOfLinks[i].id == searchedEntry.id ) {
+    if (arrayOfLinks[i].id == entrySearchFor.id ) {
        is = true;
        i = arrayOfLinks.length + 1;
     } else {
