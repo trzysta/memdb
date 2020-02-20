@@ -178,7 +178,7 @@ function newPayoutOpening() {
   var weekendDays = new Array();
   var payer       = arrNames[ arrEditors.indexOf( user().username ) ];
 
-  message (payer + " " + prevMonth + " " + dayEnd);
+  message (payer + " " + prevMonth.toDate() + " " + dayEnd);
 
   entryPayout.set( P_FIELD_PAYER, payer );
   entryPayout.set( P_FIELD_MONTH, prevMonth.toDate() );
