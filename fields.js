@@ -26,11 +26,15 @@ const S_FIELD_DESCRIPTION = "Opis";
 const S_FIELD_INVOICE_IMG = "Faktura";
 const S_FIELD_IS_FIELD_PAYED = "Do zapłaty";
 const S_FIELD_COST_ALLOCATION_LINK = "Robicie kosztu na osiedla";
+const S_FIELD_COST_ALLOCATION_LINK = "";
 const S_FIELD_IS_FIELD_REINVOICE = "Czy wydatek należy refakturować";
 const S_FIELD_REINVOICE_CONTRACT_LINK = "Osiedle do faktury";
 const S_FIELD_NR = "Nr";
 const S_FIELD_NR_ASSIGNED = "Nr powiązany";
 const S_FIELD_DESCRIPTION_DISPLAY = "Opis";
+const S_FIELD_COST_ALLOCATION_LEFT = "Kwota pozostała do rozpisania";
+
+
 
 // ***** baza WYPŁATY
 const P_FIELD_CLOSED = "Rozliczony";
