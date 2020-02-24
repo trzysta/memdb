@@ -28,5 +28,5 @@ function selectWorkingDays( entryAction ) {
     dt = dt.add(1, 'day');
     i++;
   }
-  entryAction.set(A_FIELD_DATES, arrDates.toString());
+  entryAction.set(A_FIELD_DATES, arrDates.join(", "));
 }
