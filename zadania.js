@@ -1,13 +1,15 @@
 
 
+// zmienne
+
+
 
 function selectWorkingDays( entryAction ) {
 
-  var month = entryAction.field(A_FIELD_MONTH);
-  var dt = moment(month).startOf('month');
-  var dayEnd = parseInt(moment(m).endOf('month').format('D'));
+  var mnth = entryAction.field(A_FIELD_MONTH);
+  var dt = moment(mnth).startOf('month');
+  var dayEnd = parseInt(moment(mnth).endOf('month').format('D'));
   var day = 1;
-  var m
   var arrDates = new Array;
 
   // set miesiąc as first day of month
@@ -20,10 +22,11 @@ function selectWorkingDays( entryAction ) {
   while ( i <= dayEnd ) {
      if ( (dt.isoWeekday() != VALUE_DAYNUMBER_SATURDAY) && (dt.isoWeekday()!= VALUE_DAYNUMBER_SUNDAY ) )  {
        entryAction.set(i, true);
-
+       // tutaaj skrypt dodający datę do pola
+       arrDates.push( moment(dt).format('DD-MM-YYYY') );
     };
     dt = dt.add(1, 'day');
     i++;
   }
-
+  entryAction.set(A_FIELD_DATES, arrDates.toString());
 }

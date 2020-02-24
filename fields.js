@@ -22,7 +22,6 @@ const S_FIELD_TYPE_VALUE_EMPLOYEE_WITHDRAWAL = "Rozliczenie przelewem z pracowni
 const S_FIELD_TYPE_VALUE_EMPLOYEE_CASH = "Rozliczenie gotówką z pracownikiem";
 const S_FIELD_TYPE_VALUE_ADVANCEPAYMENT_CASH = "Wypłacona gotówką zaliczka";
 const S_FIELD_TYPE_VALUE_ADVANCEPAYMENT_WITHDRAWAL = "Wypłacona przelewem zaliczka";
-
 const S_FIELD_BUDGET_LINK = "Budżet";
 const S_FIELD_CREATOR = "Dokonujący transakcji";
 const S_FIELD_CATEGORY = "Kategoria";
@@ -40,8 +39,6 @@ const S_FIELD_NR = "Nr";
 const S_FIELD_NR_ASSIGNED = "Nr powiązany";
 const S_FIELD_DESCRIPTION_DISPLAY = "Opis";
 const S_FIELD_COST_ALLOCATION_LEFT = "Kwota pozostała do rozpisania";
-
-
 
 // ***** baza WYPŁATY
 const P_FIELD_CLOSED = "Rozliczony";
@@ -73,6 +70,7 @@ const P_MSG_VALIDATION_ERR_NO_CASH = "- podaj datę i kwotę wypłaty gotówki";
 // ***** baza PRACOWNICY
 const E_FIELD_FULLNAME = "Imie i nazwisko";
 
+
 // ***** baza BUDŻET
 const B_FIELD_LIMIT = "Limit";
 const B_FIELD_BALANCE = "Saldo";
@@ -82,30 +80,21 @@ const B_FIELD_CONTRACT_LINK = "Osiedle";
 const B_FIELD_MONTH = "Miesiąc";
 const B_FIELD_TYPE = "Rodzaj";
 const B_FIELD_TYPE_VALUE_PAYOUTS = "Wynagrodzenia";
-
-
 const B_MSG_BUDGET_FOUND = "...znaleziono budżet: ";
 
-
 // ***** baza KALENDARZ ZADAŃ
-
-const A_FIELD_MONTH = "Miesiąc"
-
-
-
-
-
-
+const A_FIELD_MONTH = "Miesiąc";
+const A_FIELD_DATES = "Daty";
 
 // zmienne
-var arrMonths_pl = ["styczeń", "luty", "marzec", "kwiecien", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "listopad", "grudzień"];
-var arrEditors = ["MalgorzataG", "ElzbietaZ", "trzystaIZABELA", "trzysta"];
-var arrManagers = ["trzysta"];
-var arrNames = ["Małgorzata Grabowska", "Elżbieta Zdziech", "Izabela Skowrońska", "Marceli Matynia"];
-var libWyplaty = libByName("Wypłaty");
-var libWydatki = libByName("Wydatki");
-var libBudzet =  libByName("Budżet");
-var libOsiedla = libByName("Osiedla");
-
-
+var arrMonths_pl  = ["styczeń", "luty", "marzec", "kwiecien", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "listopad", "grudzień"];
+var arrEditors    = ["MalgorzataG", "ElzbietaZ", "trzystaIZABELA", "trzysta"];
+var arrManagers   = ["trzysta"];
+var arrNames      = ["Małgorzata Grabowska", "Elżbieta Zdziech", "Izabela Skowrońska", "Marceli Matynia"];
+var libWyplaty    = libByName("Wypłaty");
+var libWydatki    = libByName("Wydatki");
+var libBudzet     = libByName("Budżet");
+var libOsiedla    = libByName("Osiedla");
+var libKontrole   = libByName("Kontrole");
+var libZadania    = libByName("Kalendarz zadań");
 var withdrawalMaker = "Marceli Matynia";
