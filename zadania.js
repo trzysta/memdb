@@ -23,10 +23,10 @@ function selectWorkingDays( entryAction ) {
      if ( (dt.isoWeekday() != VALUE_DAYNUMBER_SATURDAY) && (dt.isoWeekday()!= VALUE_DAYNUMBER_SUNDAY ) )  {
        entryAction.set(i, true);
        // tutaaj skrypt dodający datę do pola
-       arrDates.push( moment(dt).format('DD-MM-YYYY') );
+       arrDates.push( moment(dt).format('DDMMYYYY') );
     };
     dt = dt.add(1, 'day');
     i++;
   }
-  entryAction.set(A_FIELD_DATES, arrDates.join(", "));
+  entryAction.set(A_FIELD_DATES, arrDates.join(" "));
 }
