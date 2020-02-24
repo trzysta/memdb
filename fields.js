@@ -5,6 +5,14 @@ const FIELD_IS_NEW = "Nowy";
 const FIELD_IS_HIDDEN = "Ukryte";
 const FIELD_CAN_ACCESS = "canAccess";
 
+const VALUE_DAYNUMBER_MONDAY    = 1;
+const VALUE_DAYNUMBER_TUESDAY   = 2;
+const VALUE_DAYNUMBER_WEDNESDAY = 3;
+const VALUE_DAYNUMBER_THURSDAY  = 4;
+const VALUE_DAYNUMBER_FRIDAY    = 5;
+const VALUE_DAYNUMBER_SATURDAY  = 6;
+const VALUE_DAYNUMBER_SUNDAY    = 7;
+
 // ***** baza wydatki
 const S_FIELD_IMPORTED = "Rozliczony";
 const S_FIELD_AMOUNT = "Kwota";
@@ -26,7 +34,7 @@ const S_FIELD_DESCRIPTION = "Opis";
 const S_FIELD_INVOICE_IMG = "Faktura";
 const S_FIELD_IS_FIELD_PAYED = "Do zapłaty";
 const S_FIELD_COST_ALLOCATION_LINK = "Robicie kosztu na osiedla";
-const S_FIELD_COST_ALLOCATION_LINK = "";
+const S_FIELD_COST_ALLOCATION_LINK_AMOUNT = "Kwota";
 const S_FIELD_IS_FIELD_REINVOICE = "Czy wydatek należy refakturować";
 const S_FIELD_REINVOICE_CONTRACT_LINK = "Osiedle do faktury";
 const S_FIELD_NR = "Nr";
@@ -78,6 +86,16 @@ const B_FIELD_TYPE_VALUE_PAYOUTS = "Wynagrodzenia";
 
 
 const B_MSG_BUDGET_FOUND = "...znaleziono budżet: ";
+
+
+// ***** baza KALENDARZ ZADAŃ
+
+const A_FIELD_MONTH = "Miesiąc"
+
+
+
+
+
 
 
 // zmienne
