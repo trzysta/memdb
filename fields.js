@@ -23,6 +23,7 @@ const S_FIELD_TYPE_VALUE_EMPLOYEE_CASH = "Rozliczenie gotówką z pracownikiem";
 const S_FIELD_TYPE_VALUE_ADVANCEPAYMENT_CASH = "Wypłacona gotówką zaliczka";
 const S_FIELD_TYPE_VALUE_ADVANCEPAYMENT_WITHDRAWAL = "Wypłacona przelewem zaliczka";
 const S_FIELD_BUDGET_LINK = "Budżet";
+const S_FIELD_BUDGET_LINK_AMOUNT = "Kwota";
 const S_FIELD_CREATOR = "Dokonujący transakcji";
 const S_FIELD_CATEGORY = "Kategoria";
 const S_FIELD_RECIPIENT = "Przekazano osobie";
