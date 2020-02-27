@@ -24,6 +24,10 @@ const S_FIELD_TYPE_VALUE_ADVANCEPAYMENT_CASH = "Wypłacona gotówką zaliczka";
 const S_FIELD_TYPE_VALUE_ADVANCEPAYMENT_WITHDRAWAL = "Wypłacona przelewem zaliczka";
 const S_FIELD_BUDGET_LINK = "Budżet";
 const S_FIELD_BUDGET_LINK_AMOUNT = "Kwota";
+
+const S_FIELD_COST_ALLOCATION_LINK = "Robicie kosztu na osiedla";
+const S_FIELD_COST_ALLOCATION_LINK_AMOUNT = "Kwota";
+
 const S_FIELD_CREATOR = "Dokonujący transakcji";
 const S_FIELD_CATEGORY = "Kategoria";
 const S_FIELD_RECIPIENT = "Przekazano osobie";
@@ -32,8 +36,6 @@ const S_FIELD_EMPLOYEE_LINK = "Pracownik";
 const S_FIELD_DESCRIPTION = "Opis";
 const S_FIELD_INVOICE_IMG = "Faktura";
 const S_FIELD_IS_FIELD_PAYED = "Do zapłaty";
-const S_FIELD_COST_ALLOCATION_LINK = "Robicie kosztu na osiedla";
-const S_FIELD_COST_ALLOCATION_LINK_AMOUNT = "Kwota";
 const S_FIELD_IS_FIELD_REINVOICE = "Czy wydatek należy refakturować";
 const S_FIELD_REINVOICE_CONTRACT_LINK = "Osiedle do faktury";
 const S_FIELD_NR = "Nr";
