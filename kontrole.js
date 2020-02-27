@@ -18,10 +18,15 @@ function getActionsForInspection ( entryInspection, entryAction ) {
 
   entry();
   masterEntry();
+  setAttr(name , value)
+
+}
 
 
-setAttr(name , value)
+
+
+addBudgetSpending( entry(), masterEntry() ) {
+
 
 
 }
-addBudgetSpending( entry(), masterEntry() )

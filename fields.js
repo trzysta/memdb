@@ -70,7 +70,6 @@ const P_MSG_VALIDATION_ERR_NO_CASH = "- podaj datę i kwotę wypłaty gotówki";
 // ***** baza PRACOWNICY
 const E_FIELD_FULLNAME = "Imie i nazwisko";
 
-
 // ***** baza BUDŻET
 const B_FIELD_LIMIT = "Limit";
 const B_FIELD_BALANCE = "Saldo";
@@ -92,7 +91,7 @@ var arrEditors    = ["MalgorzataG", "ElzbietaZ", "trzystaIZABELA", "trzysta"];
 var arrManagers   = ["trzysta"];
 var arrNames      = ["Małgorzata Grabowska", "Elżbieta Zdziech", "Izabela Skowrońska", "Marceli Matynia"];
 var libWyplaty    = libByName("Wypłaty");
-var libWydatki    = libByName("Wydatki");
+//var libWydatki    = libByName("Wydatki");
 var libBudzet     = libByName("Budżet");
 var libOsiedla    = libByName("Osiedla");
 var libKontrole   = libByName("Kontrole");
