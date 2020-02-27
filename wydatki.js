@@ -4,7 +4,13 @@
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 
 
-function budgetAllocationLeft() {
+function budgetAllocationLeft( entrySpend ) {
 
-    entry().field(S_FIELD_BUDGET_LINK)[0].attr(S_FIELD_BUDGET_LINK_AMOUNT);
+  var s = entrySpend.field(S_FIELD_AMOUNT);
+  var budgetLinks = entrySpend.field(S_FIELD_BUDGET_LINK);
+  for ( i=0; budgetLinks.length; i++  ) {
+    s -= budgetLinks[i].attr(S_FIELD_BUDGET_LINK_AMOUNT);
+  }
+  return s;
+  
 }
