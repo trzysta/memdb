@@ -97,6 +97,7 @@ const B_MSG_BUDGET_FOUND = "...znaleziono budżet: ";
 // ***** baza KALENDARZ ZADAŃ
 const C_FIELD_MONTH = "Miesiąc";
 const C_FIELD_DATES = "Daty";
+const C_FIELD_DATES_DAYS = "Dni";
 const C_FIELD_TYPE = "Typ";
 const C_FIELD_TYPE_VALUE_TEMPLATE = "Definicja czynności";
 const C_FIELD_TYPE_VALUE_INSTANCE = "Pozycja harmonogramu";
