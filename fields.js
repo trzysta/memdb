@@ -101,5 +101,5 @@ const C_FIELD_TYPE = "Typ";
 const C_FIELD_TYPE_VALUE_TEMPLATE = "Definicja czynności";
 const C_FIELD_TYPE_VALUE_INSTANCE = "Pozycja harmonogramu";
 const C_FIELD_CONTRACT = "Osiedle";
-const C_FIELD_ACTION = "";
-const C_FIELD_ACTION_DOMAIN = "";
+const C_FIELD_ACTION = "Czynność";
+const C_FIELD_ACTION_DOMAIN = "Obszar";
