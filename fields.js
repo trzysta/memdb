@@ -12,6 +12,7 @@ const VALUE_DAYNUMBER_THURSDAY  = 4;
 const VALUE_DAYNUMBER_FRIDAY    = 5;
 const VALUE_DAYNUMBER_SATURDAY  = 6;
 const VALUE_DAYNUMBER_SUNDAY    = 7;
+const VIEW_SEP = " >>> ";
 
 // ***** baza wydatki
 const S_FIELD_IMPORTED = "Rozliczony";
@@ -73,6 +74,11 @@ const P_MSG_VALIDATION_ERR_NO_CASH = "- podaj datę i kwotę wypłaty gotówki";
 // ***** baza PRACOWNICY
 const E_FIELD_FULLNAME = "Imie i nazwisko";
 
+
+// ***** baza Osiedla, kontrakty
+const P_FIELD_CONTRACT = "Osiedle";
+
+
 // ***** baza BUDŻET
 const B_FIELD_LIMIT = "Limit";
 const B_FIELD_BALANCE = "Saldo";
@@ -84,6 +90,16 @@ const B_FIELD_TYPE = "Rodzaj";
 const B_FIELD_TYPE_VALUE_PAYOUTS = "Wynagrodzenia";
 const B_MSG_BUDGET_FOUND = "...znaleziono budżet: ";
 
+
+
+//
+
 // ***** baza KALENDARZ ZADAŃ
-const A_FIELD_MONTH = "Miesiąc";
-const A_FIELD_DATES = "Daty";
+const C_FIELD_MONTH = "Miesiąc";
+const C_FIELD_DATES = "Daty";
+const C_FIELD_TYPE = "Typ";
+const C_FIELD_TYPE_VALUE_TEMPLATE = "Definicja czynności";
+const C_FIELD_TYPE_VALUE_INSTANCE = "Pozycja harmonogramu";
+const C_FIELD_CONTRACT = "Osiedle";
+const C_FIELD_ACTION = "";
+const C_FIELD_ACTION_DOMAIN = "";
