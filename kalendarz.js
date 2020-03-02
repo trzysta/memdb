@@ -37,7 +37,7 @@ function selectDays( entryAction, dayWeekNumber ) {
   }
   // reset all (deselect)
   entryAction.set(C_FIELD_DATES, arrDates.join(", "));
-  entryAction.set(C_FIELD_DATES_DAYS, arrDates.join(", "));
+  entryAction.set(C_FIELD_DATES_DAYS, arrDays.join(", "));
 }
 
 
