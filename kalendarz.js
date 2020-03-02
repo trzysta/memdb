@@ -55,7 +55,7 @@ function displayEntryName( entryCalendar ) {
      case C_FIELD_TYPE_VALUE_TEMPLATE:
         o +=  entryCalendar.field(C_FIELD_ACTION_DOMAIN) + VIEW_SEP +
               entryCalendar.field(C_FIELD_ACTION) + VIEW_SEP +
-              entryCalendar.field(C_FIELD_CONTRACT)[0].field(P_FIELD_SHORTNAME);
+              entryCalendar.field(C_FIELD_CONTRACT).name;
        break;
      default:
         o +=  moment(entryCalendar.field(C_FIELD_MONTH)).format('YYYY-MM') + VIEW_SEP +
