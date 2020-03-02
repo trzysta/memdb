@@ -77,6 +77,8 @@ const E_FIELD_FULLNAME = "Imie i nazwisko";
 
 // ***** baza Osiedla, kontrakty
 const P_FIELD_CONTRACT = "Osiedle";
+const P_FIELD_SHORTNAME = "Nazwa potoczna";
+const P_FIELD_TAG = "Skrót";
 
 
 // ***** baza BUDŻET
