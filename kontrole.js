@@ -34,6 +34,6 @@ function saveFirstTime( entryControl ) {
     var entryAction = arrSearchResult[i];
     entryControl.link( R_FIELD_ACTION_LINK, entryAction );
   }
-  
+
   entryControl.show();
 }
