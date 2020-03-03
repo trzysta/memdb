@@ -15,12 +15,6 @@ function getCheckpointLabel( fieldCount ) {
 
 function createControl ( entryContract ) {
 
-   var entryControl = new Object;
-
-   entryControl = libKontrole.create(entryControl);
-   entryControl.link(R_CONTRACT_LINK, entryContract );
-   updateControlForm_linkContract( entryContract, entryControl );
-   entryControl.show();
 }
 
 
