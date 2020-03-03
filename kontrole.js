@@ -21,13 +21,12 @@ function createControl ( entryContract ) {
    entryControl.link(R_CONTRACT_LINK, entryContract );
    updateControlForm_linkContract( entryContract, entryControl );
    entryControl.show();
-
 }
 
 
 function updateControlForm_linkContract( entryContract, entryControl ) {
 
   var arrBuildings = entryContract.field(P_FIELD_BUILDINGS).split("\n");
-  entryControl.set(R_FIELD_BUILDING, arrBuildings)
+  entryControl.set(R_FIELD_BUILDING, arrBuildings);
 
 }

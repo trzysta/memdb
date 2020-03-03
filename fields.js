@@ -79,7 +79,7 @@ const E_FIELD_FULLNAME = "Imie i nazwisko";
 const P_FIELD_CONTRACT = "Osiedle";
 const P_FIELD_SHORTNAME = "Nazwa potoczna";
 const P_FIELD_TAG = "Skrót";
-const P_FIELD_BUILDINGS = "Budynki i klatki"''
+const P_FIELD_BUILDINGS = "Budynki i klatki";
 
 
 // ***** baza BUDŻET
