@@ -76,26 +76,23 @@ const E_FIELD_FULLNAME = "Imie i nazwisko";
 
 
 // ***** baza Osiedla, kontrakty
-const P_FIELD_CONTRACT = "Osiedle";
-const P_FIELD_SHORTNAME = "Nazwa potoczna";
-const P_FIELD_TAG = "Skrót";
-const P_FIELD_BUILDINGS = "Budynki i klatki";
-const aaaaaa = "";
+const P_FIELD_CONTRACT      = "Osiedle";
+const P_FIELD_SHORTNAME     = "Nazwa potoczna";
+const P_FIELD_TAG           = "Skrót";
+const P_FIELD_BUILDINGS     = "Budynki i klatki";
+const aaaaaa                = "";
 
 // ***** baza BUDŻET
-const B_FIELD_LIMIT = "Limit";
-const B_FIELD_BALANCE = "Saldo";
-const B_FIELD_LEFT = "Zostało";
-const B_FIELD_AMOUNT = "Kwota"
+const B_FIELD_LIMIT         = "Limit";
+const B_FIELD_BALANCE       = "Saldo";
+const B_FIELD_LEFT          = "Zostało";
+const B_FIELD_AMOUNT        = "Kwota";
 const B_FIELD_CONTRACT_LINK = "Osiedle";
-const B_FIELD_MONTH = "Miesiąc";
-const B_FIELD_TYPE = "Rodzaj";
+const B_FIELD_MONTH         = "Miesiąc";
+const B_FIELD_TYPE          = "Rodzaj";
 const B_FIELD_TYPE_VALUE_PAYOUTS = "Wynagrodzenia";
-const B_MSG_BUDGET_FOUND = "...znaleziono budżet: ";
+const B_MSG_BUDGET_FOUND    = "...znaleziono budżet: ";
 
-
-
-//
 
 // ***** baza KALENDARZ ZADAŃ
 const C_FIELD_MONTH                 = "Miesiąc";
