@@ -141,4 +141,4 @@ const R_FREQ_LINKED             = ["Codziennie",
                                   "3 razy w tygodniu",
                                   "1 raz na dwa tygodnie"];
 
-const R_FIELD_ACTION_LINK = "Czynności do wykonania wg umowy";
+var R_FIELD_ACTION_LINK = "Czynności do wykonania wg umowy";
