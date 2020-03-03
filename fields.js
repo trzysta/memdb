@@ -79,6 +79,7 @@ const E_FIELD_FULLNAME = "Imie i nazwisko";
 const P_FIELD_CONTRACT = "Osiedle";
 const P_FIELD_SHORTNAME = "Nazwa potoczna";
 const P_FIELD_TAG = "Skrót";
+const P_FIELD_BUILDINGS = "Budynki i klatki"''
 
 
 // ***** baza BUDŻET
@@ -109,7 +110,7 @@ const C_FIELD_ACTION_DOMAIN = "Obszar";
 
 
 // ***** baza KONTROLA
-const C_FIELD_CHECKPOINT_LABELS = [
+const R_FIELD_CHECKPOINT_LABELS = [
 "Posadzka, płytki, kamień, fugi",
 "Zapach",
 "Parapety: kurz, martwe owady",
@@ -124,3 +125,4 @@ const C_FIELD_CHECKPOINT_LABELS = [
 "Windy: lustra",
 "Barierki, poręcze"
 ];
+const R_FIELD_BUILDING = "Budynek i klatka";
