@@ -106,3 +106,21 @@ const C_FIELD_TYPE_VALUE_INSTANCE = "Pozycja harmonogramu";
 const C_FIELD_CONTRACT = "Osiedle";
 const C_FIELD_ACTION = "Czynność";
 const C_FIELD_ACTION_DOMAIN = "Obszar";
+
+
+// ***** baza KONTROLA
+const C_FIELD_CHECKPOINT_LABELS = [
+"Posadzka, płytki, kamień, fugi",
+"Zapach",
+"Parapety: kurz, martwe owady",
+"Przeszklenia, drzwi",
+"Pajęczyny",
+"Kurz na włącznikach, elementach wystających",
+"Kurz na cokołach, brudne cokoły",
+"Schody: spoczniki i podstopnice",
+"Schody: zacieki na bokach",
+"Windy: stal, ślady, zacieki z oliwki",
+"Windy: posadzka",
+"Windy: lustra",
+"Barierki, poręcze"
+];

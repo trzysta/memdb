@@ -12,21 +12,9 @@ e.set("Zostało", lim - nSaldo );
 
 
 function getActionsForInspection ( entryInspection, entryAction ) {
-
-
-
-
-  entry();
-  masterEntry();
-  setAttr(name , value)
-
 }
 
 
-
-
-addBudgetSpending( entry(), masterEntry() ) {
-
-
-
+function getCheckpointLabel( fieldCount ) {
+  return C_FIELD_CHECKPOINT_LABELS[fieldCount];
 }
