@@ -25,6 +25,7 @@ function saveFirstTime( entryControl ) {
   for (f=0; f < R_FREQ_LINKED_WEEK.length; f++) {
     query = t + " " + R_FREQ_LINKED_WEEK[f];
     var result = libZadania.find(query);
+    m += query;
     arrSearchResult.concat(result);
   }
 
@@ -32,6 +33,8 @@ function saveFirstTime( entryControl ) {
   query = t + " " + m + " " + y;
   var result =  libZadania.find(query);
   arrSearchResult.concat(result);
+
+  message (query + arrSearchResult.length);
 
   for (i=0; i < arrSearchResult.length; i++) {
     var entryAction = arrSearchResult[i];
