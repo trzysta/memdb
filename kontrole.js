@@ -23,12 +23,14 @@ function saveFirstTime( entryControl ) {
   // szukanie czynności codziennie i kilka razy w tygodniu
   for (f=0; f < R_FREQ_LINKED_WEEK.length; f++) {
     query = t + " " + R_FREQ_LINKED_WEEK[f];
-    arrSearchResult.push( libZadania.find(query) )
+    var result =  libZadania.find(query);
+    arrSearchResult.push( result );
   }
 
   // szukanie czynności z tego miesiąca
   query = t + " " + m + " " + y;
-  arrSearchResult.push( libZadania.find(query) )
+  var result =  libZadania.find(query);
+  arrSearchResult.push( result );
 
   for (i=0; i < arrSearchResult.length; i++) {
     var entryAction = arrSearchResult[i];
