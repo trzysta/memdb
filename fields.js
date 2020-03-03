@@ -127,10 +127,10 @@ var R_FIELD_CHECKPOINT_LABELS = [ "Posadzka, płytki, kamień, fugi czy są śla
                                     "Barierki, poręcze" ];
 var R_FIELD_BUILDING          = "Budynek i klatka";
 var R_CONTRACT_LINK           = "Osiedle";
-var R_FREQ_LINKED             = ["Codziennie",
-                                  "1 raz w tygodniu",
-                                  "2 razy w tygodniu",
-                                  "3 razy w tygodniu",
-                                  "1 raz na dwa tygodnie"];
+var R_FREQ_LINKED_WEEK        = ["Codziennie",
+                                 "1 raz w tygodniu",
+                                 "2 razy w tygodniu",
+                                 "3 razy w tygodniu",
+                                 "1 raz na dwa tygodnie"];
 
 var R_FIELD_ACTION_LINK = "Czynności do wykonania wg umowy";
