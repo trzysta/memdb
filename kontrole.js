@@ -12,6 +12,7 @@ function createControl( entryControl ) {
 
 function saveFirstTime( entryControl ) {
 
+  entryControl = entry();
   entryControl.set(FIELD_IS_NEW, false);
 
   var m = arrMonths_pl[ parseInt(moment().format('M'))-1 ];
@@ -23,7 +24,7 @@ function saveFirstTime( entryControl ) {
 
   for (i=0; i < arrSearchResult.length; i++) {
     var entryAction = arrSearchResult[i];
-    entryControl.link( R_FIELD_ACTIONS_LINK, entryAction );
+    entryControl.link( "Czynności do wykonania wg umowy", entryAction );
   }
 
   entryControl.show();
