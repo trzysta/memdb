@@ -98,31 +98,30 @@ const B_MSG_BUDGET_FOUND = "...znaleziono budżet: ";
 //
 
 // ***** baza KALENDARZ ZADAŃ
-const C_FIELD_MONTH = "Miesiąc";
-const C_FIELD_DATES = "Daty";
-const C_FIELD_DATES_DAYS = "Dni";
-const C_FIELD_TYPE = "Typ";
-const C_FIELD_TYPE_VALUE_TEMPLATE = "Definicja czynności";
-const C_FIELD_TYPE_VALUE_INSTANCE = "Pozycja harmonogramu";
-const C_FIELD_CONTRACT = "Osiedle";
-const C_FIELD_ACTION = "Czynność";
-const C_FIELD_ACTION_DOMAIN = "Obszar";
+const C_FIELD_MONTH                 = "Miesiąc";
+const C_FIELD_DATES                 = "Daty";
+const C_FIELD_DATES_DAYS            = "Dni";
+const C_FIELD_TYPE                  = "Typ";
+const C_FIELD_TYPE_VALUE_TEMPLATE   = "Definicja czynności";
+const C_FIELD_TYPE_VALUE_INSTANCE   = "Pozycja harmonogramu";
+const C_FIELD_CONTRACT              = "Osiedle";
+const C_FIELD_ACTION                = "Czynność";
+const C_FIELD_ACTION_DOMAIN         = "Obszar";
 
 
 // ***** baza KONTROLA
-const R_FIELD_CHECKPOINT_LABELS = [
-"Posadzka, płytki, kamień, fugi",
-"Zapach",
-"Parapety: kurz, martwe owady",
-"Przeszklenia, drzwi",
-"Pajęczyny",
-"Kurz na włącznikach, elementach wystających",
-"Kurz na cokołach, brudne cokoły",
-"Schody: spoczniki i podstopnice",
-"Schody: zacieki na bokach",
-"Windy: stal, ślady, zacieki z oliwki",
-"Windy: posadzka",
-"Windy: lustra",
-"Barierki, poręcze"
-];
-const R_FIELD_BUILDING = "Budynek i klatka";
+const R_FIELD_CHECKPOINT_LABELS = [ "Posadzka, płytki, kamień, fugi",
+                                    "Zapach",
+                                    "Parapety: kurz, martwe owady",
+                                    "Przeszklenia, drzwi",
+                                    "Pajęczyny",
+                                    "Kurz na włącznikach, elementach wystających",
+                                    "Kurz na cokołach, brudne cokoły",
+                                    "Schody: spoczniki i podstopnice",
+                                    "Schody: zacieki na bokach",
+                                    "Windy: stal, ślady, zacieki z oliwki",
+                                    "Windy: posadzka",
+                                    "Windy: lustra",
+                                    "Barierki, poręcze" ];
+const R_FIELD_BUILDING          = "Budynek i klatka";
+const R_CONTRACT_LINK           = "Osiedle";
