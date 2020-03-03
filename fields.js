@@ -122,3 +122,13 @@ const R_FIELD_CHECKPOINT_LABELS = [ "Posadzka, płytki, kamień, fugi \n czy są
                                     "Barierki, poręcze" ];
 const R_FIELD_BUILDING          = "Budynek i klatka";
 const R_CONTRACT_LINK           = "Osiedle";
+const R_FREQ_LINKED             = ["Codziennie",
+                                  "1 raz w tygodniu",
+                                  "2 razy w tygodniu",
+                                  "3 razy w tygodniu",
+                                  "1 raz na dwa tygodnie"];
+
+
+
+
+const R_FIELD_ACTIONS_LINK = "Czynności do wykonania wg umowy";
