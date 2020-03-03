@@ -14,7 +14,7 @@ function saveFirstTime( entryControl ) {
 
   entryControl = entry();
   entryControl.set(FIELD_IS_NEW, false);
-  
+
   var m = arrMonths_pl[ parseInt(moment().format('M'))-1 ];
   var y = moment().format('YYYY');
   var t = entryControl.field(R_CONTRACT_LINK)[0].field(P_FIELD_TAG);
@@ -27,6 +27,5 @@ function saveFirstTime( entryControl ) {
     var entryAction = arrSearchResult[i];
     entryControl.link( R_FIELD_ACTION_LINK, entryAction );
   }
-
-  //entryControl.show();
+  entryControl.show();
 }
