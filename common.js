@@ -87,10 +87,6 @@ function removeBudgetSpending(entryBudget, entrySpending) {
 
 
 
-
-
-
-
 function postSave() {
   var currentEntry = entry();
   var linkedEntry = l.linksTo(currentEntry)[0];

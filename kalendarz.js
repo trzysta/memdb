@@ -44,8 +44,6 @@ function selectDays( entryAction, dayWeekNumber ) {
 
 
 
-
-
 function displayEntryName( entryCalendar ) {
    var o = "";
    switch (entryCalendar.field(C_FIELD_TYPE)) {
@@ -59,14 +57,4 @@ function displayEntryName( entryCalendar ) {
               entryCalendar.field(C_FIELD_DATES_DAYS);
    }
    return o;
-}
-
-
-
-
-function displayEntryDescription () {
-
-
-
-
 }
