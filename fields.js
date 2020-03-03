@@ -80,7 +80,7 @@ const P_FIELD_CONTRACT = "Osiedle";
 const P_FIELD_SHORTNAME = "Nazwa potoczna";
 const P_FIELD_TAG = "Skrót";
 const P_FIELD_BUILDINGS = "Budynki i klatki";
-
+const aaaaaa = "";
 
 // ***** baza BUDŻET
 const B_FIELD_LIMIT = "Limit";
