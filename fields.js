@@ -107,7 +107,7 @@ const C_FIELD_ACTION_DOMAIN         = "Obszar";
 
 
 // ***** baza KONTROLA
-const R_FIELD_CHECKPOINT_LABELS = [ "Posadzka, płytki, kamień, fugi",
+const R_FIELD_CHECKPOINT_LABELS = [ "Posadzka, płytki, kamień, fugi \n czy są ślady po brudnym mopie, slady złego mycia przy rogach",
                                     "Zapach",
                                     "Parapety: kurz, martwe owady",
                                     "Przeszklenia, drzwi",
