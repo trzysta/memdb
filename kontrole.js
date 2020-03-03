@@ -5,18 +5,30 @@ function getCheckpointLabel( fieldCount ) {
 }
 
 
+
+function createControl( entryControl ) {
+  entryControl.set(FIELD_IS_NEW, true);
+}
+
+
+function saveFirstTime( entryControl ) {
+  entryControl.set(FIELD_IS_NEW, false);
+}
+
+
 function getActionsThisMonth ( entryControl ) {
 
     var m = arrMonths_pl[ parseInt(moment().format('M'))-1 ];
     var y = moment().format('YYYY');
-    var t = entryControl.field(R_CONTRACT_LINK).field(P_FIELD_TAG);
+    var t = entryControl.field(R_CONTRACT_LINK)[0].field(P_FIELD_TAG);
 
     query = t + " " + m + " " + y;
-    message (query);
 
     var arrSearchResult = libZadania.find(query);
+    message (query + arrSearchResult.length);
+
     for (i=0; i < arrSearchResult.length; i++) {
-      var entryAction = arrSearchResult[i];
-      entryControl.link(R_FIELD_ACTIONS_LINK, entryAction );
+      entryAction = arrSearchResult[i];
+      entryControl.link( R_FIELD_ACTIONS_LINK, entryAction );
     }
 }
