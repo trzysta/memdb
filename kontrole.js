@@ -13,21 +13,18 @@ function createControl( entryControl ) {
 
 function saveFirstTime( entryControl ) {
   entryControl.set(FIELD_IS_NEW, false);
+  getActionsThisMonth (entryControl);
   entryControl.show();
 }
 
 
-function getActionsThisMonth ( entryControl ) {
 
+function getActionsThisMonth ( entryControl ) {
     var m = arrMonths_pl[ parseInt(moment().format('M'))-1 ];
     var y = moment().format('YYYY');
     var t = entryControl.field(R_CONTRACT_LINK)[0].field(P_FIELD_TAG);
-
     query = t + " " + m + " " + y;
-
     var arrSearchResult = libZadania.find(query);
-    message (query + arrSearchResult.length);
-
     for (i=0; i < arrSearchResult.length; i++) {
       entryAction = arrSearchResult[i];
       entryControl.link( R_FIELD_ACTIONS_LINK, entryAction );
