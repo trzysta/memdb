@@ -107,7 +107,7 @@ const C_FIELD_ACTION_DOMAIN         = "Obszar";
 
 
 // ***** baza KONTROLA
-const R_FIELD_CHECKPOINT_LABELS = [ "Posadzka, płytki, kamień, fugi \n czy są ślady po brudnym mopie, slady złego mycia przy rogach",
+const R_FIELD_CHECKPOINT_LABELS = [ "Posadzka, płytki, kamień, fugi czy są ślady po brudnym mopie, slady złego mycia przy rogach",
                                     "Zapach",
                                     "Parapety: kurz, martwe owady",
                                     "Przeszklenia, drzwi",
@@ -127,8 +127,5 @@ const R_FREQ_LINKED             = ["Codziennie",
                                   "2 razy w tygodniu",
                                   "3 razy w tygodniu",
                                   "1 raz na dwa tygodnie"];
-
-
-
 
 const R_FIELD_ACTIONS_LINK = "Czynności do wykonania wg umowy";

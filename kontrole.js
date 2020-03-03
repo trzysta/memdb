@@ -13,7 +13,7 @@ function getActionsThisMonth ( entryControl ) {
 
     query = t + " " + m + " " + y;
     message (query);
-    
+
     var arrSearchResult = libZadania.find(query);
     for (i=0; i < arrSearchResult.length; i++) {
       var entryAction = arrSearchResult[i];
