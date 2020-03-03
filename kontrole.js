@@ -19,21 +19,13 @@ function getActionsThisMonth ( entryControl ) {
     var y = moment().format('YYYY');
     var t = entryControl.field(R_CONTRACT_LINK).field(P_FIELD_TAG);
 
-
     query = t + " " + m + " " + y;
     var arrSearchResult = libZadania.find(query);
     for (i=0; i < arrSearchResult.length; i++) {
       var entryAction = arrSearchResult[i];
       entryControl.link(R_FIELD_ACTIONS_LINK, entryAction );
     }
-
-
-
 }
-
-
-
-
 
 
 
@@ -43,6 +35,3 @@ function updateControlForm_linkContract( entryContract, entryControl ) {
   entryControl.set(R_FIELD_BUILDING, arrBuildings);
 
 }
-
-
-Dotyczy pięter
