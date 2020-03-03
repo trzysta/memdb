@@ -21,11 +21,12 @@ function saveFirstTime( entryControl ) {
 
   query = t + " " + m + " " + y;
   var arrSearchResult = libZadania.find(query);
+  message (query + " " +  arrSearchResult.length);
 
   for (i=0; i < arrSearchResult.length; i++) {
     var entryAction = arrSearchResult[i];
-    entryControl.link( "Czynności do wykonania wg umowy", entryAction );
+    entryControl.link( R_FIELD_ACTION_LINK, entryAction );
   }
 
-  entryControl.show();
+  //entryControl.show();
 }
