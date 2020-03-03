@@ -13,6 +13,7 @@ function createControl( entryControl ) {
 
 function saveFirstTime( entryControl ) {
   entryControl.set(FIELD_IS_NEW, false);
+  entryControl.show();
 }
 
 
