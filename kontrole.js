@@ -15,7 +15,6 @@ function createControl( entryControl ) {
 
 function saveFirstTime( entryControl ) {
 
-  entryControl.set(FIELD_IS_NEW, false);
   actionsDaily = new Array();
   actionsMonthly = new Array();
 
@@ -41,6 +40,8 @@ function saveFirstTime( entryControl ) {
 
   for (c=0; c < actionsDaily.length; c++ ) { entryControl.link( R_FIELD_ACTION_LINK, actionsDaily[c] ); };
   for (e=0; e < actionsMonthly.length; e++ ) { entryControl.link( R_FIELD_ACTION_LINK, actionsMonthly[e] ); };
+
+  entryControl.set(FIELD_IS_NEW, false);
   entryControl.show();
 
 }
