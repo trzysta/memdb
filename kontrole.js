@@ -19,11 +19,13 @@ function saveFirstTime( entryControl ) {
 
   allActions = libZadania.linksTo( entryControl.field(R_FIELD_CONTRACT_LINK)[0] );
 
-  for (i=0; i < allActions.length; i++) {
-     entryAction = allActions[i];
 
-     for (j=0; j < C_FIELD_ACTION_DOMAIN_VALUES.length; j++) {
-        val = C_FIELD_ACTION_DOMAIN_VALUES[j];
+  for (j=0; j < C_FIELD_ACTION_DOMAIN_VALUES.length; j++) {
+     val = C_FIELD_ACTION_DOMAIN_VALUES[j];
+
+     for (i=0; i < allActions.length; i++) {
+        entryAction = allActions[i];
+
         if   (( entryAction.field(C_FIELD_ACTION_DOMAIN) == val ) &&
               ( R_FIELD_FREQENCY_VALUES.indexOf( entryAction.field(R_FIELD_FREQENCY) ) >= 0 ) &&
               ( R_FIELD_FREQENCY_VALUES.indexOf( entryAction.field(R_FIELD_FREQENCY) ) <= 5 )) {
