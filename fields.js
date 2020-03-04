@@ -150,6 +150,7 @@ var R_FIELD_FREQENCY_VALUES = [ "Codziennie",
                                 "1 raz w roku",
                                 "2 razy w roku",
                                 "3 razy w roku"];
-
 var R_FIELD_ACTION_LINK     = "Czynności do wykonania wg umowy";
 var R_FIELD_CHECK_PROCEDURE = "Procedura sprawdzania";
+var R_FIELD_ACTION_LINK_ATTR_EVALUATION = "Wykonanie czynności, ocena wg powyższej procedury";
+var R_FIELD_EVALUATION      = "Punktacja po kontroli";
