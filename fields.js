@@ -111,7 +111,7 @@ var C_FIELD_CONTRACT              = "Osiedle";
 var C_FIELD_ACTION                = "Czynność";
 var C_FIELD_ACTION_DOMAIN         = "Obszar";
 var C_FIELD_ACTION_DOMAIN_VALUES  = ["Klatki","Garaż","Teren","Zieleń","Biuro"];
-
+var C_FIELD_ACTION_CHECKPOINTS    = "Punkty do sprawdzenia podczas kontroli";
 
 // ***** baza KONTROLA
 var R_FIELD_CHECKPOINT_LABELS = ["Posadzka płytki kamień fugi czy są ślady po brudnym mopie slady złego mycia przy rogach",
@@ -152,3 +152,4 @@ var R_FIELD_FREQENCY_VALUES = [ "Codziennie",
                                 "3 razy w roku"];
 
 var R_FIELD_ACTION_LINK     = "Czynności do wykonania wg umowy";
+var R_FIELD_CHECK_PROCEDURE = "Procedura sprawdzania";
