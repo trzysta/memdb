@@ -42,12 +42,12 @@ function saveFirstTime( entryControl ) {
 
   for (c=0; c < actionsDaily.length; c++ ) {
     entryControl.link( R_FIELD_ACTION_LINK, actionsDaily[c] );
-    entryControl.field(R_FIELD_ACTION_LINK)[currLink].setAttr(R_FIELD_CHECK_PROCEDURE, LINE + actionsDaily[c].field(C_FIELD_ACTION_CHECKPOINTS) + LINE);
+    entryControl.field(R_FIELD_ACTION_LINK)[currLink].setAttr(R_FIELD_CHECK_PROCEDURE, HR+BR+ actionsDaily[c].field(C_FIELD_ACTION_CHECKPOINTS)+HR+BR);
     currLink++
   };
   for (e=0; e < actionsMonthly.length; e++ ) {
     entryControl.link( R_FIELD_ACTION_LINK, actionsMonthly[e] );
-    entryControl.field(R_FIELD_ACTION_LINK)[currLink].setAttr(R_FIELD_CHECK_PROCEDURE, LINE + actionsMonthly[e].field(C_FIELD_ACTION_CHECKPOINTS) + LINE);
+    entryControl.field(R_FIELD_ACTION_LINK)[currLink].setAttr(R_FIELD_CHECK_PROCEDURE, HR+BR+ actionsMonthly[e].field(C_FIELD_ACTION_CHECKPOINTS)+HR+BR);
     currLink++
   };
 
