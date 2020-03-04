@@ -42,8 +42,8 @@ function saveFirstTime() {
       }
   }
 
-  for (c=0, c < actionsDaily.length; c++ ) { entryControl.link( R_FIELD_ACTION_LINK, actionsDaily[c] ) };
-  for (e=0, e < actionsMonthly.length; e++ ) { entryControl.link( R_FIELD_ACTION_LINK, actionsMonthly[e] ) };
+  for (c=0; c < actionsDaily.length; c++ ) { entryControl.link( R_FIELD_ACTION_LINK, actionsDaily[c] ); };
+  for (e=0; e < actionsMonthly.length; e++ ) { entryControl.link( R_FIELD_ACTION_LINK, actionsMonthly[e] ); };
   entryControl.show();
 
 }
