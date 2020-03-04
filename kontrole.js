@@ -18,7 +18,7 @@ function saveFirstTime( entryControl ) {
   actionsDaily = new Array();
   actionsMonthly = new Array();
 
-  allActions = libZadania.linksTo( entryControl.field(R_CONTRACT_LINK)[0] );
+  allActions = libZadania.linksTo( entryControl.field(R_FIELD_CONTRACT_LINK)[0] );
 
   for (i=0; i < allActions.length; i++) {
      entryAction = allActions[i];
