@@ -5,6 +5,7 @@ function getCheckpointLabel( fieldCount ) {
 }
 
 
+
 function createControl( entryControl ) {
   entryControl.set(FIELD_IS_NEW, true);
 }
@@ -12,13 +13,9 @@ function createControl( entryControl ) {
 
 
 
+function saveFirstTime( entryControl ) {
 
-
-function saveFirstTime() {
-
-  entryControl = entry();
   entryControl.set(FIELD_IS_NEW, false);
-
   actionsDaily = new Array();
   actionsMonthly = new Array();
 

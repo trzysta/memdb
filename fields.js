@@ -109,7 +109,7 @@ var C_FIELD_TYPE_VALUE_INSTANCE   = "Pozycja harmonogramu";
 var C_FIELD_CONTRACT              = "Osiedle";
 var C_FIELD_ACTION                = "Czynność";
 var C_FIELD_ACTION_DOMAIN         = "Obszar";
-var C_FIELD_ACTION_DOMAIN_VALUES  = ["Klatki","Garaż","Zieleń","Biuro"];
+var C_FIELD_ACTION_DOMAIN_VALUES  = ["Klatki","Garaż","Teren","Zieleń","Biuro"];
 
 
 // ***** baza KONTROLA
