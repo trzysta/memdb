@@ -68,7 +68,7 @@ function countEvaluation( entryControl ) {
     for (i = 0; i < entryControl.field(R_FIELD_ACTION_LINK).length; i++ ) {
        ev += entryControl.field(R_FIELD_ACTION_LINK)[i].attr(R_FIELD_ACTION_LINK_ATTR_EVALUATION);
     }
-    ev = ev / ( entryControl.field(R_FIELD_ACTION_LINK).length + 1 )
+    ev = ev / ( entryControl.field(R_FIELD_ACTION_LINK).length )
     entryControl.set(R_FIELD_EVALUATION, ev )
   }
 }
