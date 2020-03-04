@@ -18,6 +18,7 @@ function saveFirstTime( entryControl ) {
   actionsMonthly = new Array();
   allActions = libZadania.linksTo( entryControl.field(R_FIELD_CONTRACT_LINK)[0] );
   currLink = 0;
+  var dt = moment().startOf('month').format("DD-MM-YYYY");
 
   for (j=0; j < C_FIELD_ACTION_DOMAIN_VALUES.length; j++) {
      val = C_FIELD_ACTION_DOMAIN_VALUES[j];
@@ -29,6 +30,7 @@ function saveFirstTime( entryControl ) {
               ( R_FIELD_FREQENCY_VALUES.indexOf( entryAction.field(R_FIELD_FREQENCY) ) >= 0 ) &&
               ( R_FIELD_FREQENCY_VALUES.indexOf( entryAction.field(R_FIELD_FREQENCY) ) <= 5 )) {
              // czynności wnetrza częste lub równe raz na tydzień
+             entryAction.set( C_FIELD_MONTH, dt.toDate());
              actionsDaily.push(entryAction);
          }
          else if (( entryAction.field(C_FIELD_ACTION_DOMAIN) == val ) &&
@@ -51,5 +53,12 @@ function saveFirstTime( entryControl ) {
 
   entryControl.set(FIELD_IS_NEW, false);
   entryControl.show();
+
+}
+
+
+function generateEmailBody ( entryControl ) {
+
+
 
 }
