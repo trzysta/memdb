@@ -18,7 +18,7 @@ function saveFirstTime( entryControl ) {
   actionsMonthly = new Array();
   allActions = libZadania.linksTo( entryControl.field(R_FIELD_CONTRACT_LINK)[0] );
   currLink = 0;
-  var dt = moment().startOf('month').format("DD-MM-YYYY");
+  var dt = moment().startOf('month');
 
   for (j=0; j < C_FIELD_ACTION_DOMAIN_VALUES.length; j++) {
      val = C_FIELD_ACTION_DOMAIN_VALUES[j];
