@@ -17,6 +17,7 @@ function saveFirstTime( entryControl ) {
   actionsDaily = new Array();
   actionsMonthly = new Array();
   allActions = libZadania.linksTo( entryControl.field(R_FIELD_CONTRACT_LINK)[0] );
+  currLink = 0;
 
   for (j=0; j < C_FIELD_ACTION_DOMAIN_VALUES.length; j++) {
      val = C_FIELD_ACTION_DOMAIN_VALUES[j];
@@ -39,9 +40,13 @@ function saveFirstTime( entryControl ) {
 
   for (c=0; c < actionsDaily.length; c++ ) {
     entryControl.link( R_FIELD_ACTION_LINK, actionsDaily[c] );
+    entryControl.field(R_FIELD_ACTION_LINK)[currLink].setAttr(R_FIELD_CHECK_PROCEDURE, actionsDaily[c].field(C_FIELD_ACTION_CHECKPOINTS));
+    currLink++
   };
   for (e=0; e < actionsMonthly.length; e++ ) {
     entryControl.link( R_FIELD_ACTION_LINK, actionsMonthly[e] );
+    entryControl.field(R_FIELD_ACTION_LINK)[currLink].setAttr(R_FIELD_CHECK_PROCEDURE, actionsDaily[e].field(C_FIELD_ACTION_CHECKPOINTS));
+    currLink++
   };
 
   entryControl.set(FIELD_IS_NEW, false);
