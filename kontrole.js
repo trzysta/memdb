@@ -12,7 +12,6 @@ function createControl( entryControl ) {
 
 
 
-
 function saveFirstTime( entryControl ) {
 
   actionsDaily = new Array();
