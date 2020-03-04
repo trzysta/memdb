@@ -109,28 +109,41 @@ var C_FIELD_TYPE_VALUE_INSTANCE   = "Pozycja harmonogramu";
 var C_FIELD_CONTRACT              = "Osiedle";
 var C_FIELD_ACTION                = "Czynność";
 var C_FIELD_ACTION_DOMAIN         = "Obszar";
+var C_FIELD_ACTION_DOMAIN_VALUES  = ["Klatki","Garaż","Zieleń","Biuro"];
 
 
 // ***** baza KONTROLA
-var R_FIELD_CHECKPOINT_LABELS = [ "Posadzka, płytki, kamień, fugi czy są ślady po brudnym mopie, slady złego mycia przy rogach",
-                                    "Zapach",
-                                    "Parapety: kurz, martwe owady",
-                                    "Przeszklenia, drzwi",
-                                    "Pajęczyny",
-                                    "Kurz na włącznikach, elementach wystających",
-                                    "Kurz na cokołach, brudne cokoły",
-                                    "Schody: spoczniki i podstopnice",
-                                    "Schody: zacieki na bokach",
-                                    "Windy: stal, ślady, zacieki z oliwki",
-                                    "Windy: posadzka",
-                                    "Windy: lustra",
-                                    "Barierki, poręcze" ];
-var R_FIELD_BUILDING          = "Budynek i klatka";
-var R_CONTRACT_LINK           = "Osiedle";
-var R_FREQ_LINKED_WEEK        = ["Codziennie",
-                                 "1 raz w tygodniu",
-                                 "2 razy w tygodniu",
-                                 "3 razy w tygodniu",
-                                 "1 raz na dwa tygodnie"];
+var R_FIELD_CHECKPOINT_LABELS = ["Posadzka, płytki, kamień, fugi czy są ślady po brudnym mopie, slady złego mycia przy rogach",
+                              "Zapach",
+                              "Parapety: kurz, martwe owady",
+                              "Przeszklenia, drzwi",
+                              "Pajęczyny",
+                              "Kurz na włącznikach, elementach wystających",
+                              "Kurz na cokołach, brudne cokoły",
+                              "Schody: spoczniki i podstopnice",
+                              "Schody: zacieki na bokach",
+                              "Windy: stal, ślady, zacieki z oliwki",
+                              "Windy: posadzka",
+                              "Windy: lustra",
+                              "Barierki, poręcze" ];
+var R_FIELD_BUILDING        = "Budynek i klatka";
+var R_FIELD_CONTRACT_LINK   = "Osiedle";
+var R_FIELD_FREQENCY        = "Częstotliwość";
+var R_FIELD_FREQENCY_VALUES = [ "Codziennie",
+                                "1 raz w tygodniu",
+                                "2 razy w tygodniu",
+                                "3 razy w tygodniu",
+                                "4 razy w tygodniu",
+                                "1 raz na dwa tygodnie", /*  0-5  częstotliwość częściej niż raz miesiącu */
+                                "1 raz w miesiącu", /* 6-15 czstotliwość raz w miesiącu i rzadziej */
+                                "2 razy w miesiącu",
+                                "3 razy w miesiącu",
+                                "4 razy w miesiącu",
+                                "1 raz w kwartale",
+                                "2 razy w kwartale",
+                                "3 razy w kwartale",
+                                "1 raz w roku",
+                                "2 razy w roku",
+                                "3 razy w roku"];
 
-var R_FIELD_ACTION_LINK = "Czynności do wykonania wg umowy";
+var R_FIELD_ACTION_LINK     = "Czynności do wykonania wg umowy";
