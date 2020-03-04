@@ -42,7 +42,7 @@ function saveFirstTime( entryControl ) {
 
   for (c=0; c < actionsDaily.length; c++ ) {
     entryControl.link( R_FIELD_ACTION_LINK, actionsDaily[c] );
-    entryControl.field(R_FIELD_ACTION_LINK)[c].setAttr("Lista", "tmp");
+    entryControl.field(R_FIELD_ACTION_LINK)[c].setAttr("Lista", "tmp");     
 
   };
   for (e=0; e < actionsMonthly.length; e++ ) {
