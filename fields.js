@@ -5,6 +5,7 @@ var arrEditors    = ["MalgorzataG", "ElzbietaZ", "trzystaIZABELA", "trzysta"];
 var arrManagers   = ["trzysta"];
 var arrNames      = ["Małgorzata Grabowska", "Elżbieta Zdziech", "Izabela Skowrońska", "Marceli Matynia"];
 var withdrawalMaker = "Marceli Matynia";
+var LINE = "--------------------------------------------------";
 
 // wspólne
 var FIELD_EDITOR = "Editor";
