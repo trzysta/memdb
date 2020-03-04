@@ -45,7 +45,7 @@ function saveFirstTime( entryControl ) {
   };
   for (e=0; e < actionsMonthly.length; e++ ) {
     entryControl.link( R_FIELD_ACTION_LINK, actionsMonthly[e] );
-    entryControl.field(R_FIELD_ACTION_LINK)[currLink].setAttr(R_FIELD_CHECK_PROCEDURE, actionsDaily[e].field(C_FIELD_ACTION_CHECKPOINTS));
+    entryControl.field(R_FIELD_ACTION_LINK)[currLink].setAttr(R_FIELD_CHECK_PROCEDURE, actionsMonthly[e].field(C_FIELD_ACTION_CHECKPOINTS));
     currLink++
   };
 
