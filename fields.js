@@ -154,3 +154,4 @@ var R_FIELD_ACTION_LINK     = "Czynności do wykonania wg umowy";
 var R_FIELD_CHECK_PROCEDURE = "Procedura sprawdzania";
 var R_FIELD_ACTION_LINK_ATTR_EVALUATION = "Wykonanie czynności, ocena wg powyższej procedury";
 var R_FIELD_EVALUATION      = "Punktacja po kontroli";
+var R_FIELD_ACTION_DOMAIN  = "Kontrolowany obszar";

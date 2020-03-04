@@ -20,8 +20,8 @@ function saveFirstTime( entryControl ) {
   currLink = 0;
   var dt = moment().startOf('month');
 
-  for (j=0; j < C_FIELD_ACTION_DOMAIN_VALUES.length; j++) {
-     val = C_FIELD_ACTION_DOMAIN_VALUES[j];
+  for (j=0; j < entryControl.field(R_FIELD_ACTION_DOMAIN).length; j++) {
+     val = entryControl.field(R_FIELD_ACTION_DOMAIN)[j];
 
      for (i=0; i < allActions.length; i++) {
         entryAction = allActions[i];
@@ -64,7 +64,7 @@ function saveFirstTime( entryControl ) {
 function countEvaluation( entryControl ) {
 
   var ev = 0;
-  if ( !entryControl.field(FIELD_IS_NEW) ) {
+  if ( !entryControl.field( FIELD_IS_NEW )) {
     for (i = 0; i < entryControl.field(R_FIELD_ACTION_LINK).length; i++ ) {
        ev += entryControl.field(R_FIELD_ACTION_LINK)[i].attr(R_FIELD_ACTION_LINK_ATTR_EVALUATION);
     }
