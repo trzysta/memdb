@@ -72,32 +72,22 @@ function countEvaluation( entryControl ) {
 
       // ocena JAKOŚCI
       switch ( entryControl.field(R_FIELD_ACTION_LINK)[actionCount].attr(R_FIELD_ATTR_QUALITY_EVALUATION).trim() ) {
-        case R_FIELD_ATTR_QUALITY_EVALUATION_VAL3:
-          evQuality += 4;
-          break;
         case R_FIELD_ATTR_QUALITY_EVALUATION_VAL2:
-          evQuality += 3;
-          break;
-        case R_FIELD_ATTR_QUALITY_EVALUATION_VAL1:
           evQuality += 2;
           break;
-        default:
+        case R_FIELD_ATTR_QUALITY_EVALUATION_VAL1:
           evQuality += 1;
+          break;
         }
 
       // ocena terminowości
       switch ( entryControl.field(R_FIELD_ACTION_LINK)[actionCount].attr(R_FIELD_ATTR_PUNCTUALITY_EVALUATION).trim() ) {
-        case R_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL3:
-          evPunctuality += 4;
-          break;
         case R_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL2:
-          evPunctuality += 3;
-          break;
-        case R_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL1:
           evPunctuality += 2;
           break;
-        default:
+        case R_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL1:
           evPunctuality += 1;
+          break;
         }
     }
 

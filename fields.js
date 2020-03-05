@@ -137,7 +137,7 @@ var R_FIELD_CONTRACT_LINK   = "Osiedle";
 var R_FIELD_FREQENCY        = "Częstotliwość";
 
 /*  0-5  częstotliwość częściej niż raz miesiącu */
-/*  6-15 czstotliwość raz w miesiącu i rzadziej */
+/*  6-16 czstotliwość raz w miesiącu i rzadziej */
 var R_FIELD_FREQENCY_VALUES = [ "Codziennie",
                                 "1 raz w tygodniu",
                                 "2 razy w tygodniu",
@@ -153,21 +153,20 @@ var R_FIELD_FREQENCY_VALUES = [ "Codziennie",
                                 "3 razy w kwartale",
                                 "1 raz w roku",
                                 "2 razy w roku",
-                                "3 razy w roku"];
+                                "3 razy w roku",
+                                "wg potrzeb"];
 var R_FIELD_ACTION_LINK                   = "Czynności do wykonania wg umowy";
 var R_FIELD_CHECK_PROCEDURE               = "Procedura sprawdzania";
 var R_FIELD_ATTR_QUALITY_EVALUATION       = "Ocena jakości";
-var R_FIELD_ATTR_QUALITY_EVALUATION_VAL0  = "(1) nie wykonano";
-var R_FIELD_ATTR_QUALITY_EVALUATION_VAL1  = "(2) wykonano źle, zlecono poprawę"
-var R_FIELD_ATTR_QUALITY_EVALUATION_VAL2  = "(3) wykonano w przyzwoitej jakości";
-var R_FIELD_ATTR_QUALITY_EVALUATION_VAL3  = "(4) wykonano w dobrej jakości, brak uwag";
+var R_FIELD_ATTR_QUALITY_EVALUATION_VAL0  = "(0) nie wykonano";
+var R_FIELD_ATTR_QUALITY_EVALUATION_VAL1  = "(1) do poprawy"
+var R_FIELD_ATTR_QUALITY_EVALUATION_VAL2  = "(2) dobrze, brak uwag";
 var R_QUALITY_WEIGTHT = 0.6;   // waga jakości w ocenie to 60% w stosunku do 40% za terminowość
 
 var R_FIELD_ATTR_PUNCTUALITY_EVALUATION   = "Ocena terminowości";
-var R_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL0 = "(1) nie wykonano";
-var R_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL1 = "(2) wykonano w dużym opóźnieniem";
-var R_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL2 = "(3) wykonano w akceptowalnym opóźnieniem";
-var R_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL3 = "(4) wykonano zgodnie z planem";
+var R_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL0 = "(0) nie wykonano";
+var R_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL1 = "(1) z opóźnieniem";
+var R_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL2 = "(2) wykonano w terminie";
 
 var R_FIELD_EVALUATION      = "Punktacja globalna po kontroli";
 var R_FIELD_QUALITY_EVALUATION = "Punktacja za jakość";
