@@ -168,9 +168,9 @@ var R_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL0 = "(0) nie wykonano";
 var R_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL1 = "(1) z opóźnieniem";
 var R_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL2 = "(2) wykonano w terminie";
 
-var R_FIELD_EVALUATION      = "Punktacja globalna po kontroli";
-var R_FIELD_QUALITY_EVALUATION = "Punktacja za jakość";
-var R_FIELD_PUNCTUALITY_EVALUATION = "Punktacja za punktualność";
+var R_FIELD_EVALUATION      = "Ocena globalna po kontroli";
+var R_FIELD_QUALITY_EVALUATION = "Ocena za jakość";
+var R_FIELD_PUNCTUALITY_EVALUATION = "Ocena za punktualność";
 
 var R_FIELD_ACTION_DOMAIN  = "Kontrolowany obszar";
 var R_FIELD_CLOSED = "Kontrola zakończona";

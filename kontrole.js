@@ -92,13 +92,15 @@ function countEvaluation( entryControl ) {
     }
 
     evGlobal = ( (evQuality * R_QUALITY_WEIGTHT) + ( evPunctuality * (1 - R_QUALITY_WEIGTHT))) / ((actionCount * R_QUALITY_WEIGTHT) + (actionCount * (1 - R_QUALITY_WEIGTHT)));
-    message (actionCount+" "+ evGlobal +" "+ (evQuality/actionCount) +" "+ (evPunctuality/actionCount));
 
-    entryControl.set(R_FIELD_EVALUATION, evGlobal );
-    entryControl.set(R_FIELD_QUALITY_EVALUATION, (evQuality/actionCount) );
-    entryControl.set(R_FIELD_PUNCTUALITY_EVALUATION, (evPunctuality/actionCount) );
+
+    entryControl.set(R_FIELD_EVALUATION, ((100 * evGlobal) / 2).toString() + "%" );
+    entryControl.set(R_FIELD_QUALITY_EVALUATION, ((100 * (evQuality/actionCount)) / 2).toString() + "%"  );
+    entryControl.set(R_FIELD_PUNCTUALITY_EVALUATION, ((100 * (evPunctuality/actionCount)) / 2).toString() + "%"  );
   }
 }
+
+
 
 
 function generateEmailBody ( entryControl ) {
