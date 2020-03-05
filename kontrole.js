@@ -96,7 +96,6 @@ function countEvaluation( entryControl ) {
           break;
         }
     }
-
     evGlobal = (evQuality + evPunctuality) / ((actionCount * R_QUALITY_WEIGTHT) + (actionCount * (1 - R_QUALITY_WEIGTHT)));
     message (evGlobal +" "+ evQuality +" "+ evPunctuality);
 
