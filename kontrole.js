@@ -102,7 +102,7 @@ function countEvaluation( entryControl ) {
     }
 
     evGlobal = ( (evQuality * R_QUALITY_WEIGTHT) + ( evPunctuality * (1 - R_QUALITY_WEIGTHT))) / ((actionCount * R_QUALITY_WEIGTHT) + (actionCount * (1 - R_QUALITY_WEIGTHT)));
-    message (actionCount+" "+ evGlobal +" "+ evQuality/actionCount) +" "+ (evPunctuality/actionCount));
+    message (actionCount+" "+ evGlobal +" "+ (evQuality/actionCount) +" "+ (evPunctuality/actionCount));
 
     entryControl.set(R_FIELD_EVALUATION, evGlobal );
     entryControl.set(R_FIELD_QUALITY_EVALUATION, (evQuality/actionCount) );
