@@ -71,7 +71,7 @@ function countEvaluation( entryControl ) {
     for (actionCount = 0; actionCount < entryControl.field(R_FIELD_ACTION_LINK).length; actionCount++ ) {
 
       // ocena JAKOŚCI
-      switch ( entryControl.field(R_FIELD_ACTION_LINK)[i].attr(R_FIELD_ATTR_QUALITY_EVALUATION).trim() ) {
+      switch ( entryControl.field(R_FIELD_ACTION_LINK)[actionCount].attr(R_FIELD_ATTR_QUALITY_EVALUATION).trim() ) {
         case R_FIELD_ATTR_QUALITY_EVALUATION_VAL3:
           evQuality += 3 * R_QUALITY_WEIGTHT;
           break;
@@ -84,7 +84,7 @@ function countEvaluation( entryControl ) {
         }
 
       // ocena terminowości
-      switch ( entryControl.field(R_FIELD_ACTION_LINK)[i].attr(R_FIELD_ATTR_PUNCTUALITY_EVALUATION).trim() ) {
+      switch ( entryControl.field(R_FIELD_ACTION_LINK)[actionCount].attr(R_FIELD_ATTR_PUNCTUALITY_EVALUATION).trim() ) {
         case R_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL3:
           evPunctuality += 3 * (1 - R_QUALITY_WEIGTHT);
           break;
@@ -99,7 +99,7 @@ function countEvaluation( entryControl ) {
 
     evGlobal = (evQuality + evPunctuality) / ((actionCount * R_QUALITY_WEIGTHT) + (actionCount * (1 - R_QUALITY_WEIGTHT));
     message (evGlobal +" "+ evQuality +" "+ evPunctuality);
-    
+
     entryControl.set(R_FIELD_EVALUATION, evGlobal )
   }
 }
