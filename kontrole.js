@@ -66,7 +66,6 @@ function countEvaluation( entryControl ) {
   var evQuality = 0;
   var evPunctuality = 0;
   var evGlobal = 0;
-  var actionCount = 0;
 
   if ( !entryControl.field( FIELD_IS_NEW )) {
     for (actionCount = 0; actionCount < entryControl.field(R_FIELD_ACTION_LINK).length; actionCount++ ) {
@@ -101,8 +100,9 @@ function countEvaluation( entryControl ) {
           evPunctuality += 1 * (1 - R_QUALITY_WEIGTHT);
         }
     }
+
     evGlobal = (evQuality + evPunctuality) / ((actionCount * R_QUALITY_WEIGTHT) + (actionCount * (1 - R_QUALITY_WEIGTHT)));
-    message (evGlobal +" "+ (evQuality/actionCount) +" "+ (evPunctuality/actionCount));
+    message (actionCount+" "+ evGlobal +" "+ (evQuality/actionCount) +" "+ (evPunctuality/actionCount));
 
     entryControl.set(R_FIELD_EVALUATION, evGlobal );
     entryControl.set(R_FIELD_QUALITY_EVALUATION, (evQuality/actionCount) );
