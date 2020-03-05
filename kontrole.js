@@ -66,6 +66,7 @@ function countEvaluation( entryControl ) {
   var evQuality = 0;
   var evPunctuality = 0;
   var evGlobal = 0;
+  var actionCount = 0;
 
   if ( !entryControl.field( FIELD_IS_NEW )) {
     for (actionCount = 0; actionCount < entryControl.field(R_FIELD_ACTION_LINK).length; actionCount++ ) {
