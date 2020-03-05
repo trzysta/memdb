@@ -101,11 +101,11 @@ function countEvaluation( entryControl ) {
         }
     }
     evGlobal = (evQuality + evPunctuality) / ((actionCount * R_QUALITY_WEIGTHT) + (actionCount * (1 - R_QUALITY_WEIGTHT)));
-    message (evGlobal +" "+ evQuality +" "+ evPunctuality);
+    message (evGlobal +" "+ (evQuality/actionCount) +" "+ (evPunctuality/actionCount));
 
     entryControl.set(R_FIELD_EVALUATION, evGlobal );
-    entryControl.set(R_FIELD_QUALITY_EVALUATION, evQuality );
-    entryControl.set(R_FIELD_PUNCTUALITY_EVALUATION, evPunctuality );   
+    entryControl.set(R_FIELD_QUALITY_EVALUATION, (evQuality/actionCount) );
+    entryControl.set(R_FIELD_PUNCTUALITY_EVALUATION, (evPunctuality/actionCount) );
   }
 }
 
