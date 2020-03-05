@@ -170,11 +170,7 @@ var R_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL2 = "(3) wykonano w akceptowalnym op�
 var R_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL3 = "(4) wykonano zgodnie z planem";
 
 var R_FIELD_EVALUATION      = "Punktacja globalna po kontroli";
-VAR R_FIELD_QUALITY_EVALUATION = "Punktacja za jakość";
-
-
-
-
-
+var R_FIELD_QUALITY_EVALUATION = "Punktacja za jakość";
+var R_FIELD_PUNCTUALITY_EVALUATION = "Punktacja za jakość";
 
 var R_FIELD_ACTION_DOMAIN  = "Kontrolowany obszar";
