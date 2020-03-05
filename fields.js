@@ -13,6 +13,7 @@ var FIELD_EDITOR = "Editor";
 var FIELD_IS_NEW = "Nowy";
 var FIELD_IS_HIDDEN = "Ukryte";
 var FIELD_CAN_ACCESS = "canAccess";
+var FIELD_IS_CLOSED = "Zamknięty"''
 
 var VALUE_DAYNUMBER_MONDAY    = 1;
 var VALUE_DAYNUMBER_TUESDAY   = 2;

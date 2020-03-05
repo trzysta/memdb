@@ -67,7 +67,7 @@ function countEvaluation( entryControl ) {
   var evPunctuality = 0;
   var evGlobal = 0;
 
-  if ( !entryControl.field( FIELD_IS_NEW )) {
+  if ( entryControl.field( R_FIELD_CLOSED )) {
     for (actionCount = 0; actionCount < entryControl.field(R_FIELD_ACTION_LINK).length; actionCount++ ) {
 
       // ocena JAKOŚCI
@@ -107,7 +107,7 @@ function countEvaluation( entryControl ) {
     entryControl.set(R_FIELD_EVALUATION, evGlobal );
     entryControl.set(R_FIELD_QUALITY_EVALUATION, (evQuality/actionCount) );
     entryControl.set(R_FIELD_PUNCTUALITY_EVALUATION, (evPunctuality/actionCount) );
-  }
+  } 
 }
 
 
