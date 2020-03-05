@@ -43,7 +43,6 @@ function saveFirstTime( entryControl ) {
   for (c=0; c < actionsDaily.length; c++ ) {
     entryControl.link( R_FIELD_ACTION_LINK, actionsDaily[c] );
     entryControl.field(R_FIELD_ACTION_LINK)[currLink].setAttr(R_FIELD_CHECK_PROCEDURE, HR+BR+ actionsDaily[c].field(C_FIELD_ACTION_CHECKPOINTS)+BR+HR);
-    entryControl.field(R_FIELD_ACTION_LINK)[currLink].setAttr("Opcje", ["jeden","dwa","trzy"]);
     currLink++
   };
   for (e=0; e < actionsMonthly.length; e++ ) {
@@ -64,13 +63,44 @@ function saveFirstTime( entryControl ) {
 
 function countEvaluation( entryControl ) {
 
-  var ev = 0;
+  var evQuality = 0;
+  var evPunctuality = 0;
+  var evGlobal = 0;
+
   if ( !entryControl.field( FIELD_IS_NEW )) {
-    for (i = 0; i < entryControl.field(R_FIELD_ACTION_LINK).length; i++ ) {
-       ev += entryControl.field(R_FIELD_ACTION_LINK)[i].attr(R_FIELD_ACTION_LINK_ATTR_EVALUATION);
+    for (actionCount = 0; actionCount < entryControl.field(R_FIELD_ACTION_LINK).length; actionCount++ ) {
+
+      // ocena JAKOŚCI
+      switch ( entryControl.field(R_FIELD_ACTION_LINK)[i].attr(R_FIELD_ATTR_QUALITY_EVALUATION).trim() ) {
+        case R_FIELD_ATTR_QUALITY_EVALUATION_VAL3:
+          evQuality += 3 * R_QUALITY_WEIGTHT;
+          break;
+        case R_FIELD_ATTR_QUALITY_EVALUATION_VAL2:
+          evQuality += 2 * R_QUALITY_WEIGTHT;
+          break;
+        case R_FIELD_ATTR_QUALITY_EVALUATION_VAL1:
+          evQuality += 1 * R_QUALITY_WEIGTHT;
+          break;
+        }
+
+      // ocena terminowości
+      switch ( entryControl.field(R_FIELD_ACTION_LINK)[i].attr(R_FIELD_ATTR_PUNCTUALITY_EVALUATION).trim() ) {
+        case R_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL3:
+          evPunctuality += 3 * (1 - R_QUALITY_WEIGTHT);
+          break;
+        case R_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL2:
+          evPunctuality += 2 * (1 - R_QUALITY_WEIGTHT);
+          break;
+        case R_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL1:
+          evPunctuality += 1 * (1 - R_QUALITY_WEIGTHT);
+          break;
+        }
     }
-    ev = ev / ( entryControl.field(R_FIELD_ACTION_LINK).length )
-    entryControl.set(R_FIELD_EVALUATION, ev )
+
+    evGlobal = (evQuality + evPunctuality) / ((actionCount * R_QUALITY_WEIGTHT) + (actionCount * (1 - R_QUALITY_WEIGTHT));
+    message (evGlobal +" "+ evQuality +" "+ evPunctuality);
+    
+    entryControl.set(R_FIELD_EVALUATION, evGlobal )
   }
 }
 

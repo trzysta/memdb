@@ -115,6 +115,8 @@ var C_FIELD_ACTION_DOMAIN         = "Obszar";
 var C_FIELD_ACTION_DOMAIN_VALUES  = ["Klatki","Garaż","Teren","Zieleń","Biuro"];
 var C_FIELD_ACTION_CHECKPOINTS    = "Punkty do sprawdzenia podczas kontroli";
 
+
+
 // ***** baza KONTROLA
 var R_FIELD_CHECKPOINT_LABELS = ["Posadzka płytki kamień fugi czy są ślady po brudnym mopie slady złego mycia przy rogach",
                               "Zapach",
@@ -152,8 +154,20 @@ var R_FIELD_FREQENCY_VALUES = [ "Codziennie",
                                 "1 raz w roku",
                                 "2 razy w roku",
                                 "3 razy w roku"];
-var R_FIELD_ACTION_LINK     = "Czynności do wykonania wg umowy";
-var R_FIELD_CHECK_PROCEDURE = "Procedura sprawdzania";
-var R_FIELD_ACTION_LINK_ATTR_EVALUATION = "Ocena wykonania";
+var R_FIELD_ACTION_LINK                   = "Czynności do wykonania wg umowy";
+var R_FIELD_CHECK_PROCEDURE               = "Procedura sprawdzania";
+var R_FIELD_ATTR_QUALITY_EVALUATION       = "Ocena jakości";
+var R_FIELD_ATTR_QUALITY_EVALUATION_VAL0  = "(0) nie wykonano";
+var R_FIELD_ATTR_QUALITY_EVALUATION_VAL1  = "(1) wykonano źle, zlecono poprawę"
+var R_FIELD_ATTR_QUALITY_EVALUATION_VAL2  = "(2) wykonano w przyzwoitej jakości";
+var R_FIELD_ATTR_QUALITY_EVALUATION_VAL3  = "(3) wykonano w dobrej jakości, brak uwag";
+var R_QUALITY_WEIGTHT = 0.6;   // waga jakości w ocenie to 60% w stosunku do 40% za terminowość
+
+var R_FIELD_ATTR_PUNCTUALITY_EVALUATION   = "Ocena terminowości";
+var R_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL0 = "(0) nie wykonano";
+var R_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL1 = "(1) wykonano w dużym opóźnieniem";
+var R_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL2 = "(2) wykonano w akceptowalnym opóźnieniem";
+var R_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL3 = "(3) wykonano zgodnie z planem";
+
 var R_FIELD_EVALUATION      = "Punktacja po kontroli";
 var R_FIELD_ACTION_DOMAIN  = "Kontrolowany obszar";
