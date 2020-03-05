@@ -73,36 +73,36 @@ function countEvaluation( entryControl ) {
       // ocena JAKOŚCI
       switch ( entryControl.field(R_FIELD_ACTION_LINK)[actionCount].attr(R_FIELD_ATTR_QUALITY_EVALUATION).trim() ) {
         case R_FIELD_ATTR_QUALITY_EVALUATION_VAL3:
-          evQuality += 4 * R_QUALITY_WEIGTHT;
+          evQuality += 4;
           break;
         case R_FIELD_ATTR_QUALITY_EVALUATION_VAL2:
-          evQuality += 3 * R_QUALITY_WEIGTHT;
+          evQuality += 3;
           break;
         case R_FIELD_ATTR_QUALITY_EVALUATION_VAL1:
-          evQuality += 2 * R_QUALITY_WEIGTHT;
+          evQuality += 2;
           break;
         default:
-          evQuality += 1 * R_QUALITY_WEIGTHT;
+          evQuality += 1;
         }
 
       // ocena terminowości
       switch ( entryControl.field(R_FIELD_ACTION_LINK)[actionCount].attr(R_FIELD_ATTR_PUNCTUALITY_EVALUATION).trim() ) {
         case R_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL3:
-          evPunctuality += 4 * (1 - R_QUALITY_WEIGTHT);
+          evPunctuality += 4;
           break;
         case R_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL2:
-          evPunctuality += 3 * (1 - R_QUALITY_WEIGTHT);
+          evPunctuality += 3;
           break;
         case R_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL1:
-          evPunctuality += 2 * (1 - R_QUALITY_WEIGTHT);
+          evPunctuality += 2;
           break;
         default:
-          evPunctuality += 1 * (1 - R_QUALITY_WEIGTHT);
+          evPunctuality += 1;
         }
     }
 
-    evGlobal = (evQuality + evPunctuality) / ((actionCount * R_QUALITY_WEIGTHT) + (actionCount * (1 - R_QUALITY_WEIGTHT)));
-    message (actionCount+" "+ evGlobal +" "+ (evQuality/actionCount) +" "+ (evPunctuality/actionCount));
+    evGlobal = ( (evQuality * R_QUALITY_WEIGTHT) + ( evPunctuality * (1 - R_QUALITY_WEIGTHT))) / ((actionCount * R_QUALITY_WEIGTHT) + (actionCount * (1 - R_QUALITY_WEIGTHT)));
+    message (actionCount+" "+ evGlobal +" "+ evQuality/actionCount) +" "+ (evPunctuality/actionCount));
 
     entryControl.set(R_FIELD_EVALUATION, evGlobal );
     entryControl.set(R_FIELD_QUALITY_EVALUATION, (evQuality/actionCount) );
