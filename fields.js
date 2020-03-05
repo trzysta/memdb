@@ -13,7 +13,6 @@ var FIELD_EDITOR = "Editor";
 var FIELD_IS_NEW = "Nowy";
 var FIELD_IS_HIDDEN = "Ukryte";
 var FIELD_CAN_ACCESS = "canAccess";
-var FIELD_IS_CLOSED = "Zamknięty"''
 
 var VALUE_DAYNUMBER_MONDAY    = 1;
 var VALUE_DAYNUMBER_TUESDAY   = 2;
@@ -175,3 +174,4 @@ var R_FIELD_QUALITY_EVALUATION = "Punktacja za jakość";
 var R_FIELD_PUNCTUALITY_EVALUATION = "Punktacja za punktualność";
 
 var R_FIELD_ACTION_DOMAIN  = "Kontrolowany obszar";
+var R_FIELD_CLOSED = "Kontrola zakończona";

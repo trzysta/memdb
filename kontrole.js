@@ -107,7 +107,7 @@ function countEvaluation( entryControl ) {
     entryControl.set(R_FIELD_EVALUATION, evGlobal );
     entryControl.set(R_FIELD_QUALITY_EVALUATION, (evQuality/actionCount) );
     entryControl.set(R_FIELD_PUNCTUALITY_EVALUATION, (evPunctuality/actionCount) );
-  } 
+  }
 }
 
 
