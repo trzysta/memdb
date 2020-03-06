@@ -48,15 +48,14 @@ function saveFirstTime( entryControl ) {
     checkpoints = appendToArray( checkpoints, actionsDaily[c].field(C_FIELD_ACTION_CHECKPOINTS) );
 
     //entryControl.field(R_FIELD_ACTION_LINK)[currLink].setAttr(R_FIELD_CHECK_PROCEDURE, HR+BR+ actionsDaily[c].field(C_FIELD_ACTION_CHECKPOINTS)+BR+HR);
-    currLink++
+    currLink++;
   };
   for (e=0; e < actionsMonthly.length; e++ ) {
     entryControl.link( R_FIELD_ACTION_LINK, actionsMonthly[e] );
     checkpoints = appendToArray( checkpoints, actionsDaily[e].field(C_FIELD_ACTION_CHECKPOINTS) );
 
-
     //entryControl.field(R_FIELD_ACTION_LINK)[currLink].setAttr(R_FIELD_CHECK_PROCEDURE, HR+BR+ actionsMonthly[e].field(C_FIELD_ACTION_CHECKPOINTS)+BR+HR);
-    currLink++
+    currLink++;
   };
 
 
