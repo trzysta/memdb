@@ -70,11 +70,23 @@ function appendToArray ( sourceArray, valueToAppend ) {
   } else {
     sourceArray.push(valueToAppend)
   }
-  return sourceArray;
+  return sourceArray.unique();
 }
 
 
 
+// *^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^*
+// *^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^*
+// *^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^*
+Array.prototype.unique = function() {
+  let arr = [];
+  for(let i = 0; i < this.length; i++) {
+      if(!arr.includes(this[i])) {
+          arr.push(this[i]);
+      }
+  }
+  return arr;
+}
 
 
 /*
