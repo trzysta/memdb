@@ -16,8 +16,16 @@ function saveFirstTime( entryControl ) {
 
   var actionsDaily = new Array();
   var actionsMonthly = new Array();
-  var checkpointsOK = new Array();
-  var checkpointsNOK = new Array();
+  var checkpointsDomain0_OK = new Array();
+  var checkpointsDomain0_NOK = new Array();
+  var checkpointsDomain1_OK = new Array();
+  var checkpointsDomain1_NOK = new Array();
+  var checkpointsDomain2_OK = new Array();
+  var checkpointsDomain2_NOK = new Array();
+  var checkpointsDomain3_OK = new Array();
+  var checkpointsDomain3_NOK = new Array();
+  var checkpointsDomain4_OK = new Array();
+  var checkpointsDomain4_NOK = new Array();
 
   allActions = libZadania.linksTo( entryControl.field(R_FIELD_CONTRACT_LINK)[0] );
   currLink = 0;
@@ -43,29 +51,115 @@ function saveFirstTime( entryControl ) {
       }
   }
 
+
+
   for (let c=0; c < actionsDaily.length; c++ ) {
     entryControl.link( R_FIELD_ACTION_LINK, actionsDaily[c] );
-    checkpointsOK = appendToArray( checkpointsOK, actionsDaily[c].field(C_FIELD_ACTION_CHECKPOINTS_OK) );
-    checkpointsNOK = appendToArray( checkpointsNOK, actionsDaily[c].field(C_FIELD_ACTION_CHECKPOINTS_NOK) );
+    switch ( C_FIELD_ACTION_DOMAIN_VALUES.indexOf( actionsDaily[c].field(C_FIELD_ACTION_DOMAIN) ) ) {
+
+      //"Klatki","Garaż","Teren","Zieleń","Biuro"
+      case 0: //"Klatki"
+        checkpointsDomain0_OK   = appendToArray( checkpointsDomain0_OK,  actionsDaily[c].field(C_FIELD_ACTION_CHECKPOINTS_OK) );
+        checkpointsDomain0_NOK  = appendToArray( checkpointsDomain0_NOK, actionsDaily[c].field(C_FIELD_ACTION_CHECKPOINTS_NOK) );
+        break;
+
+      case 1: //"Garaż"
+        checkpointsDomain1_OK   = appendToArray( checkpointsDomain1_OK,  actionsDaily[c].field(C_FIELD_ACTION_CHECKPOINTS_OK) );
+        checkpointsDomain1_NOK  = appendToArray( checkpointsDomain1_NOK, actionsDaily[c].field(C_FIELD_ACTION_CHECKPOINTS_NOK) );
+        break;
+
+      case 2: //"Teren",
+        checkpointsDomain2_OK   = appendToArray( checkpointsDomain2_OK,  actionsDaily[c].field(C_FIELD_ACTION_CHECKPOINTS_OK) );
+        checkpointsDomain2_NOK  = appendToArray( checkpointsDomain2_NOK, actionsDaily[c].field(C_FIELD_ACTION_CHECKPOINTS_NOK) );
+        break;
+
+      case 3: //"Zieleń",
+        checkpointsDomain3_OK   = appendToArray( checkpointsDomain3_OK,  actionsDaily[c].field(C_FIELD_ACTION_CHECKPOINTS_OK) );
+        checkpointsDomain3_NOK  = appendToArray( checkpointsDomain3_NOK, actionsDaily[c].field(C_FIELD_ACTION_CHECKPOINTS_NOK) );
+        break;
+
+      case 4: //"Biuro",
+        checkpointsDomain4_OK   = appendToArray( checkpointsDomain4_OK,  actionsDaily[c].field(C_FIELD_ACTION_CHECKPOINTS_OK) );
+        checkpointsDomain4_NOK  = appendToArray( checkpointsDomain4_NOK, actionsDaily[c].field(C_FIELD_ACTION_CHECKPOINTS_NOK) );
+        break;
+    }
     currLink++;
   };
+
+
+  // czynności miesięczne
   for (let e=0; e < actionsMonthly.length; e++ ) {
     entryControl.link( R_FIELD_ACTION_LINK, actionsMonthly[e] );
-    checkpointsOK = appendToArray( checkpointsOK, actionsMonthly[e].field(C_FIELD_ACTION_CHECKPOINTS_OK) );
-    checkpointsNOK = appendToArray( checkpointsNOK, actionsMonthly[e].field(C_FIELD_ACTION_CHECKPOINTS_NOK) );
+    switch ( C_FIELD_ACTION_DOMAIN_VALUES.indexOf( actionsMonthly[e].field(C_FIELD_ACTION_DOMAIN) ) ) {
+
+      //"Klatki","Garaż","Teren","Zieleń","Biuro"
+      case 0: //"Klatki"
+        checkpointsDomain0_OK   = appendToArray( checkpointsDomain0_OK,  actionsMonthly[e].field(C_FIELD_ACTION_CHECKPOINTS_OK) );
+        checkpointsDomain0_NOK  = appendToArray( checkpointsDomain0_NOK, actionsMonthly[e].field(C_FIELD_ACTION_CHECKPOINTS_NOK) );
+        break;
+
+      case 1: //"Garaż"
+        checkpointsDomain1_OK   = appendToArray( checkpointsDomain1_OK,  actionsMonthly[e].field(C_FIELD_ACTION_CHECKPOINTS_OK) );
+        checkpointsDomain1_NOK  = appendToArray( checkpointsDomain1_NOK, actionsMonthly[e].field(C_FIELD_ACTION_CHECKPOINTS_NOK) );
+        break;
+
+      case 2: //"Teren",
+        checkpointsDomain2_OK   = appendToArray( checkpointsDomain2_OK,  actionsMonthly[e].field(C_FIELD_ACTION_CHECKPOINTS_OK) );
+        checkpointsDomain2_NOK  = appendToArray( checkpointsDomain2_NOK, actionsMonthly[e].field(C_FIELD_ACTION_CHECKPOINTS_NOK) );
+        break;
+
+      case 3: //"Zieleń",
+        checkpointsDomain3_OK   = appendToArray( checkpointsDomain3_OK,  actionsMonthly[e].field(C_FIELD_ACTION_CHECKPOINTS_OK) );
+        checkpointsDomain3_NOK  = appendToArray( checkpointsDomain3_NOK, actionsMonthly[e].field(C_FIELD_ACTION_CHECKPOINTS_NOK) );
+        break;
+
+      case 4: //"Biuro",
+        checkpointsDomain4_OK   = appendToArray( checkpointsDomain4_OK,  actionsMonthly[e].field(C_FIELD_ACTION_CHECKPOINTS_OK) );
+        checkpointsDomain4_NOK  = appendToArray( checkpointsDomain4_NOK, actionsMonthly[e].field(C_FIELD_ACTION_CHECKPOINTS_NOK) );
+        break;
+    }
     currLink++;
   };
 
 
-  entryControl.set(R_FIELD_CHECK_DOMAIN_1_OK, checkpointsOK);
-  entryControl.set(R_FIELD_CHECK_DOMAIN_1_NOK, checkpointsNOK);
-  entryControl.set(R_FIELD_CHECK_DOMAIN_1_OK, null);
-  entryControl.set(R_FIELD_CHECK_DOMAIN_1_NOK, null);
+  entryControl.set( R_FIELD_CHECK_DOMAIN_0_OK,  checkpointsDomain0_OK ;
+  entryControl.set( R_FIELD_CHECK_DOMAIN_0_NOK, checkpointsDomain0_NOK );
+  entryControl.set( R_FIELD_CHECK_DOMAIN_0_OK,  null ;
+  entryControl.set( R_FIELD_CHECK_DOMAIN_0_NOK, null );
+  entryControl.set( R_FIELD_CHECK_DOMAIN_1_OK,  checkpointsDomain1_OK ;
+  entryControl.set( R_FIELD_CHECK_DOMAIN_1_NOK, checkpointsDomain1_NOK );
+  entryControl.set( R_FIELD_CHECK_DOMAIN_1_OK,  null ;
+  entryControl.set( R_FIELD_CHECK_DOMAIN_1_NOK, null );
+  entryControl.set( R_FIELD_CHECK_DOMAIN_2_OK,  checkpointsDomain2_OK ;
+  entryControl.set( R_FIELD_CHECK_DOMAIN_2_NOK, checkpointsDomain2_NOK );
+  entryControl.set( R_FIELD_CHECK_DOMAIN_2_OK,  null ;
+  entryControl.set( R_FIELD_CHECK_DOMAIN_2_NOK, null );
+  entryControl.set( R_FIELD_CHECK_DOMAIN_3_OK,  checkpointsDomain3_OK ;
+  entryControl.set( R_FIELD_CHECK_DOMAIN_3_NOK, checkpointsDomain3_NOK );
+  entryControl.set( R_FIELD_CHECK_DOMAIN_3_OK,  null ;
+  entryControl.set( R_FIELD_CHECK_DOMAIN_3_NOK, null );
+  entryControl.set( R_FIELD_CHECK_DOMAIN_4_OK,  checkpointsDomain4_OK ;
+  entryControl.set( R_FIELD_CHECK_DOMAIN_4_NOK, checkpointsDomain4_NOK );
+  entryControl.set( R_FIELD_CHECK_DOMAIN_4_OK,  null ;
+  entryControl.set( R_FIELD_CHECK_DOMAIN_4_NOK, null );
+
+
+
+
 
   entryControl.set(FIELD_IS_NEW, false);
   entryControl.show();
 
 }
+
+
+
+
+
+
+
+
+
 
 
 
