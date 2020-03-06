@@ -61,7 +61,6 @@ function saveFirstTime( entryControl ) {
       case 0: //"Klatki"
         checkpointsDomain0_OK   = appendToArray( checkpointsDomain0_OK,  actionsDaily[c].field(C_FIELD_ACTION_CHECKPOINTS_OK) );
         checkpointsDomain0_NOK  = appendToArray( checkpointsDomain0_NOK, actionsDaily[c].field(C_FIELD_ACTION_CHECKPOINTS_NOK) );
-        c1++;
         break;
 
       case 1: //"Garaż"
