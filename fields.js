@@ -172,5 +172,15 @@ var R_FIELD_EVALUATION      = "Ocena globalna po kontroli";
 var R_FIELD_QUALITY_EVALUATION = "Ocena za jakość";
 var R_FIELD_PUNCTUALITY_EVALUATION = "Ocena za punktualność";
 
-var R_FIELD_ACTION_DOMAIN  = "Kontrolowany obszar";
+var var R_FIELD_CHECK_OK  = "Kontrolowany obszar";
 var R_FIELD_CLOSED = "Kontrola zakończona";
+
+
+var R_FIELD_CHECK_DOMAIN_1_OK = "Klatki, DOBRZE";
+var R_FIELD_CHECK_DOMAIN_1_NOK = "Klatki ŹLE";
+var R_FIELD_CHECK_DOMAIN_2_OK = "";
+var R_FIELD_CHECK_DOMAIN_2_NOK = "";
+var R_FIELD_CHECK_DOMAIN_3_OK = "";
+var R_FIELD_CHECK_DOMAIN_3_NOK = "";
+var R_FIELD_CHECK_DOMAIN_4_OK = "";
+var R_FIELD_CHECK_DOMAIN_4_NOK = "";

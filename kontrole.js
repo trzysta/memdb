@@ -14,8 +14,11 @@ function createControl( entryControl ) {
 
 function saveFirstTime( entryControl ) {
 
-  actionsDaily = new Array();
-  actionsMonthly = new Array();
+  var actionsDaily = new Array();
+  var actionsMonthly = new Array();
+  var checkpoints = new Array();
+
+
   allActions = libZadania.linksTo( entryControl.field(R_FIELD_CONTRACT_LINK)[0] );
   currLink = 0;
   var dt = moment().startOf('month');
@@ -42,15 +45,23 @@ function saveFirstTime( entryControl ) {
 
   for (c=0; c < actionsDaily.length; c++ ) {
     entryControl.link( R_FIELD_ACTION_LINK, actionsDaily[c] );
-    entryControl.field(R_FIELD_ACTION_LINK)[currLink].setAttr(R_FIELD_CHECK_PROCEDURE, HR+BR+ actionsDaily[c].field(C_FIELD_ACTION_CHECKPOINTS)+BR+HR);
+    checkpoints = appendToArray( checkpoints, actionsDaily[c].field(C_FIELD_ACTION_CHECKPOINTS) );
+
+    //entryControl.field(R_FIELD_ACTION_LINK)[currLink].setAttr(R_FIELD_CHECK_PROCEDURE, HR+BR+ actionsDaily[c].field(C_FIELD_ACTION_CHECKPOINTS)+BR+HR);
     currLink++
   };
   for (e=0; e < actionsMonthly.length; e++ ) {
     entryControl.link( R_FIELD_ACTION_LINK, actionsMonthly[e] );
-    entryControl.field(R_FIELD_ACTION_LINK)[currLink].setAttr(R_FIELD_CHECK_PROCEDURE, HR+BR+ actionsMonthly[e].field(C_FIELD_ACTION_CHECKPOINTS)+BR+HR);
+    checkpoints = appendToArray( checkpoints, actionsDaily[e].field(C_FIELD_ACTION_CHECKPOINTS) );
+
+
+    //entryControl.field(R_FIELD_ACTION_LINK)[currLink].setAttr(R_FIELD_CHECK_PROCEDURE, HR+BR+ actionsMonthly[e].field(C_FIELD_ACTION_CHECKPOINTS)+BR+HR);
     currLink++
   };
 
+
+  entryControl.set(R_FIELD_CHECK_DOMAIN_1_OK, checkpoints);
+  entryControl.set(R_FIELD_CHECK_DOMAIN_1_NOK, checkpoints);
   entryControl.set(FIELD_IS_NEW, false);
   entryControl.show();
 
@@ -104,6 +115,25 @@ function countEvaluation( entryControl ) {
 
 
 function generateEmailBody ( entryControl ) {
+
+/*
+jakiś stały tekst
+
+data i godzina kontroli
+Dokonujący kontroli
+Osiedle i klatka
+Typ Kontroli
+Zadania i oceny:
+
+zadanie i czestotliwość i dni wykonania
+Procedura
+ocena
+uwagi
+czy dołączono zdjęcie?
+
+
+w załączeniu zdjęcia
+*/
 
 
 

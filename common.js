@@ -57,6 +57,26 @@ function saveFirstTime(e) {
 
 
 
+// *^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^*
+// *^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^*
+// *^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^*
+// dodaje wartości do tablicy 
+function appendToArray ( sourceArray, valueToAppend ) {
+
+  if ( !sourceArray.isArray() ) { sourceArray = new Array() };
+  if ( valueToAppend.isArray() )  {
+     for (i=0; i < valueToAppend.length; i++)
+       sourceArray.push(valueToAppend[i])
+  } else {
+    sourceArray.push(valueToAppend)
+  }
+  return sourceArray;
+}
+
+
+
+
+
 /*
 *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 
