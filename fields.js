@@ -172,9 +172,8 @@ var R_FIELD_EVALUATION      = "Ocena globalna po kontroli";
 var R_FIELD_QUALITY_EVALUATION = "Ocena za jakość";
 var R_FIELD_PUNCTUALITY_EVALUATION = "Ocena za punktualność";
 
-var R_FIELD_CHECK_OK  = "Kontrolowany obszar";
+var R_FIELD_ACTION_DOMAIN   = "Kontrolowany obszar";
 var R_FIELD_CLOSED = "Kontrola zakończona";
-
 
 var R_FIELD_CHECK_DOMAIN_1_OK = "Klatki, DOBRZE";
 var R_FIELD_CHECK_DOMAIN_1_NOK = "Klatki ŹLE";
