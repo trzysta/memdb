@@ -113,24 +113,11 @@ var C_FIELD_CONTRACT              = "Osiedle";
 var C_FIELD_ACTION                = "Czynność";
 var C_FIELD_ACTION_DOMAIN         = "Obszar";
 var C_FIELD_ACTION_DOMAIN_VALUES  = ["Klatki","Garaż","Teren","Zieleń","Biuro"];
-var C_FIELD_ACTION_CHECKPOINTS    = "Punkty do sprawdzenia podczas kontroli";
-
+var C_FIELD_ACTION_CHECKPOINTS_OK = "Punkty do kontroli POPRAWNE";
+var C_FIELD_ACTION_CHECKPOINTS_NOK = "Punkty do kontroli NIE POPRAWNE";
 
 
 // ***** baza KONTROLA
-var R_FIELD_CHECKPOINT_LABELS = ["Posadzka płytki kamień fugi czy są ślady po brudnym mopie slady złego mycia przy rogach",
-                              "Zapach",
-                              "Parapety: kurz martwe owady",
-                              "Przeszklenia drzwi",
-                              "Pajęczyny",
-                              "Kurz na włącznikach elementach wystających",
-                              "Kurz na cokołach brudne cokoły",
-                              "Schody: spoczniki i podstopnice",
-                              "Schody: zacieki na bokach",
-                              "Windy: stal ślady zacieki z oliwki",
-                              "Windy: posadzka",
-                              "Windy: lustra",
-                              "Barierki poręcze" ];
 
 var R_FIELD_BUILDING        = "Budynek i klatka";
 var R_FIELD_CONTRACT_LINK   = "Osiedle";
@@ -172,11 +159,11 @@ var R_FIELD_EVALUATION      = "Ocena globalna po kontroli";
 var R_FIELD_QUALITY_EVALUATION = "Ocena za jakość";
 var R_FIELD_PUNCTUALITY_EVALUATION = "Ocena za punktualność";
 
-var R_FIELD_ACTION_DOMAIN   = "Kontrolowany obszar";
-var R_FIELD_CLOSED = "Kontrola zakończona";
+var R_FIELD_ACTION_DOMAIN     = "Kontrolowany obszar";
+var R_FIELD_CLOSED            = "Kontrola zakończona";
 
-var R_FIELD_CHECK_DOMAIN_1_OK = "Klatki, DOBRZE";
-var R_FIELD_CHECK_DOMAIN_1_NOK = "Klatki ŹLE";
+var R_FIELD_CHECK_DOMAIN_1_OK = "Wykonane poprawnie, dobrze";
+var R_FIELD_CHECK_DOMAIN_1_NOK = "Wykonane źle lub niewykonane w ogóle";
 var R_FIELD_CHECK_DOMAIN_2_OK = "";
 var R_FIELD_CHECK_DOMAIN_2_NOK = "";
 var R_FIELD_CHECK_DOMAIN_3_OK = "";

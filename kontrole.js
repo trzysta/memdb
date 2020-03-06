@@ -16,8 +16,8 @@ function saveFirstTime( entryControl ) {
 
   var actionsDaily = new Array();
   var actionsMonthly = new Array();
-  var checkpoints = new Array();
-
+  var checkpointsOK = new Array();
+  var checkpointsNOK = new Array();
 
   allActions = libZadania.linksTo( entryControl.field(R_FIELD_CONTRACT_LINK)[0] );
   currLink = 0;
@@ -45,22 +45,20 @@ function saveFirstTime( entryControl ) {
 
   for (c=0; c < actionsDaily.length; c++ ) {
     entryControl.link( R_FIELD_ACTION_LINK, actionsDaily[c] );
-    checkpoints = appendToArray( checkpoints, actionsDaily[c].field(C_FIELD_ACTION_CHECKPOINTS) );
-
-    //entryControl.field(R_FIELD_ACTION_LINK)[currLink].setAttr(R_FIELD_CHECK_PROCEDURE, HR+BR+ actionsDaily[c].field(C_FIELD_ACTION_CHECKPOINTS)+BR+HR);
+    checkpointsOK = appendToArray( checkpoints, actionsDaily[c].field(C_FIELD_ACTION_CHECKPOINTS_OK) );
+    checkpointsNOK = appendToArray( checkpoints, actionsDaily[c].field(C_FIELD_ACTION_CHECKPOINTS_NOK) );
     currLink++;
   };
   for (e=0; e < actionsMonthly.length; e++ ) {
     entryControl.link( R_FIELD_ACTION_LINK, actionsMonthly[e] );
-    checkpoints = appendToArray( checkpoints, actionsMonthly[e].field(C_FIELD_ACTION_CHECKPOINTS) );
-
-    //entryControl.field(R_FIELD_ACTION_LINK)[currLink].setAttr(R_FIELD_CHECK_PROCEDURE, HR+BR+ actionsMonthly[e].field(C_FIELD_ACTION_CHECKPOINTS)+BR+HR);
+    checkpointsOK = appendToArray( checkpoints, actionsDaily[e].field(C_FIELD_ACTION_CHECKPOINTS_OK) );
+    checkpointsNOK = appendToArray( checkpoints, actionsDaily[e].field(C_FIELD_ACTION_CHECKPOINTS_NOK) );
     currLink++;
   };
 
 
-  entryControl.set(R_FIELD_CHECK_DOMAIN_1_OK, checkpoints);
-  entryControl.set(R_FIELD_CHECK_DOMAIN_1_NOK, checkpoints);
+  entryControl.set(R_FIELD_CHECK_DOMAIN_1_OK, checkpointsOK);
+  entryControl.set(R_FIELD_CHECK_DOMAIN_1_NOK, checkpointsNOK);
   entryControl.set(R_FIELD_CHECK_DOMAIN_1_OK, null);
   entryControl.set(R_FIELD_CHECK_DOMAIN_1_NOK, null);
 
