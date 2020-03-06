@@ -122,30 +122,26 @@ function saveFirstTime( entryControl ) {
   };
 
 
-  entryControl.set( R_FIELD_CHECK_DOMAIN_0_OK,  checkpointsDomain0_OK ;
+  entryControl.set( R_FIELD_CHECK_DOMAIN_0_OK,  checkpointsDomain0_OK );
   entryControl.set( R_FIELD_CHECK_DOMAIN_0_NOK, checkpointsDomain0_NOK );
-  entryControl.set( R_FIELD_CHECK_DOMAIN_0_OK,  null ;
+  entryControl.set( R_FIELD_CHECK_DOMAIN_0_OK,  null );
   entryControl.set( R_FIELD_CHECK_DOMAIN_0_NOK, null );
-  entryControl.set( R_FIELD_CHECK_DOMAIN_1_OK,  checkpointsDomain1_OK ;
+  entryControl.set( R_FIELD_CHECK_DOMAIN_1_OK,  checkpointsDomain1_OK );
   entryControl.set( R_FIELD_CHECK_DOMAIN_1_NOK, checkpointsDomain1_NOK );
-  entryControl.set( R_FIELD_CHECK_DOMAIN_1_OK,  null ;
+  entryControl.set( R_FIELD_CHECK_DOMAIN_1_OK,  null );
   entryControl.set( R_FIELD_CHECK_DOMAIN_1_NOK, null );
-  entryControl.set( R_FIELD_CHECK_DOMAIN_2_OK,  checkpointsDomain2_OK ;
+  entryControl.set( R_FIELD_CHECK_DOMAIN_2_OK,  checkpointsDomain2_OK );
   entryControl.set( R_FIELD_CHECK_DOMAIN_2_NOK, checkpointsDomain2_NOK );
-  entryControl.set( R_FIELD_CHECK_DOMAIN_2_OK,  null ;
+  entryControl.set( R_FIELD_CHECK_DOMAIN_2_OK,  null );
   entryControl.set( R_FIELD_CHECK_DOMAIN_2_NOK, null );
-  entryControl.set( R_FIELD_CHECK_DOMAIN_3_OK,  checkpointsDomain3_OK ;
+  entryControl.set( R_FIELD_CHECK_DOMAIN_3_OK,  checkpointsDomain3_OK );
   entryControl.set( R_FIELD_CHECK_DOMAIN_3_NOK, checkpointsDomain3_NOK );
-  entryControl.set( R_FIELD_CHECK_DOMAIN_3_OK,  null ;
+  entryControl.set( R_FIELD_CHECK_DOMAIN_3_OK,  null );
   entryControl.set( R_FIELD_CHECK_DOMAIN_3_NOK, null );
-  entryControl.set( R_FIELD_CHECK_DOMAIN_4_OK,  checkpointsDomain4_OK ;
+  entryControl.set( R_FIELD_CHECK_DOMAIN_4_OK,  checkpointsDomain4_OK );
   entryControl.set( R_FIELD_CHECK_DOMAIN_4_NOK, checkpointsDomain4_NOK );
-  entryControl.set( R_FIELD_CHECK_DOMAIN_4_OK,  null ;
+  entryControl.set( R_FIELD_CHECK_DOMAIN_4_OK,  null );
   entryControl.set( R_FIELD_CHECK_DOMAIN_4_NOK, null );
-
-
-
-
 
   entryControl.set(FIELD_IS_NEW, false);
   entryControl.show();
