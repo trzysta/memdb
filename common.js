@@ -82,7 +82,7 @@ Array.prototype.unique = function() {
   let arr = [];
   for(let i = 0; i < this.length; i++) {
       if( arr.indexOf(this[i]) < 0 ) {
-          arr.push(this[i]);
+          arr.push( i + ") " + this[i]);
       }
   }
   return arr;
