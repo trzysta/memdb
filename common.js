@@ -63,7 +63,7 @@ function saveFirstTime(e) {
 // dodaje wartości do tablicy
 function appendToArray ( sourceArray, valueToAppend ) {
 
-  if ( !Array.isArray(sourceArray)) { sourceArray = new Array() };
+  if ( !Array.isArray(sourceArray) ) { sourceArray = new Array() };
   if ( Array.isArray(valueToAppend) )  {
      for (i=0; i < valueToAppend.length; i++)
        sourceArray.push(valueToAppend[i])
