@@ -83,7 +83,6 @@ var P_MSG_VALIDATION_ERR_NO_CASH = "- podaj datę i kwotę wypłaty gotówki";
 // ***** baza PRACOWNICY
 var E_FIELD_FULLNAME = "Imie i nazwisko";
 
-
 // ***** baza Osiedla, kontrakty
 var P_FIELD_CONTRACT      = "Osiedle";
 var P_FIELD_SHORTNAME     = "Nazwa potoczna";
@@ -101,7 +100,6 @@ var B_FIELD_TYPE          = "Rodzaj";
 var B_FIELD_TYPE_VALUE_PAYOUTS = "Wynagrodzenia";
 var B_MSG_BUDGET_FOUND    = "...znaleziono budżet: ";
 
-
 // ***** baza KALENDARZ ZADAŃ
 var C_FIELD_MONTH                 = "Miesiąc";
 var C_FIELD_DATES                 = "Daty";
@@ -116,9 +114,7 @@ var C_FIELD_ACTION_DOMAIN_VALUES  = ["Klatki","Garaż","Teren","Zieleń","Biuro"
 var C_FIELD_ACTION_CHECKPOINTS_OK = "Punkty do kontroli POPRAWNE";
 var C_FIELD_ACTION_CHECKPOINTS_NOK = "Punkty do kontroli NIE POPRAWNE";
 
-
 // ***** baza KONTROLA
-
 var R_FIELD_BUILDING        = "Budynek i klatka";
 var R_FIELD_CONTRACT_LINK   = "Osiedle";
 var R_FIELD_FREQENCY        = "Częstotliwość";
