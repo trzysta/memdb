@@ -121,16 +121,16 @@ function saveFirstTime( entryControl ) {
     currLink++;
   };
 
-  checkpointsDomain0_OK   = addCounter( checkpointsDomain0_OK );
-  checkpointsDomain0_NOK  = addCounter( checkpointsDomain0_NOK );
-  checkpointsDomain1_OK   = addCounter( checkpointsDomain1_OK );
-  checkpointsDomain1_NOK  = addCounter( checkpointsDomain1_NOK );
-  checkpointsDomain2_OK   = addCounter( checkpointsDomain2_OK );
-  checkpointsDomain2_NOK  = addCounter( checkpointsDomain2_NOK );
-  checkpointsDomain3_OK   = addCounter( checkpointsDomain3_OK );
-  checkpointsDomain3_NOK  = addCounter( checkpointsDomain3_NOK );
-  checkpointsDomain4_OK   = addCounter( checkpointsDomain4_OK );
-  checkpointsDomain4_NOK  = addCounter( checkpointsDomain4_NOK );
+  checkpointsDomain0_OK  = addCounter( checkpointsDomain0_OK );
+  checkpointsDomain0_NOK = addCounter( checkpointsDomain0_NOK );
+  checkpointsDomain1_OK  = addCounter( checkpointsDomain1_OK );
+  checkpointsDomain1_NOK = addCounter( checkpointsDomain1_NOK );
+  checkpointsDomain2_OK  = addCounter( checkpointsDomain2_OK );
+  checkpointsDomain2_NOK = addCounter( checkpointsDomain2_NOK );
+  checkpointsDomain3_OK  = addCounter( checkpointsDomain3_OK );
+  checkpointsDomain3_NOK = addCounter( checkpointsDomain3_NOK );
+  checkpointsDomain4_OK  = addCounter( checkpointsDomain4_OK );
+  checkpointsDomain4_NOK = addCounter( checkpointsDomain4_NOK );
 
   entryControl.set( R_FIELD_CHECK_DOMAIN_0_OK,  checkpointsDomain0_OK );
   entryControl.set( R_FIELD_CHECK_DOMAIN_0_NOK, checkpointsDomain0_NOK );

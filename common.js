@@ -77,9 +77,12 @@ function appendToArray ( sourceArray, valueToAppend ) {
 // *^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^*
 // *^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^*
 function addCounter( arrSource ){
+
+  var arrNew;
   for (let i=0; i < arrSource.length; i++) {
-      arrSource[i] = i + ") " + arrSource[i];
+      arrNew.push( i + ") " + arrSource[i] );
   }
+  return arrNew;
 }
 
 
