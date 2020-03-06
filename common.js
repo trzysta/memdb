@@ -79,8 +79,12 @@ function appendToArray ( sourceArray, valueToAppend ) {
 function addCounter( arrSource ){
 
   var arrNew = new Array();
+  var newValue;
+
   for (let i=0; i < arrSource.length; i++) {
-      arrNew.push( i + ") " + arrSource[i] );
+      newValue = i+1 + ") " + arrSource[i];
+      message( newValue )
+      arrNew.push(newValue);
   }
   return arrNew;
 }
