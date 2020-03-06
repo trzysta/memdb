@@ -73,6 +73,16 @@ function appendToArray ( sourceArray, valueToAppend ) {
   return sourceArray.unique();
 }
 
+// *^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^*
+// *^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^*
+// *^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^*
+function addCounter( arrSource ){
+  for (let i=0; i < arrSource.length; i++) {
+      arrSource[i] = i + ") " + arrSource[i];
+  }
+}
+
+
 
 
 // *^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^*
@@ -82,7 +92,7 @@ Array.prototype.unique = function() {
   let arr = [];
   for(let i = 0; i < this.length; i++) {
       if( arr.indexOf(this[i]) < 0 ) {
-          arr.push( i + ") " + this[i]);
+          arr.push(this[i]);
       }
   }
   return arr;
