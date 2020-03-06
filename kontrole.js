@@ -43,13 +43,13 @@ function saveFirstTime( entryControl ) {
       }
   }
 
-  for (c=0; c < actionsDaily.length; c++ ) {
+  for (let c=0; c < actionsDaily.length; c++ ) {
     entryControl.link( R_FIELD_ACTION_LINK, actionsDaily[c] );
     checkpointsOK = appendToArray( checkpointsOK, actionsDaily[c].field(C_FIELD_ACTION_CHECKPOINTS_OK) );
     checkpointsNOK = appendToArray( checkpointsNOK, actionsDaily[c].field(C_FIELD_ACTION_CHECKPOINTS_NOK) );
     currLink++;
   };
-  for (e=0; e < actionsMonthly.length; e++ ) {
+  for (let e=0; e < actionsMonthly.length; e++ ) {
     entryControl.link( R_FIELD_ACTION_LINK, actionsMonthly[e] );
     checkpointsOK = appendToArray( checkpointsOK, actionsMonthly[e].field(C_FIELD_ACTION_CHECKPOINTS_OK) );
     checkpointsNOK = appendToArray( checkpointsNOK, actionsMonthly[e].field(C_FIELD_ACTION_CHECKPOINTS_NOK) );
