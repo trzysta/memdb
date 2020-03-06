@@ -65,7 +65,7 @@ function appendToArray ( sourceArray, valueToAppend ) {
 
   if ( !Array.isArray(sourceArray) ) { sourceArray = new Array() };
   if ( Array.isArray(valueToAppend) )  {
-     for (i=0; i < valueToAppend.length; i++)
+     for (let i=0; i < valueToAppend.length; i++)
        sourceArray.push(valueToAppend[i])
   } else {
     sourceArray.push(valueToAppend)
@@ -81,7 +81,7 @@ function appendToArray ( sourceArray, valueToAppend ) {
 Array.prototype.unique = function() {
   let arr = [];
   for(let i = 0; i < this.length; i++) {
-      if(!arr.includes(this[i])) {
+      if( arr.indexOf(this[i]) < 0 ) {
           arr.push(this[i]);
       }
   }
