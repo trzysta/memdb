@@ -61,6 +61,9 @@ function saveFirstTime( entryControl ) {
 
   entryControl.set(R_FIELD_CHECK_DOMAIN_1_OK, checkpoints);
   entryControl.set(R_FIELD_CHECK_DOMAIN_1_NOK, checkpoints);
+  entryControl.set(R_FIELD_CHECK_DOMAIN_1_OK, null);
+  entryControl.set(R_FIELD_CHECK_DOMAIN_1_NOK, null);
+
   entryControl.set(FIELD_IS_NEW, false);
   entryControl.show();
 
