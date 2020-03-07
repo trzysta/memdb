@@ -38,8 +38,8 @@ function saveFirstTime( entryControl ) {
         switch ( C_FIELD_ACTION_DOMAIN_VALUES.indexOf( entryAction.field(C_FIELD_ACTION_DOMAIN) )) {
            //"Klatki","Garaż","Teren","Zieleń","Biuro"
            case 0: //"Klatki"
-            checks0_OK  = entryAction.field(C_FIELD_ACTION_CHECKPOINTS_OK).split(",");
-            checks0_NOK = entryAction.field(C_FIELD_ACTION_CHECKPOINTS_NOK).split(",");
+            checks0_OK  = appendToArray ( checks0_OK,  addCounter( entryAction.field(C_FIELD_ACTION_CHECKPOINTS_OK).split(",") ), c0);
+            checks0_NOK = appendToArray ( checks0_NOK, addCounter( entryAction.field(C_FIELD_ACTION_CHECKPOINTS_NOK).split(",")), c0);
             c0++;
             break;
            case 1: //"Garaż"
