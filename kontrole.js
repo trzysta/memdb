@@ -32,7 +32,7 @@ function saveFirstTime( entryControl ) {
 
   for (let i=0; i < allActions.length; i++) {
      entryAction = allActions[i];
-     if ( entryControl.field(R_FIELD_ACTION_DOMAIN).indexOf( entryAction.field(C_FIELD_ACTION_DOMAIN) ) > 0 {
+     if ( entryControl.field(R_FIELD_ACTION_DOMAIN).indexOf( entryAction.field(C_FIELD_ACTION_DOMAIN)) > 0 ) {
         entryControl.link(R_FIELD_ACTION_LINK, entryAction);
         switch ( C_FIELD_ACTION_DOMAIN_VALUES.indexOf( entryAction.field(C_FIELD_ACTION_DOMAIN) )) {
            //"Klatki","Garaż","Teren","Zieleń","Biuro"
