@@ -12,7 +12,96 @@ function createControl( entryControl ) {
 
 
 
+
+
+
+
+
 function saveFirstTime( entryControl ) {
+
+  var allActions  = libZadania.linksTo( entryControl.field(R_FIELD_CONTRACT_LINK)[0] );
+  var checks0_OK   = new Array();
+  var checks0_NOK  = new Array();
+  var c0 = 1, c1 = 1, c2 = 1, c3 = 1, c4 = 1;
+
+  for (let i=0; i < allActions.length; i++) {
+     entryAction = allActions[i];
+     entryControl.link(R_FIELD_ACTION_LINK, entryAction);
+
+     switch ( C_FIELD_ACTION_DOMAIN_VALUES.indexOf( entryAction.field(C_FIELD_ACTION_DOMAIN) )) {
+
+       //"Klatki","Garaż","Teren","Zieleń","Biuro"
+       case 0: //"Klatki"
+        checks0_OK  = addCounter( entryAction.field(C_FIELD_ACTION_CHECKPOINTS_OK).split(","), c0);
+        checks0_NOK = addCounter( entryAction.field(C_FIELD_ACTION_CHECKPOINTS_NOK).split(","), c0);
+        c0++;
+        break;
+       case 1: //"Garaż"
+
+         break;
+       case 2: //"Teren",
+
+         break;
+       case 3: //"Zieleń",
+
+         break;
+       case 4: //"Biuro",
+
+         break;
+       }
+  }
+
+  entryControl.set( R_FIELD_CHECK_DOMAIN_0_OK,  checks0_OK );
+  entryControl.set( R_FIELD_CHECK_DOMAIN_0_NOK, checks0_NOK );
+  entryControl.set( R_FIELD_CHECK_DOMAIN_0_OK,  null );
+  entryControl.set( R_FIELD_CHECK_DOMAIN_0_NOK, null );
+
+  entryControl.set(FIELD_IS_NEW, false);
+  entryControl.show();
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function saveFirstTime_poprzednie( entryControl ) {
 
   var actionsDaily = new Array();
   var actionsMonthly = new Array();

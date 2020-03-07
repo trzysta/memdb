@@ -76,15 +76,15 @@ function appendToArray ( sourceArray, valueToAppend ) {
 // *^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^*
 // *^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^*
 // *^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^*
-function addCounter( arrSource ){
+function addCounter( arrSource, start ){
 
   var arrNew = new Array();
   var newValue;
 
   for (let i=0; i < arrSource.length; i++) {
-      newValue = i+1 + ") " + arrSource[i];
-      message( newValue )
+      newValue = start + ") " + arrSource[i];
       arrNew.push(newValue);
+      start++
   }
   return arrNew;
 }
