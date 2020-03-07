@@ -32,31 +32,30 @@ function saveFirstTime( entryControl ) {
 
   for (let i=0; i < allActions.length; i++) {
      entryAction = allActions[i];
-     entryControl.link(R_FIELD_ACTION_LINK, entryAction);
+     if ( entryControl.field(R_FIELD_ACTION_DOMAIN).indexOf( entryAction.field(C_FIELD_ACTION_DOMAIN) ) > 0 {
+        entryControl.link(R_FIELD_ACTION_LINK, entryAction);
+        switch ( C_FIELD_ACTION_DOMAIN_VALUES.indexOf( entryAction.field(C_FIELD_ACTION_DOMAIN) )) {
+           //"Klatki","Garaż","Teren","Zieleń","Biuro"
+           case 0: //"Klatki"
+            checks0_OK  = addCounter( entryAction.field(C_FIELD_ACTION_CHECKPOINTS_OK).split(","), c0);
+            checks0_NOK = addCounter( entryAction.field(C_FIELD_ACTION_CHECKPOINTS_NOK).split(","), c0);
+            c0++;
+            break;
+           case 1: //"Garaż"
 
-     switch ( C_FIELD_ACTION_DOMAIN_VALUES.indexOf( entryAction.field(C_FIELD_ACTION_DOMAIN) )) {
+             break;
+           case 2: //"Teren",
 
-       //"Klatki","Garaż","Teren","Zieleń","Biuro"
-       case 0: //"Klatki"
-        checks0_OK  = addCounter( entryAction.field(C_FIELD_ACTION_CHECKPOINTS_OK).split(","), c0);
-        checks0_NOK = addCounter( entryAction.field(C_FIELD_ACTION_CHECKPOINTS_NOK).split(","), c0);
-        c0++;
-        break;
-       case 1: //"Garaż"
+             break;
+           case 3: //"Zieleń",
 
-         break;
-       case 2: //"Teren",
+             break;
+           case 4: //"Biuro",
 
-         break;
-       case 3: //"Zieleń",
-
-         break;
-       case 4: //"Biuro",
-
-         break;
-       }
+             break;
+           }
+      }
   }
-
   entryControl.set( R_FIELD_CHECK_DOMAIN_0_OK,  checks0_OK );
   entryControl.set( R_FIELD_CHECK_DOMAIN_0_NOK, checks0_NOK );
   entryControl.set( R_FIELD_CHECK_DOMAIN_0_OK,  null );
