@@ -19,7 +19,12 @@ function createControl( entryControl ) {
 
 function saveFirstTime( entryControl ) {
 
-  var allActions  = libZadania.linksTo( entryControl.field(R_FIELD_CONTRACT_LINK)[0] );
+  var allActionUnsorted = libZadania.linksTo( entryControl.field(R_FIELD_CONTRACT_LINK)[0];
+  var allActions = new Array( allActionUnsorted.length );
+  for (let c = 0; c < allActionUnsorted.length; c++ ) {
+    allActions[ allActionUnsorted.[c].field("Sort")-1 ] = allActionUnsorted[c];
+  }
+
   var checks0_OK   = new Array();
   var checks0_NOK  = new Array();
   var c0 = 1, c1 = 1, c2 = 1, c3 = 1, c4 = 1;
