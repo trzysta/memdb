@@ -32,18 +32,14 @@ function saveFirstTime( entryControl ) {
 
   for (let i=0; i < allActions.length; i++) {
      entryAction = allActions[i];
-     message( entryControl.field(R_FIELD_ACTION_DOMAIN) + " "+
-              entryAction.field(C_FIELD_ACTION_DOMAIN)+ " "+
-              entryControl.field(R_FIELD_ACTION_DOMAIN).indexOf( entryAction.field(C_FIELD_ACTION_DOMAIN))
 
-
-
-    );
      if ( entryControl.field(R_FIELD_ACTION_DOMAIN).indexOf( entryAction.field(C_FIELD_ACTION_DOMAIN)) >= 0 ) {
         entryControl.link(R_FIELD_ACTION_LINK, entryAction);
         switch ( C_FIELD_ACTION_DOMAIN_VALUES.indexOf( entryAction.field(C_FIELD_ACTION_DOMAIN) )) {
            //"Klatki","Garaż","Teren","Zieleń","Biuro"
            case 0: //"Klatki"
+            message(entryAction.field(C_FIELD_ACTION_CHECKPOINTS_OK).split(","));
+            message(entryAction.field(C_FIELD_ACTION_CHECKPOINTS_NOK).split(","));
             checks0_OK  = addCounter( entryAction.field(C_FIELD_ACTION_CHECKPOINTS_OK).split(","), c0);
             checks0_NOK = addCounter( entryAction.field(C_FIELD_ACTION_CHECKPOINTS_NOK).split(","), c0);
             c0++;
