@@ -73,20 +73,25 @@ function appendToArray ( sourceArray, valueToAppend ) {
   return sourceArray.unique();
 }
 
-// *^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^*
-// *^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^*
-// *^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^*
-function addCounter( arrSource, start ){
 
-  var arrNew = new Array();
+
+// *^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^*
+// *^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^*
+// *^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^**^*^*^*
+
+
+
+function addCounter( sourceArray ){
+
+  var newArray = new Array();
   var newValue;
 
-  for (let i=0; i < arrSource.length; i++) {
-      newValue = start + ") " + arrSource[i];
-      arrNew.push(newValue);
-      start++
+  for (let i=0; i < sourceArray.length; i++) {
+    c = i+1;
+    newValue = c + ") " + sourceArray[i];
+    newArray.push(newValue);
   }
-  return arrNew;
+  return newArray;
 }
 
 

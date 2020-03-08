@@ -32,15 +32,14 @@ function saveFirstTime( entryControl ) {
 
   for (let i=0; i < allActions.length; i++) {
      entryAction = allActions[i];
-
      if ( entryControl.field(R_FIELD_ACTION_DOMAIN).indexOf( entryAction.field(C_FIELD_ACTION_DOMAIN)) >= 0 ) {
         entryControl.link(R_FIELD_ACTION_LINK, entryAction);
         switch ( C_FIELD_ACTION_DOMAIN_VALUES.indexOf( entryAction.field(C_FIELD_ACTION_DOMAIN) )) {
+
            //"Klatki","Garaż","Teren","Zieleń","Biuro"
            case 0: //"Klatki"
-            checks0_OK  = appendToArray ( checks0_OK,  addCounter( entryAction.field(C_FIELD_ACTION_CHECKPOINTS_OK).split(",") ), c0);
-            checks0_NOK = appendToArray ( checks0_NOK, addCounter( entryAction.field(C_FIELD_ACTION_CHECKPOINTS_NOK).split(",")), c0);
-            c0++;
+            checks0_OK  = appendToArray( checks0_OK,  entryAction.field(C_FIELD_ACTION_CHECKPOINTS_OK ).split("\n") );
+            checks0_NOK = appendToArray( checks0_NOK, entryAction.field(C_FIELD_ACTION_CHECKPOINTS_NOK).split("\n") );
             break;
            case 1: //"Garaż"
 
@@ -57,8 +56,9 @@ function saveFirstTime( entryControl ) {
            }
       }
   }
-  entryControl.set( R_FIELD_CHECK_DOMAIN_0_OK,  checks0_OK );
-  entryControl.set( R_FIELD_CHECK_DOMAIN_0_NOK, checks0_NOK );
+  
+  entryControl.set( R_FIELD_CHECK_DOMAIN_0_OK,  addCounter( checks0_OK ));
+  entryControl.set( R_FIELD_CHECK_DOMAIN_0_NOK, addCounter( checks0_NOK ));
   entryControl.set( R_FIELD_CHECK_DOMAIN_0_OK,  null );
   entryControl.set( R_FIELD_CHECK_DOMAIN_0_NOK, null );
 
@@ -66,17 +66,6 @@ function saveFirstTime( entryControl ) {
   entryControl.show();
 
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
