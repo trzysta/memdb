@@ -158,13 +158,4 @@ var R_FIELD_PUNCTUALITY_EVALUATION = "Ocena za punktualność";
 var R_FIELD_ACTION_DOMAIN     = "Kontrolowany obszar";
 var R_FIELD_CLOSED            = "Kontrola zakończona";
 
-var R_FIELD_CHECK_DOMAIN_0_OK = "(Klatki) punkty wykonane poprawnie";
-var R_FIELD_CHECK_DOMAIN_0_NOK = "(Klatki) punkty wykonane źle lub w ogóle";
-var R_FIELD_CHECK_DOMAIN_1_OK = "(Garaż) punkty wykonane poprawnie";
-var R_FIELD_CHECK_DOMAIN_1_NOK = "(Garaż) punkty wykonane źle lub w ogóle";
-var R_FIELD_CHECK_DOMAIN_2_OK = "(Teren) punkty wykonane poprawnie";
-var R_FIELD_CHECK_DOMAIN_2_NOK = "(Teren) punkty wykonane źle lub w ogóle";
-var R_FIELD_CHECK_DOMAIN_3_OK = "(Zieleń) punkty wykonane poprawnie";
-var R_FIELD_CHECK_DOMAIN_3_NOK = "(Zieleń) punkty wykonane źle lub w ogóle";
-var R_FIELD_CHECK_DOMAIN_4_OK = "(Biuro) punkty wykonane poprawnie";
-var R_FIELD_CHECK_DOMAIN_4_NOK = "(Biuro) punkty wykonane źle lub w ogóle";
+var R_LABEL_1 = "oceń stan posadzki, oceń płytki fugi i cokoły. Sprawdź spoczniki (półpiętra), podstopnice i boczki schodów. Zwracaj uwagę pod światło.";
