@@ -20,7 +20,7 @@ function createControl( entryControl ) {
 function saveFirstTime( entryControl ) {
 
   var allEntriesActionUnsorted = libZadania.linksTo( entryControl.field(R_FIELD_CONTRACT_LINK)[0] );
-  var allEntriesAction = new Array( allActionUnsorted.length );
+  var allEntriesAction = new Array( allEntriesActionUnsorted.length );
   for (let c = 0; c < allEntriesActionUnsorted.length; c++ ) {
     var sortOrder = allEntriesActionUnsorted[c].field("Sort");
     allEntriesAction[ sortOrder-1 ] = allEntriesActionUnsorted[c];
