@@ -38,7 +38,7 @@ function saveFirstTime( entryControl ) {
            entryControl.link(R_FIELD_ACTION_LINK, entryAction);
         } else {                                                                  // jest wpisana data zatem sprawdzam czy data jest z tego miesiąca
           for (let j=0; i < actionDates.length; j++ ) {
-            if (moment(actionDates[i]).isBetween (dateStart,dateEnd )) { entryControl.link(R_FIELD_ACTION_LINK, entryAction) };
+            if (moment(actionDates[i]).isBetween (dateStart,dateEnd)) { entryControl.link(R_FIELD_ACTION_LINK, entryAction) };
           }
         }
       }
