@@ -159,10 +159,10 @@ var R_FIELD_ACTION_DOMAIN     = "Kontrolowany obszar";
 var R_FIELD_CLOSED            = "Kontrola zakończona";
 
 var R_LABEL_1 = "Oceń stan posadzki, oceń płytki fugi i cokoły. \nSprawdź spoczniki (półpiętra), podstopnice i boczki schodów. Patrz także na posadzkę pod światło.";
-var R_LABEL_2 = "Kosmetyka \nOceń usunięcia kurzu, śladów po palcach na szybach, czystość elementów wyposażenia klatki schodowej (szachty itp).";
-var R_LABEL_3 = "";
-var R_LABEL_4 = "";
-var R_LABEL_5 = "";
+var R_LABEL_2 = "Kosmetyka, oceń usunięcie kurzu, śladów po palcach na szybach, czystość elementów wyposażenia klatki schodowej (szachty itp), kurz na włącznikach, elementach wystających";
+var R_LABEL_3 = "Winda, oceń prace wykonane w środku windy a także stan drzwi i portali na piętrach.";
+var R_LABEL_4 = "Sufit i elementy nad głową. Oceń czy są widoczne zabrudzenia pod sufitem, pajęczyny, brudne wyloty powietrza, rogi itp.";
+var R_LABEL_5 = "Inne istotne punkty i oceny.";
 var R_LABEL_6 = "";
 var R_LABEL_7 = "";
 var R_LABEL_8 = "";
