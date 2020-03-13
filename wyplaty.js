@@ -235,6 +235,42 @@ function validateSaving() {
 
 
 
+function copyToMonth( selected, month ) {
+
+  var dt = moment(month).startOf('month');
+  var dayEnd = parseInt(moment(month).endOf('month').format('D'));
+  var weekDays = new Array();
+
+  var i = 1;
+  while ( i <= dayEnd ) {
+
+    if ( dt.isoWeekday() == 6 || dt.isoWeekday() == 7 ) { weekDays.push(i) };
+    dt = dt.add(1, 'day');
+    i++;
+  };
+
+
+  // kopiowanie
+  dt = moment(month).startOf('month');
+  for ( count = 0; count < selected.length; count++ ){
+
+    message (MSG_UPDATING + " " + MSG_ENTRY + " " + count + " z " + selected.length );
+
+    var entrySource = selected[count];
+    var entryTarget = new Object();
+    entryTarget[P_FIELD_MONTH]          = dt.toDate();
+    entryTarget[FIELD_EDITOR]           = arrEditors;
+    entryTarget[P_FIELD_WEEKENDS]       = weekDays;
+    entryTarget[P_FIELD_EMPLOYEE_LINK]  = entrySource.field(P_FIELD_EMPLOYEE_LINK)[0];
+    entryTarget[P_FIELD_CONTRACT]       = entrySource.field(P_FIELD_CONTRACT)[0];
+    entryTarget[P_FIELD_PAYMENT_TYPE]   = entrySource.field(P_FIELD_PAYMENT_TYPE);
+    entryTarget[P_FIELD_CLOSED]         = P_FIELD_CLOSED_VALUE_NO;
+    libWyplaty.create( entryTarget );
+  }
+
+  message (MSG_FINISHED);
+
+}
 
 
 

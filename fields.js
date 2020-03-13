@@ -8,11 +8,20 @@ var withdrawalMaker = "Marceli Matynia";
 var HR = "--------------------------------------------------";
 var BR = "\n";
 
+
+
+
+
 // wspólne
 var FIELD_EDITOR = "Editor";
 var FIELD_IS_NEW = "Nowy";
 var FIELD_IS_HIDDEN = "Ukryte";
 var FIELD_CAN_ACCESS = "canAccess";
+var MSG_UPDATING = "uaktualniam";
+var MSG_COPYING = "kopiuję";
+var MSG_ENTRY = "wpis";
+var MSG_FINISHED = "Zakończono!";
+
 
 var VALUE_DAYNUMBER_MONDAY    = 1;
 var VALUE_DAYNUMBER_TUESDAY   = 2;
@@ -62,12 +71,14 @@ var P_FIELD_CASH_DATE           = "Data wypłaty gotówki";
 var P_FIELD_WITHDRAWAL_AMOUNT   = "Wpłacono na konto";
 var P_FIELD_WITHDRAWAL_DATE     = "Data przelewu";
 var P_FIELD_EMPLOYEE_LINK       = "Pracownik";
+var P_FIELD_CONTRACT            = "Osiedle";
 var P_SPEND_LINK                = "Wydatek";
 var P_FIELD_DESCRIPTION         = "Uwagi";
 var P_FIELD_MONTH               = "Miesiąc";
 var P_FIELD_PAYER               = "Dokonujący wypłaty";
 var P_FIELD_ADVANCE_PAYMENT     = "Zaliczki";
 var P_FIELD_WEEKENDS            = "Dni wolne";
+var P_FIELD_PAYMENT_TYPE        = "Rodzaj wynagrodzenia";
 
 var P_ADD_DESCRIPTION_WITHDRAWAL = " wypłata przelewem za ";
 var P_ADD_DESCRIPTION_CASH      = " wypłata gotówki za ";
@@ -80,14 +91,24 @@ var P_MSG_VALIDATION_ERR        = "Nie można zapisać, popraw następujące bł
 var P_MSG_VALIDATION_ERR_NO_WITHDRWAL = "- podaj datę i kwotę przelewu";
 var P_MSG_VALIDATION_ERR_NO_CASH = "- podaj datę i kwotę wypłaty gotówki";
 
+
+
+
+
+
+
+
+
+
+
 // ***** baza PRACOWNICY
 var E_FIELD_FULLNAME = "Imie i nazwisko";
 
 // ***** baza Osiedla, kontrakty
-var P_FIELD_CONTRACT      = "Osiedle";
-var P_FIELD_SHORTNAME     = "Nazwa potoczna";
-var P_FIELD_TAG           = "Skrót";
-var P_FIELD_BUILDINGS     = "Budynki i klatki";
+//var P_FIELD_CONTRACT      = "Osiedle";
+//var P_FIELD_SHORTNAME     = "Nazwa potoczna";
+//var P_FIELD_TAG           = "Skrót";
+//var P_FIELD_BUILDINGS     = "Budynki i klatki";
 
 // ***** baza BUDŻET
 var B_FIELD_LIMIT         = "Limit";
