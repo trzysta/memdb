@@ -138,27 +138,12 @@ var R_FIELD_FREQENCY_VALUES = [ "Codziennie",
                                 "2 razy w roku",
                                 "3 razy w roku",
                                 "wg potrzeb"];
-var R_FIELD_ACTION_LINK                   = "Czynności do wykonania wg umowy";
-var R_FIELD_CHECK_PROCEDURE               = "Procedura sprawdzania";
-var R_FIELD_ATTR_QUALITY_EVALUATION       = "Ocena jakości";
-var R_FIELD_ATTR_QUALITY_EVALUATION_VAL0  = "(0) nie wykonano";
-var R_FIELD_ATTR_QUALITY_EVALUATION_VAL1  = "(1) do poprawy"
-var R_FIELD_ATTR_QUALITY_EVALUATION_VAL2  = "(2) dobrze, brak uwag";
-var R_QUALITY_WEIGTHT = 0.6;   // waga jakości w ocenie to 60% w stosunku do 40% za terminowość
-
-var R_FIELD_ATTR_PUNCTUALITY_EVALUATION   = "Ocena terminowości";
-var R_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL0 = "(0) nie wykonano";
-var R_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL1 = "(1) z opóźnieniem";
-var R_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL2 = "(2) wykonano w terminie";
-
-var R_FIELD_EVALUATION      = "Ocena globalna po kontroli";
-var R_FIELD_QUALITY_EVALUATION = "Ocena za jakość";
-var R_FIELD_PUNCTUALITY_EVALUATION = "Ocena za punktualność";
+var R_FIELD_ACTION_LINK       = "Czynności do wykonania wg umowy";
 
 var R_FIELD_ACTION_DOMAIN     = "Kontrolowany obszar";
-var R_FIELD_CLOSED            = "Kontrola zakończona";
+var R_FIELD_CLOSED            = "Kontrola zakończona, zamknij możliwość zmiany i wyślij e-mail z raportem";
 
-var R_LABEL_1 = "Oceń stan posadzki, oceń płytki fugi i cokoły. \nSprawdź spoczniki (półpiętra), podstopnice i boczki schodów. Patrz także na posadzkę pod światło.";
+var R_LABEL_1 = "Oceń stan posadzki, oceń płytki fugi i cokoły. Sprawdź spoczniki (półpiętra), podstopnice i boczki schodów. Patrz także na posadzkę pod światło.";
 var R_LABEL_2 = "Kosmetyka, oceń usunięcie kurzu, śladów po palcach na szybach, czystość elementów wyposażenia klatki schodowej (szachty itp), kurz na włącznikach, elementach wystających";
 var R_LABEL_3 = "Winda, oceń prace wykonane w środku windy a także stan drzwi i portali na piętrach.";
 var R_LABEL_4 = "Sufit i elementy nad głową. Oceń czy są widoczne zabrudzenia pod sufitem, pajęczyny, brudne wyloty powietrza, rogi itp.";
