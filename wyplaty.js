@@ -133,7 +133,7 @@ funkcja wyszukująca w bazie wydatków wpisów o zaliczkach i dodająca do wypł
 zakres wyszukiwania jest od 18 dnia poprzedniego miesiąca do bieżącej daty
 */
 
-function findAdvancePayment( entryPayout ) {
+function findAdvancePayment( entryPayout, show ) {
 
   //var entryPayout = entry();
 
@@ -158,7 +158,7 @@ function findAdvancePayment( entryPayout ) {
         }
      }
   entryPayout.recalc();
-  entryPayout.show();
+  if (show) { entryPayout.show() };
   }
 }
 
@@ -172,26 +172,27 @@ function findAdvancePayment( entryPayout ) {
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 
-function newPayoutOpening() {
+function newPayoutOpening( entryPayout ) {
 
-  var entryPayout = entryDefault();
-  var prevMonth   = moment().startOf('month').add(-1, 'month');
-  var dayEnd      = parseInt(moment().startOf('month').add(-1, 'month').endOf('month').format('D'));
-  var weekends    = new Array();
-  var payer       = arrNames[ arrEditors.indexOf( user().username ) ];
+  if ( entryPayout != undefined ) {
+    var prevMonth   = moment().startOf('month').add(-1, 'month');
+    var dayEnd      = parseInt(moment().startOf('month').add(-1, 'month').endOf('month').format('D'));
+    var weekends    = new Array();
+    var payer       = arrNames[ arrEditors.indexOf( user().username ) ];
 
-  entryPayout.set( P_FIELD_PAYER, payer );
-  entryPayout.set( P_FIELD_MONTH, prevMonth.toDate() );
+    entryPayout.set( P_FIELD_PAYER, payer );
+    entryPayout.set( P_FIELD_MONTH, prevMonth.toDate() );
 
-  setDefault( entryPayout );
+    setDefault( entryPayout );
 
-  var i = 1;
-  while ( i <= dayEnd ) {
-    if ( prevMonth.isoWeekday() == 6 || prevMonth.isoWeekday() == 7 ) {   weekends.push(i); };
-    prevMonth = prevMonth.add(1, 'day');
-    i++;
-  };
-  entryPayout.set( P_FIELD_WEEKENDS, weekends );
+    var i = 1;
+    while ( i <= dayEnd ) {
+      if ( prevMonth.isoWeekday() == 6 || prevMonth.isoWeekday() == 7 ) {   weekends.push(i); };
+      prevMonth = prevMonth.add(1, 'day');
+      i++;
+    };
+    entryPayout.set( P_FIELD_WEEKENDS, weekends );
+  }
 }
 
 
@@ -265,11 +266,11 @@ function copyToMonth( selected, month ) {
     entryTarget[P_FIELD_EMPLOYEE_LINK]  = entrySource.field(P_FIELD_EMPLOYEE_LINK)[0];
     entryTarget[P_FIELD_CONTRACT]       = entrySource.field(P_FIELD_CONTRACT)[0];
     entryTarget[P_FIELD_PAYMENT_TYPE]   = entrySource.field(P_FIELD_PAYMENT_TYPE);
-    entryTarget[P_FIELD_PAYER  ]        = entrySource.field(P_FIELD_PAYER);
+    entryTarget[P_FIELD_PAYER]          = entrySource.field(P_FIELD_PAYER);
     entryTarget[P_FIELD_CLOSED]         = P_FIELD_CLOSED_VALUE_NO;
 
     entryTarget = libWyplaty.create( entryTarget );
-    findAdvancePayment( entryTarget );
+    findAdvancePayment( entryTarget, false );
   }
 
   message (MSG_FINISHED);
