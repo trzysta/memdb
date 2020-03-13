@@ -133,9 +133,11 @@ funkcja wyszukująca w bazie wydatków wpisów o zaliczkach i dodająca do wypł
 zakres wyszukiwania jest od 18 dnia poprzedniego miesiąca do bieżącej daty
 */
 
-function findAdvancePayment() {
+function findAdvancePayment( entryPayout ) {
 
-  var entryPayout = entry();
+  //var entryPayout = entry();
+
+  message (MSG_RUNING_findAdvancePayment);
   var arrAdvancePaymentSpendType = new Array(S_FIELD_TYPE_VALUE_ADVANCEPAYMENT_CASH, S_FIELD_TYPE_VALUE_ADVANCEPAYMENT_WITHDRAWAL);
 
   if ( (entryPayout.field(P_FIELD_EMPLOYEE_LINK).length > 0) &&
@@ -252,9 +254,8 @@ function copyToMonth( selected, month ) {
 
   // kopiowanie
   dt = moment(month).startOf('month');
+  message (MSG_UPDATING + " " + selected.length + " " + MSG_ENTRIES);
   for ( count = 0; count < selected.length; count++ ){
-
-    message (MSG_UPDATING + " " + MSG_ENTRY + " " + (count+1) + " z " + selected.length );
 
     var entrySource = selected[count];
     var entryTarget = new Object();
@@ -264,8 +265,11 @@ function copyToMonth( selected, month ) {
     entryTarget[P_FIELD_EMPLOYEE_LINK]  = entrySource.field(P_FIELD_EMPLOYEE_LINK)[0];
     entryTarget[P_FIELD_CONTRACT]       = entrySource.field(P_FIELD_CONTRACT)[0];
     entryTarget[P_FIELD_PAYMENT_TYPE]   = entrySource.field(P_FIELD_PAYMENT_TYPE);
+    entryTarget[P_FIELD_PAYER  ]        = entrySource.field(P_FIELD_PAYER);
     entryTarget[P_FIELD_CLOSED]         = P_FIELD_CLOSED_VALUE_NO;
-    libWyplaty.create( entryTarget );
+
+    entryTarget = libWyplaty.create( entryTarget );
+    findAdvancePayment( entryTarget );
   }
 
   message (MSG_FINISHED);
