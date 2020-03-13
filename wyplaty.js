@@ -254,7 +254,7 @@ function copyToMonth( selected, month ) {
   dt = moment(month).startOf('month');
   for ( count = 0; count < selected.length; count++ ){
 
-    message (MSG_UPDATING + " " + MSG_ENTRY + " " + count + " z " + selected.length );
+    message (MSG_UPDATING + " " + MSG_ENTRY + " " + (count+1) + " z " + selected.length );
 
     var entrySource = selected[count];
     var entryTarget = new Object();
