@@ -19,7 +19,7 @@ var FIELD_IS_HIDDEN = "Ukryte";
 var FIELD_CAN_ACCESS = "canAccess";
 var MSG_UPDATING = "uaktualniam";
 var MSG_COPYING = "kopiuję";
-var MSG_ENTRY = "wpis";
+var MSG_ENTRIES = "wpisów";
 var MSG_FINISHED = "Zakończono!";
 
 
@@ -90,8 +90,7 @@ var P_MSG_ADVANCE_PAYMENT       = "Szukam zaliczek... ";
 var P_MSG_VALIDATION_ERR        = "Nie można zapisać, popraw następujące błędy:";
 var P_MSG_VALIDATION_ERR_NO_WITHDRWAL = "- podaj datę i kwotę przelewu";
 var P_MSG_VALIDATION_ERR_NO_CASH = "- podaj datę i kwotę wypłaty gotówki";
-
-
+var MSG_RUNING_findAdvancePayment = "szukam zaliczek dla wpisu...";
 
 
 
