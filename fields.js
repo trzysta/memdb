@@ -100,6 +100,7 @@ var MSG_RUNING_findAdvancePayment = "szukam zaliczek dla wpisu...";
 
 
 
+
 // ***** baza PRACOWNICY
 var E_FIELD_FULLNAME = "Imie i nazwisko";
 

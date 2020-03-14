@@ -205,9 +205,8 @@ function newPayoutOpening( entryPayout ) {
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 
-function validateSaving() {
+function validateSaving( entryPayout ) {
 
-  var entryPayout     = entry();
   var amountWithdrwal = entryPayout.field(P_FIELD_WITHDRAWAL_AMOUNT);
   var amountCash      = entryPayout.field(P_FIELD_CASH_AMOUNT);
   var canSave         = false;

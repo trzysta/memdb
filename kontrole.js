@@ -19,32 +19,47 @@ function createControl( entryControl ) {
 
 function saveFirstTime( entryControl ) {
 
+  //var entryControl = entry();
+  var actionDates = new Array();
   var allEntriesActionUnsorted = libZadania.linksTo( entryControl.field(R_FIELD_CONTRACT_LINK)[0] );
   var allEntriesAction = new Array( allEntriesActionUnsorted.length );
+  var dateStart = moment().startOf('month');
+  var dateEnd = moment().endOf('month');
+
   for (let c = 0; c < allEntriesActionUnsorted.length; c++ ) {
-    var sortOrder = allEntriesActionUnsorted[c].field("Sort");
-    allEntriesAction[ sortOrder-1 ] = allEntriesActionUnsorted[c];
-  }
+     var sortOrder = allEntriesActionUnsorted[c].field("Sort");
+     allEntriesAction[ sortOrder-1 ] = allEntriesActionUnsorted[c];
+  };
 
-
+  message (allEntriesAction + " _______ " + allEntriesAction.length );
   for (let i=0; i < allEntriesAction.length; i++) {
-     entryAction = allEntriesAction[i];
-     actionDates = entryAction.field(C_FIELD_DATES).split(",");
-     dateStart = moment().startOf('month');
-     dateEnd = moment().endOf('month');
+      entryAction = allEntriesAction[i];
+      if (entryAction.field(C_FIELD_DATES).length > 0) {
+         actionDates = entryAction.field(C_FIELD_DATES).split(",");
+      };
+
+
+      var arrDomain = entryControl.field(R_FIELD_ACTION_DOMAIN);
+      var entryDomain = entryAction.field(C_FIELD_ACTION_DOMAIN);
+
 
       if ( entryControl.field(R_FIELD_ACTION_DOMAIN).indexOf( entryAction.field(C_FIELD_ACTION_DOMAIN)) >= 0 ) {
-        if ( actionDates.length = 0 ) {                                           // nie ma wpisanej daty oznacza że to czynność codzienna
+         message( "jest czynność" );
+         if ( actionDates.length <= 0 ) {                                        // nie ma wpisanej daty oznacza że to czynność codzienna
            entryControl.link(R_FIELD_ACTION_LINK, entryAction);
-        } else {                                                                  // jest wpisana data zatem sprawdzam czy data jest z tego miesiąca
-          for (let j=0; i < actionDates.length; j++ ) {
-            if (moment(actionDates[i]).isBetween (dateStart,dateEnd)) { entryControl.link(R_FIELD_ACTION_LINK, entryAction) };
-          }
-        }
+           message( "linkuję czynność bez daty" );
+         } else {                                                                // jest wpisana data zatem sprawdzam czy data jest z tego miesiąca
+           for (let j=0; j < actionDates.length; j++ ) {
+              if (moment(actionDates[j]).isBetween (dateStart,dateEnd)) {
+  		           entryControl.link(R_FIELD_ACTION_LINK, entryAction);
+  		           message( "linkuję czynność z datą" );
+  	          }
+           }
+         }
       }
-  }
+  };
   entryControl.set(FIELD_IS_NEW, false);
-  entryControl.show();
+  entryControl.show()
 }
 
 
