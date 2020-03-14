@@ -31,7 +31,6 @@ function saveFirstTime( entryControl ) {
      allEntriesAction[ sortOrder-1 ] = allEntriesActionUnsorted[c];
   };
 
-  message (allEntriesAction + " _______ " + allEntriesAction.length );
   for (let i=0; i < allEntriesAction.length; i++) {
       entryAction = allEntriesAction[i];
       if (entryAction.field(C_FIELD_DATES).length > 0) {
@@ -42,17 +41,14 @@ function saveFirstTime( entryControl ) {
       var arrDomain = entryControl.field(R_FIELD_ACTION_DOMAIN);
       var entryDomain = entryAction.field(C_FIELD_ACTION_DOMAIN);
 
-
       if ( entryControl.field(R_FIELD_ACTION_DOMAIN).indexOf( entryAction.field(C_FIELD_ACTION_DOMAIN)) >= 0 ) {
-         message( "jest czynność" );
          if ( actionDates.length <= 0 ) {                                        // nie ma wpisanej daty oznacza że to czynność codzienna
            entryControl.link(R_FIELD_ACTION_LINK, entryAction);
-           message( "linkuję czynność bez daty" );
+           message (entryControl.name + " _______ " + entryAction.name );
          } else {                                                                // jest wpisana data zatem sprawdzam czy data jest z tego miesiąca
            for (let j=0; j < actionDates.length; j++ ) {
               if (moment(actionDates[j]).isBetween (dateStart,dateEnd)) {
   		           entryControl.link(R_FIELD_ACTION_LINK, entryAction);
-  		           message( "linkuję czynność z datą" );
   	          }
            }
          }
