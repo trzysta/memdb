@@ -11,4 +11,4 @@ var libWydatki    = libByName(LIB_SPANDINGS_NAME);
 var libBudzet     = libByName(LIB_BUDGETS_NAME);
 var libOsiedla    = libByName(LIB_CONTRACTS_NAME);
 var libKontrole   = libByName(LIB_CHECKS_NAME);
-var libActivities = libByName(LIB_ACTIVITIES_NAM);
+var libActivities = libByName(LIB_ACTIVITIES_NAME);
