@@ -16,7 +16,7 @@ function createControl( entryControl ) {
 // -----------------------------------------------------------------------------
 
 
-function saveFirstTime( entryControl ) {
+function saveControl( entryControl ) {
 
   //var entryControl = entry();
   var actionDates = new Array();
@@ -31,10 +31,12 @@ function saveFirstTime( entryControl ) {
   };
 
   for (let i=0; i < allEntriesAction.length; i++) {
+
       entryAction = allEntriesAction[i];
       if (entryAction.field(C_FIELD_DATES).length > 0) {
          actionDates = entryAction.field(C_FIELD_DATES).split(",");
       };
+      entryControl.link(R_FIELD_ACTION_LINK, entryAction);
 
       var arrDomain = entryControl.field(R_FIELD_ACTION_DOMAIN);
       var entryDomain = entryAction.field(C_FIELD_ACTION_DOMAIN);
