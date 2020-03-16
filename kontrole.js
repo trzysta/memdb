@@ -10,11 +10,10 @@ function createControl( entryControl ) {
   entryControl.set(FIELD_IS_NEW, true);
 }
 
-
-
-
-
-
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 
 
 function saveFirstTime( entryControl ) {
@@ -37,15 +36,14 @@ function saveFirstTime( entryControl ) {
          actionDates = entryAction.field(C_FIELD_DATES).split(",");
       };
 
-
       var arrDomain = entryControl.field(R_FIELD_ACTION_DOMAIN);
       var entryDomain = entryAction.field(C_FIELD_ACTION_DOMAIN);
 
       if ( entryControl.field(R_FIELD_ACTION_DOMAIN).indexOf( entryAction.field(C_FIELD_ACTION_DOMAIN)) >= 0 ) {
-         if ( actionDates.length <= 0 ) {                                        // nie ma wpisanej daty oznacza że to czynność codzienna
+         if ( actionDates.length <= 0 ) {
+           message (entryControl.name + " _______ " + entryAction.name );       // nie ma wpisanej daty oznacza że to czynność codzienna
            entryControl.link(R_FIELD_ACTION_LINK, entryAction);
-           message (entryControl.name + " _______ " + entryAction.name );
-         } else {                                                                // jest wpisana data zatem sprawdzam czy data jest z tego miesiąca
+         } else {                                                               // jest wpisana data zatem sprawdzam czy data jest z tego miesiąca
            for (let j=0; j < actionDates.length; j++ ) {
               if (moment(actionDates[j]).isBetween (dateStart,dateEnd)) {
   		           entryControl.link(R_FIELD_ACTION_LINK, entryAction);
@@ -55,7 +53,7 @@ function saveFirstTime( entryControl ) {
       }
   };
   entryControl.set(FIELD_IS_NEW, false);
-  entryControl.show()
+  entryControl.show();
 }
 
 
