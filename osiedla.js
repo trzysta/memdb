@@ -6,6 +6,9 @@ function linkContract ( targetLibraryName, entryContract, entryTarget ) {
   switch (targetLibraryName) {
     case LIB_CHECKS_NAME:
 
+        message ( "contract: " + entryContract.name + "/ntarget: " + entryTarget.name );
+
+
         var entryAction;
         var actionDates = new Array();
         var allEntriesActionUnsorted = libActivities.linksTo( entryContract );
