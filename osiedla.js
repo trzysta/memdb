@@ -10,7 +10,7 @@ function linkContract ( targetLibraryName, entryContract, entryTarget ) {
         var actionDates = new Array();
         var allEntriesActionUnsorted = libActivities.linksTo( entryContract );
         var allEntriesAction = new Array( allEntriesActionUnsorted.length );
-        var tmp = "";
+        var tmp = "start";
 
         var dateStart = moment().startOf('month');
         var dateEnd = moment().endOf('month');
