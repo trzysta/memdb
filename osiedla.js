@@ -10,6 +10,7 @@ function linkContract ( targetLibraryName, entryContract, entryTarget ) {
         var actionDates = new Array();
         var allEntriesActionUnsorted = libActivities.linksTo( entryContract );
         var allEntriesAction = new Array( allEntriesActionUnsorted.length );
+        var tmp = "";
 
         var dateStart = moment().startOf('month');
         var dateEnd = moment().endOf('month');
@@ -21,6 +22,8 @@ function linkContract ( targetLibraryName, entryContract, entryTarget ) {
 
         for (let i=0; i < allEntriesAction.length; i++) {
           entryAction = allEntriesAction[i];
+          tmp = tmp + "/n" + entryAction.name;
+
           if (entryAction.field(ACT_FIELD_DATES).length > 0) { actionDates = entryAction.field(ACT_FIELD_DATES).split(",") };
 
           if ( entryTarget.field(CON_FIELD_ACTION_DOMAIN).indexOf( entryAction.field(ACT_FIELD_ACTION_DOMAIN)) >= 0 ) {
@@ -36,6 +39,7 @@ function linkContract ( targetLibraryName, entryContract, entryTarget ) {
           }
       };
       entryTarget.set(FIELD_IS_NEW, false);
+      entryTarget.set("tmp", tmp);
       entryTarget.show();
 
       break;
