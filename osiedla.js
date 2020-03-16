@@ -24,25 +24,25 @@ function linkContract ( targetLibraryName, entryContract, entryTarget ) {
           if (entryAction.field(ACT_FIELD_DATES).length > 0) {
              actionDates = entryAction.field(ACT_FIELD_DATES).split(",");
           };
-          entryControl.link(CON_FIELD_ACTION_LINK, entryAction);
+          entryTarget.link(CON_FIELD_ACTION_LINK, entryAction);
 
-          var arrDomain = entryControl.field(CON_FIELD_ACTION_DOMAIN);
+          var arrDomain = entryTarget.field(CON_FIELD_ACTION_DOMAIN);
           var entryDomain = entryAction.field(ACT_FIELD_ACTION_DOMAIN);
 
-          if ( entryControl.field(CON_FIELD_ACTION_DOMAIN).indexOf( entryAction.field(ACT_FIELD_ACTION_DOMAIN)) >= 0 ) {
+          if ( entryTarget.field(CON_FIELD_ACTION_DOMAIN).indexOf( entryAction.field(ACT_FIELD_ACTION_DOMAIN)) >= 0 ) {
              if ( actionDates.length <= 0 ) {                           // nie ma wpisanej daty oznacza że to czynność codzienna
-                entryControl.link(CON_FIELD_ACTION_LINK, entryAction);
+                entryTarget.link(CON_FIELD_ACTION_LINK, entryAction);
              } else {                                                   // jest wpisana data zatem sprawdzam czy data jest z tego miesiąca
                 for (let j=0; j < actionDates.length; j++ ) {
                   if (moment(actionDates[j]).isBetween (dateStart,dateEnd)) {
-                     entryControl.link(CON_FIELD_ACTION_LINK, entryAction);
+                     entryTarget.link(CON_FIELD_ACTION_LINK, entryAction);
                   }
                 }
              }
           }
       };
-      entryControl.set(FIELD_IS_NEW, false);
-      entryControl.show();
+      entryTarget.set(FIELD_IS_NEW, false);
+      entryTarget.show();
 
       break;
     default:
