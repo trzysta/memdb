@@ -6,8 +6,6 @@ function linkContract ( targetLibraryName, entryContract, entryTarget ) {
   switch (targetLibraryName) {
     case LIB_CHECKS_NAME:
 
-        message ( "contract: " + entryContract.name + "/ntarget: " + entryTarget.name );
-
         var entryAction;
         var actionDates = new Array();
         var allEntriesActionUnsorted = libActivities.linksTo( entryContract );
@@ -23,12 +21,9 @@ function linkContract ( targetLibraryName, entryContract, entryTarget ) {
 
         for (let i=0; i < allEntriesAction.length; i++) {
           entryAction = allEntriesAction[i];
-          if (entryAction.field(ACT_FIELD_DATES).length > 0) {
-             actionDates = entryAction.field(ACT_FIELD_DATES).split(",");
-          };
+          if (entryAction.field(ACT_FIELD_DATES).length > 0) { actionDates = entryAction.field(ACT_FIELD_DATES).split(",") };
 
           if ( entryTarget.field(CON_FIELD_ACTION_DOMAIN).indexOf( entryAction.field(ACT_FIELD_ACTION_DOMAIN)) >= 0 ) {
-
              if ( actionDates.length <= 0 ) {                           // nie ma wpisanej daty oznacza że to czynność codzienna
                 entryTarget.link(CON_FIELD_ACTION_LINK, entryAction);
              } else {                                                   // jest wpisana data zatem sprawdzam czy data jest z tego miesiąca
