@@ -5,7 +5,7 @@
 
 function selectDays( entryAction, dayWeekNumber ) {
 
-  var mnth = entryAction.field(C_FIELD_MONTH);
+  var mnth = entryAction.field(ACT_FIELD_MONTH);
   var dt = moment(mnth).startOf('month');
   var dayEnd = parseInt(moment(mnth).endOf('month').format('D'));
   var day = 1;
@@ -13,7 +13,7 @@ function selectDays( entryAction, dayWeekNumber ) {
   var arrDays = new Array;
 
   // set miesiąc as first day of month
-  entryAction.set(C_FIELD_MONTH, dt.toDate() ) ;
+  entryAction.set(ACT_FIELD_MONTH, dt.toDate() ) ;
 
   switch (dayWeekNumber) {
     case 0: // odznacz wszystkie
@@ -36,8 +36,8 @@ function selectDays( entryAction, dayWeekNumber ) {
       }
   }
   // reset all (deselect)
-  entryAction.set(C_FIELD_DATES, arrDates.join(", "));
-  entryAction.set(C_FIELD_DATES_DAYS, arrDays.join(", "));
+  entryAction.set(ACT_FIELD_DATES, arrDates.join(", "));
+  entryAction.set(ACT_FIELD_DATES_DAYS, arrDays.join(", "));
 }
 
 
@@ -46,15 +46,15 @@ function selectDays( entryAction, dayWeekNumber ) {
 
 function displayEntryName( entryCalendar ) {
    var o = "";
-   switch (entryCalendar.field(C_FIELD_TYPE)) {
-     case C_FIELD_TYPE_VALUE_TEMPLATE:
-        o +=  entryCalendar.field(C_FIELD_ACTION_DOMAIN) + VIEW_SEP +
-              entryCalendar.field(C_FIELD_ACTION) + VIEW_SEP +
-              entryCalendar.field(C_FIELD_CONTRACT).name;
+   switch (entryCalendar.field(ACT_FIELD_TYPE)) {
+     case ACT_FIELD_TYPE_VALUE_TEMPLATE:
+        o +=  entryCalendar.field(ACT_FIELD_ACTION_DOMAIN) + VIEW_SEP +
+              entryCalendar.field(ACT_FIELD_ACTION) + VIEW_SEP +
+              entryCalendar.field(ACT_FIELD_CONTRACT).name;
        break;
      default:
-        o +=  moment(entryCalendar.field(C_FIELD_MONTH)).format('YYYY-MM') + VIEW_SEP +
-              entryCalendar.field(C_FIELD_DATES_DAYS);
+        o +=  moment(entryCalendar.field(ACT_FIELD_MONTH)).format('YYYY-MM') + VIEW_SEP +
+              entryCalendar.field(ACT_FIELD_DATES_DAYS);
    }
    return o;
 }

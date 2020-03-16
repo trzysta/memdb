@@ -128,7 +128,7 @@ function addBudgetSpending(entryBudget, entrySpending) {
   if (entrySpending !== undefined)
     entrySpending = masterEntry();
   var newBalance = 0;
-  newBalance = entryBudget.field(B_FIELD_BALANCE) + Math.abs(entrySpending.field(S_FIELD_AMOUNT));    //plus bo wydatki są zawsze ujemne
+  newBalance = entryBudget.field(B_FIELD_BALANCE) + Math.abs(entrySpending.field(SPE_FIELD_AMOUNT));    //plus bo wydatki są zawsze ujemne
   entryBudget.set(B_FIELD_BALANCE, newBalance);
   entryBudget.set(B_FIELD_LEFT, entryBudget.field(B_FIELD_LIMIT) - newBalance );
 }

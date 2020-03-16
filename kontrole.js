@@ -1,7 +1,7 @@
 
 
 function getCheckpointLabel( fieldCount ) {
-  return R_FIELD_CHECKPOINT_LABELS[fieldCount];
+  return CON_FIELD_CHECKPOINT_LABELS[fieldCount];
 }
 
 
@@ -20,7 +20,7 @@ function saveControl( entryControl ) {
 
   //var entryControl = entry();
   var actionDates = new Array();
-  var allEntriesActionUnsorted = libZadania.linksTo( entryControl.field(R_FIELD_CONTRACT_LINK)[0] );
+  var allEntriesActionUnsorted = libActivities.linksTo( entryControl.field(CON_FIELD_CONTRACT_LINK)[0] );
   var allEntriesAction = new Array( allEntriesActionUnsorted.length );
   var dateStart = moment().startOf('month');
   var dateEnd = moment().endOf('month');
@@ -33,22 +33,22 @@ function saveControl( entryControl ) {
   for (let i=0; i < allEntriesAction.length; i++) {
 
       entryAction = allEntriesAction[i];
-      if (entryAction.field(C_FIELD_DATES).length > 0) {
-         actionDates = entryAction.field(C_FIELD_DATES).split(",");
+      if (entryAction.field(ACT_FIELD_DATES).length > 0) {
+         actionDates = entryAction.field(ACT_FIELD_DATES).split(",");
       };
-      entryControl.link(R_FIELD_ACTION_LINK, entryAction);
+      entryControl.link(CON_FIELD_ACTION_LINK, entryAction);
 
-      var arrDomain = entryControl.field(R_FIELD_ACTION_DOMAIN);
-      var entryDomain = entryAction.field(C_FIELD_ACTION_DOMAIN);
+      var arrDomain = entryControl.field(CON_FIELD_ACTION_DOMAIN);
+      var entryDomain = entryAction.field(ACT_FIELD_ACTION_DOMAIN);
 
-      if ( entryControl.field(R_FIELD_ACTION_DOMAIN).indexOf( entryAction.field(C_FIELD_ACTION_DOMAIN)) >= 0 ) {
+      if ( entryControl.field(CON_FIELD_ACTION_DOMAIN).indexOf( entryAction.field(ACT_FIELD_ACTION_DOMAIN)) >= 0 ) {
          if ( actionDates.length <= 0 ) {
            message (entryControl.name + " _______ " + entryAction.name );       // nie ma wpisanej daty oznacza że to czynność codzienna
-           entryControl.link(R_FIELD_ACTION_LINK, entryAction);
+           entryControl.link(CON_FIELD_ACTION_LINK, entryAction);
          } else {                                                               // jest wpisana data zatem sprawdzam czy data jest z tego miesiąca
            for (let j=0; j < actionDates.length; j++ ) {
               if (moment(actionDates[j]).isBetween (dateStart,dateEnd)) {
-  		           entryControl.link(R_FIELD_ACTION_LINK, entryAction);
+  		           entryControl.link(CON_FIELD_ACTION_LINK, entryAction);
   	          }
            }
          }
@@ -75,25 +75,25 @@ function countEvaluation( entryControl ) {
   var evPunctuality = 0;
   var evGlobal = 0;
 
-  if ( entryControl.field( R_FIELD_CLOSED )) {
-    for (actionCount = 0; actionCount < entryControl.field(R_FIELD_ACTION_LINK).length; actionCount++ ) {
+  if ( entryControl.field( CON_FIELD_CLOSED )) {
+    for (actionCount = 0; actionCount < entryControl.field(CON_FIELD_ACTION_LINK).length; actionCount++ ) {
 
       // ocena JAKOŚCI
-      switch ( entryControl.field(R_FIELD_ACTION_LINK)[actionCount].attr(R_FIELD_ATTR_QUALITY_EVALUATION).trim() ) {
-        case R_FIELD_ATTR_QUALITY_EVALUATION_VAL2:
+      switch ( entryControl.field(CON_FIELD_ACTION_LINK)[actionCount].attr(CON_FIELD_ATTR_QUALITY_EVALUATION).trim() ) {
+        case CON_FIELD_ATTR_QUALITY_EVALUATION_VAL2:
           evQuality += 2;
           break;
-        case R_FIELD_ATTR_QUALITY_EVALUATION_VAL1:
+        case CON_FIELD_ATTR_QUALITY_EVALUATION_VAL1:
           evQuality += 1;
           break;
         }
 
       // ocena terminowości
-      switch ( entryControl.field(R_FIELD_ACTION_LINK)[actionCount].attr(R_FIELD_ATTR_PUNCTUALITY_EVALUATION).trim() ) {
-        case R_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL2:
+      switch ( entryControl.field(CON_FIELD_ACTION_LINK)[actionCount].attr(CON_FIELD_ATTR_PUNCTUALITY_EVALUATION).trim() ) {
+        case CON_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL2:
           evPunctuality += 2;
           break;
-        case R_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL1:
+        case CON_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL1:
           evPunctuality += 1;
           break;
         }
@@ -102,9 +102,9 @@ function countEvaluation( entryControl ) {
     evGlobal = ( (evQuality * R_QUALITY_WEIGTHT) + ( evPunctuality * (1 - R_QUALITY_WEIGTHT))) / ((actionCount * R_QUALITY_WEIGTHT) + (actionCount * (1 - R_QUALITY_WEIGTHT)));
 
 
-    entryControl.set(R_FIELD_EVALUATION, ((100 * evGlobal) / 2).toString() + "%" );
-    entryControl.set(R_FIELD_QUALITY_EVALUATION, ((100 * (evQuality/actionCount)) / 2).toString() + "%"  );
-    entryControl.set(R_FIELD_PUNCTUALITY_EVALUATION, ((100 * (evPunctuality/actionCount)) / 2).toString() + "%"  );
+    entryControl.set(CON_FIELD_EVALUATION, ((100 * evGlobal) / 2).toString() + "%" );
+    entryControl.set(CON_FIELD_QUALITY_EVALUATION, ((100 * (evQuality/actionCount)) / 2).toString() + "%"  );
+    entryControl.set(CON_FIELD_PUNCTUALITY_EVALUATION, ((100 * (evPunctuality/actionCount)) / 2).toString() + "%"  );
   }
 }
 
