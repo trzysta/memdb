@@ -118,7 +118,6 @@ function generateEmailBody ( entryControl ) {
 
   htmlBody = htmlBody + "<p>Kontrola składa się z 2 części. Pierwsza część to kontrola wykonania czynności z umowy, sprawdzane są czynności które wg umowy powinny być wykonane częściej niż raz w tygodniu, a także czynności rzadziej wykonywane niż raz w tygodniu które zostały zaplanowane między początkiem miesiąca a datą bieżącą. <br> Drugą częścią kontroli jest sprawdzenie stanu czystości klatki.</p>" +
   "<p>Czynności z umowy które miały być wykonane od początku miesiąca do dnia kontroli zostały skontrolowane. Wynik poniżej.</p>";
-  message(htmlBody);
 
   for (let i = 0; i < entryControl.field(CON_FIELD_ACTION_LINK).length; i++ ) {
     htmlBody = htmlBody + "<span>" + (i+1) + " czynność: <b>" +  entryControl.field(CON_FIELD_ACTION_LINK)[i].ACT_FIELD_ACTION + "</b>" +
@@ -128,7 +127,7 @@ function generateEmailBody ( entryControl ) {
                                          entryControl.field(CON_FIELD_ACTION_LINK)[i].field(ACT_FIELD_DATES) + "<br> <b>" +
                     entryControl.field(CON_FIELD_ACTION_LINK)[i].attr(CON_FIELD_ACTION_LINK_ATTR_RESULT) + "</b></span>";
   };
-  message(htmlBody);
+  
   entryControl.set( CON_FIELD_MAILBODY, htmlBody );
 
 }
