@@ -13,7 +13,7 @@ function linkContract ( targetLibraryName, entryContract, entryTarget ) {
         var tmp = "start";
 
         var dateStart = moment().startOf('month');
-        var dateEnd = moment().endOf('month');
+        var dateEnd = moment();
 
         for (let c = 0; c < allEntriesActionUnsorted.length; c++ ) {
           var sortOrder = allEntriesActionUnsorted[c].field("Sort");
@@ -22,12 +22,13 @@ function linkContract ( targetLibraryName, entryContract, entryTarget ) {
 
         for (let i=0; i < allEntriesAction.length; i++) {
           entryAction = allEntriesAction[i];
-          tmp = tmp + "/n" + entryAction.name;
+          tmp = tmp + "\n" + entryAction.name;
 
           if (entryAction.field(ACT_FIELD_DATES).length > 0) { actionDates = entryAction.field(ACT_FIELD_DATES).split(",") };
 
           if ( entryTarget.field(CON_FIELD_ACTION_DOMAIN).indexOf( entryAction.field(ACT_FIELD_ACTION_DOMAIN)) >= 0 ) {
              if ( actionDates.length <= 0 ) {                           // nie ma wpisanej daty oznacza że to czynność codzienna
+
                 entryTarget.link(CON_FIELD_ACTION_LINK, entryAction);
              } else {                                                   // jest wpisana data zatem sprawdzam czy data jest z tego miesiąca
                 for (let j=0; j < actionDates.length; j++ ) {
@@ -39,16 +40,11 @@ function linkContract ( targetLibraryName, entryContract, entryTarget ) {
           }
       };
       entryTarget.set(FIELD_IS_NEW, false);
-      entryTarget.set("tmp", tmp);
+      //entryTarget.set("tmp", tmp);
       entryTarget.show();
 
       break;
     default:
 
   }
-
-
-
-
-
 }
