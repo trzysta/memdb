@@ -120,14 +120,14 @@ function generateEmailBody ( entryControl ) {
   "<p>Czynności z umowy które miały być wykonane od początku miesiąca do dnia kontroli zostały skontrolowane. Wynik poniżej.</p>";
 
   for (let i = 0; i < entryControl.field(CON_FIELD_ACTION_LINK).length; i++ ) {
-    htmlBody = htmlBody + "<span>" + (i+1) + " czynność: <b>" +  entryControl.field(CON_FIELD_ACTION_LINK)[i].ACT_FIELD_ACTION + "</b>" +
+    htmlBody = htmlBody + "<span>" + (i+1) + " czynność: <b>" +  entryControl.field(CON_FIELD_ACTION_LINK)[i].field(ACT_FIELD_ACTION) + "</b>" +
                     " obszar " + entryControl.field(CON_FIELD_ACTION_LINK)[i].field(ACT_FIELD_ACTION_DOMAIN) +
                     " wykonywana " + entryControl.field(CON_FIELD_ACTION_LINK)[i].field(ACT_FIELD_FREQUENCY) +
                     " zaplanowana na " + entryControl.field(CON_FIELD_ACTION_LINK)[i].field(ACT_FIELD_WEEKDAYS).join(", ") +
-                                         entryControl.field(CON_FIELD_ACTION_LINK)[i].field(ACT_FIELD_DATES) + "<br> <b>" +
-                    entryControl.field(CON_FIELD_ACTION_LINK)[i].attr(CON_FIELD_ACTION_LINK_ATTR_RESULT) + "</b></span>";
+                                         entryControl.field(CON_FIELD_ACTION_LINK)[i].field(ACT_FIELD_DATES) + "<b>" +
+                    entryControl.field(CON_FIELD_ACTION_LINK)[i].attr(CON_FIELD_ACTION_LINK_ATTR_RESULT) + "</b></span><br>";
   };
-  
+
   entryControl.set( CON_FIELD_MAILBODY, htmlBody );
 
 }
