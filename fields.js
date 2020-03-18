@@ -138,8 +138,7 @@ var ACT_FIELD_ACTION_DOMAIN         = "Obszar";
 var ACT_FIELD_ACTION_DOMAIN_VALUES  = ["Klatki","Garaż","Teren","Zieleń","Biuro"];
 var ACT_FIELD_ACTION_CHECKPOINTS_OK = "Punkty do kontroli POPRAWNE";
 var ACT_FIELD_ACTION_CHECKPOINTS_NOK = "Punkty do kontroli NIE POPRAWNE";
-
-
+var ACT_FIELD_FREQUENCY             = "Częstotliwość";
 
 
 
@@ -168,6 +167,9 @@ var CON_FIELD_FREQENCY_VALUES = [ "Codziennie",
                                 "3 razy w roku",
                                 "wg potrzeb"];
 var CON_FIELD_ACTION_LINK       = "Czynności do wykonania wg umowy";
+var CON_FIELD_ACTION_LINK_ATTR_RES = "Wykonanie";
+var CON_FIELD_MAILBODY          = "mailBody";
+var CON_FIELD_CONTROL_DATETIME  = "Data i godzina kontroli";
 
 var CON_FIELD_ACTION_DOMAIN     = "Kontrolowany obszar";
 var CON_FIELD_CLOSED            = "Kontrola zakończona, zamknij możliwość zmiany i wyślij e-mail z raportem";
