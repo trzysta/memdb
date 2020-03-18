@@ -115,18 +115,16 @@ function generateEmailBody ( entryControl ) {
   "Kontrolowane osiedle:<b>"         + entryControl.field(CON_FIELD_CONTRACT_LINK)[0].name + "</b><br>"  +
   "Skontolowany budynek i klatka<b>" + entryControl.field(CON_FIELD_BUILDING) + "</b></p>";
 
-  htmlBody = htmlBody + "<p>Kontrola składa się z 2 części. Pierwsza część to kontrola wykonania czynności z umowy, sprawdzane są czynności które wg umowy powinny być wykonane częściej niż raz w tygodniu, a także czynności rzadziej wykonywane niż raz w tygodniu które zostały zaplanowane między początkiem miesiąca a datą bieżącą. <br> Drugą częścią kontroli jest sprawdzenie stanu czystości klatki.</p>"
-
-  Czynności z umowy które miały być wykonane od początku miesiąca do dnia kontroli zostały skontrolowane. Wynik poniżej.
+  htmlBody = htmlBody + "<p>Kontrola składa się z 2 części. Pierwsza część to kontrola wykonania czynności z umowy, sprawdzane są czynności które wg umowy powinny być wykonane częściej niż raz w tygodniu, a także czynności rzadziej wykonywane niż raz w tygodniu które zostały zaplanowane między początkiem miesiąca a datą bieżącą. <br> Drugą częścią kontroli jest sprawdzenie stanu czystości klatki.</p>" +
+  "<p>Czynności z umowy które miały być wykonane od początku miesiąca do dnia kontroli zostały skontrolowane. Wynik poniżej.</p>";
 
   for (let i = 0; i < entryControl.field(CON_FIELD_ACTION_LINK).length; i++ ) {
     htmlBody = htmlBody + "<p>" + (i+1) + " czynność: <b>" +  entryControl.field(CON_FIELD_ACTION_LINK)[i].name + "</b>" +
                     " wykonywana " + entryControl.field(CON_FIELD_ACTION_LINK)[i].field(ACT_FIELD_FREQUENCY) +
                     " zaplanowana na " + entryControl.field(CON_FIELD_ACTION_LINK)[i].field(ACT_FIELD_DATES_DAYS) +
                                          entryControl.field(CON_FIELD_ACTION_LINK)[i].field(ACT_FIELD_DATES) + "<br>"
-                    entryControl.field(CON_FIELD_ACTION_LINK)[i].attr(CON_FIELD_ACTION_LINK_ATTR_RES) + "</p>"
-  }
+                    entryControl.field(CON_FIELD_ACTION_LINK)[i].attr(CON_FIELD_ACTION_LINK_ATTR_RES) + "</p>";
+  };
 
-  entryControl.set(CON_FIELD_MAILBODY, htmlBody )
-
+  entryControl.set( CON_FIELD_MAILBODY, htmlBody )
 }
