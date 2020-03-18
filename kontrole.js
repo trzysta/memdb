@@ -111,9 +111,9 @@ function generateEmailBody ( entryControl ) {
 
   htmlBody = ""+
   "<p>Dzień dobry, to jest autoamtyczny e-mail zawierające informacje z wykonane kontroli.</p>" +
-  "<p>Data i godzina kontroli:<b> "   + entryControl.field(CON_FIELD_CONTROL_DATETIME) + "</b><br>"  +
+  "<p>Data i godzina kontroli:<b> "   + moment(entryControl.field(CON_FIELD_CONTROL_DATETIME)).format("YYYY-MM-DD hh:mm")  + "</b><br>"  +
   "Kontrolowane osiedle:<b> "         + entryControl.field(CON_FIELD_CONTRACT_LINK)[0].name + "</b><br>"  +
-  "Kontrolowany obsza:<b>"            + entryControl.field(CON_FIELD_ACTION_DOMAIN).join(", ") + "</b><br>"  +
+  "Kontrolowany obsza:<b> "            + entryControl.field(CON_FIELD_ACTION_DOMAIN).join(", ") + "</b><br>"  +
   "Skontolowany budynek i klatka<b> " + entryControl.field(CON_FIELD_BUILDING) + "</b></p>";
 
   htmlBody = htmlBody + "<p>Kontrola składa się z 2 części. Pierwsza część to kontrola wykonania czynności z umowy, sprawdzane są czynności które wg umowy powinny być wykonane częściej niż raz w tygodniu, a także czynności rzadziej wykonywane niż raz w tygodniu które zostały zaplanowane między początkiem miesiąca a datą bieżącą. <br> Drugą częścią kontroli jest sprawdzenie stanu czystości klatki.</p>" +
@@ -130,24 +130,14 @@ function generateEmailBody ( entryControl ) {
                     " <b>" + entryControl.field(CON_FIELD_ACTION_LINK)[i].attr(CON_FIELD_ACTION_LINK_ATTR_RESULT) + "</b></span><br>";
   };
 
-  htmlBody = htmlBody + "<h2>Część druga kontroli: sprawdzanie jakości wykonania</h1>";
+  htmlBody = htmlBody + "<p></p><p><b>Część druga kontroli: sprawdzanie jakości wykonania</p>";
 
-  htmlBody = htmlBody + "<h3>Wnętrza</h3>" +
-                      "<span>Okoliczności podczas kontroli " + entryControl.field("Okoliczności podczas kontroli").join(", ") + "<br>" +
-                      R_LABEL_1 + "<br>" +
-                     "Posadzka, zauważone problemy " + entryControl.field("Posadzka, zauważone problemy").join(", ") + "<br><span>" +
-                     "<span style='color:#00FF00'>Posadzka: piętra bez uwag, stan dobry " + entryControl.field("Posadzka: piętra bez uwag, stan dobry").join(", ") + "</span><br>" +
-                     "<span style='color:#FF0000'>Posadzka: piętra do poprawy " + entryControl.field("Posadzka: piętra do poprawy").join(", ") + "</span><br>";
-
-
-
-              R_LABEL_2
-              R_LABEL_3
-              R_LABEL_4
-              R_LABEL_5
-
-
-
+  htmlBody = htmlBody + "<p><b>Wnętrza</b></p>" +
+                      "<span>Okoliczności podczas kontroli: <p>" + entryControl.field("Okoliczności podczas kontroli").join(", ") + "</p><br>" +
+                      "Kontrola polegała na: <b>" + R_LABEL_1 + "</b><br>" +
+                     "Posadzka, zauważone problemy: <b>" + entryControl.field("Posadzka, zauważone problemy").join(", ") + "</b><br><span>" +
+                     "<span style='color:#00FF00'>Posadzka: piętra bez uwag, stan dobry: " + entryControl.field("Posadzka: piętra bez uwag, stan dobry").join(", ") + "</span><br>" +
+                     "<span style='color:#FF0000'>Posadzka: piętra do poprawy: " + entryControl.field("Posadzka: piętra do poprawy").join(", ") + "</span><p></p>";
 
   entryControl.set( CON_FIELD_MAILBODY, htmlBody );
 
