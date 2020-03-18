@@ -130,14 +130,14 @@ function generateEmailBody ( entryControl ) {
                     " <b>" + entryControl.field(CON_FIELD_ACTION_LINK)[i].attr(CON_FIELD_ACTION_LINK_ATTR_RESULT) + "</b></span><br>";
   };
 
-  htmlBody = htmlBody + "<p></p><p><b>Część druga kontroli: sprawdzanie jakości wykonania</p>";
+  htmlBody = htmlBody + "<p></p><p><b>Część druga kontroli: sprawdzanie jakości wykonania<br>";
 
-  htmlBody = htmlBody + "<p><b>Wnętrza</b></p>" +
-                      "<span>Okoliczności podczas kontroli: <p>" + entryControl.field("Okoliczności podczas kontroli").join(", ") + "</p><br>" +
+  htmlBody = htmlBody + "<b>Wnętrza</b></p>" +
+                      "<span>Okoliczności podczas kontroli: <b>" + entryControl.field("Okoliczności podczas kontroli").join(", ") + "</b><br>" +
                       "Kontrola polegała na: <b>" + R_LABEL_1 + "</b><br>" +
                      "Posadzka, zauważone problemy: <b>" + entryControl.field("Posadzka, zauważone problemy").join(", ") + "</b><br><span>" +
-                     "<span style='color:#00FF00'>Posadzka: piętra bez uwag, stan dobry: " + entryControl.field("Posadzka: piętra bez uwag, stan dobry").join(", ") + "</span><br>" +
-                     "<span style='color:#FF0000'>Posadzka: piętra do poprawy: " + entryControl.field("Posadzka: piętra do poprawy").join(", ") + "</span><p></p>";
+                     "Posadzka, piętra bez uwag, stan dobry: <b>" + entryControl.field("Posadzka: piętra bez uwag, stan dobry").join(", ") + "</b><br>" +
+                     "Posadzka, piętra do poprawy: <b>" + entryControl.field("Posadzka: piętra do poprawy").join(", ") + "</b><p></p>";
 
   entryControl.set( CON_FIELD_MAILBODY, htmlBody );
 
