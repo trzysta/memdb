@@ -128,7 +128,7 @@ var B_MSG_BUDGET_FOUND    = "...znaleziono budżet: ";
 // ****************************************************************************
 var ACT_FIELD_MONTH                 = "Miesiąc";
 var ACT_FIELD_DATES                 = "Daty";
-var ACT_FIELD_DATES_DAYS            = "Dni";
+var ACT_FIELD_WEEKDAYS              = "Dni tygodnia";
 var ACT_FIELD_TYPE                  = "Typ";
 var ACT_FIELD_TYPE_VALUE_TEMPLATE   = "Definicja czynności";
 var ACT_FIELD_TYPE_VALUE_INSTANCE   = "Pozycja harmonogramu";
@@ -167,7 +167,7 @@ var CON_FIELD_FREQENCY_VALUES = [ "Codziennie",
                                 "3 razy w roku",
                                 "wg potrzeb"];
 var CON_FIELD_ACTION_LINK       = "Czynności do wykonania wg umowy";
-var CON_FIELD_ACTION_LINK_ATTR_RES = "Wykonanie";
+var CON_FIELD_ACTION_LINK_ATTR_RESULT = "Wykonanie";
 var CON_FIELD_MAILBODY          = "mailBody";
 var CON_FIELD_CONTROL_DATETIME  = "Data i godzina kontroli";
 
