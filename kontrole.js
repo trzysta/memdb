@@ -147,20 +147,13 @@ function getActionsForControl( entryContract, entryControl ) {
 
 function setMailHeader ( entryControl ) {
 
-  var htmlBody = "";
+  var htmlBody;
 
-  htmlBody = ""+
-  "<p>Dzień dobry, to jest autoamtyczny e-mail zawierające informacje z wykonane kontroli.</p>" +
-
+  htmlBody = "" +
   "<p>Data i godzina kontroli:<b> "   + moment(entryControl.field(CON_FIELD_CONTROL_DATETIME)).format("YYYY-MM-DD hh:mm")  + "</b><br>"  +
   "Kontrolowane osiedle:<b> "         + entryControl.field(CON_FIELD_CONTRACT_LINK)[0].name + "</b><br>"  +
   "Kontrolowany obsza:<b> "           + entryControl.field(CON_FIELD_ACTION_DOMAIN).join(", ") + "</b><br>"  +
   "Skontolowany budynek i klatka<b> " + entryControl.field(CON_FIELD_BUILDING) + "</b></p>";
-
-  htmlBody = htmlBody + "<p>Kontrola składa się z 2 części. Pierwsza część to kontrola wykonania czynności z umowy, sprawdzane są czynności które wg umowy powinny być wykonane częściej niż raz w tygodniu, a także czynności rzadziej wykonywane niż raz w tygodniu które zostały zaplanowane między początkiem miesiąca a datą bieżącą. <br> Drugą częścią kontroli jest sprawdzenie stanu czystości klatki.</p>" +
-  "<p>Czynności z umowy które miały być wykonane od początku miesiąca do dnia kontroli zostały skontrolowane.</p>";
-
-  htmlBody = htmlBody + "<p><b>Część pierwsza kontroli, sprawdzanie wykonania zadania wg umowy</b><p>";
 
   for (let i = 0; i < entryControl.field(CON_FIELD_ACTION_LINK).length; i++ ) {
     htmlBody = htmlBody + "<span>" + (i+1) + " czynność: <b>" +  entryControl.field(CON_FIELD_ACTION_LINK)[i].field(ACT_FIELD_ACTION) + "</b>" +
@@ -171,17 +164,14 @@ function setMailHeader ( entryControl ) {
                     " <b>" + entryControl.field(CON_FIELD_ACTION_LINK)[i].attr(CON_FIELD_ACTION_LINK_ATTR_RESULT) + "</b></span><br>";
   };
 
-  htmlBody = htmlBody + "<p></p><p><b>Część druga kontroli: sprawdzanie jakości wykonania<br>";
-
-  htmlBody = htmlBody + "<b>Wnętrza</b></p>" +
-                      "<span>Okoliczności podczas kontroli: <b>" + entryControl.field("Okoliczności podczas kontroli").join(", ") + "</b><br>";
+  htmlBody = htmlBody + "<p>Część druga kontroli: sprawdzanie jakości wykonania</p>";
 
   for (let i=0; i < entryControl.field(CON_FIELD_ACTION_DOMAIN).length; i++ ) {
     var actionDomain = entryControl.field(CON_FIELD_ACTION_DOMAIN)[i];
     htmlBody = htmlBody + "<p>W kontrolowanym obszarze " +  actionDomain + " " +
-                          "stwierdzono " + entryControl.field(CON_FILED_CHECKS + actionDomain).join(", ") + "<br>" +
-                          "Do poprawy są " + entryControl.field(CON_FILED_CHECKS_AREA_NOK + actionDomain).join(", ") + "<br>" +
-                          "Problemy nie występują na " + entryControl.field(CON_FILED_CHECKS_AREA_OK + actionDomain).join(", ")  + "</p>"
+                          "stwierdzono <b>" + entryControl.field(CON_FILED_CHECKS + actionDomain).join(", ") + "</b><br>" +
+                          "Do poprawy są <b>" + entryControl.field(CON_FILED_CHECKS_AREA_NOK + actionDomain).join(", ") + "</b><br>" +
+                          "Problemy nie występują na <b>" + entryControl.field(CON_FILED_CHECKS_AREA_OK + actionDomain).join(", ")  + "</b></p>"
   }
 
   entryControl.set( CON_FIELD_MAILBODY, htmlBody );
