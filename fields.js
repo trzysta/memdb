@@ -160,7 +160,6 @@ var ACT_FIELD_FREQUENCY             = "Częstotliwość";
 var CHK_FIELD_CONTRACT_LINK   = "Osiedle";
 var CHK_FIELD_FREQENCY        = "Częstotliwość";
 var CHK_FILED_TYPE            = "Typ kontroli";
-var CHK_FILED_
 
 /*  0-5  częstotliwość częściej niż raz miesiącu */
 /*  6-16 czstotliwość raz w miesiącu i rzadziej */
@@ -194,3 +193,4 @@ var CHK_FIELDCHECKS_AREA_OK     = "Brak uwag - ";
 var CHK_FIELDCHECKS_AREA_NOK    = "Do poprawy - ";
 
 var CHK_FIELD_MAIL_RECIPIENTS   = "";
+var CHK_ACTION_CLOSE_CONFIRM_NAME   = "potwierdzam zamknięcie kontroli i wysłanie raportu";

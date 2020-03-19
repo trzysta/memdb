@@ -3,7 +3,7 @@
   aplikację utworzoną dla 300 Sp. z o.o.
 */
 
-function setRef( base, entryTarget ) {
+function setRef( base ) {
 
   var tmpLib;
   switch (base) {
@@ -36,8 +36,7 @@ function setRef( base, entryTarget ) {
      newRef = base + Math.floor(10000 + (Math.random() * 90000));
      result = tmpLib.find( newRef );
   };
-  entryTarget.set(FIELD_REF, newRef);
-
+  return newRef;
 }
 
 
