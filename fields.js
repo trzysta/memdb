@@ -194,3 +194,4 @@ var CHK_FIELDCHECKS_AREA_NOK    = "Do poprawy - ";
 
 var CHK_FIELD_MAIL_RECIPIENTS   = "";
 var CHK_ACTION_CLOSE_CONFIRM_NAME   = "potwierdzam zamknięcie kontroli i wysłanie raportu";
+var CHK_FIELD_HTML_BODY         = "htmlBody"
