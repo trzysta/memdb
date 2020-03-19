@@ -171,7 +171,7 @@ function setMailBody ( entryControl ) {
   "<p>Data i godzina kontroli:<b> "   + moment(entryControl.field(CHK_FIELD_CONTROL_DATETIME)).format("YYYY-MM-DD hh:mm")  + "</b><br>"  +
   "Kontrolowane osiedle:<b> "         + entryControl.field(CHK_FIELD_CONTRACT_LINK)[0].name + "</b><br>"  +
   "Kontrolowany obszar:<b> "           + entryControl.field(CHK_FIELD_ACTION_DOMAIN) + "</b> "  +
-  "<b>(" + entryControl.field(CHK_FIELD_BUILDING) + ")</b></p>";
+  "<b>(" + entryControl.field(CHK_FIELD_ACTION_AREA) + ")</b></p>";
 
   for (let i = 0; i < entryControl.field(CHK_FIELD_ACTION_LINK).length; i++ ) {
     htmlBody = htmlBody + "<span>" + (i+1) + " czynność: <b>" +  entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_ACTION) + "</b>" +
