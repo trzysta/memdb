@@ -1,15 +1,32 @@
 
 
-function getCheckpointLabel( fieldCount ) {
-  return CON_FIELD_CHECKPOINT_LABELS[fieldCount];
+function getRecipients( entryControl ) {
+
+
+
 }
 
 
 
-function createControl( entryControl ) {
-  entryControl.set(FIELD_IS_NEW, true);
-}
 
+
+function updateDisplayName ( entryControl ) {
+
+  var displayName;
+
+  if ( entryControl.field(FIELD_IS_PARENT) ) {
+    displayName = entryControl.field( CHK_FILED_TYPE ) + SEP +
+                  entryControl.field( CHK_FIELD_CONTRACT_LINK )[0].field(CON_FIELD_TAG) + SEP +
+                  entryControl.field( CHK_FIELD_ACTION_AREA ) + SEP +
+                  "(" + VALUE_MAIL + " " + entryControl.field( FIELD_REF_PARTENT ) + ") ";
+  } else {
+    displayName = VALUE_MAIL + SEP +
+                  entryControl.field( HK_FIELD_MAIL_DATETIME ) + SEP +
+                  entryControl.field( HK_FIELD_MAIL_RECIPIENTS ) + SEP;
+  }
+  entryControl.set(FIELD_DISPLAY_NAME, displayName)
+  
+}
 
 // ****************************************************************************
 // ****************************************************************************
@@ -21,25 +38,25 @@ function countEvaluation( entryControl ) {
   var evPunctuality = 0;
   var evGlobal = 0;
 
-  if ( entryControl.field( CON_FIELD_CLOSED )) {
-    for (actionCount = 0; actionCount < entryControl.field(CON_FIELD_ACTION_LINK).length; actionCount++ ) {
+  if ( entryControl.field( CHK_FIELD_CLOSED )) {
+    for (actionCount = 0; actionCount < entryControl.field(CHK_FIELD_ACTION_LINK).length; actionCount++ ) {
 
       // ocena JAKOŚCI
-      switch ( entryControl.field(CON_FIELD_ACTION_LINK)[actionCount].attr(CON_FIELD_ATTR_QUALITY_EVALUATION).trim() ) {
-        case CON_FIELD_ATTR_QUALITY_EVALUATION_VAL2:
+      switch ( entryControl.field(CHK_FIELD_ACTION_LINK)[actionCount].attr(CHK_FIELD_ATTR_QUALITY_EVALUATION).trim() ) {
+        case CHK_FIELD_ATTR_QUALITY_EVALUATION_VAL2:
           evQuality += 2;
           break;
-        case CON_FIELD_ATTR_QUALITY_EVALUATION_VAL1:
+        case CHK_FIELD_ATTR_QUALITY_EVALUATION_VAL1:
           evQuality += 1;
           break;
         }
 
       // ocena terminowości
-      switch ( entryControl.field(CON_FIELD_ACTION_LINK)[actionCount].attr(CON_FIELD_ATTR_PUNCTUALITY_EVALUATION).trim() ) {
-        case CON_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL2:
+      switch ( entryControl.field(CHK_FIELD_ACTION_LINK)[actionCount].attr(CHK_FIELD_ATTR_PUNCTUALITY_EVALUATION).trim() ) {
+        case CHK_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL2:
           evPunctuality += 2;
           break;
-        case CON_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL1:
+        case CHK_FIELD_ATTR_PUNCTUALITY_EVALUATION_VAL1:
           evPunctuality += 1;
           break;
         }
@@ -48,9 +65,9 @@ function countEvaluation( entryControl ) {
     evGlobal = ( (evQuality * R_QUALITY_WEIGTHT) + ( evPunctuality * (1 - R_QUALITY_WEIGTHT))) / ((actionCount * R_QUALITY_WEIGTHT) + (actionCount * (1 - R_QUALITY_WEIGTHT)));
 
 
-    entryControl.set(CON_FIELD_EVALUATION, ((100 * evGlobal) / 2).toString() + "%" );
-    entryControl.set(CON_FIELD_QUALITY_EVALUATION, ((100 * (evQuality/actionCount)) / 2).toString() + "%"  );
-    entryControl.set(CON_FIELD_PUNCTUALITY_EVALUATION, ((100 * (evPunctuality/actionCount)) / 2).toString() + "%"  );
+    entryControl.set(CHK_FIELD_EVALUATION, ((100 * evGlobal) / 2).toString() + "%" );
+    entryControl.set(CHK_FIELD_QUALITY_EVALUATION, ((100 * (evQuality/actionCount)) / 2).toString() + "%"  );
+    entryControl.set(CHK_FIELD_PUNCTUALITY_EVALUATION, ((100 * (evPunctuality/actionCount)) / 2).toString() + "%"  );
   }
 }
 
@@ -85,9 +102,9 @@ function getActionsForControl( entryContract, entryControl ) {
 
     if (entryAction.field(ACT_FIELD_DATES).length > 0) { actionDates = entryAction.field(ACT_FIELD_DATES).split(",") };
 
-    if ( entryControl.field(CON_FIELD_ACTION_DOMAIN).indexOf( entryAction.field(ACT_FIELD_ACTION_DOMAIN)) >= 0 ) {
+    if ( entryControl.field(CHK_FIELD_ACTION_DOMAIN).indexOf( entryAction.field(ACT_FIELD_ACTION_DOMAIN)) >= 0 ) {
        if ( actionDates.length <= 0 ) {                           // nie ma wpisanej daty oznacza że to czynność codzienna
-          entryControl.link(CON_FIELD_ACTION_LINK, entryAction);
+          entryControl.link(CHK_FIELD_ACTION_LINK, entryAction);
 
           switch (entryAction.field(ACT_FIELD_ACTION_DOMAIN)) {
             case ACT_FIELD_ACTION_DOMAIN_VALUES[0]:
@@ -108,7 +125,7 @@ function getActionsForControl( entryContract, entryControl ) {
        } else {                                                   // jest wpisana data zatem sprawdzam czy data jest z tego miesiąca
           for (let j=0; j < actionDates.length; j++ ) {
             if (moment(actionDates[j]).isBetween (dateStart,dateEnd)) {
-               entryControl.link(CON_FIELD_ACTION_LINK, entryAction);
+               entryControl.link(CHK_FIELD_ACTION_LINK, entryAction);
                switch (entryAction.field(ACT_FIELD_ACTION_DOMAIN)) {
                  case ACT_FIELD_ACTION_DOMAIN_VALUES[0]:
                    appendToArray(actionChecksK, entryAction.field(ACT_FIELD_ACTION_CHECKS).split(BR));
@@ -132,11 +149,11 @@ function getActionsForControl( entryContract, entryControl ) {
   };
 
   entryControl.set(FIELD_IS_NEW, false);
-  entryControl.set(CON_FILED_CHECKS + ACT_FIELD_ACTION_DOMAIN_VALUES[0], actionChecksK.unique() );
-  entryControl.set(CON_FILED_CHECKS + ACT_FIELD_ACTION_DOMAIN_VALUES[1], actionChecksG.unique() );
-  entryControl.set(CON_FILED_CHECKS + ACT_FIELD_ACTION_DOMAIN_VALUES[2], actionChecksT.unique() );
-  entryControl.set(CON_FILED_CHECKS + ACT_FIELD_ACTION_DOMAIN_VALUES[3], actionChecksZ.unique() );
-  entryControl.set(CON_FILED_CHECKS + ACT_FIELD_ACTION_DOMAIN_VALUES[4], actionChecksB.unique() );
+  entryControl.set(CHK_FIELDCHECKS + ACT_FIELD_ACTION_DOMAIN_VALUES[0], actionChecksK.unique() );
+  entryControl.set(CHK_FIELDCHECKS + ACT_FIELD_ACTION_DOMAIN_VALUES[1], actionChecksG.unique() );
+  entryControl.set(CHK_FIELDCHECKS + ACT_FIELD_ACTION_DOMAIN_VALUES[2], actionChecksT.unique() );
+  entryControl.set(CHK_FIELDCHECKS + ACT_FIELD_ACTION_DOMAIN_VALUES[3], actionChecksZ.unique() );
+  entryControl.set(CHK_FIELDCHECKS + ACT_FIELD_ACTION_DOMAIN_VALUES[4], actionChecksB.unique() );
   entryControl.show();
 }
 
@@ -151,29 +168,29 @@ function setMailBody ( entryControl ) {
   var actionDomain
 
   htmlBody = "<hr>" +
-  "<p>Data i godzina kontroli:<b> "   + moment(entryControl.field(CON_FIELD_CONTROL_DATETIME)).format("YYYY-MM-DD hh:mm")  + "</b><br>"  +
-  "Kontrolowane osiedle:<b> "         + entryControl.field(CON_FIELD_CONTRACT_LINK)[0].name + "</b><br>"  +
-  "Kontrolowany obszar:<b> "           + entryControl.field(CON_FIELD_ACTION_DOMAIN) + "</b> "  +
-  "<b>(" + entryControl.field(CON_FIELD_BUILDING) + ")</b></p>";
+  "<p>Data i godzina kontroli:<b> "   + moment(entryControl.field(CHK_FIELD_CONTROL_DATETIME)).format("YYYY-MM-DD hh:mm")  + "</b><br>"  +
+  "Kontrolowane osiedle:<b> "         + entryControl.field(CHK_FIELD_CONTRACT_LINK)[0].name + "</b><br>"  +
+  "Kontrolowany obszar:<b> "           + entryControl.field(CHK_FIELD_ACTION_DOMAIN) + "</b> "  +
+  "<b>(" + entryControl.field(CHK_FIELD_BUILDING) + ")</b></p>";
 
-  for (let i = 0; i < entryControl.field(CON_FIELD_ACTION_LINK).length; i++ ) {
-    htmlBody = htmlBody + "<span>" + (i+1) + " czynność: <b>" +  entryControl.field(CON_FIELD_ACTION_LINK)[i].field(ACT_FIELD_ACTION) + "</b>" +
-                    " obszar <b>" + entryControl.field(CON_FIELD_ACTION_LINK)[i].field(ACT_FIELD_ACTION_DOMAIN) + "</b>" +
-                    " wykonywana " + entryControl.field(CON_FIELD_ACTION_LINK)[i].field(ACT_FIELD_FREQUENCY) + "" +
-                    " zaplanowana na " + entryControl.field(CON_FIELD_ACTION_LINK)[i].field(ACT_FIELD_WEEKDAYS).join(", ") +
-                                         entryControl.field(CON_FIELD_ACTION_LINK)[i].field(ACT_FIELD_DATES) +
-                    " <b>" + entryControl.field(CON_FIELD_ACTION_LINK)[i].attr(CON_FIELD_ACTION_LINK_ATTR_RESULT) + "</b></span><br>";
+  for (let i = 0; i < entryControl.field(CHK_FIELD_ACTION_LINK).length; i++ ) {
+    htmlBody = htmlBody + "<span>" + (i+1) + " czynność: <b>" +  entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_ACTION) + "</b>" +
+                    " obszar <b>" + entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_ACTION_DOMAIN) + "</b>" +
+                    " wykonywana " + entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_FREQUENCY) + "" +
+                    " zaplanowana na " + entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_WEEKDAYS).join(", ") +
+                                         entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_DATES) +
+                    " <b>" + entryControl.field(CHK_FIELD_ACTION_LINK)[i].attr(CHK_FIELD_ACTION_LINK_ATTR_RESULT) + "</b></span><br>";
   };
 
   htmlBody = htmlBody + "<p>Część druga kontroli: sprawdzanie jakości wykonania</p>";
 
 
-  actionDomain = entryControl.field(CON_FIELD_ACTION_DOMAIN);
+  actionDomain = entryControl.field(CHK_FIELD_ACTION_DOMAIN);
   htmlBody = htmlBody + "<p>W kontrolowanym obszarze " +  actionDomain + " " +
-                          "stwierdzono <b>" + entryControl.field(CON_FILED_CHECKS + actionDomain).join(", ") + "</b><br>" +
-                          "Do poprawy są <b>" + entryControl.field(CON_FILED_CHECKS_AREA_NOK + actionDomain).join(", ") + "</b><br>" +
-                          "Problemy nie występują na <b>" + entryControl.field(CON_FILED_CHECKS_AREA_OK + actionDomain).join(", ")  + "</b></p>"
+                          "stwierdzono <b>" + entryControl.field(CHK_FIELDCHECKS + actionDomain).join(", ") + "</b><br>" +
+                          "Do poprawy są <b>" + entryControl.field(CHK_FIELDCHECKS_AREA_NOK + actionDomain).join(", ") + "</b><br>" +
+                          "Problemy nie występują na <b>" + entryControl.field(CHK_FIELDCHECKS_AREA_OK + actionDomain).join(", ")  + "</b></p>"
 
-  entryControl.set( CON_FIELD_MAILBODY, htmlBody );
+  entryControl.set( CHK_FIELD_MAILBODY, htmlBody );
 
 }

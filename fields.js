@@ -7,7 +7,7 @@ var arrNames      = ["Małgorzata Grabowska", "Elżbieta Zdziech", "Izabela Skow
 var withdrawalMaker = "Marceli Matynia";
 const HR = "--------------------------------------------------";
 const BR = "\n";
-
+const SEP = ", ";
 
 var htmlMailHeader        = "<p>To jest mail wysłany automatycznie. W przypadku wysyłania odpowiedzi prosimy o utrzymanie w temacie numeru referencyjnego <b>REF</b></p>";
 var htmlMailBody_CONTROL  = "<p>";
@@ -21,14 +21,18 @@ var cssLI                 = "";
 // wspólne
 var FIELD_EDITOR      = "Editor";
 var FIELD_IS_NEW      = "new";
-var FIELD_REF         = "Nr REF"
+var FIELD_REF         = "REF";
+var FIELD_REF_PARTENT = "parentREF";
+var FIELD_IS_PARENT   = "isParent";
 var FIELD_IS_HIDDEN   = "Ukryte";
 var FIELD_CAN_ACCESS  = "canAccess";
 var MSG_UPDATING      = "uaktualniam";
+
 var MSG_COPYING       = "kopiuję";
 var MSG_ENTRIES       = "wpisów";
 var MSG_FINISHED      = "Zakończono!";
 
+var VALUE_MAIL        = "E-mail";
 
 var VALUE_DAYNUMBER_MONDAY    = 1;
 var VALUE_DAYNUMBER_TUESDAY   = 2;
@@ -112,10 +116,12 @@ var E_FIELD_FULLNAME = "Imie i nazwisko";
 // ****************************************************************************
 // ~~~ BAZA OSIEDLA
 // ****************************************************************************
-//var CON_FIELD_CONTRACT      = "Osiedle";
-//var CN_FIELD_SHORTNAME     = "Nazwa potoczna";
-//var CN_FIELD_TAG           = "Skrót";
+//var CHK_FIELD_CONTRACT      = "Osiedle";
+//var CON_FIELD_SHORTNAME     = "Nazwa potoczna";
+var CON_FIELD_TAG         = "Skrót";
 //var CN_FIELD_BUILDINGS     = "Budynki i klatki";
+
+
 
 // ***** baza BUDŻET
 var B_FIELD_LIMIT         = "Limit";
@@ -148,14 +154,18 @@ var ACT_FIELD_FREQUENCY             = "Częstotliwość";
 
 
 
-// ***** baza KONTROLA
-var CON_FIELD_BUILDING        = "Budynek i klatka";
-var CON_FIELD_CONTRACT_LINK   = "Osiedle";
-var CON_FIELD_FREQENCY        = "Częstotliwość";
+// ****************************************************************************
+// ~~~ KONTROLE, CHECKS
+// ****************************************************************************
+
+var CHK_FIELD_CONTRACT_LINK   = "Osiedle";
+var CHK_FIELD_FREQENCY        = "Częstotliwość";
+var CHK_FILED_TYPE            = "Typ kontroli";
+var CHK_FILED_
 
 /*  0-5  częstotliwość częściej niż raz miesiącu */
 /*  6-16 czstotliwość raz w miesiącu i rzadziej */
-var CON_FIELD_FREQENCY_VALUES = [ "Codziennie",
+var CHK_FIELD_FREQENCY_VALUES = [ "Codziennie",
                                 "1 raz w tygodniu",
                                 "2 razy w tygodniu",
                                 "3 razy w tygodniu",
@@ -172,20 +182,16 @@ var CON_FIELD_FREQENCY_VALUES = [ "Codziennie",
                                 "2 razy w roku",
                                 "3 razy w roku",
                                 "wg potrzeb"];
-var CON_FIELD_ACTION_LINK       = "Czynności do wykonania wg umowy";
-var CON_FIELD_ACTION_LINK_ATTR_RESULT = "Wykonanie";
-var CON_FIELD_MAILBODY          = "mailBody";
-var CON_FIELD_CONTROL_DATETIME  = "Data i godzina kontroli";
+var CHK_FIELD_ACTION_LINK       = "Czynności do wykonania wg umowy";
+var CHK_FIELD_ACTION_LINK_ATTR_RESULT = "Wykonanie";
+var CHK_FIELD_MAILBODY          = "mailBody";
+var CHK_FIELD_CONTROL_DATETIME  = "Data i godzina kontroli";
 
-var CON_FIELD_ACTION_DOMAIN     = "Kontrolowany obszar";
-var CON_FIELD_CLOSED            = "Kontrola zakończona, zamknij możliwość zmiany i wyślij e-mail z raportem";
-var CON_FILED_CHECKS            = "Zauważone problemy - ";
-var CON_FILED_CHECKS_AREA_OK    = "Brak uwag - ";
-var CON_FILED_CHECKS_AREA_NOK   = "Do poprawy - ";
+var CHK_FIELD_ACTION_DOMAIN     = "Kontrolowany obszar";
+var CHK_FIELD_ACTION_AREA       = "Budynek i klatka";
+var CHK_FIELD_CLOSED            = "Kontrola zakończona, zamknij możliwość zmiany i wyślij e-mail z raportem";
+var CHK_FIELDCHECKS             = "Zauważone problemy - ";
+var CHK_FIELDCHECKS_AREA_OK     = "Brak uwag - ";
+var CHK_FIELDCHECKS_AREA_NOK    = "Do poprawy - ";
 
-
-var R_LABEL_1 = "Oceń stan posadzki, oceń płytki fugi i cokoły. Sprawdź spoczniki (półpiętra), podstopnice i boczki schodów. Patrz także na posadzkę pod światło.";
-var R_LABEL_2 = "Kosmetyka, oceń usunięcie kurzu, śladów po palcach na szybach, czystość elementów wyposażenia klatki schodowej (szachty itp), kurz na włącznikach, elementach wystających";
-var R_LABEL_3 = "Winda, oceń prace wykonane w środku windy a także stan drzwi i portali na piętrach.";
-var R_LABEL_4 = "Sufit i elementy nad głową. Oceń czy są widoczne zabrudzenia pod sufitem, pajęczyny, brudne wyloty powietrza, rogi itp.";
-var R_LABEL_5 = "Inne istotne punkty i oceny.";
+var CHK_FIELD_MAIL_RECIPIENTS   = "";     
