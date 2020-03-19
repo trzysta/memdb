@@ -148,6 +148,7 @@ function getActionsForControl( entryContract, entryControl ) {
 function setMailBody ( entryControl ) {
 
   var htmlBody;
+  var actionDomain
 
   htmlBody = "<hr>" +
   "<p>Data i godzina kontroli:<b> "   + moment(entryControl.field(CON_FIELD_CONTROL_DATETIME)).format("YYYY-MM-DD hh:mm")  + "</b><br>"  +
@@ -166,13 +167,12 @@ function setMailBody ( entryControl ) {
 
   htmlBody = htmlBody + "<p>Część druga kontroli: sprawdzanie jakości wykonania</p>";
 
-  for (let i=0; i < entryControl.field(CON_FIELD_ACTION_DOMAIN).length; i++ ) {
-    var actionDomain = entryControl.field(CON_FIELD_ACTION_DOMAIN)[i];
-    htmlBody = htmlBody + "<p>W kontrolowanym obszarze " +  actionDomain + " " +
+
+  actionDomain = entryControl.field(CON_FIELD_ACTION_DOMAIN);
+  htmlBody = htmlBody + "<p>W kontrolowanym obszarze " +  actionDomain + " " +
                           "stwierdzono <b>" + entryControl.field(CON_FILED_CHECKS + actionDomain).join(", ") + "</b><br>" +
                           "Do poprawy są <b>" + entryControl.field(CON_FILED_CHECKS_AREA_NOK + actionDomain).join(", ") + "</b><br>" +
                           "Problemy nie występują na <b>" + entryControl.field(CON_FILED_CHECKS_AREA_OK + actionDomain).join(", ")  + "</b></p>"
-  }
 
   entryControl.set( CON_FIELD_MAILBODY, htmlBody );
 
