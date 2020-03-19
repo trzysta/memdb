@@ -12,20 +12,19 @@ function getRecipients( entryControl ) {
 
 function closeChecksAndSendEmail ( arrayEntryControl, confirm ) {
   if (confirm) {
-
     var newEntryMail = new Object();
     var parentREF = setRef( LIB_CHECKS_SHORT_NAME );
     var htmlBody = htmlMailHeader;
 
     for (let i=0; i < arrayEntryControl.length; i++) {
-      htmlBody = htmlBody + "<HR>" + arrayEntryControl[i].field(CHK_FIELD_HTML_BODY);
+      htmlBody = htmlBody + "<HR>" + arrayEntryControl[i].field(CHK_FIELD_MAILBODY);
       arrayEntryControl[i].set(FIELD_REF_PARTENT, parentREF);
       arrayEntryControl[i].set(FIELD_EDITOR, null);
     }
 
     htmlBody = htmlBody + htmlMailFooter;
 
-    newEntryMail[CHK_FIELD_HTML_BODY]   = htmlBody;
+    newEntryMail[CHK_FIELD_MAILBODY]    = htmlBody;
     newEntryMail[FIELD_REF_PARTENT]     = parentREF;
     newEntryMail[FIELD_REF]             = parentREF;
     newEntryMail[FIELD_IS_PARENT]       = true;

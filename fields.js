@@ -182,7 +182,6 @@ var CHK_FIELD_FREQENCY_VALUES = [ "Codziennie",
                                 "wg potrzeb"];
 var CHK_FIELD_ACTION_LINK       = "Czynności do wykonania wg umowy";
 var CHK_FIELD_ACTION_LINK_ATTR_RESULT = "Wykonanie";
-var CHK_FIELD_MAILBODY          = "mailBody";
 var CHK_FIELD_CONTROL_DATETIME  = "Data i godzina kontroli";
 
 var CHK_FIELD_ACTION_DOMAIN     = "Kontrolowany obszar";
@@ -194,4 +193,4 @@ var CHK_FIELDCHECKS_AREA_NOK    = "Do poprawy - ";
 
 var CHK_FIELD_MAIL_RECIPIENTS   = "";
 var CHK_ACTION_CLOSE_CONFIRM_NAME   = "potwierdzam zamknięcie kontroli i wysłanie raportu";
-var CHK_FIELD_HTML_BODY         = "htmlBody"
+var CHK_FIELD_MAILBODY         = "htmlBody"
