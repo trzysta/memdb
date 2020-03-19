@@ -15,17 +15,17 @@ function updateDisplayName ( entryControl ) {
   var displayName;
 
   if ( entryControl.field(FIELD_IS_PARENT) ) {
+    displayName = VALUE_MAIL + SEP +
+                  entryControl.field( CHK_FIELD_MAIL_DATETIME ) + SEP +
+                  entryControl.field( CHK_FIELD_MAIL_RECIPIENTS ) + SEP;
+  } else {
     displayName = entryControl.field( CHK_FILED_TYPE ) + SEP +
                   entryControl.field( CHK_FIELD_CONTRACT_LINK )[0].field(CON_FIELD_TAG) + SEP +
                   entryControl.field( CHK_FIELD_ACTION_AREA ) + SEP +
                   "(" + VALUE_MAIL + " " + entryControl.field( FIELD_REF_PARTENT ) + ") ";
-  } else {
-    displayName = VALUE_MAIL + SEP +
-                  entryControl.field( HK_FIELD_MAIL_DATETIME ) + SEP +
-                  entryControl.field( HK_FIELD_MAIL_RECIPIENTS ) + SEP;
   }
   entryControl.set(FIELD_DISPLAY_NAME, displayName)
-  
+
 }
 
 // ****************************************************************************
