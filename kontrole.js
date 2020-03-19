@@ -175,11 +175,15 @@ function generateEmailBody ( entryControl ) {
   htmlBody = htmlBody + "<p></p><p><b>Część druga kontroli: sprawdzanie jakości wykonania<br>";
 
   htmlBody = htmlBody + "<b>Wnętrza</b></p>" +
-                      "<span>Okoliczności podczas kontroli: <b>" + entryControl.field("Okoliczności podczas kontroli").join(", ") + "</b><br>" +
-                      "Kontrola polegała na: <b>" + R_LABEL_1 + "</b><br>" +
-                     "Posadzka, zauważone problemy: <b>" + entryControl.field("Posadzka, zauważone problemy").join(", ") + "</b><br><span>" +
-                     "Posadzka, piętra bez uwag, stan dobry: <b>" + entryControl.field("Posadzka: piętra bez uwag, stan dobry").join(", ") + "</b><br>" +
-                     "Posadzka, piętra do poprawy: <b>" + entryControl.field("Posadzka: piętra do poprawy").join(", ") + "</b><p></p>";
+                      "<span>Okoliczności podczas kontroli: <b>" + entryControl.field("Okoliczności podczas kontroli").join(", ") + "</b><br>";
+
+  for (let i=0; i < entryControl.field(CON_FIELD_ACTION_DOMAIN).length; i++ ) {
+    var actionDomain = entryControl.field(CON_FIELD_ACTION_DOMAIN)[i];
+    htmlBody = htmlBody + "<p>W kontrolowanym obszarze " +  actionDomain + " " +
+                          "stwierdzono " + entryControl.field(CON_FILED_CHECKS + actionDomain).join(", ") + "<br>" +
+                          "Do poprawy są " + entryControl.field(CON_FILED_CHECKS_AREA_NOK + actionDomain).join(", ") + "<br>" +
+                          "Problemy nie występują na " + entryControl.field(CON_FILED_CHECKS_AREA_OK + actionDomain).join(", ")  + "</p>"
+  }
 
   entryControl.set( CON_FIELD_MAILBODY, htmlBody );
 

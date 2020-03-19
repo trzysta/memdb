@@ -170,6 +170,10 @@ var CON_FIELD_CONTROL_DATETIME  = "Data i godzina kontroli";
 var CON_FIELD_ACTION_DOMAIN     = "Kontrolowany obszar";
 var CON_FIELD_CLOSED            = "Kontrola zakończona, zamknij możliwość zmiany i wyślij e-mail z raportem";
 var CON_FILED_CHECKS            = "Zauważone problemy - ";
+var CON_FILED_CHECKS_AREA_OK    = "Brak uwag do ";
+var CON_FILED_CHECKS_AREA_NOK   = "Zaznaczone uwagi występują ";
+
+
 var R_LABEL_1 = "Oceń stan posadzki, oceń płytki fugi i cokoły. Sprawdź spoczniki (półpiętra), podstopnice i boczki schodów. Patrz także na posadzkę pod światło.";
 var R_LABEL_2 = "Kosmetyka, oceń usunięcie kurzu, śladów po palcach na szybach, czystość elementów wyposażenia klatki schodowej (szachty itp), kurz na włącznikach, elementach wystających";
 var R_LABEL_3 = "Winda, oceń prace wykonane w środku windy a także stan drzwi i portali na piętrach.";
