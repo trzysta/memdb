@@ -82,7 +82,6 @@ function getActionsForControl( entryContract, entryControl ) {
 
   for (let i=0; i < allEntriesAction.length; i++) {
     entryAction = allEntriesAction[i];
-    tmp = tmp + "\n" + entryAction.name;
 
     if (entryAction.field(ACT_FIELD_DATES).length > 0) { actionDates = entryAction.field(ACT_FIELD_DATES).split(",") };
 
