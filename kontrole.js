@@ -152,8 +152,8 @@ function setMailBody ( entryControl ) {
   htmlBody = "<hr>" +
   "<p>Data i godzina kontroli:<b> "   + moment(entryControl.field(CON_FIELD_CONTROL_DATETIME)).format("YYYY-MM-DD hh:mm")  + "</b><br>"  +
   "Kontrolowane osiedle:<b> "         + entryControl.field(CON_FIELD_CONTRACT_LINK)[0].name + "</b><br>"  +
-  "Kontrolowany obsza:<b> "           + entryControl.field(CON_FIELD_ACTION_DOMAIN).join(", ") + "</b><br>"  +
-  "Skontolowany budynek i klatka<b> " + entryControl.field(CON_FIELD_BUILDING) + "</b></p>";
+  "Kontrolowany obszar:<b> "           + entryControl.field(CON_FIELD_ACTION_DOMAIN) + "</b> "  +
+  "<b>(" + entryControl.field(CON_FIELD_BUILDING) + ")</b></p>";
 
   for (let i = 0; i < entryControl.field(CON_FIELD_ACTION_LINK).length; i++ ) {
     htmlBody = htmlBody + "<span>" + (i+1) + " czynność: <b>" +  entryControl.field(CON_FIELD_ACTION_LINK)[i].field(ACT_FIELD_ACTION) + "</b>" +
