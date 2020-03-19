@@ -64,7 +64,11 @@ function getActionsForControl( entryContract, entryControl ) {
   // wpisywanie czynności do skontrolowania w bazie kontrole
   var entryAction;
   var actionDates = new Array();
-  var actionChecks = new Array();
+  var actionChecksK = new Array();
+  var actionChecksG = new Array();
+  var actionChecksT = new Array();
+  var actionChecksZ = new Array();
+  var actionChecksB = new Array();
   var allEntriesActionUnsorted = libActivities.linksTo( entryContract );
   var allEntriesAction = new Array( allEntriesActionUnsorted.length );
 
@@ -85,19 +89,55 @@ function getActionsForControl( entryContract, entryControl ) {
     if ( entryControl.field(CON_FIELD_ACTION_DOMAIN).indexOf( entryAction.field(ACT_FIELD_ACTION_DOMAIN)) >= 0 ) {
        if ( actionDates.length <= 0 ) {                           // nie ma wpisanej daty oznacza że to czynność codzienna
           entryControl.link(CON_FIELD_ACTION_LINK, entryAction);
-          entryControl.set(CON_FILED_CHECKS + entryAction.field(ACT_FIELD_ACTION_DOMAIN), entryAction.field(ACT_FIELD_ACTION_CHECKS).split(BR) );
+
+          switch (entryAction.field(ACT_FIELD_ACTION_DOMAIN)) {
+            case ACT_FIELD_ACTION_DOMAIN_VALUES[0]:
+              appendToArray(actionChecksK, entryAction.field(ACT_FIELD_ACTION_CHECKS).split(BR));
+              break;
+            case ACT_FIELD_ACTION_DOMAIN_VALUES[1]:
+              appendToArray(actionChecksG, entryAction.field(ACT_FIELD_ACTION_CHECKS).split(BR));
+              break;
+            case ACT_FIELD_ACTION_DOMAIN_VALUES[2]:
+              appendToArray(actionChecksT, entryAction.field(ACT_FIELD_ACTION_CHECKS).split(BR));
+              break;
+            case ACT_FIELD_ACTION_DOMAIN_VALUES[3]:
+              appendToArray(actionChecksZ, entryAction.field(ACT_FIELD_ACTION_CHECKS).split(BR));
+              break;
+            default:
+              appendToArray(actionChecksB, entryAction.field(ACT_FIELD_ACTION_CHECKS).split(BR));
+          }
        } else {                                                   // jest wpisana data zatem sprawdzam czy data jest z tego miesiąca
           for (let j=0; j < actionDates.length; j++ ) {
             if (moment(actionDates[j]).isBetween (dateStart,dateEnd)) {
                entryControl.link(CON_FIELD_ACTION_LINK, entryAction);
-               entryControl.set(CON_FILED_CHECKS + entryAction.field(ACT_FIELD_ACTION_DOMAIN), entryAction.field(ACT_FIELD_ACTION_CHECKS).split(BR) );
+               switch (entryAction.field(ACT_FIELD_ACTION_DOMAIN)) {
+                 case ACT_FIELD_ACTION_DOMAIN_VALUES[0]:
+                   appendToArray(actionChecksK, entryAction.field(ACT_FIELD_ACTION_CHECKS).split(BR));
+                   break;
+                 case ACT_FIELD_ACTION_DOMAIN_VALUES[1]:
+                   appendToArray(actionChecksG, entryAction.field(ACT_FIELD_ACTION_CHECKS).split(BR));
+                   break;
+                 case ACT_FIELD_ACTION_DOMAIN_VALUES[2]:
+                   appendToArray(actionChecksT, entryAction.field(ACT_FIELD_ACTION_CHECKS).split(BR));
+                   break;
+                 case ACT_FIELD_ACTION_DOMAIN_VALUES[3]:
+                   appendToArray(actionChecksZ, entryAction.field(ACT_FIELD_ACTION_CHECKS).split(BR));
+                   break;
+                 default:
+                   appendToArray(actionChecksB, entryAction.field(ACT_FIELD_ACTION_CHECKS).split(BR));
+               }
             }
           }
        }
     }
   };
+
   entryControl.set(FIELD_IS_NEW, false);
-  entryControl.set("tmp", tmp);
+  entryControl.set(CON_FILED_CHECKS + ACT_FIELD_ACTION_DOMAIN_VALUES[0], actionChecksK.unique() );
+  entryControl.set(CON_FILED_CHECKS + ACT_FIELD_ACTION_DOMAIN_VALUES[1], actionChecksG.unique() );
+  entryControl.set(CON_FILED_CHECKS + ACT_FIELD_ACTION_DOMAIN_VALUES[2], actionChecksT.unique() );
+  entryControl.set(CON_FILED_CHECKS + ACT_FIELD_ACTION_DOMAIN_VALUES[3], actionChecksZ.unique() );
+  entryControl.set(CON_FILED_CHECKS + ACT_FIELD_ACTION_DOMAIN_VALUES[4], actionChecksB.unique() );
   entryControl.show();
 }
 
@@ -116,7 +156,7 @@ function generateEmailBody ( entryControl ) {
 
   "<p>Data i godzina kontroli:<b> "   + moment(entryControl.field(CON_FIELD_CONTROL_DATETIME)).format("YYYY-MM-DD hh:mm")  + "</b><br>"  +
   "Kontrolowane osiedle:<b> "         + entryControl.field(CON_FIELD_CONTRACT_LINK)[0].name + "</b><br>"  +
-  "Kontrolowany obsza:<b> "            + entryControl.field(CON_FIELD_ACTION_DOMAIN).join(", ") + "</b><br>"  +
+  "Kontrolowany obsza:<b> "           + entryControl.field(CON_FIELD_ACTION_DOMAIN).join(", ") + "</b><br>"  +
   "Skontolowany budynek i klatka<b> " + entryControl.field(CON_FIELD_BUILDING) + "</b></p>";
 
   htmlBody = htmlBody + "<p>Kontrola składa się z 2 części. Pierwsza część to kontrola wykonania czynności z umowy, sprawdzane są czynności które wg umowy powinny być wykonane częściej niż raz w tygodniu, a także czynności rzadziej wykonywane niż raz w tygodniu które zostały zaplanowane między początkiem miesiąca a datą bieżącą. <br> Drugą częścią kontroli jest sprawdzenie stanu czystości klatki.</p>" +

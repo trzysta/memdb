@@ -1,15 +1,12 @@
 
 // zmienne
 var arrMonths_pl  = ["styczeń", "luty", "marzec", "kwiecien", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "listopad", "grudzień"];
-var arrEditors    = ["MalgorzataG", "ElzbietaZ", "trzystaIZABELA", "MarceliM"];
+var arrEditors    = ["MalgorzataG", "ElzbietaZ", "trzystaIZABELA", "MarceliM", "trzysta"];
 var arrManagers   = ["trzysta"];
-var arrNames      = ["Małgorzata Grabowska", "Elżbieta Zdziech", "Izabela Skowrońska", "Marceli Matynia"];
+var arrNames      = ["Małgorzata Grabowska", "Elżbieta Zdziech", "Izabela Skowrońska", "Marceli Matynia", "Administrator"];
 var withdrawalMaker = "Marceli Matynia";
 const HR = "--------------------------------------------------";
 const BR = "\n";
-
-
-
 
 
 // wspólne
