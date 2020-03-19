@@ -19,20 +19,19 @@ var cssP                  = "";
 var cssLI                 = "";
 
 // wspólne
-var FIELD_EDITOR      = "Editor";
-var FIELD_IS_NEW      = "new";
-var FIELD_REF         = "REF";
-var FIELD_REF_PARTENT = "parentREF";
-var FIELD_IS_PARENT   = "isParent";
-var FIELD_IS_HIDDEN   = "Ukryte";
-var FIELD_CAN_ACCESS  = "canAccess";
-var MSG_UPDATING      = "uaktualniam";
-
-var MSG_COPYING       = "kopiuję";
-var MSG_ENTRIES       = "wpisów";
-var MSG_FINISHED      = "Zakończono!";
-
-var VALUE_MAIL        = "E-mail";
+var FIELD_EDITOR        = "Editor";
+var FIELD_IS_NEW        = "new";
+var FIELD_REF           = "REF";
+var FIELD_REF_PARTENT   = "parentREF";
+var FIELD_IS_PARENT     = "isParent";
+var FIELD_IS_HIDDEN     = "Ukryte";
+var FIELD_CAN_ACCESS    = "canAccess";
+var FIELD_DISPLAY_NAME  = "displayName";
+var MSG_UPDATING        = "uaktualniam";
+var MSG_COPYING         = "kopiuję";
+var MSG_ENTRIES         = "wpisów";
+var MSG_FINISHED        = "Zakończono!";
+var VALUE_MAIL          = "E-mail";
 
 var VALUE_DAYNUMBER_MONDAY    = 1;
 var VALUE_DAYNUMBER_TUESDAY   = 2;
@@ -194,4 +193,4 @@ var CHK_FIELDCHECKS             = "Zauważone problemy - ";
 var CHK_FIELDCHECKS_AREA_OK     = "Brak uwag - ";
 var CHK_FIELDCHECKS_AREA_NOK    = "Do poprawy - ";
 
-var CHK_FIELD_MAIL_RECIPIENTS   = "";     
+var CHK_FIELD_MAIL_RECIPIENTS   = "";
