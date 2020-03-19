@@ -37,7 +37,7 @@ function closePayment() {
         var entPracownik = entryPayout.field(SAL_FIELD_EMPLOYEE_LINK)[0];
         var entrySpend = new Object;
 
-        entrySpend = libWydatki.create(entrySpend);
+        entrySpend = libSpendings.create(entrySpend);
         entryPayout.link(SAL_FIELD_SPEND_LINK, entrySpend );
         dtTransfer = entryPayout.field(SAL_FIELD_WITHDRAWAL_DATE);
 
@@ -53,7 +53,7 @@ function closePayment() {
 
         // dodawanie budzetu do rozliczenia
         var allBugetsByOsiedle = new Array;
-        allBugetsByOsiedle = libBudzet.linksTo( entryPayout.field(B_FIELD_CONTRACT_LINK)[0] );
+        allBugetsByOsiedle = libBudget.linksTo( entryPayout.field(B_FIELD_CONTRACT_LINK)[0] );
 
         for (i=0; i < allBugetsByOsiedle.length; i++) {
           var entBudget = allBugetsByOsiedle[i];
@@ -75,7 +75,7 @@ function closePayment() {
     if ( (entryPayout.field(SAL_FIELD_CASH_DATE) != null) ) {
 
       var entrySpend = new Object;
-      entrySpend = libWydatki.create(entrySpend);
+      entrySpend = libSpendings.create(entrySpend);
       entryPayout.link(SAL_FIELD_SPEND_LINK, entrySpend );
       entrySpend.set(SPE_FIELD_AMOUNT, (0 - entryPayout.field(SAL_FIELD_CASH_AMOUNT)));
       entrySpend.set(SPE_FIELD_DATE, entryPayout.field(SAL_FIELD_CASH_DATE));
@@ -89,7 +89,7 @@ function closePayment() {
 
       // dodawanie budzetu do rozliczenia
       var allBugetsByOsiedle = new Array;
-      allBugetsByOsiedle = libBudzet.linksTo( entryPayout.field(B_FIELD_CONTRACT_LINK)[0] );
+      allBugetsByOsiedle = libBudget.linksTo( entryPayout.field(B_FIELD_CONTRACT_LINK)[0] );
 
       for (i=0; i < allBugetsByOsiedle.length; i++) {
         var entBudget = allBugetsByOsiedle[i];
@@ -144,7 +144,7 @@ function findAdvancePayment( entryPayout, show ) {
        (entryPayout.field(SAL_FIELD_CLOSED) != SAL_FIELD_CLOSED_VALUE_YES) ) {
 
      message( entryPayout.field(SAL_FIELD_EMPLOYEE_LINK)[0].field(E_FIELD_FULLNAME) );
-     var entriesSpend = libWydatki.linksTo( entryPayout.field(SAL_FIELD_EMPLOYEE_LINK)[0] );
+     var entriesSpend = libSpendings.linksTo( entryPayout.field(SAL_FIELD_EMPLOYEE_LINK)[0] );
      for (i=0; i < entriesSpend.length; i++ ) {
         var entrySpend = entriesSpend[i];
         var momEntry = moment( entrySpend.field(SPE_FIELD_DATE) );
@@ -268,7 +268,7 @@ function copyToMonth( selected, month ) {
     entryTarget[SAL_FIELD_PAYER]          = entrySource.field(SAL_FIELD_PAYER);
     entryTarget[SAL_FIELD_CLOSED]         = SAL_FIELD_CLOSED_VALUE_NO;
 
-    entryTarget = libWyplaty.create( entryTarget );
+    entryTarget = libSalaries.create( entryTarget );
     findAdvancePayment( entryTarget, false );
   }
 

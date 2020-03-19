@@ -9,15 +9,25 @@ const HR = "--------------------------------------------------";
 const BR = "\n";
 
 
+var htmlMailHeader        = "<p>To jest mail wysłany automatycznie. W przypadku wysyłania odpowiedzi prosimy o utrzymanie w temacie numeru referencyjnego <b>REF</b></p>";
+var htmlMailBody_CONTROL  = "<p>";
+var htmlSubject_CONTROL   = "Raport z kontroli";
+
+var htmlMailFooter        = "<p><p>";
+var htmlMailSignature     = "";
+var cssP                  = "";
+var cssLI                 = "";
+
 // wspólne
-var FIELD_EDITOR = "Editor";
-var FIELD_IS_NEW = "Nowy";
-var FIELD_IS_HIDDEN = "Ukryte";
-var FIELD_CAN_ACCESS = "canAccess";
-var MSG_UPDATING = "uaktualniam";
-var MSG_COPYING = "kopiuję";
-var MSG_ENTRIES = "wpisów";
-var MSG_FINISHED = "Zakończono!";
+var FIELD_EDITOR      = "Editor";
+var FIELD_IS_NEW      = "new";
+var FIELD_REF         = "Nr REF"
+var FIELD_IS_HIDDEN   = "Ukryte";
+var FIELD_CAN_ACCESS  = "canAccess";
+var MSG_UPDATING      = "uaktualniam";
+var MSG_COPYING       = "kopiuję";
+var MSG_ENTRIES       = "wpisów";
+var MSG_FINISHED      = "Zakończono!";
 
 
 var VALUE_DAYNUMBER_MONDAY    = 1;

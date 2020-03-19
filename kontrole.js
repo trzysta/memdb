@@ -145,8 +145,7 @@ function getActionsForControl( entryContract, entryControl ) {
 // ****************************************************************************
 
 
-
-function generateEmailBody ( entryControl ) {
+function setMailHeader ( entryControl ) {
 
   var htmlBody = "";
 

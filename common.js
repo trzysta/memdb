@@ -3,6 +3,45 @@
   aplikację utworzoną dla 300 Sp. z o.o.
 */
 
+function setRef( base, entryTarget ) {
+
+  var tmpLib;
+  switch (base) {
+    case LIB_SALARIES_SHORT_NAME:
+      tmpLib = libSalaries;
+      break;
+    case LIB_SPANDINGS_SHORT_NAME:
+      tmpLib = libSpendings;
+      break;
+    case LIB_BUDGETS_SHORT_NAME:
+      tmpLib = libBudget;
+      break;
+    case LIB_CONTRACTS_SHORT_NAME:
+      tmpLib = libContracts;
+      break;
+    case LIB_CHECKS_SHORT_NAME:
+      tmpLib = libChecks;
+      break;
+    case LIB_ACTIVITIES_SHORT_NAME:
+      tmpLib = libActivities;
+      break;
+    default:
+      tmpLib = lib();
+  }
+
+  var newRef = base + Math.floor(10000 + (Math.random() * 90000));
+  result = tmpLib.find( newRef );
+
+  while ( result.length != 0 ) {
+     newRef = base + Math.floor(10000 + (Math.random() * 90000));
+     result = tmpLib.find( newRef );
+  };
+  entryTarget.set(FIELD_REF, newRef);
+
+}
+
+
+
 
 
 // *^*^*^*  sprawdza czy jest Edytorem
