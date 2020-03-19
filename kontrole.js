@@ -19,7 +19,7 @@ function closeChecksAndSendEmail ( arrayEntryControl, confirm ) {
     for (let i=0; i < arrayEntryControl.length; i++) {
       htmlBody = htmlBody + "<HR>" + arrayEntryControl[i].field(CHK_FIELD_MAILBODY);
       arrayEntryControl[i].set(FIELD_REF_PARTENT, parentREF);
-      arrayEntryControl[i].set(FIELD_EDITOR, null);
+      arrayEntryControl[i].set(FIELD_EDITOR, "");
     }
 
     htmlBody = htmlBody + htmlMailFooter;
