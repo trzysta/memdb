@@ -64,9 +64,9 @@ function getActionsForControl( entryContract, entryControl ) {
   // wpisywanie czynności do skontrolowania w bazie kontrole
   var entryAction;
   var actionDates = new Array();
+  var actionChecks = new Array();
   var allEntriesActionUnsorted = libActivities.linksTo( entryContract );
   var allEntriesAction = new Array( allEntriesActionUnsorted.length );
-  var tmp = "start";
 
   var dateStart = moment().startOf('month');
   var dateEnd = moment();     // sprawdzanie czynności od początku miesiąca do daty dziś
@@ -85,10 +85,12 @@ function getActionsForControl( entryContract, entryControl ) {
     if ( entryControl.field(CON_FIELD_ACTION_DOMAIN).indexOf( entryAction.field(ACT_FIELD_ACTION_DOMAIN)) >= 0 ) {
        if ( actionDates.length <= 0 ) {                           // nie ma wpisanej daty oznacza że to czynność codzienna
           entryControl.link(CON_FIELD_ACTION_LINK, entryAction);
+          entryControl.set(CON_FILED_CHECKS + entryAction.field(ACT_FIELD_ACTION_DOMAIN), entryAction.field(ACT_FIELD_ACTION_CHECKS).split(BR) );
        } else {                                                   // jest wpisana data zatem sprawdzam czy data jest z tego miesiąca
           for (let j=0; j < actionDates.length; j++ ) {
             if (moment(actionDates[j]).isBetween (dateStart,dateEnd)) {
                entryControl.link(CON_FIELD_ACTION_LINK, entryAction);
+               entryControl.set(CON_FILED_CHECKS + entryAction.field(ACT_FIELD_ACTION_DOMAIN), entryAction.field(ACT_FIELD_ACTION_CHECKS).split(BR) );
             }
           }
        }
