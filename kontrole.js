@@ -145,11 +145,11 @@ function getActionsForControl( entryContract, entryControl ) {
 // ****************************************************************************
 
 
-function setMailHeader ( entryControl ) {
+function setMailBody ( entryControl ) {
 
   var htmlBody;
 
-  htmlBody = "" +
+  htmlBody = "<hr>" +
   "<p>Data i godzina kontroli:<b> "   + moment(entryControl.field(CON_FIELD_CONTROL_DATETIME)).format("YYYY-MM-DD hh:mm")  + "</b><br>"  +
   "Kontrolowane osiedle:<b> "         + entryControl.field(CON_FIELD_CONTRACT_LINK)[0].name + "</b><br>"  +
   "Kontrolowany obsza:<b> "           + entryControl.field(CON_FIELD_ACTION_DOMAIN).join(", ") + "</b><br>"  +
