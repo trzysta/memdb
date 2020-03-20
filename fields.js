@@ -31,7 +31,7 @@ var MSG_UPDATING        = "uaktualniam";
 var MSG_COPYING         = "kopiuję";
 var MSG_ENTRIES         = "wpisów";
 var MSG_FINISHED        = "Zakończono!";
-var VALUE_MAIL          = "E-mail";
+var VALUE_MAIL          = "e-mail";
 
 var VALUE_DAYNUMBER_MONDAY    = 1;
 var VALUE_DAYNUMBER_TUESDAY   = 2;
