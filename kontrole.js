@@ -212,31 +212,33 @@ function setMailBody ( entryControl ) {
 
   var htmlBody;
   var actionDomain
+  if ( !entryControl.field(FIELD_IS_PARENT) ) {
 
-  htmlBody = "<hr>" +
-  "<p>Data i godzina kontroli:<b> "   + moment(entryControl.field(CHK_FIELD_CONTROL_DATETIME)).format("YYYY-MM-DD hh:mm")  + "</b><br>"  +
-  "Kontrolowane osiedle:<b> "         + entryControl.field(CHK_FIELD_CONTRACT_LINK)[0].name + "</b><br>"  +
-  "Kontrolowany obszar:<b> "           + entryControl.field(CHK_FIELD_ACTION_DOMAIN) + "</b> "  +
-  "<b>(" + entryControl.field(CHK_FIELD_ACTION_AREA) + ")</b></p>";
+    // jeśli mail to trzeba to pominąć,
+    htmlBody = "<hr>" +
+    "<p>Data i godzina kontroli:<b> "   + moment(entryControl.field(CHK_FIELD_CONTROL_DATETIME)).format("YYYY-MM-DD hh:mm")  + "</b><br>"  +
+    "Kontrolowane osiedle:<b> "         + entryControl.field(CHK_FIELD_CONTRACT_LINK)[0].name + "</b><br>"  +
+    "Kontrolowany obszar:<b> "           + entryControl.field(CHK_FIELD_ACTION_DOMAIN) + "</b> "  +
+    "<b>(" + entryControl.field(CHK_FIELD_ACTION_AREA) + ")</b></p>";
 
-  for (let i = 0; i < entryControl.field(CHK_FIELD_ACTION_LINK).length; i++ ) {
-    htmlBody = htmlBody + "<span>" + (i+1) + " czynność: <b>" +  entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_ACTION) + "</b>" +
-                    " obszar <b>" + entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_ACTION_DOMAIN) + "</b>" +
-                    " wykonywana " + entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_FREQUENCY) + "" +
-                    " zaplanowana na " + entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_WEEKDAYS).join(", ") +
-                                         entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_DATES) +
-                    " <b>" + entryControl.field(CHK_FIELD_ACTION_LINK)[i].attr(CHK_FIELD_ACTION_LINK_ATTR_RESULT) + "</b></span><br>";
-  };
+    for (let i = 0; i < entryControl.field(CHK_FIELD_ACTION_LINK).length; i++ ) {
+      htmlBody = htmlBody + "<span>" + (i+1) + " czynność: <b>" +  entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_ACTION) + "</b>" +
+                      " obszar <b>" + entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_ACTION_DOMAIN) + "</b>" +
+                      " wykonywana " + entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_FREQUENCY) + "" +
+                      " zaplanowana na " + entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_WEEKDAYS).join(", ") +
+                                           entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_DATES) +
+                      " <b>" + entryControl.field(CHK_FIELD_ACTION_LINK)[i].attr(CHK_FIELD_ACTION_LINK_ATTR_RESULT) + "</b></span><br>";
+    };
 
-  htmlBody = htmlBody + "<p>Część druga kontroli: sprawdzanie jakości wykonania</p>";
+    htmlBody = htmlBody + "<p>Część druga kontroli: sprawdzanie jakości wykonania</p>";
 
 
-  actionDomain = entryControl.field(CHK_FIELD_ACTION_DOMAIN);
-  htmlBody = htmlBody + "<p>W kontrolowanym obszarze " +  actionDomain + " " +
-                          "stwierdzono <b>" + entryControl.field(CHK_FIELDCHECKS + actionDomain).join(", ") + "</b><br>" +
-                          "Do poprawy są <b>" + entryControl.field(CHK_FIELDCHECKS_AREA_NOK + actionDomain).join(", ") + "</b><br>" +
-                          "Problemy nie występują na <b>" + entryControl.field(CHK_FIELDCHECKS_AREA_OK + actionDomain).join(", ")  + "</b></p>"
+    actionDomain = entryControl.field(CHK_FIELD_ACTION_DOMAIN);
+    htmlBody = htmlBody + "<p>W kontrolowanym obszarze " +  actionDomain + " " +
+                            "stwierdzono <b>" + entryControl.field(CHK_FIELDCHECKS + actionDomain).join(", ") + "</b><br>" +
+                            "Do poprawy są <b>" + entryControl.field(CHK_FIELDCHECKS_AREA_NOK + actionDomain).join(", ") + "</b><br>" +
+                            "Problemy nie występują na <b>" + entryControl.field(CHK_FIELDCHECKS_AREA_OK + actionDomain).join(", ")  + "</b></p>"
 
-  entryControl.set( CHK_FIELD_MAILBODY, htmlBody );
-
+    entryControl.set( CHK_FIELD_MAILBODY, htmlBody );
+  }
 }
