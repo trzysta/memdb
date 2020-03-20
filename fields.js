@@ -195,4 +195,5 @@ var CHK_ACTION_CLOSE_CONFIRM_NAME   = "potwierdzam zamknięcie kontroli i wysła
 var CHK_FIELD_MAILBODY         = "htmlBody";
 var CHK_FIELD_GROUPBY           = "groupBy";
 var CHK_FIELD_MAIL_DATETIME     = "Data wysłania maila z raportem";
-var CHK_FIELD_CHEKCS_RAPORTED = "Kontrole wysłane w mailu";
+var CHK_FIELD_CHEKCS_RAPORTED_LINK = "Kontrole wysłane w mailu";
+var CHK_FIELD_CHEKCS_MAIL_LINK = "Mail z raportem";

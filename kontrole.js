@@ -16,7 +16,7 @@ function closeChecksAndSendEmail ( arrayEntryControl, confirm ) {
 
     for (let i=0; i < arrayEntryControl.length; i++) {
 
-      htmlBody = htmlBody + BR2 + HR + arrayEntryControl[i].field(CHK_FIELD_MAILBODY);
+      htmlBody = htmlBody + BR + arrayEntryControl[i].field(CHK_FIELD_MAILBODY);
 
       tag = arrayEntryControl[0].field(CHK_FIELD_CONTRACT_LINK)[0].field(CON_FIELD_TAG);
       domain.push( arrayEntryControl[i].field(CHK_FIELD_ACTION_DOMAIN) );
@@ -40,10 +40,13 @@ function closeChecksAndSendEmail ( arrayEntryControl, confirm ) {
     updateDisplayName ( newEntryMail );
 
     for (let i=0; i < arrayEntryControl.length; i++) {
-       arrayEntryControl[i].set(CHK_FIELD_GROUPBY, groupBy)
-       arrayEntryControl[i].set(FIELD_REF_PARTENT, parentREF);
-       arrayEntryControl[i].set(FIELD_EDITOR, "");
-       newEntryMail.link(CHK_FIELD_CHEKCS_RAPORTED, arrayEntryControl[i]);
+       var entryControl = arrayEntryControl[i];
+       entryControl.set(CHK_FIELD_GROUPBY, groupBy)
+       entryControl.set(FIELD_REF_PARTENT, parentREF);
+       entryControl.set(FIELD_EDITOR, "");
+       updateDisplayName ( entryControl );
+       newEntryMail.link(CHK_FIELD_CHEKCS_RAPORTED_LINK, entryControl );
+       entryControl.link(CHK_FIELD_CHEKCS_MAIL_LINK, newEntryMail );
     };
   }
 }
