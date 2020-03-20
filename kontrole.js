@@ -15,15 +15,25 @@ function closeChecksAndSendEmail ( arrayEntryControl, confirm ) {
     var newEntryMail = new Object();
     var parentREF = setRef( LIB_CHECKS_SHORT_NAME );
     var htmlBody = htmlMailHeader;
+    var groupBy = moment().format("YYYY-MM-DD");
+    var tag, domain;
 
     for (let i=0; i < arrayEntryControl.length; i++) {
       htmlBody = htmlBody + "<HR>" + arrayEntryControl[i].field(CHK_FIELD_MAILBODY);
-      arrayEntryControl[i].set(FIELD_REF_PARTENT, parentREF);
-      arrayEntryControl[i].set(FIELD_EDITOR, "");
-    }
+      tag = arrayEntryControl[0].field(CHK_FIELD_CONTRACT_LINK)[0].field(CON_FIELD_TAG);
+      domain = domain + SEP + arrayEntryControl[i].field(CHK_FIELD_ACTION_DOMAIN);
+    };
+
+    groupBy = groupBy + SEP + tag + SEP + domain;
+
+    for (let i=0; i < arrayEntryControl.length; i++) {
+       arrayEntryControl[i].set(CHK_FIELD_GROUPBY, groupBy)
+       arrayEntryControl[i].set(FIELD_REF_PARTENT, parentREF);
+       arrayEntryControl[i].set(FIELD_EDITOR, "");
+    };
 
     htmlBody = htmlBody + htmlMailFooter;
-
+    newEntryMail[CHK_FIELD_GROUPBY]     = groupBy;
     newEntryMail[CHK_FIELD_MAILBODY]    = htmlBody;
     newEntryMail[FIELD_REF_PARTENT]     = parentREF;
     newEntryMail[FIELD_REF]             = parentREF;
