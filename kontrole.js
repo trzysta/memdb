@@ -58,7 +58,7 @@ function updateDisplayName ( entryControl ) {
 
   if ( entryControl.field(FIELD_IS_PARENT) ) {
     displayName = VALUE_MAIL + SEP +
-                  entryControl.field( CHK_FIELD_MAIL_DATETIME ) + SEP +
+                  moment( entryControl.field( CHK_FIELD_MAIL_DATETIME )).format("DD.MM.YYYY hh:mm") + SEP +
                   entryControl.field( CHK_FIELD_REPORT_RECIPIENTS ) + SEP;
   } else {
     displayName = entryControl.field( CHK_FIELD_CONTRACT_LINK )[0].field(CON_FIELD_TAG) + SEP +
