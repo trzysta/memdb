@@ -15,7 +15,9 @@ function closeChecksAndSendEmail ( arrayEntryControl, confirm ) {
     var domain = new Array();
 
     for (let i=0; i < arrayEntryControl.length; i++) {
+
       htmlBody = htmlBody + BR2 + HR + arrayEntryControl[i].field(CHK_FIELD_MAILBODY);
+
       tag = arrayEntryControl[0].field(CHK_FIELD_CONTRACT_LINK)[0].field(CON_FIELD_TAG);
       domain.push( arrayEntryControl[i].field(CHK_FIELD_ACTION_DOMAIN) );
       recipients = arrayEntryControl[i].field(CHK_FIELD_CONTRACT_LINK)[0].field(CON_FIELD_RAPORT_RECIPIENT);
@@ -60,7 +62,7 @@ function updateDisplayName ( entryControl ) {
   var displayName;
 
   if ( entryControl.field(FIELD_IS_PARENT) ) {
-    displayName = VALUE_MAIL + entryControl.field( FIELD_REF_PARTENT ) + SEP +
+    displayName = VALUE_MAIL + " " + entryControl.field( FIELD_REF_PARTENT ) + SEP +
                   moment( entryControl.field( CHK_FIELD_MAIL_DATETIME )).format("DD.MM.YYYY hh:mm") + SEP +
                   entryControl.field( CHK_FIELD_REPORT_RECIPIENTS ) + SEP;
   } else {
@@ -226,12 +228,12 @@ function setMailBody ( entryControl ) {
     "(" + entryControl.field(CHK_FIELD_ACTION_AREA) + ")" + BR + BR;
 
     for (let i = 0; i < entryControl.field(CHK_FIELD_ACTION_LINK).length; i++ ) {
-      htmlBody = htmlBody + (i+1) + ") czynność: " +  entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_ACTION) +
-                      ", obszar " + entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_ACTION_DOMAIN) +
-                      ", wykonywana " + entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_FREQUENCY) +
-                      ", zaplanowana na " + entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_WEEKDAYS).join(", ") +
-                                           entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_DATES) +
-                      " " + entryControl.field(CHK_FIELD_ACTION_LINK)[i].attr(CHK_FIELD_ACTION_LINK_ATTR_RESULT) + BR;
+      htmlBody = htmlBody + (i+1) + ") czynność: " + + String.toLowerCase( entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_ACTION) ) +
+                      ", obszar " + String.toLowerCase( entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_ACTION_DOMAIN) ) +
+                      ", wykonywana " + String.toLowerCase( entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_FREQUENCY) ) +
+                      ", zaplanowana na " + String.toLowerCase( entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_WEEKDAYS).join(", ") ) +
+                                          + String.toLowerCase( entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_DATES) ) +
+                      " " + String.toLowerCase( entryControl.field(CHK_FIELD_ACTION_LINK)[i].attr(CHK_FIELD_ACTION_LINK_ATTR_RESULT) ) + BR;
     };
 
     htmlBody = htmlBody + BR2 + "Część druga kontroli: sprawdzanie jakości wykonania" + BR;
@@ -240,8 +242,8 @@ function setMailBody ( entryControl ) {
     actionDomain = entryControl.field(CHK_FIELD_ACTION_DOMAIN);
     htmlBody = htmlBody + "W kontrolowanym obszarze " +  actionDomain +
                             " stwierdzono " + entryControl.field(CHK_FIELDCHECKS + actionDomain).join(", ") + BR +
-                            "Problemy nie występują na " + entryControl.field(CHK_FIELDCHECKS_AREA_OK + actionDomain).join(", ") + BR +
-                            ", do poprawy są " + entryControl.field(CHK_FIELDCHECKS_AREA_NOK + actionDomain).join(", ");
+                            "- w/w niedociągnięcia nie występują: " + entryControl.field(CHK_FIELDCHECKS_AREA_OK + actionDomain).join(", ") + BR +
+                            "- do poprawy są: " + entryControl.field(CHK_FIELDCHECKS_AREA_NOK + actionDomain).join(", ");
 
     entryControl.set( CHK_FIELD_MAILBODY, htmlBody );
   }
