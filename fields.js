@@ -152,6 +152,7 @@ var ACT_FIELD_ACTION_DOMAIN_VALUES  = ["Klatki","Garaż","Teren","Zieleń","Biur
 var ACT_FIELD_ACTION_CHECKS         = "Potencjalne problemy";
 var ACT_FIELD_FREQUENCY             = "Częstotliwość";
 
+
 // ****************************************************************************
 // ~~~ KONTROLE, CHECKS
 // ****************************************************************************
