@@ -64,6 +64,7 @@ function updateDisplayName ( entryControl ) {
     displayName = entryControl.field( CHK_FIELD_CONTRACT_LINK )[0].field(CON_FIELD_TAG) + SEP +
                   entryControl.field( CHK_FIELD_ACTION_DOMAIN ) + SEP +
                   entryControl.field( CHK_FIELD_ACTION_AREA );
+                  
     if ( entryControl.field( FIELD_REF_PARTENT ).length > 0 )  {
                   displayName = displayName + SEP +
                   "(" + VALUE_MAIL + " " + entryControl.field( FIELD_REF_PARTENT ) + ") ";
