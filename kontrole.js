@@ -219,7 +219,7 @@ function setMailBody ( entryControl ) {
   if ( !entryControl.field(FIELD_IS_PARENT) ) {
 
     // jeśli mail to trzeba to pominąć,
-    htmlBody = HR + BR
+    htmlBody = BR + HR + BR +
     "Data i godzina kontroli: "   + moment(entryControl.field(CHK_FIELD_CONTROL_DATETIME)).format("YYYY-MM-DD hh:mm")  + BR +
     "Kontrolowane osiedle: "      + entryControl.field(CHK_FIELD_CONTRACT_LINK)[0].name + ""  +
     "Kontrolowany obszar: "       + entryControl.field(CHK_FIELD_ACTION_DOMAIN) + " "  +
@@ -234,7 +234,7 @@ function setMailBody ( entryControl ) {
                       " " + entryControl.field(CHK_FIELD_ACTION_LINK)[i].attr(CHK_FIELD_ACTION_LINK_ATTR_RESULT) + BR;
     };
 
-    htmlBody = htmlBody + BR + BR + "Część druga kontroli: sprawdzanie jakości wykonania" + BR;
+    htmlBody = htmlBody + 2BR + "Część druga kontroli: sprawdzanie jakości wykonania" + BR;
 
 
     actionDomain = entryControl.field(CHK_FIELD_ACTION_DOMAIN);
