@@ -60,7 +60,7 @@ function updateDisplayName ( entryControl ) {
   var displayName;
 
   if ( entryControl.field(FIELD_IS_PARENT) ) {
-    displayName = VALUE_MAIL + SEP + entryControl.field( FIELD_REF_PARTENT ) + SEP +
+    displayName = VALUE_MAIL + entryControl.field( FIELD_REF_PARTENT ) + SEP +
                   moment( entryControl.field( CHK_FIELD_MAIL_DATETIME )).format("DD.MM.YYYY hh:mm") + SEP +
                   entryControl.field( CHK_FIELD_REPORT_RECIPIENTS ) + SEP;
   } else {
