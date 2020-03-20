@@ -7,7 +7,7 @@ var arrNames      = ["Małgorzata Grabowska", "Elżbieta Zdziech", "Izabela Skow
 var withdrawalMaker = "Marceli Matynia";
 const HR    = "--------------------------------------------------\n";
 const BR    = "\n";
-const 2BR   = "\n\n";
+const BR2   = "\n\n";
 const SEP   = ", ";
 
 var htmlMailHeader        = "To jest mail wysłany automatycznie. W przypadku wysyłania odpowiedzi prosimy o utrzymanie w temacie numeru referencyjnego REF";
