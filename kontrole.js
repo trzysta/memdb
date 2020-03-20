@@ -238,9 +238,8 @@ function setMailBody ( entryControl ) {
 
     htmlBody = htmlBody + BR2 + "Część druga kontroli: sprawdzanie jakości wykonania" + BR;
 
-
     actionDomain = entryControl.field(CHK_FIELD_ACTION_DOMAIN);
-    htmlBody = htmlBody + "W kontrolowanym obszarze " +  actionDomain +
+    htmlBody = htmlBody + "W kontrolowanym obszarze " +  + String.toUpperCase( actionDomain ) +
                             " stwierdzono " + entryControl.field(CHK_FIELDCHECKS + actionDomain).join(", ") + BR +
                             "- w/w niedociągnięcia nie występują: " + entryControl.field(CHK_FIELDCHECKS_AREA_OK + actionDomain).join(", ") + BR +
                             "- do poprawy są: " + entryControl.field(CHK_FIELDCHECKS_AREA_NOK + actionDomain).join(", ");
