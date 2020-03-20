@@ -8,7 +8,7 @@ function closeChecksAndSendEmail ( arrayEntryControl, confirm ) {
     var parentREF = setRef( LIB_CHECKS_SHORT_NAME );
     var htmlBody = htmlMailHeader;
     var groupBy = moment().format("YYYY-MM-DD");
-    var tag, domain, recipients;
+    var tag, recipients;
     var domain = new Array();
 
     for (let i=0; i < arrayEntryControl.length; i++) {
