@@ -115,10 +115,11 @@ var E_FIELD_FULLNAME = "Imie i nazwisko";
 // ****************************************************************************
 // ~~~ BAZA OSIEDLA
 // ****************************************************************************
-//var CHK_FIELD_CONTRACT      = "Osiedle";
-//var CON_FIELD_SHORTNAME     = "Nazwa potoczna";
-var CON_FIELD_TAG         = "Skrót";
-//var CN_FIELD_BUILDINGS     = "Budynki i klatki";
+//var CHK_FIELD_CONTRACT        = "Osiedle";
+//var CON_FIELD_SHORTNAME       = "Nazwa potoczna";
+var CON_FIELD_TAG               = "Skrót";
+var CON_FIELD_RAPORT_RECIPIENT  = "Lista adresów e-mail odbiorców raportu";
+//var CN_FIELD_BUILDINGS        = "Budynki i klatki";
 
 
 
@@ -150,8 +151,6 @@ var ACT_FIELD_ACTION_DOMAIN         = "Obszar";
 var ACT_FIELD_ACTION_DOMAIN_VALUES  = ["Klatki","Garaż","Teren","Zieleń","Biuro"];
 var ACT_FIELD_ACTION_CHECKS         = "Potencjalne problemy";
 var ACT_FIELD_FREQUENCY             = "Częstotliwość";
-
-
 
 // ****************************************************************************
 // ~~~ KONTROLE, CHECKS
@@ -191,7 +190,9 @@ var CHK_FIELDCHECKS             = "Zauważone problemy - ";
 var CHK_FIELDCHECKS_AREA_OK     = "Brak uwag - ";
 var CHK_FIELDCHECKS_AREA_NOK    = "Do poprawy - ";
 
-var CHK_FIELD_MAIL_RECIPIENTS   = "";
+var CHK_FIELD_REPORT_RECIPIENTS   = "Adresy na jakie wysłano raport";
 var CHK_ACTION_CLOSE_CONFIRM_NAME   = "potwierdzam zamknięcie kontroli i wysłanie raportu";
 var CHK_FIELD_MAILBODY         = "htmlBody";
 var CHK_FIELD_GROUPBY           = "groupBy";
+var CHK_FIELD_MAIL_DATETIME     = "Data wysłania maila z raportem";
+var CHK_FIELD_CHEKCS_RAPORTED = "Kontrole wysłane w mailu";
