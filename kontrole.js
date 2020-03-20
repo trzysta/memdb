@@ -30,7 +30,7 @@ function closeChecksAndSendEmail ( arrayEntryControl, confirm ) {
     newEntryMail[CHK_FIELD_REPORT_RECIPIENTS] = recipients;
 
     newEntryMail = libChecks.create(newEntryMail);
-    newEntryMail.set(CHK_FIELD_MAIL_DATETIME, moment().format("DD.MM.YYYY hh:mm"));
+    newEntryMail.set(CHK_FIELD_MAIL_DATETIME, moment().format("DD.MM.YYYY"));
 
     updateDisplayName ( newEntryMail );
 
