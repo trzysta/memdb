@@ -228,9 +228,9 @@ function setMailBody ( entryControl ) {
     "(" + entryControl.field(CHK_FIELD_ACTION_AREA) + ")" + BR + BR;
 
     for (let i = 0; i < entryControl.field(CHK_FIELD_ACTION_LINK).length; i++ ) {
-      htmlBody = htmlBody + (i+1) + ") czynność: " + String.toLowerCase( entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_ACTION) ) +
-                      ", obszar " + String.toLowerCase( entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_ACTION_DOMAIN) ) +
-                      ", wykonywana " + String.toLowerCase( entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_FREQUENCY) ) +
+      htmlBody = htmlBody + (i+1) + ") czynność: " + entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_ACTION) +
+                      ", obszar " + entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_ACTION_DOMAIN) +
+                      ", wykonywana " + entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_FREQUENCY) +
                       ", zaplanowana na " + entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_WEEKDAYS).join(", ") +
                                           + entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_DATES) +
                       " " + String.toLowerCase( entryControl.field(CHK_FIELD_ACTION_LINK)[i].attr(CHK_FIELD_ACTION_LINK_ATTR_RESULT) ) + BR;
@@ -239,7 +239,7 @@ function setMailBody ( entryControl ) {
     htmlBody = htmlBody + BR2 + "Część druga kontroli: sprawdzanie jakości wykonania" + BR;
 
     actionDomain = entryControl.field(CHK_FIELD_ACTION_DOMAIN);
-    htmlBody = htmlBody + "W kontrolowanym obszarze " +  + String.toUpperCase( actionDomain ) +
+    htmlBody = htmlBody + "W kontrolowanym obszarze " + actionDomain +
                             " stwierdzono " + entryControl.field(CHK_FIELDCHECKS + actionDomain).join(", ") + BR +
                             "- w/w niedociągnięcia nie występują: " + entryControl.field(CHK_FIELDCHECKS_AREA_OK + actionDomain).join(", ") + BR +
                             "- do poprawy są: " + entryControl.field(CHK_FIELDCHECKS_AREA_NOK + actionDomain).join(", ");
