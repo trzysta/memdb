@@ -5,11 +5,12 @@ var arrEditors    = ["MalgorzataG", "ElzbietaZ", "trzystaIZABELA", "MarceliM", "
 var arrManagers   = ["trzysta"];
 var arrNames      = ["Małgorzata Grabowska", "Elżbieta Zdziech", "Izabela Skowrońska", "Marceli Matynia", "Administrator"];
 var withdrawalMaker = "Marceli Matynia";
-const HR = "--------------------------------------------------";
-const BR = "\n";
-const SEP = ", ";
+const HR    = "--------------------------------------------------\n";
+const BR    = "\n";
+const 2BR   = "\n\n";
+const SEP   = ", ";
 
-var htmlMailHeader        = "<p>To jest mail wysłany automatycznie. W przypadku wysyłania odpowiedzi prosimy o utrzymanie w temacie numeru referencyjnego <b>REF</b></p>";
+var htmlMailHeader        = "To jest mail wysłany automatycznie. W przypadku wysyłania odpowiedzi prosimy o utrzymanie w temacie numeru referencyjnego REF";
 var htmlMailBody_CONTROL  = "<p>";
 var htmlSubject_CONTROL   = "Raport z kontroli";
 
@@ -41,8 +42,6 @@ var VALUE_DAYNUMBER_FRIDAY    = 5;
 var VALUE_DAYNUMBER_SATURDAY  = 6;
 var VALUE_DAYNUMBER_SUNDAY    = 7;
 var VIEW_SEP = " >>> ";
-
-
 
 // ****************************************************************************
 // ~~~ BAZA WYDATKI

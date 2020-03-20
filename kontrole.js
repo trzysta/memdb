@@ -15,7 +15,7 @@ function closeChecksAndSendEmail ( arrayEntryControl, confirm ) {
     var domain = new Array();
 
     for (let i=0; i < arrayEntryControl.length; i++) {
-      htmlBody = htmlBody + "<HR>" + arrayEntryControl[i].field(CHK_FIELD_MAILBODY);
+      htmlBody = htmlBody + 2BR + HR + arrayEntryControl[i].field(CHK_FIELD_MAILBODY);
       tag = arrayEntryControl[0].field(CHK_FIELD_CONTRACT_LINK)[0].field(CON_FIELD_TAG);
       domain.push( arrayEntryControl[i].field(CHK_FIELD_ACTION_DOMAIN) );
       recipients = arrayEntryControl[i].field(CHK_FIELD_CONTRACT_LINK)[0].field(CON_FIELD_RAPORT_RECIPIENT);
