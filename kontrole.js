@@ -228,11 +228,11 @@ function setMailBody ( entryControl ) {
     "(" + entryControl.field(CHK_FIELD_ACTION_AREA) + ")" + BR + BR;
 
     for (let i = 0; i < entryControl.field(CHK_FIELD_ACTION_LINK).length; i++ ) {
-      htmlBody = htmlBody + (i+1) + ") czynność: " + + String.toLowerCase( entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_ACTION) ) +
+      htmlBody = htmlBody + (i+1) + ") czynność: " + String.toLowerCase( entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_ACTION) ) +
                       ", obszar " + String.toLowerCase( entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_ACTION_DOMAIN) ) +
                       ", wykonywana " + String.toLowerCase( entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_FREQUENCY) ) +
-                      ", zaplanowana na " + String.toLowerCase( entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_WEEKDAYS).join(", ") ) +
-                                          + String.toLowerCase( entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_DATES) ) +
+                      ", zaplanowana na " + entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_WEEKDAYS).join(", ") +
+                                          + entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_DATES) +
                       " " + String.toLowerCase( entryControl.field(CHK_FIELD_ACTION_LINK)[i].attr(CHK_FIELD_ACTION_LINK_ATTR_RESULT) ) + BR;
     };
 
