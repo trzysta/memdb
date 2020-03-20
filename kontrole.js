@@ -4,6 +4,9 @@
 
 function closeChecksAndSendEmail ( arrayEntryControl, confirm ) {
   if (confirm) {
+
+
+    // sprawdzenie czy już nie wysłany mail.
     var newEntryMail = new Object();
     var parentREF = setRef( LIB_CHECKS_SHORT_NAME );
     var htmlBody = htmlMailHeader;
@@ -57,14 +60,14 @@ function updateDisplayName ( entryControl ) {
   var displayName;
 
   if ( entryControl.field(FIELD_IS_PARENT) ) {
-    displayName = VALUE_MAIL + SEP +
+    displayName = VALUE_MAIL + SEP + entryControl.field( FIELD_REF_PARTENT ) + SEP +
                   moment( entryControl.field( CHK_FIELD_MAIL_DATETIME )).format("DD.MM.YYYY hh:mm") + SEP +
                   entryControl.field( CHK_FIELD_REPORT_RECIPIENTS ) + SEP;
   } else {
     displayName = entryControl.field( CHK_FIELD_CONTRACT_LINK )[0].field(CON_FIELD_TAG) + SEP +
                   entryControl.field( CHK_FIELD_ACTION_DOMAIN ) + SEP +
                   entryControl.field( CHK_FIELD_ACTION_AREA );
-                  
+
     if ( entryControl.field( FIELD_REF_PARTENT ).length > 0 )  {
                   displayName = displayName + SEP +
                   "(" + VALUE_MAIL + " " + entryControl.field( FIELD_REF_PARTENT ) + ") ";
@@ -216,29 +219,29 @@ function setMailBody ( entryControl ) {
   if ( !entryControl.field(FIELD_IS_PARENT) ) {
 
     // jeśli mail to trzeba to pominąć,
-    htmlBody = "<hr>" +
-    "<p>Data i godzina kontroli:<b> "   + moment(entryControl.field(CHK_FIELD_CONTROL_DATETIME)).format("YYYY-MM-DD hh:mm")  + "</b><br>"  +
-    "Kontrolowane osiedle:<b> "         + entryControl.field(CHK_FIELD_CONTRACT_LINK)[0].name + "</b><br>"  +
-    "Kontrolowany obszar:<b> "           + entryControl.field(CHK_FIELD_ACTION_DOMAIN) + "</b> "  +
-    "<b>(" + entryControl.field(CHK_FIELD_ACTION_AREA) + ")</b></p>";
+    htmlBody = HR + BR
+    "Data i godzina kontroli: "   + moment(entryControl.field(CHK_FIELD_CONTROL_DATETIME)).format("YYYY-MM-DD hh:mm")  + BR +
+    "Kontrolowane osiedle: "      + entryControl.field(CHK_FIELD_CONTRACT_LINK)[0].name + ""  +
+    "Kontrolowany obszar: "       + entryControl.field(CHK_FIELD_ACTION_DOMAIN) + " "  +
+    "(" + entryControl.field(CHK_FIELD_ACTION_AREA) + ")" + BR + BR;
 
     for (let i = 0; i < entryControl.field(CHK_FIELD_ACTION_LINK).length; i++ ) {
-      htmlBody = htmlBody + "<span>" + (i+1) + " czynność: <b>" +  entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_ACTION) + "</b>" +
-                      " obszar <b>" + entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_ACTION_DOMAIN) + "</b>" +
-                      " wykonywana " + entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_FREQUENCY) + "" +
-                      " zaplanowana na " + entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_WEEKDAYS).join(", ") +
+      htmlBody = htmlBody + (i+1) + ") czynność: " +  entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_ACTION) +
+                      ", obszar " + entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_ACTION_DOMAIN) +
+                      ", wykonywana " + entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_FREQUENCY) +
+                      ", zaplanowana na " + entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_WEEKDAYS).join(", ") +
                                            entryControl.field(CHK_FIELD_ACTION_LINK)[i].field(ACT_FIELD_DATES) +
-                      " <b>" + entryControl.field(CHK_FIELD_ACTION_LINK)[i].attr(CHK_FIELD_ACTION_LINK_ATTR_RESULT) + "</b></span><br>";
+                      " " + entryControl.field(CHK_FIELD_ACTION_LINK)[i].attr(CHK_FIELD_ACTION_LINK_ATTR_RESULT) + BR;
     };
 
-    htmlBody = htmlBody + "<p>Część druga kontroli: sprawdzanie jakości wykonania</p>";
+    htmlBody = htmlBody + BR + BR + "Część druga kontroli: sprawdzanie jakości wykonania" + BR;
 
 
     actionDomain = entryControl.field(CHK_FIELD_ACTION_DOMAIN);
-    htmlBody = htmlBody + "<p>W kontrolowanym obszarze " +  actionDomain + " " +
-                            "stwierdzono <b>" + entryControl.field(CHK_FIELDCHECKS + actionDomain).join(", ") + "</b><br>" +
-                            "Do poprawy są <b>" + entryControl.field(CHK_FIELDCHECKS_AREA_NOK + actionDomain).join(", ") + "</b><br>" +
-                            "Problemy nie występują na <b>" + entryControl.field(CHK_FIELDCHECKS_AREA_OK + actionDomain).join(", ")  + "</b></p>"
+    htmlBody = htmlBody + "W kontrolowanym obszarze " +  actionDomain +
+                            " stwierdzono " + entryControl.field(CHK_FIELDCHECKS + actionDomain).join(", ") + BR +
+                            "Problemy nie występują na " + entryControl.field(CHK_FIELDCHECKS_AREA_OK + actionDomain).join(", ") + BR +
+                            ", do poprawy są " + entryControl.field(CHK_FIELDCHECKS_AREA_NOK + actionDomain).join(", ");
 
     entryControl.set( CHK_FIELD_MAILBODY, htmlBody );
   }
