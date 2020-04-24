@@ -29,7 +29,7 @@ function closePayment( entryPayout ) {
     entryPayout.recalc();
 
     // dodawanie wpisu do bazy wydatków o przelewie
-    if ( entryPayout.field(SAL_FIELD_WITHDRAWAL_DATE) != UNDEF ) {
+    if ( (entryPayout.field(SAL_FIELD_WITHDRAWAL_DATE) != "") && (entryPayout.field(SAL_FIELD_WITHDRAWAL_AMOUNT) > 0)) {
 
         var entrySpendWithdrwal = new Object;
         entrySpendWithdrwal = libSpendings.create(entrySpendWithdrwal);
@@ -50,7 +50,7 @@ function closePayment( entryPayout ) {
     }
     
     // dodawanie wpisu do bazy wydatków o gotówkę
-    if ( (entryPayout.field(SAL_FIELD_CASH_DATE) != UNDEF ) ) {
+    if ( (entryPayout.field(SAL_FIELD_CASH_DATE) != "" ) && (entryPayout.field(SAL_FIELD_CASH_AMOUNT) > 0)) {
 
       var entrySpendCash = new Object;
       entrySpendCash = libSpendings.create(entrySpendCash);
