@@ -9,6 +9,7 @@ const HR    = "--------------------------------------------------\n";
 const BR    = "\n";
 const BR2   = "\n\n";
 const SEP   = ", ";
+const UNDEF = "undefined";
 
 var htmlMailHeader        = "To jest mail wysłany automatycznie. W przypadku wysyłania odpowiedzi prosimy o utrzymanie w temacie numeru referencyjnego REF";
 var htmlMailBody_CONTROL  = "<p>";
@@ -133,7 +134,9 @@ var B_FIELD_TYPE          = "Rodzaj";
 var B_FIELD_TYPE_VALUE_PAYOUTS = "Wynagrodzenia";
 var B_MSG_BUDGET_FOUND    = "...znaleziono budżet: ";
 
-
+var BUD_TYPE_PAYOUT     = "Wynagrodzenia";
+var BUD_TYPE_PURCHASES  = "Zakupy";
+var BUD_TYPE_FIXED      = "Stałe koszty";
 
 // ****************************************************************************
 // ~~~ KALENDARZ ZADAŃ, ACTIVITIES

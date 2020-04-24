@@ -1,15 +1,10 @@
 // dodać że ja nie ma osiedla to wtedy budżet wynagrodzenia bez Osiedla
 
-function closePayment() {
+function closePayment( entryPayout ) {
 
-  var isTransferLink = false;
   var notVisible = false;
 
   // sprawdzanie warunków czy może zamykać rozliczenie i czy rozliczenie jest otwarte
-  var entryPayout = entry();
-  
-  log(user().username + " closePayment() START");
-
   if ((entryPayout.field(SAL_FIELD_CLOSED) == SAL_FIELD_CLOSED_VALUE_YES) || ( !isEditor() ) ) {
 
     message(SAL_MSG_CLOSED_OR_NOACCESS);
@@ -22,9 +17,10 @@ function closePayment() {
     cancel();
 
   } else {
-    message ( SAL_MSG_CLOSING + entryPayout.field(SAL_FIELD_EMPLOYEE_LINK)[0].field(E_FIELD_FULLNAME) );
-    // któreś z pól gotówka lub przelew nie jest NULL więc zamykam rozliczenie
 
+    message ( SAL_MSG_CLOSING + entryPayout.field(SAL_FIELD_EMPLOYEE_LINK)[0].field(E_FIELD_FULLNAME) );
+    
+    // któreś z pól gotówka lub przelew nie jest NULL więc zamykam rozliczenie
     if (entryPayout.field(FIELD_CAN_ACCESS) == false )  {
         entryPayout.set(FIELD_CAN_ACCESS, true);
         notVisible = true;
@@ -33,90 +29,86 @@ function closePayment() {
     entryPayout.recalc();
 
     // dodawanie wpisu do bazy wydatków o przelewie
-    if ( entryPayout.field(SAL_FIELD_WITHDRAWAL_DATE) != null ) {
+    if ( entryPayout.field(SAL_FIELD_WITHDRAWAL_DATE) != UNDEF ) {
 
-        var entPracownik = entryPayout.field(SAL_FIELD_EMPLOYEE_LINK)[0];
-        var entrySpend = new Object;
+        var entrySpendWithdrwal = new Object;
+        entrySpendWithdrwal = libSpendings.create(entrySpendWithdrwal);
+        entryPayout.link(SAL_FIELD_SPEND_LINK, entrySpendWithdrwal );
 
-        entrySpend = libSpendings.create(entrySpend);
-        entryPayout.link(SAL_FIELD_SPEND_LINK, entrySpend );
         dtTransfer = entryPayout.field(SAL_FIELD_WITHDRAWAL_DATE);
 
-        entrySpend.set(SPE_FIELD_AMOUNT,(0 - entryPayout.field(SAL_FIELD_WITHDRAWAL_AMOUNT)));
-        entrySpend.set(SPE_FIELD_DATE, entryPayout.field(SAL_FIELD_WITHDRAWAL_DATE));
-        entrySpend.set(SPE_FIELD_TYPE, SPE_FIELD_TYPE_VALUE_EMPLOYEE_WITHDRAWAL);
-        entrySpend.set(SPE_FIELD_CREATOR, withdrawalMaker);     // do bazy wypłat dodać wypłacającego
-        entrySpend.set(SPE_FIELD_EMPLOYEE_LINK, entryPayout.field(SAL_FIELD_EMPLOYEE_LINK));
+        entrySpendWithdrwal.set(SPE_FIELD_AMOUNT,        (0 - entryPayout.field(SAL_FIELD_WITHDRAWAL_AMOUNT)));
+        entrySpendWithdrwal.set(SPE_FIELD_DATE,          entryPayout.field(SAL_FIELD_WITHDRAWAL_DATE));
+        entrySpendWithdrwal.set(SPE_FIELD_TYPE,          SPE_FIELD_TYPE_VALUE_EMPLOYEE_WITHDRAWAL);
+        entrySpendWithdrwal.set(SPE_FIELD_CREATOR,       withdrawalMaker);                         // do bazy wypłat dodać wypłacającego
+        entrySpendWithdrwal.set(SPE_FIELD_EMPLOYEE_LINK, entryPayout.field(SAL_FIELD_EMPLOYEE_LINK));
 
         var desc =  entryPayout.field(SAL_FIELD_DESCRIPTION) + SAL_ADD_DESCRIPTION_WITHDRAWAL + moment(entryPayout.field(SAL_FIELD_MONTH)).format('MM') +
                     "-" + moment(entryPayout.field(SAL_FIELD_MONTH)).format('YYYY');
-        entrySpend.set(SPE_FIELD_DESCRIPTION, desc);
-
-        // dodawanie budzetu do rozliczenia
-        var allBugetsByOsiedle = new Array;
-        allBugetsByOsiedle = libBudget.linksTo( entryPayout.field(B_FIELD_CONTRACT_LINK)[0] );
-
-        for (i=0; i < allBugetsByOsiedle.length; i++) {
-          var entBudget = allBugetsByOsiedle[i];
-          var prevMonthBudget = moment(entBudget.field(B_FIELD_MONTH)).startOf('month').add(-1, 'month').format("MMYYYY");
-          var currentMonthWyplata = moment(entryPayout.field(SAL_FIELD_MONTH)).format("MMYYYY");
-          if ( (prevMonthBudget == currentMonthWyplata) && (entBudget.field(B_FIELD_TYPE) == B_FIELD_TYPE_VALUE_PAYOUTS) ) {
-            message (B_MSG_BUDGET_FOUND + entBudget.field(B_FIELD_TYPE) + " " + currentMonthWyplata);
-            entrySpend.link(SPE_FIELD_BUDGET_LINK, entBudget );
-            entBudget.set(B_FIELD_BALANCE, (entBudget.field(B_FIELD_BALANCE) + Math.abs(entrySpend.field(B_FIELD_AMOUNT))));
-            entBudget.set(B_FIELD_LEFT, (entBudget.field(B_FIELD_LIMIT) - entBudget.field(B_FIELD_BALANCE)));
-          }
-        }
-        // koniec dodawania budżetu
-        entrySpend.recalc();
+        entrySpendWithdrwal.set(SPE_FIELD_DESCRIPTION, desc);
     }
-    // koniec rozliczenia przelewu
+    
+    // dodawanie wpisu do bazy wydatków o gotówkę
+    if ( (entryPayout.field(SAL_FIELD_CASH_DATE) != UNDEF ) ) {
 
-    // tworzenie wpisu gotówki
-    if ( (entryPayout.field(SAL_FIELD_CASH_DATE) != null) ) {
+      var entrySpendCash = new Object;
+      entrySpendCash = libSpendings.create(entrySpendCash);
 
-      var entrySpend = new Object;
-      entrySpend = libSpendings.create(entrySpend);
-      entryPayout.link(SAL_FIELD_SPEND_LINK, entrySpend );
-      entrySpend.set(SPE_FIELD_AMOUNT, (0 - entryPayout.field(SAL_FIELD_CASH_AMOUNT)));
-      entrySpend.set(SPE_FIELD_DATE, entryPayout.field(SAL_FIELD_CASH_DATE));
-      entrySpend.set(SPE_FIELD_TYPE, SPE_FIELD_TYPE_VALUE_EMPLOYEE_CASH);
-      entrySpend.set(SPE_FIELD_CREATOR, entryPayout.field(SAL_FIELD_PAYER));    // do bazy wypłat dodać wypłacającego
-      entrySpend.set(SPE_FIELD_EMPLOYEE_LINK, entryPayout.field(SAL_FIELD_EMPLOYEE_LINK));
+      entryPayout.link(SAL_FIELD_SPEND_LINK,  entrySpendCash );
+      entrySpendCash.set(SPE_FIELD_AMOUNT,        (0 - entryPayout.field(SAL_FIELD_CASH_AMOUNT)));
+      entrySpendCash.set(SPE_FIELD_DATE,          entryPayout.field(SAL_FIELD_CASH_DATE));
+      entrySpendCash.set(SPE_FIELD_TYPE,          SPE_FIELD_TYPE_VALUE_EMPLOYEE_CASH);
+      entrySpendCash.set(SPE_FIELD_CREATOR,       entryPayout.field(SAL_FIELD_PAYER));    
+      entrySpendCash.set(SPE_FIELD_EMPLOYEE_LINK, entryPayout.field(SAL_FIELD_EMPLOYEE_LINK));
 
       var desc =  entryPayout.field(SAL_FIELD_DESCRIPTION) + SAL_ADD_DESCRIPTION_CASH + moment(entryPayout.field(SAL_FIELD_MONTH)).format('MM') +
                     "-" + moment(entryPayout.field(SAL_FIELD_MONTH)).format('YYYY');
-      entrySpend.set(SPE_FIELD_DESCRIPTION, desc);
-
-      // dodawanie budzetu do rozliczenia
-      var allBugetsByOsiedle = new Array;
-      allBugetsByOsiedle = libBudget.linksTo( entryPayout.field(B_FIELD_CONTRACT_LINK)[0] );
-
-      for (i=0; i < allBugetsByOsiedle.length; i++) {
-        var entBudget = allBugetsByOsiedle[i];
-        var prevMonthBudget = moment(entBudget.field(B_FIELD_MONTH)).startOf('month').add(-1, 'month').format("MMYYYY");
-        var currentMonthWyplata = moment(entryPayout.field(SAL_FIELD_MONTH)).format("MMYYYY");
-        if ( (prevMonthBudget == currentMonthWyplata) && (entBudget.field(B_FIELD_TYPE) == B_FIELD_TYPE_VALUE_PAYOUTS) ) {
-          message (B_MSG_BUDGET_FOUND + entBudget.field(B_FIELD_TYPE) + " " + currentMonthWyplata);
-          entrySpend.link(SPE_FIELD_BUDGET_LINK, entBudget );
-          entBudget.set(B_FIELD_BALANCE, (entBudget.field(B_FIELD_BALANCE) + Math.abs(entrySpend.field(B_FIELD_AMOUNT))));
-          entBudget.set(B_FIELD_LEFT, (entBudget.field(B_FIELD_LIMIT) - entBudget.field(B_FIELD_BALANCE)));
-        }
-      }
-      // koniec dodawania budżetu
-      entrySpend.recalc();
+      entrySpendCash.set(SPE_FIELD_DESCRIPTION, desc);
     }
 
-  // koniec tworzenia gotówki
-  if (notVisible)  {
-      entryPayout.set(FIELD_CAN_ACCESS, false);
+    var entryContract = entryPayout.field(B_FIELD_CONTRACT_LINK)[0];
+    var allContractBugets = new Array;
+    allContractBugets = libBudget.linksTo( entryContract );
+
+    var budgetNth = 0;
+    var notFound = true;
+    var monthPayout = moment(entryPayout.field(SAL_FIELD_MONTH)).format("MMYYYY");
+
+    // dodawanie budzetu do rozliczenia
+    while ( budgetNth < allContractBugets.length && notFound ) {
+      var entBudget   = allContractBugets[budgetNth];
+      var monthBudget = moment(entBudget.field(B_FIELD_MONTH)).startOf('month').add(-1, 'month').format("MMYYYY");
+      budgetNth++;
+
+      // szukanie budżetu miesiąc wypłaty == miesiąc budżetu i typ wynagrodzenia
+      if ( (monthBudget == monthPayout) && (entBudget.field(BUD_FIELD_TYPE) == BUD_TYPE_PAYOUT) ) {
+          message (B_MSG_BUDGET_FOUND + entBudget.field(B_FIELD_TYPE) + " " + monthPayout);
+          var newBalance = entBudget.field(B_FIELD_BALANCE);
+          if (entrySpendWithdrwal != UNDEF) {
+            entrySpendWithdrwal.link(SPE_FIELD_BUDGET_LINK, entBudget );
+            newBalance += Math.abs(entrySpendWithdrwal.field(B_FIELD_AMOUNT))
+          };
+          if (entrySpendCash != UNDEF) {
+            entrySpendCash.link(SPE_FIELD_BUDGET_LINK, entBudget );
+            newBalance += Math.abs(entrySpendCash.field(B_FIELD_AMOUNT))
+          };
+
+          entBudget.set(B_FIELD_BALANCE,  newBalance );
+          entBudget.set(B_FIELD_LEFT,     entBudget.field(B_FIELD_LIMIT) - entBudget.field(B_FIELD_BALANCE));
+          notFound = false;
+        }
+
+    }
+      // koniec dodawania budżetu
+    entrySpend.recalc();
+
+    // koniec tworzenia gotówki
+    if (notVisible) entryPayout.set(FIELD_CAN_ACCESS, false);
+    entryPayout.set(FIELD_EDITOR, "");
+    entryPayout.set(SAL_FIELD_CLOSED, SAL_FIELD_CLOSED_VALUE_YES);
+    entryPayout.recalc();
+    entryPayout.show();
   }
-  entryPayout.set(FIELD_EDITOR, "");
-  entryPayout.set(SAL_FIELD_CLOSED, SAL_FIELD_CLOSED_VALUE_YES);
-  entryPayout.recalc();
-  entryPayout.show();
-  }
-  //log(user().username + " closePayment() STOP");
 };
 
 
