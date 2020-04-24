@@ -70,7 +70,8 @@ function closePayment( entryPayout ) {
 
     var entryContract = entryPayout.field(B_FIELD_CONTRACT_LINK)[0];
     var allContractBugets = new Array;
-    allContractBugets = libBudget.linksTo( entryContract );
+
+    if (entryContract != UNDEF) allContractBugets = libBudget.linksTo( entryContract );
 
     var budgetNth = 0;
     var notFound = true;
