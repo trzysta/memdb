@@ -46,6 +46,7 @@ function closePayment( entryPayout ) {
         var desc =  entryPayout.field(SAL_FIELD_DESCRIPTION) + SAL_ADD_DESCRIPTION_WITHDRAWAL + moment(entryPayout.field(SAL_FIELD_MONTH)).format('MM') +
                     "-" + moment(entryPayout.field(SAL_FIELD_MONTH)).format('YYYY');
         entrySpendWithdrwal.set(SPE_FIELD_DESCRIPTION, desc);
+        entrySpendWithdrwal.recalc();       
     }
     
     // dodawanie wpisu do bazy wydatków o gotówkę
@@ -64,6 +65,7 @@ function closePayment( entryPayout ) {
       var desc =  entryPayout.field(SAL_FIELD_DESCRIPTION) + SAL_ADD_DESCRIPTION_CASH + moment(entryPayout.field(SAL_FIELD_MONTH)).format('MM') +
                     "-" + moment(entryPayout.field(SAL_FIELD_MONTH)).format('YYYY');
       entrySpendCash.set(SPE_FIELD_DESCRIPTION, desc);
+      entrySpendCash.recalc();
     }
 
     var entryContract = entryPayout.field(B_FIELD_CONTRACT_LINK)[0];
@@ -99,10 +101,7 @@ function closePayment( entryPayout ) {
         }
 
     }
-      // koniec dodawania budżetu
-    entrySpend.recalc();
 
-    // koniec tworzenia gotówki
     if (notVisible) entryPayout.set(FIELD_CAN_ACCESS, false);
     entryPayout.set(FIELD_EDITOR, "");
     entryPayout.set(SAL_FIELD_CLOSED, SAL_FIELD_CLOSED_VALUE_YES);
