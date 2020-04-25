@@ -1,97 +1,82 @@
-class ClassSpend {  
+var entrySalary       = null;
+var amountCash        = 0;
+var amountWithdrwal   = 0;
+var dateCash          = null;
+var dateWithdrwal     = null;
+var isClosed          = false;
+var entryEmployee     = null;
+var visible           = false;
+var entriesSpend      = new Array;
+var payerName         = "";
+var description       = "";
+var type              = "";
+var libSalaries       = null;
 
-  entry     = null;
-  library   = null; 
-  constructor(e) {
-    if (e == null) {
-      this.entry = new Object;
-    } else {
-      this.entry = e;
-    }
-  };
+function closeSalary(e) {
+  entrySalary = e;
+  setValues();
 
-  // * * * * * * * * * * * * * * * * * * * * * * * *
-  saveEmployeeSalary(amount, date, payer, description, entryEmployee, isWithdrwal) {
-    if ( this.entry == null ) this.entry = new Object;
-    this.library = libByName(LIB_SPANDINGS_NAME);
-    this.entry = library.create(this.entry);
-    this.entry.set(SPE_FIELD_AMOUNT, (0 - Math.abs(amount)));
-    this.entry.set(SPE_FIELD_DATE, date);
-    this.entry.set(SPE_FIELD_CREATOR, payer);                        
-    this.entry.set(SPE_FIELD_EMPLOYEE_LINK, entryEmployee );
-    this.entry.set(SPE_FIELD_DESCRIPTION, description);
-    if (isWithdrwal) {
-      this.entry.set(SPE_FIELD_TYPE, SPE_FIELD_TYPE_VALUE_EMPLOYEE_WITHDRAWAL);
-    } else {
-      this.entry.set(SPE_FIELD_TYPE, SPE_FIELD_TYPE_VALUE_EMPLOYEE_CASH);
+  if (canClose()) {
+    if (!visible) entry.set(FIELD_CAN_ACCESS, true);
+
+    if ((dateWithdrwal != null) && (amountWithdrwal > 0)) {
+      var spendWithdrwal = createSpendSalary(amountWithdrwal, dateWithdrwal, withdrawalMaker, description, entryEmployee, true);
+      entrySalary.link( SAL_FIELD_SPEND_LINK, spendWithdrwal );
     }
-    this.entry.recalc();       
+
+    if ((dateCash != null) && (amountCash > 0)) {
+      var spendCash = createSpendSalary(amountCash, dateCash, payerName, description, entryEmployee, false);
+      entrySalary.link( SAL_FIELD_SPEND_LINK, spendCash );
+    }
+    entrySalary.set(FIELD_CAN_ACCESS, visible);
   }
 };
 
+function createSpendSalary(amount, date, payer, description, entryEmployee, isWithdrwal) {
 
-class ClassSalary {
+    var entry;
 
-  entry             = null;
-  amountCash        = 0;
-  amountWithdrwal   = 0;
-  dateCash          = null;
-  dateWithdrwal     = null;
-  isClosed          = false;
-  entryEmployee     = null;
-  visible           = false;
-  entriesSpend      = new Array;
-  payerName         = "";
-  description       = "";
-  type              = "";
-  library           = null;
-
-  // * * * * * * * * * * * * * * * * * * * * * * * *
-  constructor(e) {
-    this.update(e)
-  }
-
-  // * * * * * * * * * * * * * * * * * * * * * * * * 
-  update(e) {
-      this.libSalaries = libByName(LIB_SALARIES_NAME);
-      this.entry = e;
-      if ( this.entry.field(SAL_FIELD_EMPLOYEE_LINK).length > 0 )   this.entryEmployee = this.entry.field(SAL_FIELD_EMPLOYEE_LINK)[0];
-      if ( !isNaN(this.entry.field(SAL_FIELD_CASH_AMOUNT)) )        this.amountCash = this.entry.field(SAL_FIELD_CASH_AMOUNT);
-      if ( !isNaN(this.entry.field(SAL_FIELD_WITHDRAWAL_AMOUNT)) )  this.amountWithdrwal = this.entry.field(SAL_FIELD_WITHDRAWAL_AMOUNT);
-      if ( this.entry.field(SAL_FIELD_CLOSED) == SAL_FIELD_CLOSED_VALUE_YES ) this.isClosed = true;
-      if ( this.entry.field(SAL_FIELD_WITHDRAWAL_DATE) != "" )      this.dateWithdrwal = this.entry.field(SAL_FIELD_WITHDRAWAL_DATE);
-      if ( this.entry.field(SAL_FIELD_CASH_DATE) != "" )            this.dateCash = this.entry.field(SAL_FIELD_CASH_DATE);
-      this.payerName = this.entry.field(SAL_FIELD_PAYER);
-      this.description = this.entry.field(SAL_FIELD_DESCRIPTION);
-      this.type = this.entry.field(SAL_FIELD_DESCRIPTION);
-      this.visible = this.entry.field(FIELD_CAN_ACCESS);
-  }
-
-  // * * * * * * * * * * * * * * * * * * * * * * * *
-  close(e) {
-    this.update(e);
-    if ( this.canClose() ) {
-      if (!visible) this.entry.set(FIELD_CAN_ACCESS, true);
-
-      if ( (dateWithdrwal != null ) && (amountWithdrwal > 0) ) {
-        var spendWithdrwal = new ClassSpend (null);
-        spendWithdrwal.saveEmployeeSalary(this.amountWithdrwal, this.dateWithdrwal, withdrawalMaker, this.description, entryEmployee, true);
-        entryPayout.link(SAL_FIELD_SPEND_LINK, spendWithdrwal.entry );
-      }
-      
-      if ( (this.dateCash != null ) && (this.amountCash > 0) ) {
-        var spendCash = new Spend (null);
-        spendCash.saveEmployeeSalary(this.amountCash, this.dateCash, payerName, this.description, entryEmployee, false);
-        entryPayout.link(SAL_FIELD_SPEND_LINK, spendCash.entry );
-      }
-      this.entry.set(FIELD_CAN_ACCESS, visible);
+    if ( entry == null ) entry = new Object;
+    library = libByName(LIB_SPANDINGS_NAME);
+    entry = library.create(entry);
+    entry.set(SPE_FIELD_AMOUNT, (0 - Math.abs(amount)));
+    entry.set(SPE_FIELD_DATE, date);
+    entry.set(SPE_FIELD_CREATOR, payer);                        
+    entry.set(SPE_FIELD_EMPLOYEE_LINK, entryEmployee );
+    entry.set(SPE_FIELD_DESCRIPTION, description);
+    if (isWithdrwal) {
+      entry.set(SPE_FIELD_TYPE, SPE_FIELD_TYPE_VALUE_EMPLOYEE_WITHDRAWAL);
+    } else {
+      entry.set(SPE_FIELD_TYPE, SPE_FIELD_TYPE_VALUE_EMPLOYEE_CASH);
     }
-  }
+    entry.recalc();
+  return entry;     
+}
+
+
+
+function setValues() {
+
+  libSalaries = libByName(LIB_SALARIES_NAME);
+  if (entrySalary.field(SAL_FIELD_EMPLOYEE_LINK).length > 0) entryEmployee = entrySalary.field(SAL_FIELD_EMPLOYEE_LINK)[0];
+  if (!isNaN(entrySalary.field(SAL_FIELD_CASH_AMOUNT))) amountCash = entrySalary.field(SAL_FIELD_CASH_AMOUNT);
+  if (!isNaN(entrySalary.field(SAL_FIELD_WITHDRAWAL_AMOUNT))) amountWithdrwal = entrySalary.field(SAL_FIELD_WITHDRAWAL_AMOUNT);
+  if (entrySalary.field(SAL_FIELD_CLOSED) == SAL_FIELD_CLOSED_VALUE_YES) isClosed = true;
+  if (entrySalary.field(SAL_FIELD_WITHDRAWAL_DATE) != "") dateWithdrwal = entrySalary.field(SAL_FIELD_WITHDRAWAL_DATE);
+  if (entrySalary.field(SAL_FIELD_CASH_DATE) != "") dateCash = entrySalary.field(SAL_FIELD_CASH_DATE);
+  payerName = entrySalary.field(SAL_FIELD_PAYER);
+  description = entrySalary.field(SAL_FIELD_DESCRIPTION);
+  type = entrySalary.field(SAL_FIELD_DESCRIPTION);
+  visible = entrySalary.field(FIELD_CAN_ACCESS);
+
+}
+
+
 
 
   // * * * * * * * * * * * * * * * * * * * * * * * *
   canClose() {
-    c = false;
+    var c = false;
     if ((amountCash + amountWithdrwal > 0) && (isClosed == false)) c = true; 
     return c
   }
