@@ -22,17 +22,14 @@ function closeSalary(e, show) {
     if (!visible) entry.set(FIELD_CAN_ACCESS, true);
 
     if ((dateWithdrwal != null) && (amountWithdrwal > 0)) {
-      message( "tworzę przelew " + amountWithdrwal + " " + dateWithdrwal );
       var spendWithdrwal = createSpendSalary(amountWithdrwal, dateWithdrwal, withdrawalMaker, description, entryEmployee, true);
       entrySalary.link( SAL_FIELD_SPEND_LINK, spendWithdrwal );
     };
 
     if ((dateCash != null) && (amountCash > 0)) {
-      message( "tworzę wypłatę gotówki " + amountCash + " " + dateCash );
       var spendCash = createSpendSalary(amountCash, dateCash, payerName, description, entryEmployee, false);
       entrySalary.link( SAL_FIELD_SPEND_LINK, spendCash );
     };
-
     entrySalary.set(FIELD_CAN_ACCESS, visible);
   }
   
@@ -44,10 +41,12 @@ function closeSalary(e, show) {
 function createSpendSalary(amount, date, payer, description, entryEmployee, isWithdrwal) {
 
     var entry;
+    var libSpendings; 
+    message( "tworzę wydatek " + amount + " " + date + " " + payer );
 
-    if ( entry == null ) entry = new Object;
-    library = libByName(LIB_SPANDINGS_NAME);
-    entry = library.create(entry);
+    entry = new Object;
+    libSpendings = libByName(LIB_SPANDINGS_NAME);
+    entry = libSpendings.create(entry);
     entry.set(SPE_FIELD_AMOUNT, (0 - Math.abs(amount)));
     entry.set(SPE_FIELD_DATE, date);
     entry.set(SPE_FIELD_CREATOR, payer);                        
@@ -65,16 +64,16 @@ function createSpendSalary(amount, date, payer, description, entryEmployee, isWi
 function setValues() {
 
   libSalaries = libByName(LIB_SALARIES_NAME);
-  if (entrySalary.field(SAL_FIELD_EMPLOYEE_LINK).length > 0) entryEmployee = entrySalary.field(SAL_FIELD_EMPLOYEE_LINK)[0];
-  if (!isNaN(entrySalary.field(SAL_FIELD_CASH_AMOUNT))) amountCash = entrySalary.field(SAL_FIELD_CASH_AMOUNT);
-  if (!isNaN(entrySalary.field(SAL_FIELD_WITHDRAWAL_AMOUNT))) amountWithdrwal = entrySalary.field(SAL_FIELD_WITHDRAWAL_AMOUNT);
-  if (entrySalary.field(SAL_FIELD_CLOSED) == SAL_FIELD_CLOSED_VALUE_YES) isClosed = true;
-  if (entrySalary.field(SAL_FIELD_WITHDRAWAL_DATE) != "") dateWithdrwal = entrySalary.field(SAL_FIELD_WITHDRAWAL_DATE);
-  if (entrySalary.field(SAL_FIELD_CASH_DATE) != "") dateCash = entrySalary.field(SAL_FIELD_CASH_DATE);
   payerName = entrySalary.field(SAL_FIELD_PAYER);
   description = entrySalary.field(SAL_FIELD_DESCRIPTION);
   type = entrySalary.field(SAL_FIELD_DESCRIPTION);
   visible = entrySalary.field(FIELD_CAN_ACCESS);
+  if (entrySalary.field(SAL_FIELD_EMPLOYEE_LINK).length > 0)        entryEmployee = entrySalary.field(SAL_FIELD_EMPLOYEE_LINK)[0];
+  if (!isNaN(entrySalary.field(SAL_FIELD_CASH_AMOUNT)))             amountCash = entrySalary.field(SAL_FIELD_CASH_AMOUNT);
+  if (!isNaN(entrySalary.field(SAL_FIELD_WITHDRAWAL_AMOUNT)))       amountWithdrwal = entrySalary.field(SAL_FIELD_WITHDRAWAL_AMOUNT);
+  if (entrySalary.field(SAL_FIELD_CLOSED) == SAL_FIELD_CLOSED_VALUE_YES) isClosed = true;
+  if (entrySalary.field(SAL_FIELD_WITHDRAWAL_DATE) != "")           dateWithdrwal = entrySalary.field(SAL_FIELD_WITHDRAWAL_DATE);
+  if (entrySalary.field(SAL_FIELD_CASH_DATE) != "")                 dateCash = entrySalary.field(SAL_FIELD_CASH_DATE);
 };
 
 
