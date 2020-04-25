@@ -1,4 +1,4 @@
-include('https://raw.githubusercontent.com/trzysta/memdb/master/fields.js');
+//include('https://raw.githubusercontent.com/trzysta/memdb/master/fields.js');
 
 class Spend {
   
