@@ -1,8 +1,5 @@
 include('https://raw.githubusercontent.com/trzysta/memdb/master/fields.js');
 
-class Budget {
-}
-
 class Spend {
   
   library   = null; 
@@ -14,7 +11,7 @@ class Spend {
     } else {
       this.entry = e;
     }
-  }
+  };
 
   // * * * * * * * * * * * * * * * * * * * * * * * *
   saveEmployeeSalary(amount, date, payer, description, entryEmployee, isWithdrwal) {
@@ -33,7 +30,7 @@ class Spend {
     }
     this.entry.recalc();       
   }
-}
+};
 
 
 
@@ -102,7 +99,7 @@ class Salary {
     if ((amountCash + amountWithdrwal > 0) && (isClosed == false)) c = true; 
     return c
   }
-}
+};
 
 
 
