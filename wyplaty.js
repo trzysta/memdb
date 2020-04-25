@@ -12,25 +12,33 @@ var description       = "";
 var type              = "";
 var libSalaries       = null;
 
-function closeSalary(e) {
+
+function closeSalary(e, show) {
   entrySalary = e;
   setValues();
+  message( "startuję dla " + entryEmployee.name );
 
   if (canClose()) {
     if (!visible) entry.set(FIELD_CAN_ACCESS, true);
 
     if ((dateWithdrwal != null) && (amountWithdrwal > 0)) {
+      message( "tworzę przelew " + amountWithdrwal + " " + dateWithdrwal );
       var spendWithdrwal = createSpendSalary(amountWithdrwal, dateWithdrwal, withdrawalMaker, description, entryEmployee, true);
       entrySalary.link( SAL_FIELD_SPEND_LINK, spendWithdrwal );
     };
 
     if ((dateCash != null) && (amountCash > 0)) {
+      message( "tworzę wypłatę gotówki " + amountCash + " " + dateCash );
       var spendCash = createSpendSalary(amountCash, dateCash, payerName, description, entryEmployee, false);
       entrySalary.link( SAL_FIELD_SPEND_LINK, spendCash );
     };
 
     entrySalary.set(FIELD_CAN_ACCESS, visible);
   }
+  
+  entrySalary.recalc();
+  if (show) entrySalary.show();
+
 };
 
 function createSpendSalary(amount, date, payer, description, entryEmployee, isWithdrwal) {
