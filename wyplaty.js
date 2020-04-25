@@ -31,11 +31,12 @@ function closeSalary(e, show) {
       entrySalary.link( SAL_FIELD_SPEND_LINK, spendCash );
     };
     entrySalary.set(FIELD_CAN_ACCESS, visible);
+    entrySalary.set(SAL_FIELD_CLOSED, SAL_FIELD_CLOSED_VALUE_YES);
+    entrySalary.recalc();
+    if (show) entrySalary.show();
+  } else {
+    message (SAL_MSG_CLOSED_OR_NOACCESS);
   }
-  
-  entrySalary.recalc();
-  if (show) entrySalary.show();
-
 };
 
 function createSpendSalary(amount, date, payer, description, entryEmployee, isWithdrwal) {
