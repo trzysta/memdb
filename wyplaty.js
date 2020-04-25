@@ -1,10 +1,7 @@
-//include('https://raw.githubusercontent.com/trzysta/memdb/master/fields.js');
+class Spend {  
 
-class Spend {
-  
-  library   = null; 
   entry     = null;
-
+  library   = null; 
   constructor(e) {
     if (e == null) {
       this.entry = new Object;
@@ -33,10 +30,8 @@ class Spend {
 };
 
 
-
 class Salary {
 
-  library           = null;
   entry             = null;
   amountCash        = 0;
   amountWithdrwal   = 0;
@@ -49,6 +44,7 @@ class Salary {
   payerName         = "";
   description       = "";
   type              = "";
+  library           = null;
 
   // * * * * * * * * * * * * * * * * * * * * * * * *
   constructor(e) {
@@ -100,6 +96,30 @@ class Salary {
     return c
   }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
