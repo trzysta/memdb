@@ -1,5 +1,115 @@
-// dodać że ja nie ma osiedla to wtedy budżet wynagrodzenia bez Osiedla
+include('https://raw.githubusercontent.com/trzysta/memdb/master/fields.js');
 
+class Budget {
+}
+
+class Spend {
+  
+  library   = null; 
+  entry     = null;
+
+  constructor(e) {
+    if (e == null) {
+      this.entry = new Object;
+    } else {
+      this.entry = e;
+    }
+  }
+
+  // * * * * * * * * * * * * * * * * * * * * * * * *
+  saveEmployeeSalary(amount, date, payer, description, entryEmployee, isWithdrwal) {
+    if ( this.entry == null ) this.entry = new Object;
+    this.library = libByName(LIB_SPANDINGS_NAME);
+    this.entry = library.create(this.entry);
+    this.entry.set(SPE_FIELD_AMOUNT, (0 - Math.abs(amount)));
+    this.entry.set(SPE_FIELD_DATE, date);
+    this.entry.set(SPE_FIELD_CREATOR, payer);                        
+    this.entry.set(SPE_FIELD_EMPLOYEE_LINK, entryEmployee );
+    this.entry.set(SPE_FIELD_DESCRIPTION, description);
+    if (isWithdrwal) {
+      this.entry.set(SPE_FIELD_TYPE, SPE_FIELD_TYPE_VALUE_EMPLOYEE_WITHDRAWAL);
+    } else {
+      this.entry.set(SPE_FIELD_TYPE, SPE_FIELD_TYPE_VALUE_EMPLOYEE_CASH);
+    }
+    this.entry.recalc();       
+  }
+}
+
+
+
+class Salary {
+
+  library           = null;
+  entry             = null;
+  amountCash        = 0;
+  amountWithdrwal   = 0;
+  dateCash          = null;
+  dateWithdrwal     = null;
+  isClosed          = false;
+  entryEmployee     = null;
+  visible           = false;
+  entriesSpend      = new Array;
+  payerName         = "";
+  description       = "";
+  type              = "";
+
+  // * * * * * * * * * * * * * * * * * * * * * * * *
+  constructor(e) {
+    this.update(e)
+  }
+
+  // * * * * * * * * * * * * * * * * * * * * * * * * 
+  update(e) {
+      this.libSalaries = libByName(LIB_SALARIES_NAME);
+      this.entry = e;
+      if ( this.entry.field(SAL_FIELD_EMPLOYEE_LINK).length > 0 )   this.entryEmployee = this.entry.field(SAL_FIELD_EMPLOYEE_LINK)[0];
+      if ( !isNaN(this.entry.field(SAL_FIELD_CASH_AMOUNT)) )        this.amountCash = this.entry.field(SAL_FIELD_CASH_AMOUNT);
+      if ( !isNaN(this.entry.field(SAL_FIELD_WITHDRAWAL_AMOUNT)) )  this.amountWithdrwal = this.entry.field(SAL_FIELD_WITHDRAWAL_AMOUNT);
+      if ( this.entry.field(SAL_FIELD_CLOSED) == SAL_FIELD_CLOSED_VALUE_YES ) this.isClosed = true;
+      if ( this.entry.field(SAL_FIELD_WITHDRAWAL_DATE) != "" )      this.dateWithdrwal = this.entry.field(SAL_FIELD_WITHDRAWAL_DATE);
+      if ( this.entry.field(SAL_FIELD_CASH_DATE) != "" )            this.dateCash = this.entry.field(SAL_FIELD_CASH_DATE);
+      this.payerName = this.entry.field(SAL_FIELD_PAYER);
+      this.description = this.entry.field(SAL_FIELD_DESCRIPTION);
+      this.type = this.entry.field(SAL_FIELD_DESCRIPTION);
+      this.visible = this.entry.field(FIELD_CAN_ACCESS);
+  }
+
+  // * * * * * * * * * * * * * * * * * * * * * * * *
+  close(e) {
+    this.update(e);
+    if ( this.canClose() ) {
+      if (!visible) this.entry.set(FIELD_CAN_ACCESS, true);
+
+      if ( (dateWithdrwal != null ) && (amountWithdrwal > 0) ) {
+        var spendWithdrwal = new Spend (null);
+        spendWithdrwal.saveEmployeeSalary(this.amountWithdrwal, this.dateWithdrwal, withdrawalMaker, this.description, entryEmployee, true);
+        entryPayout.link(SAL_FIELD_SPEND_LINK, spendWithdrwal.entry );
+      }
+      
+      if ( (this.dateCash != null ) && (this.amountCash > 0) ) {
+        var spendCash = new Spend (null);
+        spendCash.saveEmployeeSalary(this.amountCash, this.dateCash, payerName, this.description, entryEmployee, false);
+        entryPayout.link(SAL_FIELD_SPEND_LINK, spendCash.entry );
+      }
+      this.entry.set(FIELD_CAN_ACCESS, visible);
+    }
+  }
+
+
+  // * * * * * * * * * * * * * * * * * * * * * * * *
+  canClose() {
+    c = false;
+    if ((amountCash + amountWithdrwal > 0) && (isClosed == false)) c = true; 
+    return c
+  }
+}
+
+
+
+
+
+
+// dodać że ja nie ma osiedla to wtedy budżet wynagrodzenia bez Osiedla
 function closePayment( entryPayout ) {
 
   var notVisible = false;
@@ -27,6 +137,7 @@ function closePayment( entryPayout ) {
     }
 
     entryPayout.recalc();
+    var desc; 
 
     // dodawanie wpisu do bazy wydatków o przelewie
     if ( (entryPayout.field(SAL_FIELD_WITHDRAWAL_DATE) != "") && (entryPayout.field(SAL_FIELD_WITHDRAWAL_AMOUNT) > 0)) {
@@ -43,8 +154,8 @@ function closePayment( entryPayout ) {
         entrySpendWithdrwal.set(SPE_FIELD_CREATOR,       withdrawalMaker);                         // do bazy wypłat dodać wypłacającego
         entrySpendWithdrwal.set(SPE_FIELD_EMPLOYEE_LINK, entryPayout.field(SAL_FIELD_EMPLOYEE_LINK));
 
-        var desc =  entryPayout.field(SAL_FIELD_DESCRIPTION) + SAL_ADD_DESCRIPTION_WITHDRAWAL + moment(entryPayout.field(SAL_FIELD_MONTH)).format('MM') +
-                    "-" + moment(entryPayout.field(SAL_FIELD_MONTH)).format('YYYY');
+        desc =  entryPayout.field(SAL_FIELD_DESCRIPTION) + SAL_ADD_DESCRIPTION_WITHDRAWAL + moment(entryPayout.field(SAL_FIELD_MONTH)).format('MM') +
+                "-" + moment(entryPayout.field(SAL_FIELD_MONTH)).format('YYYY');
         entrySpendWithdrwal.set(SPE_FIELD_DESCRIPTION, desc);
         entrySpendWithdrwal.recalc();       
     }
@@ -62,8 +173,8 @@ function closePayment( entryPayout ) {
       entrySpendCash.set(SPE_FIELD_CREATOR,       entryPayout.field(SAL_FIELD_PAYER));    
       entrySpendCash.set(SPE_FIELD_EMPLOYEE_LINK, entryPayout.field(SAL_FIELD_EMPLOYEE_LINK));
 
-      var desc =  entryPayout.field(SAL_FIELD_DESCRIPTION) + SAL_ADD_DESCRIPTION_CASH + moment(entryPayout.field(SAL_FIELD_MONTH)).format('MM') +
-                    "-" + moment(entryPayout.field(SAL_FIELD_MONTH)).format('YYYY');
+      desc =  entryPayout.field(SAL_FIELD_DESCRIPTION) + SAL_ADD_DESCRIPTION_CASH + moment(entryPayout.field(SAL_FIELD_MONTH)).format('MM') +
+               "-" + moment(entryPayout.field(SAL_FIELD_MONTH)).format('YYYY');
       entrySpendCash.set(SPE_FIELD_DESCRIPTION, desc);
       entrySpendCash.recalc();
     }
@@ -137,9 +248,9 @@ function findAdvancePayment( entryPayout, show ) {
        (entryPayout.field(SAL_FIELD_CLOSED) != SAL_FIELD_CLOSED_VALUE_YES) ) {
 
      message( entryPayout.field(SAL_FIELD_EMPLOYEE_LINK)[0].field(E_FIELD_FULLNAME) );
-     var entriesSpend = libSpendings.linksTo( entryPayout.field(SAL_FIELD_EMPLOYEE_LINK)[0] );
-     for (i=0; i < entriesSpend.length; i++ ) {
-        var entrySpend = entriesSpend[i];
+     var entsSpend = libSpendings.linksTo( entryPayout.field(SAL_FIELD_EMPLOYEE_LINK)[0] );
+     for (i=0; i < entsSpend.length; i++ ) {
+        var entrySpend = entsSpend[i];
         var momEntry = moment( entrySpend.field(SPE_FIELD_DATE) );
         var momStart = moment().startOf('month').add({days:18,months:-1});
         var momEnd = moment();
