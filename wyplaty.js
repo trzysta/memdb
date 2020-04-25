@@ -22,12 +22,13 @@ function closeSalary(e) {
     if ((dateWithdrwal != null) && (amountWithdrwal > 0)) {
       var spendWithdrwal = createSpendSalary(amountWithdrwal, dateWithdrwal, withdrawalMaker, description, entryEmployee, true);
       entrySalary.link( SAL_FIELD_SPEND_LINK, spendWithdrwal );
-    }
+    };
 
     if ((dateCash != null) && (amountCash > 0)) {
       var spendCash = createSpendSalary(amountCash, dateCash, payerName, description, entryEmployee, false);
       entrySalary.link( SAL_FIELD_SPEND_LINK, spendCash );
-    }
+    };
+
     entrySalary.set(FIELD_CAN_ACCESS, visible);
   }
 };
@@ -48,12 +49,10 @@ function createSpendSalary(amount, date, payer, description, entryEmployee, isWi
       entry.set(SPE_FIELD_TYPE, SPE_FIELD_TYPE_VALUE_EMPLOYEE_WITHDRAWAL);
     } else {
       entry.set(SPE_FIELD_TYPE, SPE_FIELD_TYPE_VALUE_EMPLOYEE_CASH);
-    }
+    };
     entry.recalc();
   return entry;     
-}
-
-
+};
 
 function setValues() {
 
@@ -68,29 +67,14 @@ function setValues() {
   description = entrySalary.field(SAL_FIELD_DESCRIPTION);
   type = entrySalary.field(SAL_FIELD_DESCRIPTION);
   visible = entrySalary.field(FIELD_CAN_ACCESS);
-
-}
-
-
-
-
-  // * * * * * * * * * * * * * * * * * * * * * * * *
-  canClose() {
-    var c = false;
-    if ((amountCash + amountWithdrwal > 0) && (isClosed == false)) c = true; 
-    return c
-  }
 };
 
 
-
-
-
-
-
-
-
-
+function canClose() {
+  var c = false;
+  if ((amountCash + amountWithdrwal > 0) && (isClosed == false)) c = true;
+  return c;
+};
 
 
 
