@@ -1,4 +1,4 @@
-class Spend {  
+class ClassSpend {  
 
   entry     = null;
   library   = null; 
@@ -30,7 +30,7 @@ class Spend {
 };
 
 
-class Salary {
+class ClassSalary {
 
   entry             = null;
   amountCash        = 0;
@@ -74,7 +74,7 @@ class Salary {
       if (!visible) this.entry.set(FIELD_CAN_ACCESS, true);
 
       if ( (dateWithdrwal != null ) && (amountWithdrwal > 0) ) {
-        var spendWithdrwal = new Spend (null);
+        var spendWithdrwal = new ClassSpend (null);
         spendWithdrwal.saveEmployeeSalary(this.amountWithdrwal, this.dateWithdrwal, withdrawalMaker, this.description, entryEmployee, true);
         entryPayout.link(SAL_FIELD_SPEND_LINK, spendWithdrwal.entry );
       }
