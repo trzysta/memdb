@@ -47,7 +47,7 @@ const SAL_MSG_RUNING_FINDADVANCEPAYMENT = "szukam zaliczek dla wpisu...";
 function Salary (e) {
 
   this.entrySalary       = null;
-  this.amountCash        = 0;
+  this.amountCash        = 100;
   this.amountWithdrwal   = 0;
   this.dateCash          = null;
   this.dateWithdrwal     = null;
@@ -59,20 +59,34 @@ function Salary (e) {
   this.type              = "";
   this.libSalaries       = null;
 
-  this.closeSettlement = function() {
-    message("aaaaaaa");
+}
+
+  Salary.prototype.closeSettlement = function() {
+    message("aaaaaaa" + this.amountCash );
   };
 
-  this.canCloseSettlement = function() {
+ /* this.canCloseSettlement = function() {
   };
 
-  this.setValues  = function() {
+  this.setValues = function() {
+    
+    var libSalaries   = libByName(LIB_SALARIES_NAME);
+    this.payerName    = this.entrySalary.field(SAL_FIELD_PAYER);
+    this.description  = this.entrySalary.field(SAL_FIELD_DESCRIPTION);
+    this.type         = this.entrySalary.field(SAL_FIELD_DESCRIPTION);
+    this.visible      = this.entrySalary.field(FIELD_CAN_ACCESS);
+    if (this.entrySalary.field(SAL_FIELD_EMPLOYEE_LINK).length > 0)        this.entryEmployee = ethis.ntrySalary.field(SAL_FIELD_EMPLOYEE_LINK)[0];
+    if (!isNaN(this.entrySalary.field(SAL_FIELD_CASH_AMOUNT)))             this.amountCash = this.entrySalary.field(SAL_FIELD_CASH_AMOUNT);
+    if (!isNaN(this.entrySalary.field(SAL_FIELD_WITHDRAWAL_AMOUNT)))       this.amountWithdrwal = ethis.ntrySalary.field(SAL_FIELD_WITHDRAWAL_AMOUNT);
+    if (this.entrySalary.field(SAL_FIELD_CLOSED) == SAL_FIELD_CLOSED_VALUE_YES) this.isClosed = true;
+    if (this.entrySalary.field(SAL_FIELD_WITHDRAWAL_DATE) != "")           this.dateWithdrwal = this.entrySalary.field(SAL_FIELD_WITHDRAWAL_DATE);
+    if (this.entrySalary.field(SAL_FIELD_CASH_DATE) != "")                 this.dateCash = this.entrySalary.field(SAL_FIELD_CASH_DATE);
   };
 
   this.validateBeforeSave = function() {
   };
 
-
+*/
 
 
 }
