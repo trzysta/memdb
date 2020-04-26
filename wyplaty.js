@@ -1,8 +1,9 @@
 /*
 Baza Memento Database na Androida. Autor Marceli Matynia 300 Sp. z o.o.
+
+! wymagane dodanie budzet.js
 */
 
-importScripts('https://raw.githubusercontent.com/trzysta/memdb/master/budzet.js');
 
 const SAL_FIELD_CLOSED              = "Rozliczony";
 const SAL_FIELD_CLOSED_VALUE_YES    = "Rozliczony";
@@ -34,20 +35,6 @@ const SAL_MSG_VALIDATION_ERR_NO_WITHDRWAL = "- podaj datę i kwotę przelewu";
 const SAL_MSG_VALIDATION_ERR_NO_CASH = "- podaj datę i kwotę wypłaty gotówki";
 const SAL_MSG_RUNING_FINDADVANCEPAYMENT = "szukam zaliczek dla wpisu...";
 
-var entrySalary       = null;
-var amountCash        = 0;
-var amountWithdrwal   = 0;
-var dateCash          = null;
-var dateWithdrwal     = null;
-var isClosed          = false;
-var entryEmployee     = null;
-var visible           = false;
-var entriesSpend      = new Array;
-var payerName         = "";
-var description       = "";
-var type              = "";
-var libSalaries       = null;
-
 
 /* 
   ---------------------------------------------
@@ -56,9 +43,47 @@ var libSalaries       = null;
   ---------------------------------------------
 */
 
-function test(){
-  assignToBudget();
+
+function Salary (e) {
+
+  this.entrySalary       = null;
+  this.amountCash        = 0;
+  this.amountWithdrwal   = 0;
+  this.dateCash          = null;
+  this.dateWithdrwal     = null;
+  this.isClosed          = false;
+  this.entryEmployee     = null;
+  this.visible           = false;
+  this.payerName         = "";
+  this.description       = "";
+  this.type              = "";
+  this.libSalaries       = null;
+
+  this.closeSettlement = function() {
+    message("aaaaaaa");
+  }
+
+  this.canCloseSettlement = function() {
+  }
+
+  this.setValues  = function() {
+  }
+
+  this.validateBeforeSave = function() {
+  }
+
+
+
+
 }
+
+
+
+
+
+
+
+
 
 function closeSettlement(e, reopenEntry) {
   entrySalary = e;
@@ -140,7 +165,8 @@ function createSpendEntry ( amount, date, payer, description, entryEmployee, isW
     } else {
       entry.set(SPE_FIELD_TYPE, SPE_FIELD_TYPE_VALUE_EMPLOYEE_CASH);
     };
-    assignToBudget(); 
+    assignToBudget(entry); 
+
     entry.recalc();
   return entry;     
 
