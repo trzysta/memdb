@@ -61,16 +61,16 @@ function Salary (e) {
 
   this.closeSettlement = function() {
     message("aaaaaaa");
-  }
+  };
 
   this.canCloseSettlement = function() {
-  }
+  };
 
   this.setValues  = function() {
-  }
+  };
 
   this.validateBeforeSave = function() {
-  }
+  };
 
 
 
