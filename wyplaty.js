@@ -1,3 +1,39 @@
+/*
+Baza Memento Database na Androida. Autor Marceli Matynia 300 Sp. z o.o.
+*/
+
+importScripts('https://raw.githubusercontent.com/trzysta/memdb/master/budzet.js');
+
+const SAL_FIELD_CLOSED              = "Rozliczony";
+const SAL_FIELD_CLOSED_VALUE_YES    = "Rozliczony";
+const SAL_FIELD_CLOSED_VALUE_NO     = "W trakcie rozliczania";
+const SAL_FIELD_CASH_AMOUNT         = "Wypłacono w gotówce";
+const SAL_FIELD_CASH_DATE           = "Data wypłaty gotówki";
+const SAL_FIELD_WITHDRAWAL_AMOUNT   = "Wpłacono na konto";
+const SAL_FIELD_WITHDRAWAL_DATE     = "Data przelewu";
+const SAL_FIELD_EMPLOYEE_LINK       = "Pracownik";
+const SAL_FIELD_CONTRACT            = "Osiedle";
+const SAL_FIELD_SPEND_LINK          = "Wydatek";
+const SAL_FIELD_DESCRIPTION         = "Uwagi";
+const SAL_FIELD_MONTH               = "Miesiąc";
+const SAL_FIELD_PAYER               = "Dokonujący wypłaty";
+const SAL_FIELD_ADVANCE_PAYMENT     = "Zaliczki";
+const SAL_FIELD_WEEKENDS            = "Dni wolne";
+const SAL_FIELD_PAYMENT_TYPE        = "Rodzaj wynagrodzenia";
+
+const SAL_ADD_DESCRIPTION_WITHDRAWAL = " wypłata przelewem za ";
+const SAL_ADD_DESCRIPTION_CASH      = " wypłata gotówki za ";
+
+const SAL_ERR_CLOSED_OR_NOACCESS    = "Wpis już rozliczony lub nie masz uprawnień do zamknięcia rozliczenia";
+const SAL_ERR_NO_AMOUNT             = "Uzupełnij kwoty wypłat, gotówka lub przelew. Jeśli rozliczenie jest bez wypłaty w polach kwot wstaw zero";
+const SAL_MSG_CLOSING               = "Zamykam rozliczenie: ";
+const SAL_MSG_CREATING_SPEND        = "Tworzę wydatek: ";
+const SAL_MSG_ADVANCE_PAYMENT       = "Szukam zaliczek... ";
+const SAL_MSG_VALIDATION_ERR        = "Nie można zapisać, popraw następujące błędy:";
+const SAL_MSG_VALIDATION_ERR_NO_WITHDRWAL = "- podaj datę i kwotę przelewu";
+const SAL_MSG_VALIDATION_ERR_NO_CASH = "- podaj datę i kwotę wypłaty gotówki";
+const SAL_MSG_RUNING_FINDADVANCEPAYMENT = "szukam zaliczek dla wpisu...";
+
 var entrySalary       = null;
 var amountCash        = 0;
 var amountWithdrwal   = 0;
@@ -13,37 +49,83 @@ var type              = "";
 var libSalaries       = null;
 
 
-function closeSalary(e, show) {
+/* 
+  ---------------------------------------------
+   FUNCKJE PUBLICZNE, TZN. UMOWNIE PUBLICZNE 
+   WYWOŁYWANE WPROST Z BAZY
+  ---------------------------------------------
+*/
+
+function test(){
+  assignToBudget();
+}
+
+function closeSettlement(e, reopenEntry) {
   entrySalary = e;
   setValues();
-  message( "startuję dla " + entryEmployee.name );
+  message( SAL_MSG_CLOSING + entryEmployee.name );
 
-  if (canClose()) {
+  if (canCloseSettlement()) {
     if (!visible) entry.set(FIELD_CAN_ACCESS, true);
 
     if ((dateWithdrwal != null) && (amountWithdrwal > 0)) {
-      var spendWithdrwal = createSpendSalary(amountWithdrwal, dateWithdrwal, withdrawalMaker, description, entryEmployee, true);
+      var spendWithdrwal = createSpendEntry(amountWithdrwal, dateWithdrwal, withdrawalMaker, description, entryEmployee, true);
       entrySalary.link( SAL_FIELD_SPEND_LINK, spendWithdrwal );
     };
 
     if ((dateCash != null) && (amountCash > 0)) {
-      var spendCash = createSpendSalary(amountCash, dateCash, payerName, description, entryEmployee, false);
+      var spendCash = createSpendEntry(amountCash, dateCash, payerName, description, entryEmployee, false);
       entrySalary.link( SAL_FIELD_SPEND_LINK, spendCash );
     };
     entrySalary.set(FIELD_CAN_ACCESS, visible);
     entrySalary.set(SAL_FIELD_CLOSED, SAL_FIELD_CLOSED_VALUE_YES);
     entrySalary.recalc();
-    if (show) entrySalary.show();
+    if (reopenEntry) entrySalary.show();
   } else {
     message (SAL_MSG_CLOSED_OR_NOACCESS);
   }
 };
 
-function createSpendSalary(amount, date, payer, description, entryEmployee, isWithdrwal) {
+// ---------------------------------------------
+
+function validateBeforeSave( e ) {
+
+  entrySalary = e;
+  setValues();
+  var msg = SAL_MSG_VALIDATION_ERR;
+
+  if ( (amountWithdrwal > 0) && (dateWithdrwal == null) ) {
+    msg += "\n" + SAL_MSG_VALIDATION_ERR_NO_WITHDRWAL;
+    canSave = false;
+  } else {
+    canSave = true;
+  }
+
+  if ( (amountCash > 0) && (dateCash == null) ) {
+    msg += "\n" + SAL_MSG_VALIDATION_ERR_NO_CASH;
+    canSave = false;
+  } else {
+    canSave = true;
+  }
+
+  if (!canSave) { message(msg) };
+  return canSave;
+
+}
+
+
+
+
+
+
+// ---------------------------------------------
+
+
+function createSpendEntry ( amount, date, payer, description, entryEmployee, isWithdrwal ) {
 
     var entry;
     var libSpendings; 
-    message( "tworzę wydatek " + amount + " " + date + " " + payer );
+    message( SAL_MSG_CREATING_SPEND + amount + ", " + ", " + payer );
 
     entry = new Object;
     libSpendings = libByName(LIB_SPANDINGS_NAME);
@@ -58,9 +140,13 @@ function createSpendSalary(amount, date, payer, description, entryEmployee, isWi
     } else {
       entry.set(SPE_FIELD_TYPE, SPE_FIELD_TYPE_VALUE_EMPLOYEE_CASH);
     };
+    assignToBudget(); 
     entry.recalc();
   return entry;     
+
 };
+
+// ---------------------------------------------
 
 function setValues() {
 
@@ -75,146 +161,24 @@ function setValues() {
   if (entrySalary.field(SAL_FIELD_CLOSED) == SAL_FIELD_CLOSED_VALUE_YES) isClosed = true;
   if (entrySalary.field(SAL_FIELD_WITHDRAWAL_DATE) != "")           dateWithdrwal = entrySalary.field(SAL_FIELD_WITHDRAWAL_DATE);
   if (entrySalary.field(SAL_FIELD_CASH_DATE) != "")                 dateCash = entrySalary.field(SAL_FIELD_CASH_DATE);
+
 };
 
+// --------------------------------------------- 
 
-function canClose() {
+function canCloseSettlement(showAlert) {
+  
   var c = false;
-  if ((amountCash + amountWithdrwal > 0) && (isClosed == false)) c = true;
+  if ((amountCash + amountWithdrwal > 0) && (isClosed == false)) {
+    c = true;
+  } else if (showAlert) {
+    message( SAL_ERR_CLOSED_OR_NOACCESS )
+  }; 
   return c;
 };
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// dodać że ja nie ma osiedla to wtedy budżet wynagrodzenia bez Osiedla
-function closePayment( entryPayout ) {
-
-  var notVisible = false;
-
-  // sprawdzanie warunków czy może zamykać rozliczenie i czy rozliczenie jest otwarte
-  if ((entryPayout.field(SAL_FIELD_CLOSED) == SAL_FIELD_CLOSED_VALUE_YES) || ( !isEditor() ) ) {
-
-    message(SAL_MSG_CLOSED_OR_NOACCESS);
-    cancel();
-
-  // sprawdzenie czy są wpisane kwoty, musi być coś wpisane jeśli nie ma wypłąt należy wpisać zero, pole nie może być puste
-  } else if ((entryPayout.field(SAL_FIELD_CASH_AMOUNT) == null) && (entryPayout.field(SAL_FIELD_WITHDRAWAL_AMOUNT) == null)) {
-
-    message(SAL_MSG_NO_AMONT);
-    cancel();
-
-  } else {
-
-    message ( SAL_MSG_CLOSING + entryPayout.field(SAL_FIELD_EMPLOYEE_LINK)[0].field(E_FIELD_FULLNAME) );
-    
-    // któreś z pól gotówka lub przelew nie jest NULL więc zamykam rozliczenie
-    if (entryPayout.field(FIELD_CAN_ACCESS) == false )  {
-        entryPayout.set(FIELD_CAN_ACCESS, true);
-        notVisible = true;
-    }
-
-    entryPayout.recalc();
-    var desc; 
-
-    // dodawanie wpisu do bazy wydatków o przelewie
-    if ( (entryPayout.field(SAL_FIELD_WITHDRAWAL_DATE) != "") && (entryPayout.field(SAL_FIELD_WITHDRAWAL_AMOUNT) > 0)) {
-
-        var entrySpendWithdrwal = new Object;
-        entrySpendWithdrwal = libSpendings.create(entrySpendWithdrwal);
-        entryPayout.link(SAL_FIELD_SPEND_LINK, entrySpendWithdrwal );
-
-        dtTransfer = entryPayout.field(SAL_FIELD_WITHDRAWAL_DATE);
-
-        entrySpendWithdrwal.set(SPE_FIELD_AMOUNT,        (0 - entryPayout.field(SAL_FIELD_WITHDRAWAL_AMOUNT)));
-        entrySpendWithdrwal.set(SPE_FIELD_DATE,          entryPayout.field(SAL_FIELD_WITHDRAWAL_DATE));
-        entrySpendWithdrwal.set(SPE_FIELD_TYPE,          SPE_FIELD_TYPE_VALUE_EMPLOYEE_WITHDRAWAL);
-        entrySpendWithdrwal.set(SPE_FIELD_CREATOR,       withdrawalMaker);                         // do bazy wypłat dodać wypłacającego
-        entrySpendWithdrwal.set(SPE_FIELD_EMPLOYEE_LINK, entryPayout.field(SAL_FIELD_EMPLOYEE_LINK));
-
-        desc =  entryPayout.field(SAL_FIELD_DESCRIPTION) + SAL_ADD_DESCRIPTION_WITHDRAWAL + moment(entryPayout.field(SAL_FIELD_MONTH)).format('MM') +
-                "-" + moment(entryPayout.field(SAL_FIELD_MONTH)).format('YYYY');
-        entrySpendWithdrwal.set(SPE_FIELD_DESCRIPTION, desc);
-        entrySpendWithdrwal.recalc();       
-    }
-    
-    // dodawanie wpisu do bazy wydatków o gotówkę
-    if ( (entryPayout.field(SAL_FIELD_CASH_DATE) != "" ) && (entryPayout.field(SAL_FIELD_CASH_AMOUNT) > 0)) {
-
-      var entrySpendCash = new Object;
-      entrySpendCash = libSpendings.create(entrySpendCash);
-
-      entryPayout.link(SAL_FIELD_SPEND_LINK,  entrySpendCash );
-      entrySpendCash.set(SPE_FIELD_AMOUNT,        (0 - entryPayout.field(SAL_FIELD_CASH_AMOUNT)));
-      entrySpendCash.set(SPE_FIELD_DATE,          entryPayout.field(SAL_FIELD_CASH_DATE));
-      entrySpendCash.set(SPE_FIELD_TYPE,          SPE_FIELD_TYPE_VALUE_EMPLOYEE_CASH);
-      entrySpendCash.set(SPE_FIELD_CREATOR,       entryPayout.field(SAL_FIELD_PAYER));    
-      entrySpendCash.set(SPE_FIELD_EMPLOYEE_LINK, entryPayout.field(SAL_FIELD_EMPLOYEE_LINK));
-
-      desc =  entryPayout.field(SAL_FIELD_DESCRIPTION) + SAL_ADD_DESCRIPTION_CASH + moment(entryPayout.field(SAL_FIELD_MONTH)).format('MM') +
-               "-" + moment(entryPayout.field(SAL_FIELD_MONTH)).format('YYYY');
-      entrySpendCash.set(SPE_FIELD_DESCRIPTION, desc);
-      entrySpendCash.recalc();
-    }
-
-    var entryContract = entryPayout.field(B_FIELD_CONTRACT_LINK)[0];
-    var allContractBugets = new Array;
-
-    if (entryContract != "") allContractBugets = libBudget.linksTo( entryContract );
-
-    var budgetNth = 0;
-    var notFound = true;
-    var monthPayout = moment(entryPayout.field(SAL_FIELD_MONTH)).format("MMYYYY");
-
-    // dodawanie budzetu do rozliczenia
-    while ( budgetNth < allContractBugets.length && notFound ) {
-      var entBudget   = allContractBugets[budgetNth];
-      var monthBudget = moment(entBudget.field(B_FIELD_MONTH)).startOf('month').add(-1, 'month').format("MMYYYY");
-      budgetNth++;
-
-      // szukanie budżetu miesiąc wypłaty == miesiąc budżetu i typ wynagrodzenia
-      if ( (monthBudget == monthPayout) && (entBudget.field(BUD_FIELD_TYPE) == BUD_TYPE_PAYOUT) ) {
-          message (B_MSG_BUDGET_FOUND + entBudget.field(B_FIELD_TYPE) + " " + monthPayout);
-          var newBalance = entBudget.field(B_FIELD_BALANCE);
-          if (entrySpendWithdrwal != UNDEF) {
-            entrySpendWithdrwal.link(SPE_FIELD_BUDGET_LINK, entBudget );
-            newBalance += Math.abs(entrySpendWithdrwal.field(B_FIELD_AMOUNT))
-          };
-          if (entrySpendCash != UNDEF) {
-            entrySpendCash.link(SPE_FIELD_BUDGET_LINK, entBudget );
-            newBalance += Math.abs(entrySpendCash.field(B_FIELD_AMOUNT))
-          };
-
-          entBudget.set(B_FIELD_BALANCE,  newBalance );
-          entBudget.set(B_FIELD_LEFT,     entBudget.field(B_FIELD_LIMIT) - entBudget.field(B_FIELD_BALANCE));
-          notFound = false;
-        }
-
-    }
-
-    if (notVisible) entryPayout.set(FIELD_CAN_ACCESS, false);
-    entryPayout.set(FIELD_EDITOR, "");
-    entryPayout.set(SAL_FIELD_CLOSED, SAL_FIELD_CLOSED_VALUE_YES);
-    entryPayout.recalc();
-    entryPayout.show();
-  }
-};
 
 
 
@@ -231,7 +195,7 @@ funkcja wyszukująca w bazie wydatków wpisów o zaliczkach i dodająca do wypł
 zakres wyszukiwania jest od 18 dnia poprzedniego miesiąca do bieżącej daty
 */
 
-function findAdvancePayment( entryPayout, show ) {
+function ___findAdvancePayment( entryPayout, show ) {
 
   //var entryPayout = entry();
 
@@ -270,7 +234,7 @@ function findAdvancePayment( entryPayout, show ) {
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 
-function newPayoutOpening( entryPayout ) {
+function ___newPayoutOpening( entryPayout ) {
 
   if ( entryPayout != undefined ) {
     var prevMonth   = moment().startOf('month').add(-1, 'month');
@@ -303,31 +267,6 @@ function newPayoutOpening( entryPayout ) {
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 
-function validateSaving( entryPayout ) {
-
-  var amountWithdrwal = entryPayout.field(SAL_FIELD_WITHDRAWAL_AMOUNT);
-  var amountCash      = entryPayout.field(SAL_FIELD_CASH_AMOUNT);
-  var canSave         = false;
-  var msg             = SAL_MSG_VALIDATION_ERR;
-
-  if ( (amountWithdrwal > 0) && (entryPayout.field(SAL_FIELD_WITHDRAWAL_DATE) == null) ) {
-    msg += "\n" + SAL_MSG_VALIDATION_ERR_NO_WITHDRWAL;
-    canSave = false;
-  } else {
-    canSave = true;
-  }
-
-  if ( (amountCash > 0) && (entryPayout.field(SAL_FIELD_CASH_DATE) == null) ) {
-    msg += "\n" + SAL_MSG_VALIDATION_ERR_NO_CASH;
-    canSave = false;
-  } else {
-    canSave = true;
-  }
-
-  if (!canSave) { message(msg) };
-  return canSave;
-
-}
 
 
 
@@ -335,7 +274,8 @@ function validateSaving( entryPayout ) {
 
 
 
-function copyToMonth( selected, month ) {
+
+function ___copyToMonth( selected, month ) {
 
   var dt = moment(month).startOf('month');
   var dayEnd = parseInt(moment(month).endOf('month').format('D'));

@@ -1,0 +1,6 @@
+
+
+
+function assignToBudget() {
+    message("budżet !!!!")
+}
