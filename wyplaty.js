@@ -47,17 +47,17 @@ function Salary(e) {
   this.description = "";
   this.type = "";
 
-  this.libSalaries = libByName(LIB_SALARIES_NAME);
-  this.payerName = this.entry.field(SAL_FIELD_PAYER);
-  this.description = this.entry.field(SAL_FIELD_DESCRIPTION);
-  this.type = this.entry.field(SAL_FIELD_DESCRIPTION);
-  this.visible = this.entry.field(FIELD_CAN_ACCESS);
-  if (this.entry.field(SAL_FIELD_EMPLOYEE_LINK).length > 0) this.entryEmployee = ethis.ntrySalary.field(SAL_FIELD_EMPLOYEE_LINK)[0];
-  if (!isNaN(this.entry.field(SAL_FIELD_CASH_AMOUNT))) this.amountCash = this.entry.field(SAL_FIELD_CASH_AMOUNT);
-  if (!isNaN(this.entry.field(SAL_FIELD_WITHDRAWAL_AMOUNT))) this.amountWithdrwal = ethis.ntrySalary.field(SAL_FIELD_WITHDRAWAL_AMOUNT);
-  if (this.entry.field(SAL_FIELD_CLOSED) == SAL_FIELD_CLOSED_VALUE_YES) this.isClosed = true;
-  if (this.entry.field(SAL_FIELD_WITHDRAWAL_DATE) != "") this.dateWithdrwal = this.entry.field(SAL_FIELD_WITHDRAWAL_DATE);
-  if (this.entry.field(SAL_FIELD_CASH_DATE) != "") this.dateCash = this.entry.field(SAL_FIELD_CASH_DATE);
+  this.libSalaries    = libByName(LIB_SALARIES_NAME);
+  this.payerName      = this.entry.field(SAL_FIELD_PAYER);
+  this.description    = this.entry.field(SAL_FIELD_DESCRIPTION);
+  this.type           = this.entry.field(SAL_FIELD_DESCRIPTION);
+  this.visible        = this.entry.field(FIELD_CAN_ACCESS);
+  if (this.entry.field(SAL_FIELD_EMPLOYEE_LINK).length > 0)             this.entryEmployee    = this.entry.field(SAL_FIELD_EMPLOYEE_LINK)[0];
+  if (!isNaN(this.entry.field(SAL_FIELD_CASH_AMOUNT)))                  this.amountCash       = this.entry.field(SAL_FIELD_CASH_AMOUNT);
+  if (!isNaN(this.entry.field(SAL_FIELD_WITHDRAWAL_AMOUNT)))            this.amountWithdrwal  = this.entry.field(SAL_FIELD_WITHDRAWAL_AMOUNT);
+  if (this.entry.field(SAL_FIELD_CLOSED) == SAL_FIELD_CLOSED_VALUE_YES) this.isClosed         = true;
+  if (this.entry.field(SAL_FIELD_WITHDRAWAL_DATE) != "")                this.dateWithdrwal    = this.entry.field(SAL_FIELD_WITHDRAWAL_DATE);
+  if (this.entry.field(SAL_FIELD_CASH_DATE) != "")                      this.dateCash         = this.entry.field(SAL_FIELD_CASH_DATE);
 
   var hTools = new HuubTools( this.entry )
 
