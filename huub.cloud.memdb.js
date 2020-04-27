@@ -321,8 +321,8 @@ Employee.prototype = {
     return this.holiday;
   },
 
-  set holiday(namnewValuee) {
-    this.holiday[total] = 100;
+  set holiday( newValue ) {
+    this.holiday[total] = newValue;
     this.holiday[left] = 80;
     this.holiday[used] = 20;
   }

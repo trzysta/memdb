@@ -23,10 +23,7 @@ const MSG_ENTRIES = "wpisów";
 const MSG_FINISHED = "Zakończono!";
 const VALUE_MAIL = "e-mail";
 
-var E_FIELD_FULLNAME = "Imie i nazwisko";
-var EMP_FIELD_EMPLOYEE_HOLIDAY_TOTAL = "Wymiar urlopu";
-var EMP_FIELD_EMPLOYEE_HOLIDAY_LEFT = "Urlop pozostały";
-var EMP_FIELD_EMPLOYEE_HOLIDAY_USED = "Urlop wykorzystany";
+
 
 var HuubTools = function (e) {
   
