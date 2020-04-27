@@ -304,28 +304,17 @@ function Employee (e) {
 
   this.entry = e; 
   
-  this.holiday = function() {
-    var total = 110;
-    var used = 0;
-    var left = 0;
-    this.getTotal = function() {
-      return total;
-    };
-    this.setTotal = function( v ) {
-      total = 200;
-    };
-    this.getUsed = function() {
+};
 
-    };
-    this.setUsed = function( v ) {
+Employee.prototype = {
+  get holidayTotal() {
+      return 100;
+  },
 
-    };
-    this.getLeft = function() {
-
-    };
-    this.setLeft = function( v ) {
-
-    };
+  set holidayTotal(namnewValuee) {
+      var names = name.split(" ");
+      this.first = names[0];
+      this.last = names[1];
   }
 };
 
