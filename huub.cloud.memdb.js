@@ -302,6 +302,8 @@ function Employee (e) {
   const EMP_FIELD_EMPLOYEE_HOLIDAY_LEFT = "Urlop pozostały";
   const EMP_FIELD_EMPLOYEE_HOLIDAY_USED = "Urlop wykorzystany";
 
+  this.entry = e; 
+  
   this.holiday = function() {
     var total = 0;
     var used = 0;
