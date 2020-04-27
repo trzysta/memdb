@@ -111,6 +111,9 @@ var SAL_MSG_RUNING_FINDADVANCEPAYMENT = "szukam zaliczek dla wpisu...";
 
 // ***** baza PRACOWNICY
 var E_FIELD_FULLNAME = "Imie i nazwisko";
+var EMP_FIELD_EMPLOYEE_HOLIDAY_TOTAL = "Wymiar urlopu";
+var EMP_FIELD_EMPLOYEE_HOLIDAY_LEFT = "Urlop pozostały";
+var EMP_FIELD_EMPLOYEE_HOLIDAY_USED = "Urlop wykorzystany";
 
 // ****************************************************************************
 // ~~~ BAZA OSIEDLA

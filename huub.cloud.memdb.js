@@ -4,6 +4,18 @@ Baza Memento Database na Androida. Autor Marceli Matynia 300 Sp. z o.o.
 ! wymagane dodanie budzet.js, common.js
 */
 
+
+
+
+
+
+// *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+// *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+// *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+// *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+// *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+// *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+
 function Salary(e) {
 
   const LIB_SALARIES_NAME = "Wypłaty";
@@ -59,7 +71,7 @@ function Salary(e) {
   if (this.entry.field(SAL_FIELD_WITHDRAWAL_DATE) != "")                this.dateWithdrwal    = this.entry.field(SAL_FIELD_WITHDRAWAL_DATE);
   if (this.entry.field(SAL_FIELD_CASH_DATE) != "")                      this.dateCash         = this.entry.field(SAL_FIELD_CASH_DATE);
 
-  var hTools = new HuubTools( this.entry )
+  var huubTools = new HuubTools( this.entry )
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  
 
@@ -67,14 +79,14 @@ function Salary(e) {
 
     message(SAL_MSG_CLOSING + entryEmployee.name);
 
-    if (canCloseSettlement()) {
+    if (__canCloseSettlement()) {
       if (!visible) entry.set(FIELD_CAN_ACCESS, true);
       if ((dateWithdrwal != null) && (amountWithdrwal > 0)) {
-        var spendWithdrwal = createSpendEntry(amountWithdrwal, dateWithdrwal, withdrawalMaker, description, entryEmployee, true);
+        var spendWithdrwal = __createSpendEntry(amountWithdrwal, dateWithdrwal, withdrawalMaker, description, entryEmployee, true);
         entry.link(SAL_FIELD_SPEND_LINK, spendWithdrwal);
       };
       if ((dateCash != null) && (amountCash > 0)) {
-        var spendCash = createSpendEntry(amountCash, dateCash, payerName, description, entryEmployee, false);
+        var spendCash = __createSpendEntry(amountCash, dateCash, payerName, description, entryEmployee, false);
         entry.link(SAL_FIELD_SPEND_LINK, spendCash);
       };
       entry.set(FIELD_CAN_ACCESS, visible);
@@ -113,11 +125,6 @@ function Salary(e) {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  
 
-  /*
-  funkcja wyszukująca w bazie wydatków wpisów o zaliczkach i dodająca do wypłaty
-  zakres wyszukiwania jest od 18 dnia poprzedniego miesiąca do bieżącej daty
-  */
-
   this.findAdvances = function (show) {
 
     message(SAL_MSG_RUNING_FINDADVANCE);
@@ -155,7 +162,7 @@ function Salary(e) {
     this.entry.set(SAL_FIELD_PAYER, payer);
     this.entry.set(SAL_FIELD_MONTH, prevMonth.toDate());
 
-    hTools.setDefault();
+    huubTools.setDefault();
 
     var i = 1;
     while (i <= dayEnd) {
@@ -168,10 +175,12 @@ function Salary(e) {
   }
 
 
-  // prywatne metody
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  
 
-  var createSpendEntry = function (amount, date, payer, description, entryEmployee, isWithdrwal) {
+
+  var __createSpendEntry = function (amount, date, payer, description, entryEmployee, isWithdrwal) {
 
     var entrySpend;
     var libSpendings;
@@ -198,7 +207,7 @@ function Salary(e) {
 
   // --------------------------------------------- 
 
-  var canCloseSettlement = function (showAlert) {
+  var __canCloseSettlement = function (showAlert) {
 
     var c = false;
     if ((this.amountCash + this.amountWithdrwal > 0) && (this.isClosed == false)) {
@@ -211,12 +220,49 @@ function Salary(e) {
 
 
 
+  // --------------------------------------------- 
 
 
 
 
+  this.copyToMonth = function (selected, month) {
 
-
+    var dt = moment(month).startOf('month');
+    var dayEnd = parseInt(moment(month).endOf('month').format('D'));
+    var weekDays = new Array();
+  
+    var i = 1;
+    while (i <= dayEnd) {
+  
+      if (dt.isoWeekday() == 6 || dt.isoWeekday() == 7) { weekDays.push(i) };
+      dt = dt.add(1, 'day');
+      i++;
+    };
+  
+  
+    // kopiowanie
+    dt = moment(month).startOf('month');
+    message(MSG_UPDATING + " " + selected.length + " " + MSG_ENTRIES);
+    for (count = 0; count < selected.length; count++) {
+  
+      var entrySource = selected[count];
+      var entryTarget = new Object();
+      entryTarget[SAL_FIELD_MONTH] = dt.toDate();
+      entryTarget[FIELD_EDITOR] = arrEditors;
+      entryTarget[SAL_FIELD_WEEKENDS] = weekDays;
+      entryTarget[SAL_FIELD_EMPLOYEE_LINK] = entrySource.field(SAL_FIELD_EMPLOYEE_LINK)[0];
+      entryTarget[SAL_FIELD_CONTRACT] = entrySource.field(SAL_FIELD_CONTRACT)[0];
+      entryTarget[SAL_FIELD_PAYMENT_TYPE] = entrySource.field(SAL_FIELD_PAYMENT_TYPE);
+      entryTarget[SAL_FIELD_PAYER] = entrySource.field(SAL_FIELD_PAYER);
+      entryTarget[SAL_FIELD_CLOSED] = SAL_FIELD_CLOSED_VALUE_NO;
+  
+      entryTarget = libSalaries.create(entryTarget);
+      findADVANCE(entryTarget, false);
+    }
+  
+    message(MSG_FINISHED);
+  
+  }
 
 
 
@@ -229,18 +275,9 @@ function Salary(e) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+// *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+// *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+// *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
@@ -249,66 +286,46 @@ function Salary(e) {
 
 
 
-
-
-
-
+// *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+// *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+// *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 
 
 
+function Employee (e) {
+  
+  const E_FIELD_FULLNAME = "Imie i nazwisko";
+  const EMP_FIELD_EMPLOYEE_HOLIDAY_TOTAL = "Wymiar urlopu";
+  const EMP_FIELD_EMPLOYEE_HOLIDAY_LEFT = "Urlop pozostały";
+  const EMP_FIELD_EMPLOYEE_HOLIDAY_USED = "Urlop wykorzystany";
 
+  this.holiday = function() {
+    var total = 0;
+    var used = 0;
+    var left = 0;
+    this.getTotal = function() {
 
+    };
+    this.setTotal = function( v ) {
 
+    };
+    this.getUsed = function() {
 
+    };
+    this.setUsed = function( v ) {
 
+    };
+    this.getLeft = function() {
 
-function ___copyToMonth(selected, month) {
+    };
+    this.setLeft = function( v ) {
 
-  var dt = moment(month).startOf('month');
-  var dayEnd = parseInt(moment(month).endOf('month').format('D'));
-  var weekDays = new Array();
-
-  var i = 1;
-  while (i <= dayEnd) {
-
-    if (dt.isoWeekday() == 6 || dt.isoWeekday() == 7) { weekDays.push(i) };
-    dt = dt.add(1, 'day');
-    i++;
-  };
-
-
-  // kopiowanie
-  dt = moment(month).startOf('month');
-  message(MSG_UPDATING + " " + selected.length + " " + MSG_ENTRIES);
-  for (count = 0; count < selected.length; count++) {
-
-    var entrySource = selected[count];
-    var entryTarget = new Object();
-    entryTarget[SAL_FIELD_MONTH] = dt.toDate();
-    entryTarget[FIELD_EDITOR] = arrEditors;
-    entryTarget[SAL_FIELD_WEEKENDS] = weekDays;
-    entryTarget[SAL_FIELD_EMPLOYEE_LINK] = entrySource.field(SAL_FIELD_EMPLOYEE_LINK)[0];
-    entryTarget[SAL_FIELD_CONTRACT] = entrySource.field(SAL_FIELD_CONTRACT)[0];
-    entryTarget[SAL_FIELD_PAYMENT_TYPE] = entrySource.field(SAL_FIELD_PAYMENT_TYPE);
-    entryTarget[SAL_FIELD_PAYER] = entrySource.field(SAL_FIELD_PAYER);
-    entryTarget[SAL_FIELD_CLOSED] = SAL_FIELD_CLOSED_VALUE_NO;
-
-    entryTarget = libSalaries.create(entryTarget);
-    findADVANCE(entryTarget, false);
+    };
   }
-
-  message(MSG_FINISHED);
-
-}
+};
 
 
 
-
-
-
-
-
-// ****
