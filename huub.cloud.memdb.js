@@ -305,14 +305,14 @@ function Employee (e) {
   this.entry = e; 
   
   this.holiday = function() {
-    var total = 0;
+    var total = 110;
     var used = 0;
     var left = 0;
     this.getTotal = function() {
-
+      return total;
     };
     this.setTotal = function( v ) {
-
+      total = 200;
     };
     this.getUsed = function() {
 
