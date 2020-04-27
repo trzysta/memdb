@@ -59,7 +59,6 @@ function Salary(e) {
   this.description = "";
   this.type = "";
 
-  this.libSalaries    = libByName(LIB_SALARIES_NAME);
   this.payerName      = this.entry.field(SAL_FIELD_PAYER);
   this.description    = this.entry.field(SAL_FIELD_DESCRIPTION);
   this.type           = this.entry.field(SAL_FIELD_DESCRIPTION);
@@ -227,6 +226,8 @@ function Salary(e) {
 
   this.copyToMonth = function (selected, month) {
 
+    var libSalaries = libByName(LIB_SALARIES_NAME);
+
     var dt = moment(month).startOf('month');
     var dayEnd = parseInt(moment(month).endOf('month').format('D'));
     var weekDays = new Array();
@@ -312,9 +313,7 @@ Employee.prototype = {
   },
 
   set holidayTotal(namnewValuee) {
-    var names = name.split(" ");
-    this.first = names[0];
-    this.last = names[1];
+
   }
 };
 
