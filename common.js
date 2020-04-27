@@ -4,38 +4,37 @@
 */
 
 
-var HuubTools = function( e ) {
+var HuubTools = function (e) {
 
-  var arrMonths_pl  = ["styczeń", "luty", "marzec", "kwiecien", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "listopad", "grudzień"];
-  var arrEditors    = ["MalgorzataG", "ElzbietaZ", "trzystaIZABELA", "MarceliM", "trzysta"];
-  var arrManagers   = ["trzysta"];
-  var arrNames      = ["Małgorzata Grabowska", "Elżbieta Zdziech", "Izabela Skowrońska", "Marceli Matynia", "Administrator"];
+  var arrMonths_pl = ["styczeń", "luty", "marzec", "kwiecien", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "listopad", "grudzień"];
+  var arrEditors = ["MalgorzataG", "ElzbietaZ", "trzystaIZABELA", "MarceliM", "trzysta"];
+  var arrManagers = ["trzysta"];
+  var arrNames = ["Małgorzata Grabowska", "Elżbieta Zdziech", "Izabela Skowrońska", "Marceli Matynia", "Administrator"];
   var withdrawalMaker = "Marceli Matynia";
 
-  var FIELD_EDITOR        = "Editor";
-  var FIELD_IS_NEW        = "new";
-  var FIELD_REF           = "REF";
-  var FIELD_REF_PARTENT   = "parentREF";
-  var FIELD_IS_PARENT     = "isParent";
-  var FIELD_IS_HIDDEN     = "Ukryte";
-  var FIELD_CAN_ACCESS    = "canAccess";
-  var FIELD_DISPLAY_NAME  = "displayName";
-  var MSG_UPDATING        = "uaktualniam";
-  var MSG_COPYING         = "kopiuję";
-  var MSG_ENTRIES         = "wpisów";
-  var MSG_FINISHED        = "Zakończono!";
-  var VALUE_MAIL          = "e-mail";
+  var FIELD_EDITOR = "Editor";
+  var FIELD_IS_NEW = "new";
+  var FIELD_REF = "REF";
+  var FIELD_REF_PARTENT = "parentREF";
+  var FIELD_IS_PARENT = "isParent";
+  var FIELD_IS_HIDDEN = "Ukryte";
+  var FIELD_CAN_ACCESS = "canAccess";
+  var FIELD_DISPLAY_NAME = "displayName";
+  var MSG_UPDATING = "uaktualniam";
+  var MSG_COPYING = "kopiuję";
+  var MSG_ENTRIES = "wpisów";
+  var MSG_FINISHED = "Zakończono!";
+  var VALUE_MAIL = "e-mail";
 
   this.entry = e;
 
-  this.setDefault = function() {
-      if (e != null) {
-        this.entry.set( FIELD_EDITOR, arrEditors );
-        this.entry.set( FIELD_IS_NEW, true );
-      }
+  this.setDefault = function () {
+    if (e != null) {
+      this.entry.set(FIELD_EDITOR, arrEditors);
+      this.entry.set(FIELD_IS_NEW, true);
     }
-  } 
-}
+  }
+};
 
 
 
