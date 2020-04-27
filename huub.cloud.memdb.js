@@ -309,16 +309,22 @@ function Employee (e) {
   const EMP_FIELD_EMPLOYEE_HOLIDAY_USED = "Urlop wykorzystany";
 
   this.entry = e; 
-  
+  this.holiday = {
+    total: 0,
+    left: 0,
+    used: 0
+  }
 };
 
 Employee.prototype = {
-  get holidayTotal() {
-    return 100;
+  get holiday() {
+    return this.holiday;
   },
 
-  set holidayTotal(namnewValuee) {
-
+  set holiday(namnewValuee) {
+    this.holiday[total] = 100;
+    this.holiday[left] = 80;
+    this.holiday[used] = 20;
   }
 };
 
