@@ -3,29 +3,29 @@
   aplikację utworzoną dla 300 Sp. z o.o.
 */
 
+const arrMonths_pl = ["styczeń", "luty", "marzec", "kwiecien", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "listopad", "grudzień"];
+const arrEditors = ["MalgorzataG", "ElzbietaZ", "trzystaIZABELA", "MarceliM", "trzysta"];
+const arrManagers = ["trzysta"];
+const arrNames = ["Małgorzata Grabowska", "Elżbieta Zdziech", "Izabela Skowrońska", "Marceli Matynia", "Administrator"];
+const withdrawalMaker = "Marceli Matynia";
+
+const FIELD_EDITOR = "Editor";
+const FIELD_IS_NEW = "new";
+const FIELD_REF = "REF";
+const FIELD_REF_PARTENT = "parentREF";
+const FIELD_IS_PARENT = "isParent";
+const FIELD_IS_HIDDEN = "Ukryte";
+const FIELD_CAN_ACCESS = "canAccess";
+const FIELD_DISPLAY_NAME = "displayName";
+const MSG_UPDATING = "uaktualniam";
+const MSG_COPYING = "kopiuję";
+const MSG_ENTRIES = "wpisów";
+const MSG_FINISHED = "Zakończono!";
+const VALUE_MAIL = "e-mail";
+
 
 var HuubTools = function (e) {
-
-  var arrMonths_pl = ["styczeń", "luty", "marzec", "kwiecien", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "listopad", "grudzień"];
-  var arrEditors = ["MalgorzataG", "ElzbietaZ", "trzystaIZABELA", "MarceliM", "trzysta"];
-  var arrManagers = ["trzysta"];
-  var arrNames = ["Małgorzata Grabowska", "Elżbieta Zdziech", "Izabela Skowrońska", "Marceli Matynia", "Administrator"];
-  var withdrawalMaker = "Marceli Matynia";
-
-  var FIELD_EDITOR = "Editor";
-  var FIELD_IS_NEW = "new";
-  var FIELD_REF = "REF";
-  var FIELD_REF_PARTENT = "parentREF";
-  var FIELD_IS_PARENT = "isParent";
-  var FIELD_IS_HIDDEN = "Ukryte";
-  var FIELD_CAN_ACCESS = "canAccess";
-  var FIELD_DISPLAY_NAME = "displayName";
-  var MSG_UPDATING = "uaktualniam";
-  var MSG_COPYING = "kopiuję";
-  var MSG_ENTRIES = "wpisów";
-  var MSG_FINISHED = "Zakończono!";
-  var VALUE_MAIL = "e-mail";
-
+  
   this.entry = e;
 
   this.setDefault = function () {
