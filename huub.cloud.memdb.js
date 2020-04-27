@@ -308,13 +308,13 @@ function Employee (e) {
 
 Employee.prototype = {
   get holidayTotal() {
-      return 100;
+    return 100;
   },
 
   set holidayTotal(namnewValuee) {
-      var names = name.split(" ");
-      this.first = names[0];
-      this.last = names[1];
+    var names = name.split(" ");
+    this.first = names[0];
+    this.last = names[1];
   }
 };
 
