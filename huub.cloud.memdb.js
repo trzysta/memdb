@@ -139,12 +139,12 @@ function Salary(e) {
 
     if (canCloseSettlement()) {
       if (!visible) entry.set(FIELD_CAN_ACCESS, true);
-      if (dateWithdrwal != null && amountWithdrwal > 0) {
+      if (dateWithdrwal != null && this.amountWithdrwal > 0) {
         var spendWithdrwal = createSpendEntry(
-          amountWithdrwal,
-          dateWithdrwal,
+          this.amountWithdrwal,
+          this.dateWithdrwal,
           withdrawalMaker,
-          description,
+          this.description,
           this.entryEmployee,
           true
         );
@@ -152,10 +152,10 @@ function Salary(e) {
       }
       if (dateCash != null && amountCash > 0) {
         var spendCash = createSpendEntry(
-          amountCash,
-          dateCash,
-          payerName,
-          description,
+          this.amountCash,
+          this.dateCash,
+          this.payerName,
+          this.description,
           this.entryEmployee,
           false
         );
