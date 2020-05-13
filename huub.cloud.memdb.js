@@ -135,7 +135,7 @@ function Salary(e) {
   // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 
   this.closeSettlement = function (reopenEntry) {
-    message(SAL_MSG_CLOSING + entryEmployee.name);
+    message(SAL_MSG_CLOSING + this.entryEmployee.name);
 
     if (canCloseSettlement()) {
       if (!visible) entry.set(FIELD_CAN_ACCESS, true);
@@ -145,7 +145,7 @@ function Salary(e) {
           dateWithdrwal,
           withdrawalMaker,
           description,
-          entryEmployee,
+          this.entryEmployee,
           true
         );
         entry.link(SAL_FIELD_SPEND_LINK, spendWithdrwal);
@@ -156,7 +156,7 @@ function Salary(e) {
           dateCash,
           payerName,
           description,
-          entryEmployee,
+          this.entryEmployee,
           false
         );
         entry.link(SAL_FIELD_SPEND_LINK, spendCash);
