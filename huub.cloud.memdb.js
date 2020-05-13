@@ -1,7 +1,6 @@
 /*
 Baza Memento Database na Androida. Autor Marceli Matynia 300 Sp. z o.o.
-
-! wymagane dodanie budzet.js, common.js
+All in ONE File 
 */
 
 const arrMonths_pl = [
@@ -55,7 +54,8 @@ const VALUE_MAIL = "e-mail";
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 
-function Salary(e) {
+const Salary = function (e) {
+
   const LIB_SALARIES_NAME = "Wypłaty";
   const SAL_FIELD_CLOSED = "Rozliczony";
   const SAL_FIELD_CLOSED_VALUE_YES = "Rozliczony";
@@ -75,10 +75,8 @@ function Salary(e) {
   const SAL_FIELD_PAYMENT_TYPE = "Rodzaj wynagrodzenia";
   const SAL_ADD_DESCRIPTION_WITHDRAWAL = " wypłata przelewem za ";
   const SAL_ADD_DESCRIPTION_CASH = " wypłata gotówki za ";
-  const SAL_ERR_CLOSED_OR_NOACCESS =
-    "Wpis już rozliczony lub nie masz uprawnień do zamknięcia rozliczenia";
-  const SAL_ERR_NO_AMOUNT =
-    "Uzupełnij kwoty wypłat, gotówka lub przelew. Jeśli rozliczenie jest bez wypłaty w polach kwot wstaw zero";
+  const SAL_ERR_CLOSED_OR_NOACCESS = "Wpis już rozliczony lub nie masz uprawnień do zamknięcia rozliczenia";
+  const SAL_ERR_NO_AMOUNT = "Uzupełnij kwoty wypłat, gotówka lub przelew. Jeśli rozliczenie jest bez wypłaty w polach kwot wstaw zero";
   const SAL_MSG_CLOSING = "Zamykam rozliczenie: ";
   const SAL_MSG_CREATING_SPEND = "Tworzę wydatek: ";
   const SAL_MSG_ADVANCE_PAYMENT = "Szukam zaliczek... ";
@@ -87,38 +85,44 @@ function Salary(e) {
   const SAL_MSG_VALIDATION_ERR_NO_CASH = "- podaj datę i kwotę wypłaty gotówki";
   const SAL_MSG_RUNING_FINDADVANCE = "szukam zaliczek dla wpisu...";
 
-  this.entry = e;
-  this.amountCash = 0;
-  this.amountWithdrwal = 0;
-  this.dateCash = null;
-  this.dateWithdrwal = null;
-  this.isClosed = false;
-  this.entryEmployee = null;
-  this.visible = false;
-  this.payerName = "";
-  this.description = "";
-  this.type = "";
+  if (e !== undefined) {
 
-  this.payerName = this.entry.field(SAL_FIELD_PAYER);
-  this.description = this.entry.field(SAL_FIELD_DESCRIPTION);
-  this.type = this.entry.field(SAL_FIELD_DESCRIPTION);
-  this.visible = this.entry.field(FIELD_CAN_ACCESS);
-  if (this.entry.field(SAL_FIELD_EMPLOYEE_LINK).length > 0)
-    this.entryEmployee = this.entry.field(SAL_FIELD_EMPLOYEE_LINK)[0];
-  if (!isNaN(this.entry.field(SAL_FIELD_CASH_AMOUNT)))
-    this.amountCash = this.entry.field(SAL_FIELD_CASH_AMOUNT);
-  if (!isNaN(this.entry.field(SAL_FIELD_WITHDRAWAL_AMOUNT)))
-    this.amountWithdrwal = this.entry.field(SAL_FIELD_WITHDRAWAL_AMOUNT);
-  if (this.entry.field(SAL_FIELD_CLOSED) == SAL_FIELD_CLOSED_VALUE_YES)
-    this.isClosed = true;
-  if (this.entry.field(SAL_FIELD_WITHDRAWAL_DATE) != "")
-    this.dateWithdrwal = this.entry.field(SAL_FIELD_WITHDRAWAL_DATE);
-  if (this.entry.field(SAL_FIELD_CASH_DATE) != "")
-    this.dateCash = this.entry.field(SAL_FIELD_CASH_DATE);
+    this.entry = e;
+    this.amountCash = 0;
+    this.amountWithdrwal = 0;
+    this.dateCash = null;
+    this.dateWithdrwal = null;
+    this.isClosed = false;
+    this.entryEmployee = null;
+    this.visible = false;
+    this.payerName = "";
+    this.description = "";
+    this.type = "";
 
-  var huubTools = new HuubTools(this.entry);
+    this.payerName = this.entry.field(SAL_FIELD_PAYER);
+    this.description = this.entry.field(SAL_FIELD_DESCRIPTION);
+    this.type = this.entry.field(SAL_FIELD_DESCRIPTION);
+    this.visible = this.entry.field(FIELD_CAN_ACCESS);
+    if (this.entry.field(SAL_FIELD_EMPLOYEE_LINK).length > 0) this.entryEmployee = this.entry.field(SAL_FIELD_EMPLOYEE_LINK)[0];
+    if (!isNaN(this.entry.field(SAL_FIELD_CASH_AMOUNT))) this.amountCash = this.entry.field(SAL_FIELD_CASH_AMOUNT);
+    if (!isNaN(this.entry.field(SAL_FIELD_WITHDRAWAL_AMOUNT))) this.amountWithdrwal = this.entry.field(SAL_FIELD_WITHDRAWAL_AMOUNT);
+    if (this.entry.field(SAL_FIELD_CLOSED) == SAL_FIELD_CLOSED_VALUE_YES) this.isClosed = true;
+    if (this.entry.field(SAL_FIELD_WITHDRAWAL_DATE) != "") this.dateWithdrwal = this.entry.field(SAL_FIELD_WITHDRAWAL_DATE);
+    if (this.entry.field(SAL_FIELD_CASH_DATE) != "") this.dateCash = this.entry.field(SAL_FIELD_CASH_DATE);
 
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    var ht = new HuubTools(this.entry);
+
+  }
+
+
+
+
+
+
+
+  // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+  // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+  // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 
   this.closeSettlement = function (reopenEntry) {
     message(SAL_MSG_CLOSING + entryEmployee.name);
@@ -126,7 +130,7 @@ function Salary(e) {
     if (__canCloseSettlement()) {
       if (!visible) entry.set(FIELD_CAN_ACCESS, true);
       if (dateWithdrwal != null && amountWithdrwal > 0) {
-        var spendWithdrwal = __createSpendEntry(
+        var spendWithdrwal = createSpendEntry(
           amountWithdrwal,
           dateWithdrwal,
           withdrawalMaker,
@@ -137,7 +141,7 @@ function Salary(e) {
         entry.link(SAL_FIELD_SPEND_LINK, spendWithdrwal);
       }
       if (dateCash != null && amountCash > 0) {
-        var spendCash = __createSpendEntry(
+        var spendCash = createSpendEntry(
           amountCash,
           dateCash,
           payerName,
@@ -156,7 +160,12 @@ function Salary(e) {
     }
   };
 
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+
+  // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+  // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+  // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 
   this.validateBeforeSave = function () {
     var msg = SAL_MSG_VALIDATION_ERR;
@@ -181,7 +190,13 @@ function Salary(e) {
     return canSave;
   };
 
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+
+
+  // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+  // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+  // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 
   this.findAdvances = function (show) {
     message(SAL_MSG_RUNING_FINDADVANCE);
@@ -219,7 +234,16 @@ function Salary(e) {
     }
   };
 
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+
+
+
+
+
+  // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+  // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+  // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 
   this.newEntry_opening = function () {
     var prevMonth = moment().startOf("month").add(-1, "month");
@@ -232,7 +256,7 @@ function Salary(e) {
     this.entry.set(SAL_FIELD_PAYER, payer);
     this.entry.set(SAL_FIELD_MONTH, prevMonth.toDate());
 
-    huubTools.setDefault();
+    ht.setDefault();
 
     var i = 1;
     while (i <= dayEnd) {
@@ -245,10 +269,14 @@ function Salary(e) {
     this.entry.set(SAL_FIELD_WEEKENDS, weekends);
   };
 
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  var __createSpendEntry = function (
+
+
+  // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+  // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+  // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+
+  const createSpendEntry = function (
     amount,
     date,
     payer,
@@ -278,7 +306,13 @@ function Salary(e) {
     return entrySpend;
   };
 
-  // ---------------------------------------------
+
+
+
+
+  // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+  // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+  // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 
   const canCloseSettlement = (showAlert) => {
     var c = false;
@@ -290,7 +324,13 @@ function Salary(e) {
     return c;
   };
 
-  // ---------------------------------------------
+
+
+
+
+  // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+  // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+  // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 
   this.copyToMonth = function (selected, month) {
     var libSalaries = libByName(LIB_SALARIES_NAME);
@@ -337,6 +377,10 @@ function Salary(e) {
   };
 }
 
+
+
+
+
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
@@ -345,6 +389,7 @@ function Salary(e) {
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 
 function Employee(e) {
+
   const E_FIELD_FULLNAME = "Imie i nazwisko";
   const EMP_FIELD_EMPLOYEE_HOLIDAY_TOTAL = "Wymiar urlopu";
   const EMP_FIELD_EMPLOYEE_HOLIDAY_LEFT = "Urlop pozostały";
@@ -377,13 +422,14 @@ Employee.prototype = {
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 
-var HuubTools = function (e) {
-  this.entry = e;
+const HuubTools = function (e) {
 
+  this.entry = e;
   this.setDefault = function () {
     if (e != null) {
       this.entry.set(FIELD_EDITOR, arrEditors);
       this.entry.set(FIELD_IS_NEW, true);
     }
   };
-};
+
+}
