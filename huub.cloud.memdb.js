@@ -47,6 +47,42 @@ const MSG_ENTRIES = "wpisów";
 const MSG_FINISHED = "Zakończono!";
 const VALUE_MAIL = "e-mail";
 
+const LIB_SALARIES_NAME = "Wypłaty";
+const SAL_FIELD_CLOSED = "Rozliczony";
+const SAL_FIELD_CLOSED_VALUE_YES = "Rozliczony";
+const SAL_FIELD_CLOSED_VALUE_NO = "W trakcie rozliczania";
+const SAL_FIELD_CASH_AMOUNT = "Wypłacono w gotówce";
+const SAL_FIELD_CASH_DATE = "Data wypłaty gotówki";
+const SAL_FIELD_WITHDRAWAL_AMOUNT = "Wpłacono na konto";
+const SAL_FIELD_WITHDRAWAL_DATE = "Data przelewu";
+const SAL_FIELD_EMPLOYEE_LINK = "Pracownik";
+const SAL_FIELD_CONTRACT = "Osiedle";
+const SAL_FIELD_SPEND_LINK = "Wydatek";
+const SAL_FIELD_DESCRIPTION = "Uwagi";
+const SAL_FIELD_MONTH = "Miesiąc";
+const SAL_FIELD_PAYER = "Dokonujący wypłaty";
+const SAL_FIELD_ADVANCE_PAYMENT = "Zaliczki";
+const SAL_FIELD_WEEKENDS = "Dni wolne";
+const SAL_FIELD_PAYMENT_TYPE = "Rodzaj wynagrodzenia";
+const SAL_FIELD_HOLIDAY = "Urlop";
+const SAL_ADD_DESCRIPTION_WITHDRAWAL = " wypłata przelewem za ";
+const SAL_ADD_DESCRIPTION_CASH = " wypłata gotówki za ";
+const SAL_ERR_CLOSED_OR_NOACCESS = "Wpis już rozliczony lub nie masz uprawnień do zamknięcia rozliczenia";
+const SAL_ERR_NO_AMOUNT = "Uzupełnij kwoty wypłat, gotówka lub przelew. Jeśli rozliczenie jest bez wypłaty w polach kwot wstaw zero";
+const SAL_MSG_CLOSING = "Zamykam rozliczenie: ";
+const SAL_MSG_CREATING_SPEND = "Tworzę wydatek: ";
+const SAL_MSG_ADVANCE_PAYMENT = "Szukam zaliczek... ";
+const SAL_MSG_VALIDATION_ERR = "Nie można zapisać, popraw następujące błędy:";
+const SAL_MSG_VALIDATION_ERR_NO_WITHDRWAL = "- podaj datę i kwotę przelewu";
+const SAL_MSG_VALIDATION_ERR_NO_CASH = "- podaj datę i kwotę wypłaty gotówki";
+const SAL_MSG_RUNING_FINDADVANCE = "szukam zaliczek dla wpisu...";
+
+
+const EMP_FIELD_FULLNAME = "Imie i nazwisko";
+const EMP_FIELD_HOLIDAY_TOTAL = "Wymiar urlopu";
+const EMP_FIELD_HOLIDAY_LEFT = "Urlop pozostały";
+const EMP_FIELD_HOLIDAY_USED = "Urlop wykorzystany";
+
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
@@ -56,34 +92,7 @@ const VALUE_MAIL = "e-mail";
 
 const Salary = function (e) {
 
-  const LIB_SALARIES_NAME = "Wypłaty";
-  const SAL_FIELD_CLOSED = "Rozliczony";
-  const SAL_FIELD_CLOSED_VALUE_YES = "Rozliczony";
-  const SAL_FIELD_CLOSED_VALUE_NO = "W trakcie rozliczania";
-  const SAL_FIELD_CASH_AMOUNT = "Wypłacono w gotówce";
-  const SAL_FIELD_CASH_DATE = "Data wypłaty gotówki";
-  const SAL_FIELD_WITHDRAWAL_AMOUNT = "Wpłacono na konto";
-  const SAL_FIELD_WITHDRAWAL_DATE = "Data przelewu";
-  const SAL_FIELD_EMPLOYEE_LINK = "Pracownik";
-  const SAL_FIELD_CONTRACT = "Osiedle";
-  const SAL_FIELD_SPEND_LINK = "Wydatek";
-  const SAL_FIELD_DESCRIPTION = "Uwagi";
-  const SAL_FIELD_MONTH = "Miesiąc";
-  const SAL_FIELD_PAYER = "Dokonujący wypłaty";
-  const SAL_FIELD_ADVANCE_PAYMENT = "Zaliczki";
-  const SAL_FIELD_WEEKENDS = "Dni wolne";
-  const SAL_FIELD_PAYMENT_TYPE = "Rodzaj wynagrodzenia";
-  const SAL_ADD_DESCRIPTION_WITHDRAWAL = " wypłata przelewem za ";
-  const SAL_ADD_DESCRIPTION_CASH = " wypłata gotówki za ";
-  const SAL_ERR_CLOSED_OR_NOACCESS = "Wpis już rozliczony lub nie masz uprawnień do zamknięcia rozliczenia";
-  const SAL_ERR_NO_AMOUNT = "Uzupełnij kwoty wypłat, gotówka lub przelew. Jeśli rozliczenie jest bez wypłaty w polach kwot wstaw zero";
-  const SAL_MSG_CLOSING = "Zamykam rozliczenie: ";
-  const SAL_MSG_CREATING_SPEND = "Tworzę wydatek: ";
-  const SAL_MSG_ADVANCE_PAYMENT = "Szukam zaliczek... ";
-  const SAL_MSG_VALIDATION_ERR = "Nie można zapisać, popraw następujące błędy:";
-  const SAL_MSG_VALIDATION_ERR_NO_WITHDRWAL = "- podaj datę i kwotę przelewu";
-  const SAL_MSG_VALIDATION_ERR_NO_CASH = "- podaj datę i kwotę wypłaty gotówki";
-  const SAL_MSG_RUNING_FINDADVANCE = "szukam zaliczek dla wpisu...";
+
 
   if (e !== undefined) {
 
@@ -113,10 +122,6 @@ const Salary = function (e) {
     var ht = new HuubTools(this.entry);
 
   }
-
-
-
-
 
 
 
@@ -201,7 +206,7 @@ const Salary = function (e) {
   this.findAdvances = function (show) {
     message(SAL_MSG_RUNING_FINDADVANCE);
 
-    if (this.entryEmployee != null && !this.isClosed) {
+    if (this.entryEmployee !== undefined && !this.isClosed) {
       var spendsAdvanceTypes = new Array(
         SPE_FIELD_TYPE_VALUE_ADVANCE_CASH,
         SPE_FIELD_TYPE_VALUE_ADVANCE_WITHDRAWAL
@@ -314,7 +319,7 @@ const Salary = function (e) {
   // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
   // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 
-  const canCloseSettlement = (showAlert) => {
+  const canCloseSettlement = function (showAlert) {
     var c = false;
     if (this.amountCash + this.amountWithdrwal > 0 && this.isClosed == false) {
       c = true;
@@ -390,30 +395,44 @@ const Salary = function (e) {
 
 function Employee(e) {
 
-  const E_FIELD_FULLNAME = "Imie i nazwisko";
-  const EMP_FIELD_EMPLOYEE_HOLIDAY_TOTAL = "Wymiar urlopu";
-  const EMP_FIELD_EMPLOYEE_HOLIDAY_LEFT = "Urlop pozostały";
-  const EMP_FIELD_EMPLOYEE_HOLIDAY_USED = "Urlop wykorzystany";
+  if (e !== undefined) {
+    var entry = e;
+    var holidayTotal = entry.field(EMP_FIELD_HOLIDAY_TOTAL);
+    var holidayUsed = entry.field(EMP_FIELD_HOLIDAY_USED);
+    var holidayLeft = holidayTotal - holidayUsed;
+    var arrSalaries = new Array;
+  }
 
-  this.entry = e;
-  this.holiday = {
-    total: 0,
-    left: 0,
-    used: 0,
-  };
+  this.getHolidayTotal = function () { return holidayTotal }
+  this.getHolidayLeft = function () { return holidayLeft }
+  this.getHolidayUsed = function () { return holidayUsed }
+
+  this.subtractHoliday = function (daysCount) {
+    entry.set(EMP_FIELD_HOLIDAY_USED, holidayUsed + daysCount);
+  }
+
+  this.recalcHoliday = function (libSalary) {
+    arrSalaries = libSalary.linksTo(entry);
+    var newHolidayUsed = 0;
+    for (var i = 0; i <= arrSalaries.length; i++) {
+      newHolidayUsed += arrSalaries[i].field(SAL_FIELD_HOLIDAY).length
+    }
+
+    this.holidayUsed = newHolidayUsed;
+    this.holidayLeft = this.holidayTotal - this.holidayUsed;
+    entry.set(EMP_FIELD_HOLIDAY_USED, this.holidayUsed);
+    entry.set(EMP_FIELD_HOLIDAY_LEFT, this.holidayLeft);
+
+  }
+
+
+
+
 }
 
-Employee.prototype = {
-  get holiday() {
-    return this.holiday;
-  },
 
-  set holiday(newValue) {
-    this.holiday[total] = newValue;
-    this.holiday[left] = 80;
-    this.holiday[used] = 20;
-  },
-};
+
+
 
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
