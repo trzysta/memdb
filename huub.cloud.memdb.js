@@ -2,6 +2,7 @@
 Baza Memento Database na Androida. Autor Marceli Matynia 300 Sp. z o.o.
 All in ONE File 
 */
+var libSpendings;
 
 const LIB_SALARIES_NAME = "Wypłaty";
 const LIB_SPANDINGS_NAME = "Wydatki";
@@ -203,6 +204,7 @@ function Salary(e) {
 
   this.findAdvances = function (show) {
     message(SAL_MSG_RUNING_FINDADVANCE);
+    libSpendings = libByName(LIB_SPANDINGS_NAME);
 
     if (this.entryEmployee !== undefined && !this.isClosed) {
       var spendsAdvanceTypes = new Array(
@@ -280,7 +282,6 @@ function Salary(e) {
     isWithdrwal
   ) {
     var entrySpend;
-    var libSpendings;
     message(SAL_MSG_CREATING_SPEND + amount + ", " + ", " + payer);
 
     entrySpend = new Object();
@@ -359,7 +360,7 @@ function Salary(e) {
       entryTarget[SAL_FIELD_CLOSED] = SAL_FIELD_CLOSED_VALUE_NO;
 
       entryTarget = lib.create(entryTarget);
-      findADVANCE(entryTarget, false);
+      this.findAdvances(false);
     }
 
     message(MSG_FINISHED);
