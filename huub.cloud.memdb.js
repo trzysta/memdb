@@ -54,7 +54,7 @@ const MSG_ENTRIES = "wpisów";
 const MSG_FINISHED = "Zakończono!";
 const VALUE_MAIL = "e-mail";
 
-const LIB_SALARIES_NAME = "Wypłaty";
+// const LIB_SALARIES_NAME = "Wypłaty";
 const SAL_FIELD_CLOSED = "Rozliczony";
 const SAL_FIELD_CLOSED_VALUE_YES = "Rozliczony";
 const SAL_FIELD_CLOSED_VALUE_NO = "W trakcie rozliczania";
@@ -345,7 +345,7 @@ const Salary = function (e) {
   // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 
   this.copyToMonth = function (selected, month) {
-    var libSalaries = libByName(LIB_SALARIES_NAME);
+    // var libSalaries = libByName(LIB_SALARIES_NAME);
 
     var dt = moment(month).startOf("month");
     var dayEnd = parseInt(moment(month).endOf("month").format("D"));
@@ -459,4 +459,4 @@ const HuubTools = function (e) {
     }
   };
 
-}
+} 
