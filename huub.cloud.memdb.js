@@ -89,6 +89,8 @@ const EMP_FIELD_FULLNAME = "Imie i nazwisko";
 const EMP_FIELD_HOLIDAY_TOTAL = "Wymiar urlopu";
 const EMP_FIELD_HOLIDAY_LEFT = "Urlop pozostały";
 const EMP_FIELD_HOLIDAY_USED = "Urlop wykorzystany";
+const EMP_MSG_HOLIDAY_RECALCED = "Urlop przeliczony, wykorzystane dni utlopu to: ";
+
 
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
@@ -417,6 +419,7 @@ function Employee(e) {
       }
       this.holidayUsed = newHolidayUsed;
       entry.set(EMP_FIELD_HOLIDAY_USED, this.holidayUsed)
+      message(EMP_MSG_HOLIDAY_RECALCED + this.holidayUsed);
     }
   }
 }
