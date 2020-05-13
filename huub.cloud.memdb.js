@@ -135,7 +135,7 @@ function Salary(e) {
   // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 
   this.closeSettlement = function (reopenEntry) {
-    message(SAL_MSG_CLOSING + this.entryEmployee.name);
+    // message(SAL_MSG_CLOSING + this.entryEmployee.name);
 
     if (canCloseSettlement()) {
       if (!visible) entry.set(FIELD_CAN_ACCESS, true);
