@@ -3,6 +3,13 @@ Baza Memento Database na Androida. Autor Marceli Matynia 300 Sp. z o.o.
 All in ONE File 
 */
 
+const LIB_SALARIES_NAME = "Wypłaty";
+const LIB_SPANDINGS_NAME = "Wydatki";
+const LIB_BUDGETS_NAME = "Budżet";
+const LIB_CONTRACTS_NAME = "Osiedla";
+const LIB_CHECKS_NAME = "Kontrole";
+const LIB_ACTIVITIES_NAME = "Kalendarz zadań";
+
 const arrMonths_pl = [
   "styczeń",
   "luty",
@@ -384,8 +391,6 @@ const Salary = function (e) {
 
 
 
-
-
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
@@ -395,12 +400,17 @@ const Salary = function (e) {
 
 function Employee(e) {
 
+  var holidayTotal = 0;
+  var holidayUsed = 0;
+  var holidayLeft = 0;
+  var arrSalaries = new Array;
+
   if (e !== undefined) {
     var entry = e;
-    var holidayTotal = entry.field(EMP_FIELD_HOLIDAY_TOTAL);
-    var holidayUsed = entry.field(EMP_FIELD_HOLIDAY_USED);
-    var holidayLeft = holidayTotal - holidayUsed;
-    var arrSalaries = new Array;
+    holidayTotal = entry.field(EMP_FIELD_HOLIDAY_TOTAL);
+    holidayUsed = entry.field(EMP_FIELD_HOLIDAY_USED);
+    holidayLeft = holidayTotal - holidayUsed;
+
   }
 
   this.getHolidayTotal = function () { return holidayTotal }
@@ -411,22 +421,20 @@ function Employee(e) {
     entry.set(EMP_FIELD_HOLIDAY_USED, holidayUsed + daysCount);
   }
 
+
   this.recalcHoliday = function (libSalary) {
+
     arrSalaries = libSalary.linksTo(entry);
     var newHolidayUsed = 0;
     for (var i = 0; i <= arrSalaries.length; i++) {
       newHolidayUsed += arrSalaries[i].field(SAL_FIELD_HOLIDAY).length
     }
-
     this.holidayUsed = newHolidayUsed;
     this.holidayLeft = this.holidayTotal - this.holidayUsed;
     entry.set(EMP_FIELD_HOLIDAY_USED, this.holidayUsed);
     entry.set(EMP_FIELD_HOLIDAY_LEFT, this.holidayLeft);
 
   }
-
-
-
 
 }
 
