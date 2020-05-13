@@ -400,44 +400,26 @@ const Salary = function (e) {
 
 function Employee(e) {
 
-  var holidayTotal = 0;
-  var holidayUsed = 0;
-  var holidayLeft = 0;
-  var arrSalaries = new Array;
+  this.holidayUsed = 0;
 
+  var arrSalaries = new Array;
   if (e !== undefined) {
     var entry = e;
-    holidayTotal = entry.field(EMP_FIELD_HOLIDAY_TOTAL);
-    holidayUsed = entry.field(EMP_FIELD_HOLIDAY_USED);
-    holidayLeft = holidayTotal - holidayUsed;
-
+    this.holidayUsed = entry.field(EMP_FIELD_HOLIDAY_USED);
   }
-
-  this.getHolidayTotal = function () { return holidayTotal }
-  this.getHolidayLeft = function () { return holidayLeft }
-  this.getHolidayUsed = function () { return holidayUsed }
-
-  this.subtractHoliday = function (daysCount) {
-    entry.set(EMP_FIELD_HOLIDAY_USED, holidayUsed + daysCount);
-  }
-
 
   this.recalcHoliday = function (libSalary) {
-
     arrSalaries = libSalary.linksTo(entry);
     var newHolidayUsed = 0;
     for (var i = 0; i <= arrSalaries.length; i++) {
-      newHolidayUsed += arrSalaries[i].field(SAL_FIELD_HOLIDAY).length
+      if (arrSalaries[i] !== undefined) {
+        newHolidayUsed += arrSalaries[i].field(SAL_FIELD_HOLIDAY).length
+      }
+      this.holidayUsed = newHolidayUsed;
+      entry.set(EMP_FIELD_HOLIDAY_USED, this.holidayUsed)
     }
-    this.holidayUsed = newHolidayUsed;
-    this.holidayLeft = this.holidayTotal - this.holidayUsed;
-    entry.set(EMP_FIELD_HOLIDAY_USED, this.holidayUsed);
-    entry.set(EMP_FIELD_HOLIDAY_LEFT, this.holidayLeft);
-
   }
-
 }
-
 
 
 
