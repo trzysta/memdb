@@ -280,7 +280,7 @@ function Salary(e) {
 
   // ---------------------------------------------
 
-  var __canCloseSettlement = function (showAlert) {
+  const canCloseSettlement = (showAlert) => {
     var c = false;
     if (this.amountCash + this.amountWithdrwal > 0 && this.isClosed == false) {
       c = true;
