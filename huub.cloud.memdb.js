@@ -166,7 +166,7 @@ function Salary(e) {
       entry.recalc();
       if (reopenEntry) entry.show();
     } else {
-      message(SAL_MSG_CLOSED_OR_NOACCESS);
+      message(SAL_ERR_CLOSED_OR_NOACCESS);
     }
   };
 
