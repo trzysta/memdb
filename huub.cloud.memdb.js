@@ -84,7 +84,6 @@ const SAL_MSG_VALIDATION_ERR_NO_WITHDRWAL = "- podaj datę i kwotę przelewu";
 const SAL_MSG_VALIDATION_ERR_NO_CASH = "- podaj datę i kwotę wypłaty gotówki";
 const SAL_MSG_RUNING_FINDADVANCE = "szukam zaliczek dla wpisu...";
 
-
 const EMP_FIELD_FULLNAME = "Imie i nazwisko";
 const EMP_FIELD_HOLIDAY_TOTAL = "Wymiar urlopu";
 const EMP_FIELD_HOLIDAY_LEFT = "Urlop pozostały";
@@ -99,9 +98,7 @@ const EMP_MSG_HOLIDAY_RECALCED = "Przeliczam urlop - wykorzystane dni urlopu to:
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 
-const Salary = function (e) {
-
-
+function Salary(e) {
 
   if (e !== undefined) {
 
@@ -132,8 +129,6 @@ const Salary = function (e) {
 
   }
 
-
-
   // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
   // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
   // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
@@ -141,7 +136,7 @@ const Salary = function (e) {
   this.closeSettlement = function (reopenEntry) {
     message(SAL_MSG_CLOSING + entryEmployee.name);
 
-    if (__canCloseSettlement()) {
+    if (canCloseSettlement()) {
       if (!visible) entry.set(FIELD_CAN_ACCESS, true);
       if (dateWithdrwal != null && amountWithdrwal > 0) {
         var spendWithdrwal = createSpendEntry(
@@ -174,9 +169,6 @@ const Salary = function (e) {
     }
   };
 
-
-
-
   // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
   // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
   // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
@@ -203,9 +195,6 @@ const Salary = function (e) {
     }
     return canSave;
   };
-
-
-
 
 
   // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
@@ -249,12 +238,6 @@ const Salary = function (e) {
   };
 
 
-
-
-
-
-
-
   // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
   // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
   // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
@@ -282,8 +265,6 @@ const Salary = function (e) {
     }
     this.entry.set(SAL_FIELD_WEEKENDS, weekends);
   };
-
-
 
 
   // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
@@ -321,9 +302,6 @@ const Salary = function (e) {
   };
 
 
-
-
-
   // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
   // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
   // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
@@ -339,16 +317,13 @@ const Salary = function (e) {
   };
 
 
-
-
-
   // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
   // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
   // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 
   this.copyToMonth = function (selected, month) {
-    // var libSalaries = libByName(LIB_SALARIES_NAME);
 
+    var lib = libByName(LIB_SALARIES_NAME);
     var dt = moment(month).startOf("month");
     var dayEnd = parseInt(moment(month).endOf("month").format("D"));
     var weekDays = new Array();
@@ -383,7 +358,7 @@ const Salary = function (e) {
       entryTarget[SAL_FIELD_PAYER] = entrySource.field(SAL_FIELD_PAYER);
       entryTarget[SAL_FIELD_CLOSED] = SAL_FIELD_CLOSED_VALUE_NO;
 
-      entryTarget = libSalaries.create(entryTarget);
+      entryTarget = lib.create(entryTarget);
       findADVANCE(entryTarget, false);
     }
 
@@ -393,9 +368,7 @@ const Salary = function (e) {
 
 
 
-// *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
-// *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
-// *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
