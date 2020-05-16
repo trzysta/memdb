@@ -316,6 +316,7 @@ function Salary(e) {
 
   const canCloseSettlement = function (showAlert) {
     var c = false;
+    message(this.amountCash + " " + this.amountWithdrwal + " " + this.isClosed)
     if (this.amountCash + this.amountWithdrwal > 0 && this.isClosed === false) {
       c = true;
     } else if (showAlert) {
