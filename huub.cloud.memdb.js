@@ -261,7 +261,7 @@ function Salary(e) {
     this.entry.set(SAL_FIELD_PAYER, payer);
     this.entry.set(SAL_FIELD_MONTH, prevMonth.toDate());
 
-    ht.setDefault();
+    setDefault(this.entry);
 
     var i = 1;
     while (i <= dayEnd) {
@@ -293,6 +293,7 @@ function Salary(e) {
     entrySpend = new Object();
     libSpendings = libByName(LIB_SPANDINGS_NAME);
     entrySpend = libSpendings.create(entrySpend);
+    setDefault(entrySpend);
     entrySpend.set(SPE_FIELD_AMOUNT, 0 - Math.abs(amount));
     entrySpend.set(SPE_FIELD_DATE, date);
     entrySpend.set(SPE_FIELD_CREATOR, payer);
@@ -364,13 +365,9 @@ function Salary(e) {
       );
       entryTarget[SAL_FIELD_PAYER] = entrySource.field(SAL_FIELD_PAYER);
       entryTarget[SAL_FIELD_PAYER] = entrySource.field(SAL_FIELD_PAYER);
-
-
-      SAL_FIELD_PAYMENT_TYPE
-
       entryTarget[SAL_FIELD_CLOSED] = SAL_FIELD_CLOSED_VALUE_NO;
-
       entryTarget = lib.create(entryTarget);
+      setDefault(entryTarget);
       this.findAdvances(false);
     }
 
