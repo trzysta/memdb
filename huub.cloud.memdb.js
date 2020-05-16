@@ -39,7 +39,7 @@ const arrNames = [
   "Marceli Matynia",
   "Administrator",
 ];
-const withdrawalMaker = "Marceli Matynia";
+const WITHDRWAL_MAKER = "Marceli Matynia";
 
 const FIELD_EDITOR = "Editor";
 const FIELD_IS_NEW = "new";
@@ -93,6 +93,15 @@ const EMP_FIELD_HOLIDAY_USED = "Urlop wykorzystany";
 const EMP_MSG_HOLIDAY_RECALCED = "Przeliczam urlop - wykorzystane dni urlopu to: ";
 
 
+
+
+function setDefault(e) {
+  if (e !== undefined) {
+    e.set(FIELD_EDITOR, arrEditors);
+    e.set(FIELD_IS_NEW, true);
+  }
+};
+
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
@@ -126,9 +135,6 @@ function Salary(e) {
     if (this.entry.field(SAL_FIELD_CLOSED) == SAL_FIELD_CLOSED_VALUE_YES) this.isClosed = true;
     if (this.entry.field(SAL_FIELD_WITHDRAWAL_DATE) != "") this.dateWithdrwal = this.entry.field(SAL_FIELD_WITHDRAWAL_DATE);
     if (this.entry.field(SAL_FIELD_CASH_DATE) != "") this.dateCash = this.entry.field(SAL_FIELD_CASH_DATE);
-
-    var ht = new HuubTools(this.entry);
-
   }
 
   // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
@@ -141,18 +147,18 @@ function Salary(e) {
     if (canCloseSettlement()) {
       if (!visible) entry.set(FIELD_CAN_ACCESS, true);
       if (this.dateWithdrwal != null && this.amountWithdrwal > 0) {
-        var spendWithdrwal = createSpendEntry(
+        var entrySpendWithdrwal = createSpendEntry(
           this.amountWithdrwal,
           this.dateWithdrwal,
-          withdrawalMaker,
+          WITHDRWAL_MAKER,
           this.description,
           this.entryEmployee,
           true
         );
-        entry.link(SAL_FIELD_SPEND_LINK, this.spendWithdrwal);
+        entry.link(SAL_FIELD_SPEND_LINK, entrySpendWithdrwal);
       }
       if (this.dateCash != null && this.amountCash > 0) {
-        var spendCash = createSpendEntry(
+        var entrySpendCash = createSpendEntry(
           this.amountCash,
           this.dateCash,
           this.payerName,
@@ -160,7 +166,7 @@ function Salary(e) {
           this.entryEmployee,
           false
         );
-        entry.link(SAL_FIELD_SPEND_LINK, this.spendCash);
+        entry.link(SAL_FIELD_SPEND_LINK, entrySpendCash);
       }
       entry.set(FIELD_CAN_ACCESS, visible);
       entry.set(SAL_FIELD_CLOSED, SAL_FIELD_CLOSED_VALUE_YES);
@@ -197,7 +203,6 @@ function Salary(e) {
     }
     return canSave;
   };
-
 
   // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
   // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
@@ -373,9 +378,6 @@ function Salary(e) {
   };
 }
 
-
-
-
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
@@ -411,15 +413,3 @@ function Employee(e) {
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
-
-const HuubTools = function (e) {
-
-  this.entry = e;
-  this.setDefault = function () {
-    if (e != null) {
-      this.entry.set(FIELD_EDITOR, arrEditors);
-      this.entry.set(FIELD_IS_NEW, true);
-    }
-  };
-
-} 
