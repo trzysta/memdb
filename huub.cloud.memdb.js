@@ -72,6 +72,7 @@ const SAL_FIELD_PAYER = "Dokonujący wypłaty";
 const SAL_FIELD_ADVANCE_PAYMENT = "Zaliczki";
 const SAL_FIELD_WEEKENDS = "Dni wolne";
 const SAL_FIELD_PAYMENT_TYPE = "Rodzaj wynagrodzenia";
+const SAL_FIELD_
 const SAL_FIELD_HOLIDAY = "Urlop";
 const SAL_ADD_DESCRIPTION_WITHDRAWAL = " wypłata przelewem za ";
 const SAL_ADD_DESCRIPTION_CASH = " wypłata gotówki za ";
@@ -139,7 +140,7 @@ function Salary(e) {
 
     if (canCloseSettlement()) {
       if (!visible) entry.set(FIELD_CAN_ACCESS, true);
-      if (dateWithdrwal != null && this.amountWithdrwal > 0) {
+      if (this.dateWithdrwal != null && this.amountWithdrwal > 0) {
         var spendWithdrwal = createSpendEntry(
           this.amountWithdrwal,
           this.dateWithdrwal,
@@ -148,9 +149,9 @@ function Salary(e) {
           this.entryEmployee,
           true
         );
-        entry.link(SAL_FIELD_SPEND_LINK, spendWithdrwal);
+        entry.link(SAL_FIELD_SPEND_LINK, this.spendWithdrwal);
       }
-      if (dateCash != null && amountCash > 0) {
+      if (this.dateCash != null && this.amountCash > 0) {
         var spendCash = createSpendEntry(
           this.amountCash,
           this.dateCash,
@@ -159,7 +160,7 @@ function Salary(e) {
           this.entryEmployee,
           false
         );
-        entry.link(SAL_FIELD_SPEND_LINK, spendCash);
+        entry.link(SAL_FIELD_SPEND_LINK, this.spendCash);
       }
       entry.set(FIELD_CAN_ACCESS, visible);
       entry.set(SAL_FIELD_CLOSED, SAL_FIELD_CLOSED_VALUE_YES);
@@ -177,14 +178,14 @@ function Salary(e) {
   this.validateBeforeSave = function () {
     var msg = SAL_MSG_VALIDATION_ERR;
 
-    if (amountWithdrwal > 0 && dateWithdrwal == null) {
+    if (this.amountWithdrwal > 0 && this.dateWithdrwal == null) {
       msg += "\n" + SAL_MSG_VALIDATION_ERR_NO_WITHDRWAL;
       canSave = false;
     } else {
       canSave = true;
     }
 
-    if (amountCash > 0 && dateCash == null) {
+    if (this.amountCash > 0 && this.dateCash == null) {
       msg += "\n" + SAL_MSG_VALIDATION_ERR_NO_CASH;
       canSave = false;
     } else {
@@ -309,7 +310,7 @@ function Salary(e) {
 
   const canCloseSettlement = function (showAlert) {
     var c = false;
-    if (this.amountCash + this.amountWithdrwal > 0 && this.isClosed == false) {
+    if (this.amountCash + this.amountWithdrwal > 0 && this.isClosed === false) {
       c = true;
     } else if (showAlert) {
       message(SAL_ERR_CLOSED_OR_NOACCESS);
@@ -357,6 +358,11 @@ function Salary(e) {
         SAL_FIELD_PAYMENT_TYPE
       );
       entryTarget[SAL_FIELD_PAYER] = entrySource.field(SAL_FIELD_PAYER);
+      entryTarget[SAL_FIELD_PAYER] = entrySource.field(SAL_FIELD_PAYER);
+
+
+      SAL_FIELD_PAYMENT_TYPE
+
       entryTarget[SAL_FIELD_CLOSED] = SAL_FIELD_CLOSED_VALUE_NO;
 
       entryTarget = lib.create(entryTarget);
