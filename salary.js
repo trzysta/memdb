@@ -14,15 +14,12 @@ const Salary = function (e) {
     let isClosed = false;
     let entryEmployee = null;
     let visible = false;
-    let payerName = "";
-    let description = "";
-    let type = "";
-
     let payerName = entry.field(SAL_FIELD_PAYER);
     let description = entry.field(SAL_FIELD_DESCRIPTION);
-    let type = entry.field(SAL_FIELD_DESCRIPTION);
-    let visible = entry.field(FIELD_CAN_ACCESS);
+    let type = entry.field(SAL_FIELD_PAYMENT_TYPE);
 
+
+    visible = entry.field(FIELD_CAN_ACCESS);
     if (entry.field(SAL_FIELD_EMPLOYEE_LINK).length > 0) entryEmployee = entry.field(SAL_FIELD_EMPLOYEE_LINK)[0];
     if (!isNaN(entry.field(SAL_FIELD_CASH_AMOUNT))) amountCash = entry.field(SAL_FIELD_CASH_AMOUNT);
     if (!isNaN(entry.field(SAL_FIELD_WITHDRAWAL_AMOUNT))) amountWithdrwal = entry.field(SAL_FIELD_WITHDRAWAL_AMOUNT);
@@ -46,7 +43,6 @@ const Salary = function (e) {
     setEntryDefaultValues(entry);
 
     let i = 1;
-
     while (i <= dayEnd) {
       if (prevMonth.isoWeekday() == 6 || prevMonth.isoWeekday() == 7) {
         weekends.push(i);
@@ -116,6 +112,7 @@ const Salary = function (e) {
       message(SAL_ERR_CLOSED_OR_NOACCESS);
     }
   };
+
 
   this.findAdvances = function (show) {
     message(SAL_MSG_RUNING_FINDADVANCE);
