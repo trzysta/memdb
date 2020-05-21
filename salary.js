@@ -139,29 +139,21 @@ const Salary = function (e) {
     let libSpendings = libByName(LIB_SPANDINGS_NAME);
     if (libSpendings !== undefined) {
 
-      message("jest baza" + libSpendings.title);
-
       if (this.entryEmployee !== undefined && !this.isClosed) {
 
         let spendsAdvanceTypes = new Array(SPE_FIELD_TYPE_VALUE_ADVANCEPAYMENT_CASH, SPE_FIELD_TYPE_VALUE_ADVANCEPAYMENT_WITHDRAWAL);
         let entiesSpend = libSpendings.linksTo(this.entry.field(SAL_FIELD_EMPLOYEE_LINK)[0]);
 
-
-
         for (i = 0; i < entiesSpend.length; i++) {
 
           let entrySpend = entiesSpend[i];
-          message("sprawdzam wpis " + i + " " + entrySpend.name);
-
           let momEntry = moment(entrySpend.field(SPE_FIELD_DATE));
           let momStart = moment().startOf("month").add({ days: 18, months: -1 });
           let momEnd = moment();
-
           if (
             spendsAdvanceTypes.indexOf(entrySpend.field(SPE_FIELD_TYPE)) >= 0 &&
             momEntry.isBetween(momStart, momEnd) &&
             !isEntryLinked(this.entry.field(SAL_FIELD_ADVANCE_PAYMENT), entrySpend)) {
-            message("linkuję " + entrySpend.name);
             this.entry.link(SAL_FIELD_ADVANCE_PAYMENT, entrySpend);
           }
         }
