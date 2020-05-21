@@ -421,11 +421,10 @@ function setEntryDefaultValues(e) {
 
 // *^*^*^*  sprawdza czy entrySearchFor jest w arrayOfLinks
 function isEntryLinked(arrayOfLinks, entrySearchFor) {
-  const is = false;
-  const i = 0;
+  let is = false;
+  let i = 0;
   while (i < arrayOfLinks.length) {
-    if (arrayOfLinks[i].id == entrySearchFor.id) {
-      message(i + " " + arrayOfLinks[i].id + " " + entrySearchFor.id);
+    if (arrayOfLinks[i].id === entrySearchFor.id) {
       is = true;
       i = arrayOfLinks.length + 1;
     } else {
