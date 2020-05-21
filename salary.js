@@ -25,6 +25,7 @@ function getLabel(nr, e) {
   } else if (e.field(SAL_FIELD_SICK).indexOf(currentDay) >= 0) {
     addInfo = SAL_FIELD_SICK.toLowerCase();
   };
+
   return ("(" + weekday_pl + ") " + day + " " + month_pl + " - " + addInfo)
 
 };
