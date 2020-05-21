@@ -30,7 +30,7 @@ const Salary = function (e) {
 
   // funckja opis 
 
-  this.newEntry_opening = function () {
+  this.creatingNewEntry_setValues = function () {
 
     let prevMonth = moment().startOf("month").add(-1, "month");
     let dayEnd = parseInt(
@@ -56,9 +56,10 @@ const Salary = function (e) {
     this.entry.set(SAL_FIELD_WEEKENDS, weekends);
   };
 
-  // funckja opis 
 
-  this.validateBeforeSave = function () {
+  // funckja waliduje 
+
+  this.updatingEntry_validateBeforeSave = function () {
     let msg = SAL_MSG_VALIDATION_ERR;
 
     if (this.amountWithdrwal > 0 && this.dateWithdrwal == null) {
