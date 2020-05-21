@@ -13,23 +13,23 @@ function getLabel(nr, e) {
   let addInfo = "";
 
   if (e.field(SAL_FIELD_WEEKENDDUTY).indexOf(currentDay) >= 0) {
-    addInfo = " - " + SAL_FIELD_WEEKENDDUTY.toLowerCase();
+    addInfo = SAL_FIELD_WEEKENDDUTY.toLowerCase();
 
   } else if (e.field(SAL_FIELD_WEEKENDS).indexOf(currentDay) >= 0) {
-    addInfo = " - " + SAL_FIELD_WEEKENDS.toLowerCase();
+    addInfo = SAL_FIELD_WEEKENDS.toLowerCase();
 
   } else if (e.field(SAL_FIELD_ABSENCE).indexOf(currentDay) >= 0) {
-    addInfo = " - " + SAL_FIELD_ABSENCE.toLowerCase();
+    addInfo = SAL_FIELD_ABSENCE.toLowerCase();
 
   } else if (e.field(SAL_FIELD_HOLIDAY).indexOf(currentDay) >= 0) {
-    addInfo = " - " + SAL_FIELD_HOLIDAY.toLowerCase();
+    addInfo = SAL_FIELD_HOLIDAY.toLowerCase();
 
   } else if (e.field(SAL_FIELD_SICK).indexOf(cc.toString()) >= 0) {
-    addInfo = " - " + SAL_FIELD_SICK.toLowerCase();
+    addInfo = SAL_FIELD_SICK.toLowerCase();
   };
 
-  return (weekday_pl + day + addInfo)
-}
+  return ("(" + weekday_pl + ") " + day + " - " + addInfo)
+};
 
 
 
