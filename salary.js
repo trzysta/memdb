@@ -124,9 +124,9 @@ const Salary = function (e) {
 
     message(SAL_MSG_CLOSING + this.entryEmployee.name);
 
-    if (canCloseSettlement()) {
+    if (this.canCloseSettlement()) {
       if (!this.isVisible) entry.set(FIELD_CAN_ACCESS, true);
-      if (dateWithdrwal != null && amountWithdrwal > 0) {
+      if (this.dateWithdrwal != null && this.amountWithdrwal > 0) {
         let entrySpendWithdrwal = createSpendEntry(
           this.amountWithdrwal,
           this.dateWithdrwal,
@@ -137,7 +137,7 @@ const Salary = function (e) {
         );
         this.entry.link(SAL_FIELD_SPEND_LINK, entrySpendWithdrwal);
       }
-      if (dateCash != null && amountCash > 0) {
+      if (this.dateCash != null && this.amountCash > 0) {
         let entrySpendCash = createSpendEntry(
           this.amountCash,
           this.dateCash,
