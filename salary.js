@@ -2,6 +2,40 @@
 Baza Memento Database na Androida. Autor Marceli Matynia 300 Sp. z o.o.
 */
 
+function getLabel(c) {
+
+  var cc = c + 1;
+  var en = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+  var pl = ["PN: ", "WT: ", "ŚR: ", "CZ: ", "PT: ", "SO: ", "ND: "];
+  var den = moment(field('Miesiąc')).startOf('month').add(c, 'days').format('dddd');
+  var dpl = pl[en.indexOf(den)];
+  var ret = '';
+  var day = moment(field('Miesiąc')).startOf('month').add(c, 'days').format('D.MM');
+
+  if (field('Dyżur').indexOf(cc.toString()) >= 0) {
+    ret = ' - dyżur';
+
+  } else if (field('Dni wolne').indexOf(cc.toString()) >= 0) {
+    ret = ' - dzień niepracujący';
+
+  } else if (field('Nieobecność').indexOf(cc.toString()) >= 0) {
+    ret = ' - nieobecność';
+
+  } else if (field('Urlop').indexOf(cc.toString()) >= 0) {
+    ret = ' - urlop';
+
+  } else if (field('Zwolnienie').indexOf(cc.toString()) >= 0) {
+    ret = ' - zwolnienie';
+
+  };
+  return (dpl + day + ret)
+}
+
+
+
+
+
+
 const Salary = function (e) {
 
   if (e !== undefined) {
@@ -17,15 +51,15 @@ const Salary = function (e) {
     this.payerName = this.entry.field(SAL_FIELD_PAYER);
     this.description = this.entry.field(SAL_FIELD_DESCRIPTION);
     this.type = this.entry.field(SAL_FIELD_PAYMENT_TYPE);
-    this.holidayTotal = "";
+    this.holidayTotal = 0;
+    this.holidayUsed = 0;
 
     this.isVisible = this.entry.field(FIELD_CAN_ACCESS);
     if (this.entry.field(SAL_FIELD_EMPLOYEE_LINK).length > 0) {
       this.entryEmployee = this.entry.field(SAL_FIELD_EMPLOYEE_LINK)[0];
-      this.entryEmployee = this.entry.field(SAL_FIELD_EMPLOYEE_LINK)[0];
+      this.holidayTotal = this.entryEmployee.field(EMP_FIELD_HOLIDAY_TOTAL);
+      this.holidayUsed = this.entryEmployee.field(EMP_FIELD_HOLIDAY_USED);
     }
-
-
     if (!isNaN(this.entry.field(SAL_FIELD_CASH_AMOUNT))) this.amountCash = this.entry.field(SAL_FIELD_CASH_AMOUNT);
     if (!isNaN(this.entry.field(SAL_FIELD_WITHDRAWAL_AMOUNT))) this.amountWithdrwal = this.entry.field(SAL_FIELD_WITHDRAWAL_AMOUNT);
     if (this.entry.field(SAL_FIELD_CLOSED) == SAL_FIELD_CLOSED_VALUE_YES) this.isClosed = true;
