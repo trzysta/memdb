@@ -99,19 +99,6 @@ const EMP_FIELD_HOLIDAY_LEFT = "Urlop pozostały";
 const EMP_FIELD_HOLIDAY_USED = "Urlop wykorzystany";
 const EMP_MSG_HOLIDAY_RECALCED = "Przeliczam urlop - wykorzystane dni urlopu to: ";
 
-
-// zmienne
-const arrMonths_pl = ["styczeń", "luty", "marzec", "kwiecien", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "listopad", "grudzień"];
-const arrEditors = ["MalgorzataG", "ElzbietaZ", "trzystaIZABELA", "MarceliM", "trzysta"];
-const arrManagers = ["trzysta"];
-const arrNames = ["Małgorzata Grabowska", "Elżbieta Zdziech", "Izabela Skowrońska", "Marceli Matynia", "Administrator"];
-const withdrawalMaker = "Marceli Matynia";
-const HR = "--------------------------------------------------\n";
-const BR = "\n";
-const BR2 = "\n\n";
-const SEP = ", ";
-const UNDEF = "undefined";
-
 const htmlMailHeader = "To jest mail wysłany automatycznie. W przypadku wysyłania odpowiedzi prosimy o utrzymanie w temacie numeru referencyjnego REF";
 const htmlMailBody_CONTROL = "<p>";
 const htmlSubject_CONTROL = "Raport z kontroli";
