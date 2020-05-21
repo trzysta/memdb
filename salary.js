@@ -68,6 +68,13 @@ const Salary = function (e) {
     let msg = SAL_MSG_VALIDATION_ERR;
     let canSave = true;
 
+    message(
+      this.amountWithdrwal + " " +
+      this.dateWithdrwal + " " +
+      this.amountCash + " " +
+      this.dateCash
+    );
+
     if (this.amountWithdrwal > 0 && this.dateWithdrwal == null) {
       msg += "\n" + SAL_MSG_VALIDATION_ERR_NO_WITHDRWAL;
       canSave = false;
