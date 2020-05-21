@@ -21,21 +21,8 @@ const LIB_EMPLOYEES_NAME = "Pracownicy";
 
 const WEEKDAYS_EN = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 const WEEKDAYS_PL = ["Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota", "Niedziela"];
-const MONTHS_PL = ["Styczeń", "Luty", "Marzec", "Kwiecien", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Listopad", "Grudzień"];
+const MONTHS_PL = ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Listopad", "Grudzień"];
 
-const arrMonths_pl = [
-  "styczeń",
-  "luty",
-  "marzec",
-  "kwiecien",
-  "maj",
-  "czerwiec",
-  "lipiec",
-  "sierpień",
-  "wrzesień",
-  "listopad",
-  "grudzień",
-];
 const ARR_EDITORS = [
   "MalgorzataG",
   "ElzbietaZ",
@@ -301,7 +288,7 @@ const SPE_FIELD_COST_ALLOCATION_LEFT = "Kwota pozostała do rozpisania";
 
 
 
-// const arrMonths_pl = ["styczeń", "luty", "marzec", "kwiecien", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "listopad", "grudzień"];
+// const MONTHS_PL = ["styczeń", "luty", "marzec", "kwiecien", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "listopad", "grudzień"];
 // const ARR_EDITORS = ["MalgorzataG", "ElzbietaZ", "trzystaIZABELA", "MarceliM", "trzysta"];
 // const ARR_MANAGERS = ["trzysta"];
 // const arrNames = ["Małgorzata Grabowska", "Elżbieta Zdziech", "Izabela Skowrońska", "Marceli Matynia", "Administrator"];
