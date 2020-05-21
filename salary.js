@@ -10,7 +10,7 @@ function getLabel(nr, e) {
   const weekday_pl = WEEKDAYS_PL[WEEKDAYS_EN.indexOf(weekday_en)];
 
   const month_pl = MONTHS_PL[(moment(month).format('M')) - 1];
-  const day = moment(month).startOf('month').add((nr - 1), 'days').format('D.MM');
+  const day = moment(month).startOf('month').add((nr - 1), 'days').format('DD');
 
   let addInfo = "";
 
