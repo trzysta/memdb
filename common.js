@@ -62,7 +62,6 @@ const MSG_ENTRIES = "wpisów";
 const MSG_FINISHED = "Zakończono!";
 const VALUE_MAIL = "e-mail";
 
-// const LIB_SALARIES_NAME = "Wypłaty";
 const SAL_WITHDRWAL_MAKER = "Marceli Matynia";
 const SAL_FIELD_CLOSED = "Rozliczony";
 const SAL_FIELD_CLOSED_VALUE_YES = "Rozliczony";
