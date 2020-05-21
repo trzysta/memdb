@@ -5,30 +5,28 @@ Baza Memento Database na Androida. Autor Marceli Matynia 300 Sp. z o.o.
 function getLabel(nr, e) {
 
   const currentDay = nr.toString();
-  const month = e.field('Miesiąc');
+  const month = e.field(SAL_FIELD_MONTH);
   const weekday_en = moment(month).startOf('month').add((nr - 1), 'days').format('dddd');
   const weekday_pl = WEEKDAYS_PL[WEEKDAYS_EN.indexOf(weekday_en)];
+
+  const month_pl = MONTHS_PL[(moment(month).format('M')) - 1];
   const day = moment(month).startOf('month').add((nr - 1), 'days').format('D.MM');
 
   let addInfo = "";
 
   if (e.field(SAL_FIELD_WEEKENDDUTY).indexOf(currentDay) >= 0) {
     addInfo = SAL_FIELD_WEEKENDDUTY.toLowerCase();
-
   } else if (e.field(SAL_FIELD_WEEKENDS).indexOf(currentDay) >= 0) {
     addInfo = SAL_FIELD_WEEKENDS.toLowerCase();
-
   } else if (e.field(SAL_FIELD_ABSENCE).indexOf(currentDay) >= 0) {
     addInfo = SAL_FIELD_ABSENCE.toLowerCase();
-
   } else if (e.field(SAL_FIELD_HOLIDAY).indexOf(currentDay) >= 0) {
     addInfo = SAL_FIELD_HOLIDAY.toLowerCase();
-
   } else if (e.field(SAL_FIELD_SICK).indexOf(currentDay) >= 0) {
     addInfo = SAL_FIELD_SICK.toLowerCase();
   };
+  return ("(" + weekday_pl + ") " + day + " " + month_pl + " - " + addInfo)
 
-  return ("(" + weekday_pl + ") " + day + " - " + addInfo)
 };
 
 
