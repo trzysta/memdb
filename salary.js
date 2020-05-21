@@ -24,7 +24,7 @@ function getLabel(nr, e) {
   } else if (e.field(SAL_FIELD_HOLIDAY).indexOf(currentDay) >= 0) {
     addInfo = SAL_FIELD_HOLIDAY.toLowerCase();
 
-  } else if (e.field(SAL_FIELD_SICK).indexOf(cc.toString()) >= 0) {
+  } else if (e.field(SAL_FIELD_SICK).indexOf(currentDay) >= 0) {
     addInfo = SAL_FIELD_SICK.toLowerCase();
   };
 
