@@ -4,7 +4,7 @@ Baza Memento Database na Androida. Autor Marceli Matynia 300 Sp. z o.o.
 
 function getLabel(nr, e) {
 
-  const currentDay = (c + 1).toString();
+  const currentDay = (nr + 1).toString();
   const month = e.field('Miesiąc');
   const weekday_en = moment(month).startOf('month').add(nr, 'days').format('dddd');
   const weekday_pl = WEEKDAYS_PL[WEEKDAYS_EN.indexOf(weekday_en)];
