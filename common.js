@@ -19,6 +19,9 @@ const LIB_CHECKS_NAME = "Kontrole";
 const LIB_ACTIVITIES_NAME = "Kalendarz zadań";
 const LIB_EMPLOYEES_NAME = "Pracownicy";
 
+const WEEKDAYS_EN = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+const WEEKDAYS_PL = ["Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota", "Niedziela"];
+
 const arrMonths_pl = [
   "styczeń",
   "luty",
@@ -80,8 +83,10 @@ const SAL_FIELD_PAYER = "Dokonujący wypłaty";
 const SAL_FIELD_ADVANCE_PAYMENT = "Zaliczki";
 const SAL_FIELD_WEEKENDS = "Dni wolne";
 const SAL_FIELD_PAYMENT_TYPE = "Rodzaj wynagrodzenia";
-const SAL_FIELD_
+const SAL_FIELD_WEEKENDDUTY = "Dyżur";
 const SAL_FIELD_HOLIDAY = "Urlop";
+const SAL_FIELD_ABSENCE = "Nieobecność";
+const SAL_FIELD_SICK = "Zwolnienie";
 const SAL_ADD_DESCRIPTION_WITHDRAWAL = " wypłata przelewem za ";
 const SAL_ADD_DESCRIPTION_CASH = " wypłata gotówki za ";
 const SAL_ERR_CLOSED_OR_NOACCESS = "Wpis już rozliczony lub nie masz uprawnień do zamknięcia rozliczenia";
@@ -93,6 +98,7 @@ const SAL_MSG_VALIDATION_ERR = "Nie można zapisać, popraw następujące błęd
 const SAL_MSG_VALIDATION_ERR_NO_WITHDRWAL = "- podaj datę i kwotę przelewu";
 const SAL_MSG_VALIDATION_ERR_NO_CASH = "- podaj datę i kwotę wypłaty gotówki";
 const SAL_MSG_RUNING_FINDADVANCE = "szukam zaliczek dla wpisu...";
+
 
 const EMP_FIELD_FULLNAME = "Imie i nazwisko";
 const EMP_FIELD_HOLIDAY_TOTAL = "Wymiar urlopu";

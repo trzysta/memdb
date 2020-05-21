@@ -2,33 +2,33 @@
 Baza Memento Database na Androida. Autor Marceli Matynia 300 Sp. z o.o.
 */
 
-function getLabel(c) {
+function getLabel(nr, e) {
 
-  var cc = c + 1;
-  var en = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-  var pl = ["PN: ", "WT: ", "ŚR: ", "CZ: ", "PT: ", "SO: ", "ND: "];
-  var den = moment(field('Miesiąc')).startOf('month').add(c, 'days').format('dddd');
-  var dpl = pl[en.indexOf(den)];
-  var ret = '';
-  var day = moment(field('Miesiąc')).startOf('month').add(c, 'days').format('D.MM');
+  const currentDay = (c + 1).toString();
+  const month = e.field('Miesiąc');
+  const weekday_en = moment(month).startOf('month').add(nr, 'days').format('dddd');
+  const weekday_pl = WEEKDAYS_PL[WEEKDAYS_EN.indexOf(weekday_en)];
+  const day = moment(month).startOf('month').add(nr, 'days').format('D.MM');
 
-  if (field('Dyżur').indexOf(cc.toString()) >= 0) {
-    ret = ' - dyżur';
+  let addInfo = "";
 
-  } else if (field('Dni wolne').indexOf(cc.toString()) >= 0) {
-    ret = ' - dzień niepracujący';
+  if (e.field(SAL_FIELD_WEEKENDDUTY).indexOf(currentDay) >= 0) {
+    addInfo = " - " + SAL_FIELD_WEEKENDDUTY.toLowerCase();
 
-  } else if (field('Nieobecność').indexOf(cc.toString()) >= 0) {
-    ret = ' - nieobecność';
+  } else if (e.field(SAL_FIELD_WEEKENDS).indexOf(currentDay) >= 0) {
+    addInfo = " - " + SAL_FIELD_WEEKENDS.toLowerCase();
 
-  } else if (field('Urlop').indexOf(cc.toString()) >= 0) {
-    ret = ' - urlop';
+  } else if (e.field(SAL_FIELD_ABSENCE).indexOf(currentDay) >= 0) {
+    addInfo = " - " + SAL_FIELD_ABSENCE.toLowerCase();
 
-  } else if (field('Zwolnienie').indexOf(cc.toString()) >= 0) {
-    ret = ' - zwolnienie';
+  } else if (e.field(SAL_FIELD_HOLIDAY).indexOf(currentDay) >= 0) {
+    addInfo = " - " + SAL_FIELD_HOLIDAY.toLowerCase();
 
+  } else if (e.field(SAL_FIELD_SICK).indexOf(cc.toString()) >= 0) {
+    addInfo = " - " + SAL_FIELD_SICK.toLowerCase();
   };
-  return (dpl + day + ret)
+
+  return (weekday_pl + day + addInfo)
 }
 
 
