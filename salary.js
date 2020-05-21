@@ -17,10 +17,16 @@ const Salary = function (e) {
     this.payerName = this.entry.field(SAL_FIELD_PAYER);
     this.description = this.entry.field(SAL_FIELD_DESCRIPTION);
     this.type = this.entry.field(SAL_FIELD_PAYMENT_TYPE);
-
+    this.holidayTotal = "";
+    this
 
     this.isVisible = this.entry.field(FIELD_CAN_ACCESS);
-    if (this.entry.field(SAL_FIELD_EMPLOYEE_LINK).length > 0) this.entryEmployee = this.entry.field(SAL_FIELD_EMPLOYEE_LINK)[0];
+    if (this.entry.field(SAL_FIELD_EMPLOYEE_LINK).length > 0) {
+      this.entryEmployee = this.entry.field(SAL_FIELD_EMPLOYEE_LINK)[0];
+      this.entryEmployee = this.entry.field(SAL_FIELD_EMPLOYEE_LINK)[0];
+    }
+
+
     if (!isNaN(this.entry.field(SAL_FIELD_CASH_AMOUNT))) this.amountCash = this.entry.field(SAL_FIELD_CASH_AMOUNT);
     if (!isNaN(this.entry.field(SAL_FIELD_WITHDRAWAL_AMOUNT))) this.amountWithdrwal = this.entry.field(SAL_FIELD_WITHDRAWAL_AMOUNT);
     if (this.entry.field(SAL_FIELD_CLOSED) == SAL_FIELD_CLOSED_VALUE_YES) this.isClosed = true;
@@ -120,34 +126,50 @@ const Salary = function (e) {
     } else {
       message(SAL_ERR_CLOSED_OR_NOACCESS);
     }
+
+    // updateHoliday
+
   };
 
   // funkcja zamyka rozliczenie, tj tworzy wpisu w bazie wydatków, ustawia wartość pola zamknięte na 
 
   this.findAdvances = function (show) {
     message(SAL_MSG_RUNING_FINDADVANCE);
+
     let libSpendings = libByName(LIB_SPANDINGS_NAME);
+    if (libSpendings !== undefined) {
 
-    if (entryEmployee !== undefined && !this.isClosed) {
-      let spendsAdvanceTypes = new Array(SPE_FIELD_TYPE_VALUE_ADVANCE_CASH, SPE_FIELD_TYPE_VALUE_ADVANCE_WITHDRAWAL);
-      let entiesSpend = libSpendings.linksTo(this.entry.field(SAL_FIELD_EMPLOYEE_LINK)[0]);
+      message("jest baza" + libSpendings.title);
 
-      for (let i = 0; i < entiesSpend.length; i++) {
-        let entrySpend = entiesSpend[i];
-        let momEntry = moment(entrySpend.field(SPE_FIELD_DATE));
-        let momStart = moment().startOf("month").add({ days: 18, months: -1 });
-        let momEnd = moment();
+      if (this.entryEmployee !== undefined && !this.isClosed) {
 
-        if (
-          spendsAdvanceTypes.indexOf(entrySpend.field(SPE_FIELD_TYPE)) >= 0 &&
-          momEntry.isBetween(momStart, momEnd) &&
-          !isEntryLinked(this.entry.field(SAL_FIELD_ADVANCE_PAYMENT), this.entrySpend)) {
-          entry.link(SAL_FIELD_ADVANCE_PAYMENT, entrySpend);
+        let spendsAdvanceTypes = new Array(SPE_FIELD_TYPE_VALUE_ADVANCEPAYMENT_CASH, SPE_FIELD_TYPE_VALUE_ADVANCEPAYMENT_WITHDRAWAL);
+        let entiesSpend = libSpendings.linksTo(this.entry.field(SAL_FIELD_EMPLOYEE_LINK)[0]);
+
+
+
+        for (i = 0; i < entiesSpend.length; i++) {
+
+          let entrySpend = entiesSpend[i];
+          message("sprawdzam wpis " + i + " " + entrySpend.name);
+
+          let momEntry = moment(entrySpend.field(SPE_FIELD_DATE));
+          let momStart = moment().startOf("month").add({ days: 18, months: -1 });
+          let momEnd = moment();
+
+          if (
+            spendsAdvanceTypes.indexOf(entrySpend.field(SPE_FIELD_TYPE)) >= 0 &&
+            momEntry.isBetween(momStart, momEnd) &&
+            !isEntryLinked(this.entry.field(SAL_FIELD_ADVANCE_PAYMENT), entrySpend)) {
+            message("linkuję " + entrySpend.name);
+            this.entry.link(SAL_FIELD_ADVANCE_PAYMENT, entrySpend);
+          }
         }
-      }
-      this.entry.recalc();
-      if (show) {
-        this.entry.show();
+
+        this.entry.recalc();
+        if (show) {
+          this.entry.show();
+        }
       }
     }
   };

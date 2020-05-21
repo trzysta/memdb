@@ -17,6 +17,7 @@ const LIB_BUDGETS_NAME = "Budżet";
 const LIB_CONTRACTS_NAME = "Osiedla";
 const LIB_CHECKS_NAME = "Kontrole";
 const LIB_ACTIVITIES_NAME = "Kalendarz zadań";
+const LIB_EMPLOYEES_NAME = "Pracownicy";
 
 const arrMonths_pl = [
   "styczeń",
@@ -31,14 +32,14 @@ const arrMonths_pl = [
   "listopad",
   "grudzień",
 ];
-const arrEditors = [
+const ARR_EDITORS = [
   "MalgorzataG",
   "ElzbietaZ",
   "trzystaIZABELA",
   "MarceliM",
   "trzysta",
 ];
-const arrManagers = ["trzysta", "Marceli Matynia"];
+const ARR_MANAGERS = ["trzysta", "Marceli Matynia"];
 const arrNames = [
   "Małgorzata Grabowska",
   "Elżbieta Zdziech",
@@ -294,8 +295,8 @@ const SPE_FIELD_COST_ALLOCATION_LEFT = "Kwota pozostała do rozpisania";
 
 
 // const arrMonths_pl = ["styczeń", "luty", "marzec", "kwiecien", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "listopad", "grudzień"];
-// const arrEditors = ["MalgorzataG", "ElzbietaZ", "trzystaIZABELA", "MarceliM", "trzysta"];
-// const arrManagers = ["trzysta"];
+// const ARR_EDITORS = ["MalgorzataG", "ElzbietaZ", "trzystaIZABELA", "MarceliM", "trzysta"];
+// const ARR_MANAGERS = ["trzysta"];
 // const arrNames = ["Małgorzata Grabowska", "Elżbieta Zdziech", "Izabela Skowrońska", "Marceli Matynia", "Administrator"];
 // const withdrawalMaker = "Marceli Matynia";
 
@@ -333,7 +334,7 @@ const SPE_FIELD_COST_ALLOCATION_LEFT = "Kwota pozostała do rozpisania";
 
 //   this.setEntryDefaultValues = function () {
 //     if (e != null) {
-//       this.entry.set(FIELD_EDITOR, arrEditors);
+//       this.entry.set(FIELD_EDITOR, ARR_EDITORS);
 //       this.entry.set(FIELD_IS_NEW, true);
 //     }
 //   }
@@ -393,7 +394,7 @@ const SPE_FIELD_COST_ALLOCATION_LEFT = "Kwota pozostała do rozpisania";
 // function isEditor() {
 //   const u = user().username;
 //   const is = false;
-//   if (arrEditors.indexOf(u) >= 0) is = true;
+//   if (ARR_EDITORS.indexOf(u) >= 0) is = true;
 //   return is;
 // }
 
@@ -402,7 +403,7 @@ const SPE_FIELD_COST_ALLOCATION_LEFT = "Kwota pozostała do rozpisania";
 // function isManager() {
 //   const u = user().username;
 //   const is = false;
-//   if (arrManagers.indexOf(u) >= 0) is = true;
+//   if (ARR_MANAGERS.indexOf(u) >= 0) is = true;
 //   return is;
 // }
 
@@ -413,7 +414,7 @@ const SPE_FIELD_COST_ALLOCATION_LEFT = "Kwota pozostała do rozpisania";
 
 // *^*^*^*  odpalana Creating Entry, Opening an Entry Card
 function setEntryDefaultValues(e) {
-  e.set(FIELD_EDITOR, arrEditors);
+  e.set(FIELD_EDITOR, ARR_EDITORS);
   e.set(FIELD_IS_NEW, true);
 }
 
@@ -423,7 +424,8 @@ function isEntryLinked(arrayOfLinks, entrySearchFor) {
   const is = false;
   const i = 0;
   while (i < arrayOfLinks.length) {
-    if (arrayOfLinks[i].id === entrySearchFor.id) {
+    if (arrayOfLinks[i].id == entrySearchFor.id) {
+      message(i + " " + arrayOfLinks[i].id + " " + entrySearchFor.id);
       is = true;
       i = arrayOfLinks.length + 1;
     } else {
