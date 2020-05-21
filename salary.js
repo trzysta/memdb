@@ -52,12 +52,14 @@ const Salary = function (e) {
     this.type = this.entry.field(SAL_FIELD_PAYMENT_TYPE);
     this.holidayTotal = 0;
     this.holidayUsed = 0;
+    this.holidayCurrent = 0;
 
     this.isVisible = this.entry.field(FIELD_CAN_ACCESS);
     if (this.entry.field(SAL_FIELD_EMPLOYEE_LINK).length > 0) {
       this.entryEmployee = this.entry.field(SAL_FIELD_EMPLOYEE_LINK)[0];
       this.holidayTotal = this.entryEmployee.field(EMP_FIELD_HOLIDAY_TOTAL);
       this.holidayUsed = this.entryEmployee.field(EMP_FIELD_HOLIDAY_USED);
+      this.holidayCurrent = this.entry(SAL_FIELD_HOLIDAY);
     }
     if (!isNaN(this.entry.field(SAL_FIELD_CASH_AMOUNT))) this.amountCash = this.entry.field(SAL_FIELD_CASH_AMOUNT);
     if (!isNaN(this.entry.field(SAL_FIELD_WITHDRAWAL_AMOUNT))) this.amountWithdrwal = this.entry.field(SAL_FIELD_WITHDRAWAL_AMOUNT);
@@ -127,7 +129,7 @@ const Salary = function (e) {
     if (this.canCloseSettlement()) {
       if (!this.isVisible) entry.set(FIELD_CAN_ACCESS, true);
       if (this.dateWithdrwal != null && this.amountWithdrwal > 0) {
-        let entrySpendWithdrwal = createSpendEntry(
+        let entrySpendWithdrwal = this.createSpendEntry(
           this.amountWithdrwal,
           this.dateWithdrwal,
           SAL_WITHDRWAL_MAKER,
@@ -138,7 +140,7 @@ const Salary = function (e) {
         this.entry.link(SAL_FIELD_SPEND_LINK, entrySpendWithdrwal);
       }
       if (this.dateCash != null && this.amountCash > 0) {
-        let entrySpendCash = createSpendEntry(
+        let entrySpendCash = this.createSpendEntry(
           this.amountCash,
           this.dateCash,
           this.payerName,
@@ -151,14 +153,12 @@ const Salary = function (e) {
       this.entry.set(FIELD_CAN_ACCESS, this.isVisible);
       this.entry.set(SAL_FIELD_CLOSED, SAL_FIELD_CLOSED_VALUE_YES);
       this.entry.set(FIELD_EDITOR, ARR_MANAGERS);
+      this.entryEmployee.set(EMP_FIELD_HOLIDAY_USED, (this.holidayUsed + this.holidayCurrent));
       this.entry.recalc();
       if (reopenEntry) this.entry.show();
     } else {
       message(SAL_ERR_CLOSED_OR_NOACCESS);
     }
-
-    // updateHoliday
-
   };
 
   // funkcja zamyka rozliczenie, tj tworzy wpisu w bazie wydatków, ustawia wartość pola zamknięte na 
