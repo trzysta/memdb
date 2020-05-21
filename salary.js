@@ -238,15 +238,15 @@ const Salary = function (e) {
   // * * *
 
   this.canCloseSettlement = function (showAlert) {
-    let c = false;
+    let can = false;
     let isManager = false;
 
-    if (amountCash + amountWithdrwal > 0 && isClosed === false) {
-      c = true;
+    if ((this.amountCash + this.amountWithdrwal > 0) && (this.isClosed == false)) {
+      can = true;
     } else if (showAlert) {
       message(SAL_ERR_CLOSED_OR_NOACCESS);
     }
-    return c;
+    return can;
   };
 
   this.copyToMonth = function (selected, month) {
