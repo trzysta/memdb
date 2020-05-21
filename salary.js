@@ -59,7 +59,7 @@ const Salary = function (e) {
       this.entryEmployee = this.entry.field(SAL_FIELD_EMPLOYEE_LINK)[0];
       this.holidayTotal = this.entryEmployee.field(EMP_FIELD_HOLIDAY_TOTAL);
       this.holidayUsed = this.entryEmployee.field(EMP_FIELD_HOLIDAY_USED);
-      this.holidayCurrent = this.entry(SAL_FIELD_HOLIDAY);
+      this.holidayCurrent = this.entry.field(SAL_FIELD_HOLIDAY);
     }
     if (!isNaN(this.entry.field(SAL_FIELD_CASH_AMOUNT))) this.amountCash = this.entry.field(SAL_FIELD_CASH_AMOUNT);
     if (!isNaN(this.entry.field(SAL_FIELD_WITHDRAWAL_AMOUNT))) this.amountWithdrwal = this.entry.field(SAL_FIELD_WITHDRAWAL_AMOUNT);
