@@ -46,7 +46,7 @@ const arrNames = [
   "Marceli Matynia",
   "Administrator",
 ];
-const WITHDRWAL_MAKER = "Marceli Matynia";
+
 
 const FIELD_EDITOR = "Editor";
 const FIELD_IS_NEW = "new";
@@ -63,6 +63,7 @@ const MSG_FINISHED = "Zakończono!";
 const VALUE_MAIL = "e-mail";
 
 // const LIB_SALARIES_NAME = "Wypłaty";
+const SAL_WITHDRWAL_MAKER = "Marceli Matynia";
 const SAL_FIELD_CLOSED = "Rozliczony";
 const SAL_FIELD_CLOSED_VALUE_YES = "Rozliczony";
 const SAL_FIELD_CLOSED_VALUE_NO = "W trakcie rozliczania";
@@ -108,29 +109,29 @@ const htmlMailSignature = "";
 const cssP = "";
 const cssLI = "";
 
-// wspólne
-const FIELD_EDITOR = "Editor";
-const FIELD_IS_NEW = "new";
-const FIELD_REF = "REF";
-const FIELD_REF_PARTENT = "parentREF";
-const FIELD_IS_PARENT = "isParent";
-const FIELD_IS_HIDDEN = "Ukryte";
-const FIELD_CAN_ACCESS = "canAccess";
-const FIELD_DISPLAY_NAME = "displayName";
-const MSG_UPDATING = "uaktualniam";
-const MSG_COPYING = "kopiuję";
-const MSG_ENTRIES = "wpisów";
-const MSG_FINISHED = "Zakończono!";
-const VALUE_MAIL = "e-mail";
+// // wspólne
+// const FIELD_EDITOR = "Editor";
+// const FIELD_IS_NEW = "new";
+// const FIELD_REF = "REF";
+// const FIELD_REF_PARTENT = "parentREF";
+// const FIELD_IS_PARENT = "isParent";
+// const FIELD_IS_HIDDEN = "Ukryte";
+// const FIELD_CAN_ACCESS = "canAccess";
+// const FIELD_DISPLAY_NAME = "displayName";
+// const MSG_UPDATING = "uaktualniam";
+// const MSG_COPYING = "kopiuję";
+// const MSG_ENTRIES = "wpisów";
+// const MSG_FINISHED = "Zakończono!";
+// const VALUE_MAIL = "e-mail";
 
-const VALUE_DAYNUMBER_MONDAY = 1;
-const VALUE_DAYNUMBER_TUESDAY = 2;
-const VALUE_DAYNUMBER_WEDNESDAY = 3;
-const VALUE_DAYNUMBER_THURSDAY = 4;
-const VALUE_DAYNUMBER_FRIDAY = 5;
-const VALUE_DAYNUMBER_SATURDAY = 6;
-const VALUE_DAYNUMBER_SUNDAY = 7;
-const VIEW_SEP = " >>> ";
+// const VALUE_DAYNUMBER_MONDAY = 1;
+// const VALUE_DAYNUMBER_TUESDAY = 2;
+// const VALUE_DAYNUMBER_WEDNESDAY = 3;
+// const VALUE_DAYNUMBER_THURSDAY = 4;
+// const VALUE_DAYNUMBER_FRIDAY = 5;
+// const VALUE_DAYNUMBER_SATURDAY = 6;
+// const VALUE_DAYNUMBER_SUNDAY = 7;
+// const VIEW_SEP = " >>> ";
 
 // ****************************************************************************
 // ~~~ BAZA WYDATKI
