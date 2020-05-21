@@ -67,9 +67,11 @@ const Salary = function (e) {
 
   this.updatingEntry_validateBeforeSave = function () {
     let msg = SAL_MSG_VALIDATION_ERR;
+    let canSave = false;
 
     if (this.amountWithdrwal > 0 && this.dateWithdrwal == null) {
       msg += "\n" + SAL_MSG_VALIDATION_ERR_NO_WITHDRWAL;
+      message(SAL_MSG_VALIDATION_ERR_NO_WITHDRWAL);
       canSave = false;
     } else {
       canSave = true;
@@ -77,6 +79,7 @@ const Salary = function (e) {
 
     if (this.amountCash > 0 && this.dateCash == null) {
       msg += "\n" + SAL_MSG_VALIDATION_ERR_NO_CASH;
+      message(SAL_MSG_VALIDATION_ERR_NO_CASH);
       canSave = false;
     } else {
       canSave = true;
