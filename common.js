@@ -407,22 +407,7 @@ const SPE_FIELD_COST_ALLOCATION_LEFT = "Kwota pozostała do rozpisania";
 // }
 
 
-// *^*^*^*  sprawdza czy entrySearchFor jest w arrayOfLinks
-function isEntryLinked(arrayOfLinks, entrySearchFor) {
 
-  const is = false;
-  const i = 0;
-  while (i < arrayOfLinks.length) {
-    if (arrayOfLinks[i].id == entrySearchFor.id) {
-      is = true;
-      i = arrayOfLinks.length + 1;
-    } else {
-      i++;
-    }
-  }
-
-  return is;
-};
 
 
 
@@ -431,6 +416,22 @@ function setEntryDefaultValues(e) {
   e.set(FIELD_EDITOR, arrEditors);
   e.set(FIELD_IS_NEW, true);
 }
+
+
+// *^*^*^*  sprawdza czy entrySearchFor jest w arrayOfLinks
+function isEntryLinked(arrayOfLinks, entrySearchFor) {
+  const is = false;
+  const i = 0;
+  while (i < arrayOfLinks.length) {
+    if (arrayOfLinks[i].id === entrySearchFor.id) {
+      is = true;
+      i = arrayOfLinks.length + 1;
+    } else {
+      i++;
+    }
+  }
+  return is;
+};
 
 
 // // *^*^*^*  odpalana Creating Entry, After Save

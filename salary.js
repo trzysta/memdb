@@ -6,27 +6,29 @@ const Salary = function (e) {
 
   if (e !== undefined) {
 
-    let entry = e;
-    let amountCash = 0;
-    let amountWithdrwal = 0;
-    let dateCash = null;
-    let dateWithdrwal = null;
-    let isClosed = false;
-    let entryEmployee = null;
-    let visible = false;
-    let payerName = entry.field(SAL_FIELD_PAYER);
-    let description = entry.field(SAL_FIELD_DESCRIPTION);
-    let type = entry.field(SAL_FIELD_PAYMENT_TYPE);
+    this.entry = e;
+    this.amountCash = 0;
+    this.amountWithdrwal = 0;
+    this.dateCash = null;
+    this.dateWithdrwal = null;
+    this.isClosed = false;
+    this.entryEmployee = null;
+    this.isVisible = false;
+    this.payerName = this.entry.field(SAL_FIELD_PAYER);
+    this.description = this.entry.field(SAL_FIELD_DESCRIPTION);
+    this.type = this.entry.field(SAL_FIELD_PAYMENT_TYPE);
 
 
-    visible = entry.field(FIELD_CAN_ACCESS);
-    if (entry.field(SAL_FIELD_EMPLOYEE_LINK).length > 0) entryEmployee = entry.field(SAL_FIELD_EMPLOYEE_LINK)[0];
-    if (!isNaN(entry.field(SAL_FIELD_CASH_AMOUNT))) amountCash = entry.field(SAL_FIELD_CASH_AMOUNT);
-    if (!isNaN(entry.field(SAL_FIELD_WITHDRAWAL_AMOUNT))) amountWithdrwal = entry.field(SAL_FIELD_WITHDRAWAL_AMOUNT);
-    if (entry.field(SAL_FIELD_CLOSED) == SAL_FIELD_CLOSED_VALUE_YES) isClosed = true;
-    if (entry.field(SAL_FIELD_WITHDRAWAL_DATE) != "") dateWithdrwal = entry.field(SAL_FIELD_WITHDRAWAL_DATE);
-    if (entry.field(SAL_FIELD_CASH_DATE) != "") dateCash = entry.field(SAL_FIELD_CASH_DATE);
+    this.isVisible = this.entry.field(FIELD_CAN_ACCESS);
+    if (this.entry.field(SAL_FIELD_EMPLOYEE_LINK).length > 0) this.entryEmployee = this.entry.field(SAL_FIELD_EMPLOYEE_LINK)[0];
+    if (!isNaN(this.entry.field(SAL_FIELD_CASH_AMOUNT))) this.amountCash = this.entry.field(SAL_FIELD_CASH_AMOUNT);
+    if (!isNaN(this.entry.field(SAL_FIELD_WITHDRAWAL_AMOUNT))) this.amountWithdrwal = this.entry.field(SAL_FIELD_WITHDRAWAL_AMOUNT);
+    if (this.entry.field(SAL_FIELD_CLOSED) == SAL_FIELD_CLOSED_VALUE_YES) this.isClosed = true;
+    if (this.entry.field(SAL_FIELD_WITHDRAWAL_DATE) != "") this.dateWithdrwal = this.entry.field(SAL_FIELD_WITHDRAWAL_DATE);
+    if (this.entry.field(SAL_FIELD_CASH_DATE) != "") this.dateCash = this.entry.field(SAL_FIELD_CASH_DATE);
   }
+
+  // funckja opis 
 
   this.newEntry_opening = function () {
 
@@ -37,10 +39,10 @@ const Salary = function (e) {
     let weekends = new Array();
     let payer = arrNames[arrEditors.indexOf(user().username)];
 
-    entry.set(SAL_FIELD_PAYER, payer);
-    entry.set(SAL_FIELD_MONTH, prevMonth.toDate());
+    this.entry.set(SAL_FIELD_PAYER, payer);
+    this.entry.set(SAL_FIELD_MONTH, prevMonth.toDate());
 
-    setEntryDefaultValues(entry);
+    setEntryDefaultValues(this.entry);
 
     let i = 1;
     while (i <= dayEnd) {
@@ -50,20 +52,23 @@ const Salary = function (e) {
       prevMonth = prevMonth.add(1, "day");
       i++;
     }
-    entry.set(SAL_FIELD_WEEKENDS, weekends);
+
+    this.entry.set(SAL_FIELD_WEEKENDS, weekends);
   };
+
+  // funckja opis 
 
   this.validateBeforeSave = function () {
     let msg = SAL_MSG_VALIDATION_ERR;
 
-    if (amountWithdrwal > 0 && dateWithdrwal == null) {
+    if (this.amountWithdrwal > 0 && this.dateWithdrwal == null) {
       msg += "\n" + SAL_MSG_VALIDATION_ERR_NO_WITHDRWAL;
       canSave = false;
     } else {
       canSave = true;
     }
 
-    if (amountCash > 0 && dateCash == null) {
+    if (this.amountCash > 0 && this.dateCash == null) {
       msg += "\n" + SAL_MSG_VALIDATION_ERR_NO_CASH;
       canSave = false;
     } else {
@@ -76,58 +81,57 @@ const Salary = function (e) {
     return canSave;
   };
 
+  // funkcja zamyka rozliczenie, tj tworzy wpisu w bazie wydatków, ustawia wartość pola SAL_FIELD_CLOSED na SAL_FIELD_CLOSED_VALUE_YES i ustawia pole  edytorów żeby nie można było edytować 
+
   this.closeSettlement = function (reopenEntry) {
 
-    message(SAL_MSG_CLOSING + entryEmployee.name);
+    message(SAL_MSG_CLOSING + this.entryEmployee.name);
 
     if (canCloseSettlement()) {
-      if (!visible) entry.set(FIELD_CAN_ACCESS, true);
+      if (!this.isVisible) entry.set(FIELD_CAN_ACCESS, true);
       if (dateWithdrwal != null && amountWithdrwal > 0) {
         let entrySpendWithdrwal = createSpendEntry(
-          amountWithdrwal,
-          dateWithdrwal,
-          WITHDRWAL_MAKER,
-          description,
-          entryEmployee,
+          this.amountWithdrwal,
+          this.dateWithdrwal,
+          SAL_WITHDRWAL_MAKER,
+          this.description,
+          this.entryEmployee,
           true
         );
-        entry.link(SAL_FIELD_SPEND_LINK, entrySpendWithdrwal);
+        this.entry.link(SAL_FIELD_SPEND_LINK, entrySpendWithdrwal);
       }
       if (dateCash != null && amountCash > 0) {
         let entrySpendCash = createSpendEntry(
-          amountCash,
-          dateCash,
-          payerName,
-          description,
-          entryEmployee,
+          this.amountCash,
+          this.dateCash,
+          this.payerName,
+          this.description,
+          this.entryEmployee,
           false
         );
-        entry.link(SAL_FIELD_SPEND_LINK, entrySpendCash);
+        this.entry.link(SAL_FIELD_SPEND_LINK, entrySpendCash);
       }
-      entry.set(FIELD_CAN_ACCESS, visible);
-      entry.set(SAL_FIELD_CLOSED, SAL_FIELD_CLOSED_VALUE_YES);
-      entry.recalc();
-      if (reopenEntry) entry.show();
+      this.entry.set(FIELD_CAN_ACCESS, this.isVisible);
+      this.entry.set(SAL_FIELD_CLOSED, SAL_FIELD_CLOSED_VALUE_YES);
+      this.entry.set(FIELD_EDITOR, ARR_MANAGERS);
+      this.entry.recalc();
+      if (reopenEntry) this.entry.show();
     } else {
       message(SAL_ERR_CLOSED_OR_NOACCESS);
     }
   };
 
+  // funkcja zamyka rozliczenie, tj tworzy wpisu w bazie wydatków, ustawia wartość pola zamknięte na 
 
   this.findAdvances = function (show) {
     message(SAL_MSG_RUNING_FINDADVANCE);
-    libSpendings = libByName(LIB_SPANDINGS_NAME);
+    let libSpendings = libByName(LIB_SPANDINGS_NAME);
 
-    if (entryEmployee !== undefined && !isClosed) {
-      let spendsAdvanceTypes = new Array(
-        SPE_FIELD_TYPE_VALUE_ADVANCE_CASH,
-        SPE_FIELD_TYPE_VALUE_ADVANCE_WITHDRAWAL
-      );
-      let entiesSpend = libSpendings.linksTo(
-        entry.field(SAL_FIELD_EMPLOYEE_LINK)[0]
-      );
+    if (entryEmployee !== undefined && !this.isClosed) {
+      let spendsAdvanceTypes = new Array(SPE_FIELD_TYPE_VALUE_ADVANCE_CASH, SPE_FIELD_TYPE_VALUE_ADVANCE_WITHDRAWAL);
+      let entiesSpend = libSpendings.linksTo(this.entry.field(SAL_FIELD_EMPLOYEE_LINK)[0]);
 
-      for (i = 0; i < entiesSpend.length; i++) {
+      for (let i = 0; i < entiesSpend.length; i++) {
         let entrySpend = entiesSpend[i];
         let momEntry = moment(entrySpend.field(SPE_FIELD_DATE));
         let momStart = moment().startOf("month").add({ days: 18, months: -1 });
@@ -136,20 +140,19 @@ const Salary = function (e) {
         if (
           spendsAdvanceTypes.indexOf(entrySpend.field(SPE_FIELD_TYPE)) >= 0 &&
           momEntry.isBetween(momStart, momEnd) &&
-          !isEntryLinked(
-            entry.field(SAL_FIELD_ADVANCE_PAYMENT),
-            entrySpend
-          )
-        ) {
+          !isEntryLinked(this.entry.field(SAL_FIELD_ADVANCE_PAYMENT), this.entrySpend)) {
           entry.link(SAL_FIELD_ADVANCE_PAYMENT, entrySpend);
         }
       }
-      entry.recalc();
+      this.entry.recalc();
       if (show) {
-        entry.show();
+        this.entry.show();
       }
     }
   };
+
+
+  // funkcja tworzy nowy wpis w bazie wydatków
 
   this.createSpendEntry = function (
     amount,
@@ -159,31 +162,40 @@ const Salary = function (e) {
     entryEmployee,
     isWithdrwal
   ) {
-    let entrySpend;
+
     message(SAL_MSG_CREATING_SPEND + amount + ", " + ", " + payer);
 
-    entrySpend = new Object();
-    libSpendings = libByName(LIB_SPANDINGS_NAME);
-    entrySpend = libSpendings.create(entrySpend);
-    setDefault(entrySpend);
-    entrySpend.set(SPE_FIELD_AMOUNT, 0 - Math.abs(amount));
-    entrySpend.set(SPE_FIELD_DATE, date);
-    entrySpend.set(SPE_FIELD_CREATOR, payer);
-    entrySpend.set(SPE_FIELD_EMPLOYEE_LINK, entryEmployee);
-    entrySpend.set(SPE_FIELD_DESCRIPTION, description);
-    if (isWithdrwal) {
-      entrySpend.set(SPE_FIELD_TYPE, SPE_FIELD_TYPE_VALUE_EMPLOYEE_WITHDRAWAL);
-    } else {
-      entrySpend.set(SPE_FIELD_TYPE, SPE_FIELD_TYPE_VALUE_EMPLOYEE_CASH);
+    let entrySpend = new Object();
+    let libSpendings = libByName(LIB_SPANDINGS_NAME);
+
+    if (libSpendings !== undefined) {
+      entrySpend = libSpendings.create(entrySpend);
+      setEntryDefaultValues(entrySpend);
+      entrySpend.set(SPE_FIELD_AMOUNT, 0 - Math.abs(amount));
+      entrySpend.set(SPE_FIELD_DATE, date);
+      entrySpend.set(SPE_FIELD_CREATOR, payer);
+      entrySpend.set(SPE_FIELD_EMPLOYEE_LINK, entryEmployee);
+      entrySpend.set(SPE_FIELD_DESCRIPTION, description);
+      if (isWithdrwal) {
+        entrySpend.set(SPE_FIELD_TYPE, SPE_FIELD_TYPE_VALUE_EMPLOYEE_WITHDRAWAL);
+      } else {
+        entrySpend.set(SPE_FIELD_TYPE, SPE_FIELD_TYPE_VALUE_EMPLOYEE_CASH);
+      }
+      //assignToBudget(entrySpend);
+      entrySpend.recalc();
     }
-    assignToBudget(entrySpend);
-    entrySpend.recalc();
     return entrySpend;
   };
 
+
+
+  // funkcja sprawdza czy można zamknąć rozliczenie tj czy aktualny user jest managerem i czy są wpisane kwoty i daty
+  // * * *
+
   this.canCloseSettlement = function (showAlert) {
     let c = false;
-    message(amountCash + " " + amountWithdrwal + " " + isClosed)
+    let isManager = false;
+
     if (amountCash + amountWithdrwal > 0 && isClosed === false) {
       c = true;
     } else if (showAlert) {
@@ -238,4 +250,3 @@ const Salary = function (e) {
   };
 
 }
-
