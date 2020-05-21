@@ -26,7 +26,7 @@ function getLabel(nr, e) {
     addInfo = SAL_FIELD_SICK.toLowerCase();
   };
 
-  return ("(" + weekday_pl + ") " + day + " " + month_pl + " - " + addInfo)
+  return (day + " " + month_pl + "(" + weekday_pl + ") - " + addInfo)
 
 };
 
