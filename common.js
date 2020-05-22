@@ -14,29 +14,29 @@ try {
     // const LIB_CHECKS_SHORT_NAME = "CHK";
     // const LIB_ACTIVITIES_SHORT_NAME = "ACT";
 
-    const LIB_SALARIES_NAME = "Wypłaty";
-    const LIB_SPANDINGS_NAME = "Wydatki";
-    const LIB_BUDGETS_NAME = "Budżet";
-    const LIB_CONTRACTS_NAME = "Osiedla";
-    const LIB_CHECKS_NAME = "Kontrole";
-    const LIB_ACTIVITIES_NAME = "Kalendarz zadań";
-    const LIB_EMPLOYEES_NAME = "Pracownicy";
+    let LIB_SALARIES_NAME = "Wypłaty";
+    let LIB_SPANDINGS_NAME = "Wydatki";
+    let LIB_BUDGETS_NAME = "Budżet";
+    let LIB_CONTRACTS_NAME = "Osiedla";
+    let LIB_CHECKS_NAME = "Kontrole";
+    let LIB_ACTIVITIES_NAME = "Kalendarz zadań";
+    let LIB_EMPLOYEES_NAME = "Pracownicy";
 
-    const WEEKDAYS_EN = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-    const WEEKDAYS_PL = ["Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota", "Niedziela"];
-    const WEEKDAYS2_PL = ["PN", "WT", "ŚR", "CZ", "PT", "SO", "ND"];
-    const MONTHS_PL = ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
-    const MONTHS3_PL = ["STY", "LUT", "MAR", "KWI", "MAJ", "CZE", "LIP", "SIE", "WRZ", "PAŹ", "LIS", "GRU"];
+    let WEEKDAYS_EN = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+    let WEEKDAYS_PL = ["Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota", "Niedziela"];
+    let WEEKDAYS2_PL = ["PN", "WT", "ŚR", "CZ", "PT", "SO", "ND"];
+    let MONTHS_PL = ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
+    let MONTHS3_PL = ["STY", "LUT", "MAR", "KWI", "MAJ", "CZE", "LIP", "SIE", "WRZ", "PAŹ", "LIS", "GRU"];
 
-    const ARR_EDITORS = [
+    let ARR_EDITORS = [
       "MalgorzataG",
       "ElzbietaZ",
       "trzystaIZABELA",
       "MarceliM",
       "trzysta",
     ];
-    const ARR_MANAGERS = ["trzysta", "Marceli Matynia"];
-    const arrNames = [
+    let ARR_MANAGERS = ["trzysta", "Marceli Matynia"];
+    let arrNames = [
       "Małgorzata Grabowska",
       "Elżbieta Zdziech",
       "Izabela Skowrońska",
@@ -45,68 +45,68 @@ try {
     ];
 
 
-    const FIELD_EDITOR = "Editor";
-    const FIELD_IS_NEW = "new";
-    const FIELD_REF = "REF";
-    const FIELD_REF_PARTENT = "parentREF";
-    const FIELD_IS_PARENT = "isParent";
-    const FIELD_IS_HIDDEN = "Ukryte";
-    const FIELD_CAN_ACCESS = "canAccess";
-    const FIELD_DISPLAY_NAME = "displayName";
-    const MSG_UPDATING = "uaktualniam";
-    const MSG_COPYING = "kopiuję";
-    const MSG_ENTRIES = "wpisów";
-    const MSG_FINISHED = "Zakończono!";
-    const VALUE_MAIL = "e-mail";
+    let FIELD_EDITOR = "Editor";
+    let FIELD_IS_NEW = "new";
+    let FIELD_REF = "REF";
+    let FIELD_REF_PARTENT = "parentREF";
+    let FIELD_IS_PARENT = "isParent";
+    let FIELD_IS_HIDDEN = "Ukryte";
+    let FIELD_CAN_ACCESS = "canAccess";
+    let FIELD_DISPLAY_NAME = "displayName";
+    let MSG_UPDATING = "uaktualniam";
+    let MSG_COPYING = "kopiuję";
+    let MSG_ENTRIES = "wpisów";
+    let MSG_FINISHED = "Zakończono!";
+    let VALUE_MAIL = "e-mail";
 
-    const SAL_WITHDRWAL_MAKER = "Marceli Matynia";
-    const SAL_FIELD_CLOSED = "Rozliczony";
-    const SAL_FIELD_CLOSED_VALUE_YES = "Rozliczony";
-    const SAL_FIELD_CLOSED_VALUE_NO = "W trakcie rozliczania";
-    const SAL_FIELD_CASH_AMOUNT = "Wypłacono w gotówce";
-    const SAL_FIELD_CASH_DATE = "Data wypłaty gotówki";
-    const SAL_FIELD_WITHDRAWAL_AMOUNT = "Wpłacono na konto";
-    const SAL_FIELD_WITHDRAWAL_DATE = "Data przelewu";
-    const SAL_FIELD_EMPLOYEE_LINK = "Pracownik";
-    const SAL_FIELD_CONTRACT = "Osiedle";
-    const SAL_FIELD_SPEND_LINK = "Wydatek";
-    const SAL_FIELD_DESCRIPTION = "Uwagi";
-    const SAL_FIELD_MONTH = "Miesiąc";
-    const SAL_FIELD_PAYER = "Dokonujący wypłaty";
-    const SAL_FIELD_ADVANCE_PAYMENT = "Zaliczki";
-    const SAL_FIELD_WEEKENDS = "Dni wolne";
-    const SAL_FIELD_PAYMENT_TYPE = "Rodzaj wynagrodzenia";
-    const SAL_FIELD_WEEKENDDUTY = "Dyżur";
-    const SAL_FIELD_HOLIDAY = "Urlop";
-    const SAL_FIELD_ABSENCE = "Nieobecność";
-    const SAL_FIELD_SICK = "Zwolnienie";
-    const SAL_ADD_DESCRIPTION_WITHDRAWAL = " wypłata przelewem za ";
-    const SAL_ADD_DESCRIPTION_CASH = " wypłata gotówki za ";
-    const SAL_ERR_CLOSED_OR_NOACCESS = "Wpis już rozliczony lub nie masz uprawnień do zamknięcia rozliczenia";
-    const SAL_ERR_NO_AMOUNT = "Uzupełnij kwoty wypłat, gotówka lub przelew. Jeśli rozliczenie jest bez wypłaty w polach kwot wstaw zero";
-    const SAL_MSG_CLOSING = "Zamykam rozliczenie: ";
-    const SAL_MSG_CREATING_SPEND = "Tworzę wydatek: ";
-    const SAL_MSG_ADVANCE_PAYMENT = "Szukam zaliczek... ";
-    const SAL_MSG_VALIDATION_ERR = "Nie można zapisać, popraw następujące błędy:";
-    const SAL_MSG_VALIDATION_ERR_NO_WITHDRWAL = "- podaj datę i kwotę przelewu";
-    const SAL_MSG_VALIDATION_ERR_NO_CASH = "- podaj datę i kwotę wypłaty gotówki";
-    const SAL_MSG_RUNING_FINDADVANCE = "szukam zaliczek dla wpisu...";
+    let SAL_WITHDRWAL_MAKER = "Marceli Matynia";
+    let SAL_FIELD_CLOSED = "Rozliczony";
+    let SAL_FIELD_CLOSED_VALUE_YES = "Rozliczony";
+    let SAL_FIELD_CLOSED_VALUE_NO = "W trakcie rozliczania";
+    let SAL_FIELD_CASH_AMOUNT = "Wypłacono w gotówce";
+    let SAL_FIELD_CASH_DATE = "Data wypłaty gotówki";
+    let SAL_FIELD_WITHDRAWAL_AMOUNT = "Wpłacono na konto";
+    let SAL_FIELD_WITHDRAWAL_DATE = "Data przelewu";
+    let SAL_FIELD_EMPLOYEE_LINK = "Pracownik";
+    let SAL_FIELD_CONTRACT = "Osiedle";
+    let SAL_FIELD_SPEND_LINK = "Wydatek";
+    let SAL_FIELD_DESCRIPTION = "Uwagi";
+    let SAL_FIELD_MONTH = "Miesiąc";
+    let SAL_FIELD_PAYER = "Dokonujący wypłaty";
+    let SAL_FIELD_ADVANCE_PAYMENT = "Zaliczki";
+    let SAL_FIELD_WEEKENDS = "Dni wolne";
+    let SAL_FIELD_PAYMENT_TYPE = "Rodzaj wynagrodzenia";
+    let SAL_FIELD_WEEKENDDUTY = "Dyżur";
+    let SAL_FIELD_HOLIDAY = "Urlop";
+    let SAL_FIELD_ABSENCE = "Nieobecność";
+    let SAL_FIELD_SICK = "Zwolnienie";
+    let SAL_ADD_DESCRIPTION_WITHDRAWAL = " wypłata przelewem za ";
+    let SAL_ADD_DESCRIPTION_CASH = " wypłata gotówki za ";
+    let SAL_ERR_CLOSED_OR_NOACCESS = "Wpis już rozliczony lub nie masz uprawnień do zamknięcia rozliczenia";
+    let SAL_ERR_NO_AMOUNT = "Uzupełnij kwoty wypłat, gotówka lub przelew. Jeśli rozliczenie jest bez wypłaty w polach kwot wstaw zero";
+    let SAL_MSG_CLOSING = "Zamykam rozliczenie: ";
+    let SAL_MSG_CREATING_SPEND = "Tworzę wydatek: ";
+    let SAL_MSG_ADVANCE_PAYMENT = "Szukam zaliczek... ";
+    let SAL_MSG_VALIDATION_ERR = "Nie można zapisać, popraw następujące błędy:";
+    let SAL_MSG_VALIDATION_ERR_NO_WITHDRWAL = "- podaj datę i kwotę przelewu";
+    let SAL_MSG_VALIDATION_ERR_NO_CASH = "- podaj datę i kwotę wypłaty gotówki";
+    let SAL_MSG_RUNING_FINDADVANCE = "szukam zaliczek dla wpisu...";
 
 
-    const EMP_FIELD_FULLNAME = "Imie i nazwisko";
-    const EMP_FIELD_HOLIDAY_TOTAL = "Wymiar urlopu";
-    const EMP_FIELD_HOLIDAY_LEFT = "Urlop pozostały";
-    const EMP_FIELD_HOLIDAY_USED = "Urlop wykorzystany";
-    const EMP_MSG_HOLIDAY_RECALCED = "Przeliczam urlop - wykorzystane dni urlopu to: ";
+    let EMP_FIELD_FULLNAME = "Imie i nazwisko";
+    let EMP_FIELD_HOLIDAY_TOTAL = "Wymiar urlopu";
+    let EMP_FIELD_HOLIDAY_LEFT = "Urlop pozostały";
+    let EMP_FIELD_HOLIDAY_USED = "Urlop wykorzystany";
+    let EMP_MSG_HOLIDAY_RECALCED = "Przeliczam urlop - wykorzystane dni urlopu to: ";
 
-    const htmlMailHeader = "To jest mail wysłany automatycznie. W przypadku wysyłania odpowiedzi prosimy o utrzymanie w temacie numeru referencyjnego REF";
-    const htmlMailBody_CONTROL = "<p>";
-    const htmlSubject_CONTROL = "Raport z kontroli";
+    let htmlMailHeader = "To jest mail wysłany automatycznie. W przypadku wysyłania odpowiedzi prosimy o utrzymanie w temacie numeru referencyjnego REF";
+    let htmlMailBody_CONTROL = "<p>";
+    let htmlSubject_CONTROL = "Raport z kontroli";
 
-    const htmlMailFooter = "<p><p>";
-    const htmlMailSignature = "";
-    const cssP = "";
-    const cssLI = "";
+    let htmlMailFooter = "<p><p>";
+    let htmlMailSignature = "";
+    let cssP = "";
+    let cssLI = "";
 
     // // wspólne
     // const FIELD_EDITOR = "Editor";
@@ -135,34 +135,34 @@ try {
     // ****************************************************************************
     // ~~~ BAZA WYDATKI
     // ****************************************************************************
-    const SPE_FIELD_IMPORTED = "Rozliczony";
-    const SPE_FIELD_AMOUNT = "Kwota";
-    const SPE_FIELD_DATE = "Data transakcji";
-    const SPE_FIELD_TYPE = "Typ transakcji";
-    const SPE_FIELD_TYPE_VALUE_EMPLOYEE_WITHDRAWAL = "Rozliczenie przelewem z pracownikiem";
-    const SPE_FIELD_TYPE_VALUE_EMPLOYEE_CASH = "Rozliczenie gotówką z pracownikiem";
-    const SPE_FIELD_TYPE_VALUE_ADVANCEPAYMENT_CASH = "Wypłacona gotówką zaliczka";
-    const SPE_FIELD_TYPE_VALUE_ADVANCEPAYMENT_WITHDRAWAL = "Wypłacona przelewem zaliczka";
-    const SPE_FIELD_BUDGET_LINK = "Budżet";
-    const SPE_FIELD_BUDGET_LINK_AMOUNT = "Kwota";
+    let SPE_FIELD_IMPORTED = "Rozliczony";
+    let SPE_FIELD_AMOUNT = "Kwota";
+    let SPE_FIELD_DATE = "Data transakcji";
+    let SPE_FIELD_TYPE = "Typ transakcji";
+    let SPE_FIELD_TYPE_VALUE_EMPLOYEE_WITHDRAWAL = "Rozliczenie przelewem z pracownikiem";
+    let SPE_FIELD_TYPE_VALUE_EMPLOYEE_CASH = "Rozliczenie gotówką z pracownikiem";
+    let SPE_FIELD_TYPE_VALUE_ADVANCEPAYMENT_CASH = "Wypłacona gotówką zaliczka";
+    let SPE_FIELD_TYPE_VALUE_ADVANCEPAYMENT_WITHDRAWAL = "Wypłacona przelewem zaliczka";
+    let SPE_FIELD_BUDGET_LINK = "Budżet";
+    let SPE_FIELD_BUDGET_LINK_AMOUNT = "Kwota";
 
-    const SPE_FIELD_COST_ALLOCATION_LINK = "Robicie kosztu na osiedla";
-    const SPE_FIELD_COST_ALLOCATION_LINK_AMOUNT = "Kwota";
-    const SPE_FIELD_COST_ALLOCATION_LEFT = "Kwota pozostała do rozpisania";
+    let SPE_FIELD_COST_ALLOCATION_LINK = "Robicie kosztu na osiedla";
+    let SPE_FIELD_COST_ALLOCATION_LINK_AMOUNT = "Kwota";
+    let SPE_FIELD_COST_ALLOCATION_LEFT = "Kwota pozostała do rozpisania";
 
-    const SPE_FIELD_CREATOR = "Dokonujący transakcji";
-    const SPE_FIELD_CATEGORY = "Kategoria";
-    const SPE_FIELD_RECIPIENT = "Przekazano osobie";
-    const SPE_FIELD_SUPPLIER = "Dostawca";
-    const SPE_FIELD_EMPLOYEE_LINK = "Pracownik";
-    const SPE_FIELD_DESCRIPTION = "Opis";
-    const SPE_FIELD_INVOICE_IMG = "Faktura";
-    const SPE_FIELD_ISPE_FIELD_PAYED = "Do zapłaty";
-    const SPE_FIELD_ISPE_FIELD_REINVOICE = "Czy wydatek należy refakturować";
-    const SPE_FIELD_REINVOICE_CONTRACT_LINK = "Osiedle do faktury";
-    const SPE_FIELD_NR = "Nr";
-    const SPE_FIELD_NR_ASSIGNED = "Nr powiązany";
-    const SPE_FIELD_DESCRIPTION_DISPLAY = "Opis";
+    let SPE_FIELD_CREATOR = "Dokonujący transakcji";
+    let SPE_FIELD_CATEGORY = "Kategoria";
+    let SPE_FIELD_RECIPIENT = "Przekazano osobie";
+    let SPE_FIELD_SUPPLIER = "Dostawca";
+    let SPE_FIELD_EMPLOYEE_LINK = "Pracownik";
+    let SPE_FIELD_DESCRIPTION = "Opis";
+    let SPE_FIELD_INVOICE_IMG = "Faktura";
+    let SPE_FIELD_ISPE_FIELD_PAYED = "Do zapłaty";
+    let SPE_FIELD_ISPE_FIELD_REINVOICE = "Czy wydatek należy refakturować";
+    let SPE_FIELD_REINVOICE_CONTRACT_LINK = "Osiedle do faktury";
+    let SPE_FIELD_NR = "Nr";
+    let SPE_FIELD_NR_ASSIGNED = "Nr powiązany";
+    let SPE_FIELD_DESCRIPTION_DISPLAY = "Opis";
 
 
     Array.prototype.unique = function () {
