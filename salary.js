@@ -128,7 +128,7 @@ try {
       // funkcja zamyka rozliczenie, tj tworzy wpisu w bazie wydatków, ustawia wartość pola SAL_FIELD_CLOSED na SAL_FIELD_CLOSED_VALUE_YES i ustawia pole  edytorów żeby nie można było edytować 
 
       this.closeSettlement = function (reopenEntry) {
-        log("closeSettlement: " + reopenEntry);
+        log(`closeSettlement: ${reopenEntry}`);
         try {
           message(SAL_MSG_CLOSING + this.entryEmployee.name);
 
@@ -173,7 +173,7 @@ try {
       // funkcja zamyka rozliczenie, tj tworzy wpisu w bazie wydatków, ustawia wartość pola zamknięte na 
 
       this.findAdvances = function (show) {
-        log("findAdvances: " + reopenEntry);
+        log("findAdvances: " + show);
         try {
           message(SAL_MSG_RUNING_FINDADVANCE);
 
