@@ -73,10 +73,18 @@ try {
   const SAL_FIELD_ADVANCE_PAYMENT = "Zaliczki";
   const SAL_FIELD_WEEKENDS = "Dni wolne";
   const SAL_FIELD_PAYMENT_TYPE = "Rodzaj wynagrodzenia";
-  const SAL_FIELD_WEEKENDDUTY = "Dyżur";
+  const SAL_FIELD_DUTY = "Dyżur";
   const SAL_FIELD_HOLIDAY = "Urlop";
   const SAL_FIELD_ABSENCE = "Nieobecność";
   const SAL_FIELD_SICK = "Zwolnienie";
+  const SAL_FIELD_RATE_MONTH = "Stawka miesięczna";
+  const SAL_FIELD_RATE_BONUS = "Stała premia";
+  const SAL_FIELD_RATE_DUTY = "Stawka za dyżur";
+  const SAL_FIELD_WORKINGHOURS = "Ilość godzin pracy dzienne";
+  const SAL_FIELD_COMMENT = "Uwagi";
+
+  const SAL_FIELD_SICK = "Zwolnienie";
+
   const SAL_ADD_DESCRIPTION_WITHDRAWAL = " wypłata przelewem za ";
   const SAL_ADD_DESCRIPTION_CASH = " wypłata gotówki za ";
   const SAL_ERR_CLOSED_OR_NOACCESS = "Wpis już rozliczony lub nie masz uprawnień do zamknięcia rozliczenia";
@@ -88,7 +96,6 @@ try {
   const SAL_MSG_VALIDATION_ERR_NO_WITHDRWAL = "- podaj datę i kwotę przelewu";
   const SAL_MSG_VALIDATION_ERR_NO_CASH = "- podaj datę i kwotę wypłaty gotówki";
   const SAL_MSG_RUNING_FINDADVANCE = "szukam zaliczek dla wpisu...";
-
 
   const EMP_FIELD_FULLNAME = "Imie i nazwisko";
   const EMP_FIELD_HOLIDAY_TOTAL = "Wymiar urlopu";

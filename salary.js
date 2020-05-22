@@ -15,8 +15,8 @@ try {
 
     let addInfo = "";
 
-    if (e.field(SAL_FIELD_WEEKENDDUTY).indexOf(currentDay) >= 0) {
-      addInfo = " - " + SAL_FIELD_WEEKENDDUTY.toLowerCase();
+    if (e.field(SAL_FIELD_DUTY).indexOf(currentDay) >= 0) {
+      addInfo = " - " + SAL_FIELD_DUTY.toLowerCase();
     } else if (e.field(SAL_FIELD_WEEKENDS).indexOf(currentDay) >= 0) {
       addInfo = " - " + SAL_FIELD_WEEKENDS.toLowerCase();
     } else if (e.field(SAL_FIELD_ABSENCE).indexOf(currentDay) >= 0) {
@@ -274,9 +274,8 @@ try {
         }
       };
 
-
-      this.copyToMonth = function (selected, month) {
-        log("copyToMonth: " + String(selected) + " " + month);
+      this.copyToMonth = function (entries, month) {
+        log(`copyToMonth: ${String(entries)} ${month}`);
         try {
           let lib = libByName(LIB_SALARIES_NAME);
           let dt = moment(month).startOf("month");
@@ -294,35 +293,34 @@ try {
 
           // kopiowanie
           dt = moment(month).startOf("month");
-          message(MSG_UPDATING + " " + selected.length + " " + MSG_ENTRIES);
-          for (count = 0; count < selected.length; count++) {
-            let entrySource = selected[count];
+          message(MSG_UPDATING + " " + entries.length + " " + MSG_ENTRIES);
+          for (count = 0; count < entries.length; count++) {
+            let entrySource = entries[count];
             let entryTarget = new Object();
             entryTarget[SAL_FIELD_MONTH] = dt.toDate();
             entryTarget[FIELD_EDITOR] = arrEditors;
             entryTarget[SAL_FIELD_WEEKENDS] = weekDays;
-            entryTarget[SAL_FIELD_EMPLOYEE_LINK] = entrySource.field(
-              SAL_FIELD_EMPLOYEE_LINK
-            )[0];
-            entryTarget[SAL_FIELD_CONTRACT] = entrySource.field(
-              SAL_FIELD_CONTRACT
-            )[0];
-            entryTarget[SAL_FIELD_PAYMENT_TYPE] = entrySource.field(
-              SAL_FIELD_PAYMENT_TYPE
-            );
+            entryTarget[SAL_FIELD_EMPLOYEE_LINK] = entrySource.field(SAL_FIELD_EMPLOYEE_LINK)[0];
+            entryTarget[SAL_FIELD_CONTRACT] = entrySource.field(SAL_FIELD_CONTRACT)[0];
+            entryTarget[SAL_FIELD_PAYMENT_TYPE] = entrySource.field(SAL_FIELD_PAYMENT_TYPE);
             entryTarget[SAL_FIELD_PAYER] = entrySource.field(SAL_FIELD_PAYER);
-            entryTarget[SAL_FIELD_PAYER] = entrySource.field(SAL_FIELD_PAYER);
+            entryTarget[SAL_FIELD_PAYMENT_TYPE] = entrySource.field(SAL_FIELD_PAYMENT_TYPE);
+            entryTarget[SAL_FIELD_RATE_MONTH] = entrySource.field(SAL_FIELD_RATE_MONTH);
+            entryTarget[SAL_FIELD_RATE_BONUS] = entrySource.field(SAL_FIELD_RATE_BONUS);
+            entryTarget[SAL_FIELD_RATE_DUTY] = entrySource.field(SAL_FIELD_RATE_DUTY);
+            entryTarget[SAL_FIELD_WORKINGHOURS] = entrySource.field(SAL_FIELD_WORKINGHOURS);
+            entryTarget[SAL_FIELD_COMMENT] = entrySource.field(SAL_FIELD_COMMENT);
+
             entryTarget[SAL_FIELD_CLOSED] = SAL_FIELD_CLOSED_VALUE_NO;
             entryTarget = lib.create(entryTarget);
-            setDefault(entryTarget);
-            findAdvances(false);
+            setEntryDefaultValues(entryTarget);
+            this.findAdvances(false);
           }
           message(MSG_FINISHED);
         } catch (err) {
           log("copyToMonth: " + err)
         }
       };
-
 
     } catch (er) {
       log("Salary: " + err);
