@@ -145,6 +145,7 @@ const SPE_FIELD_BUDGET_LINK_AMOUNT = "Kwota";
 
 const SPE_FIELD_COST_ALLOCATION_LINK = "Robicie kosztu na osiedla";
 const SPE_FIELD_COST_ALLOCATION_LINK_AMOUNT = "Kwota";
+// const SPE_FIELD_COST_ALLOCATION_LEFT = "Kwota pozostała do rozpisania";
 
 const SPE_FIELD_CREATOR = "Dokonujący transakcji";
 const SPE_FIELD_CATEGORY = "Kategoria";
@@ -159,7 +160,7 @@ const SPE_FIELD_REINVOICE_CONTRACT_LINK = "Osiedle do faktury";
 const SPE_FIELD_NR = "Nr";
 const SPE_FIELD_NR_ASSIGNED = "Nr powiązany";
 const SPE_FIELD_DESCRIPTION_DISPLAY = "Opis";
-const SPE_FIELD_COST_ALLOCATION_LEFT = "Kwota pozostała do rozpisania";
+
 
 
 // /
