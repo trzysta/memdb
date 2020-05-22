@@ -275,7 +275,7 @@ try {
       };
 
       this.copyToMonth = function (entries, month) {
-        log(`copyToMonth: ${String(entries)} ${month}`);
+        log("copyToMonth: " + String(entries) + " " + month);
         try {
           let lib = libByName(LIB_SALARIES_NAME);
           let dt = moment(month).startOf("month");
