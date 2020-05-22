@@ -1,7 +1,6 @@
 /*
 Baza Memento Database na Androida. Autor Marceli Matynia 300 Sp. z o.o.
 */
-
 try {
 
   function getLabel(nr, e) {
@@ -133,7 +132,7 @@ try {
         try {
           message(SAL_MSG_CLOSING + this.entryEmployee.name);
 
-          if (this.canCloseSettlement()) {
+          if (this.canCloseSettlement(true)) {
             if (!this.isVisible) entry.set(FIELD_CAN_ACCESS, true);
             if (this.dateWithdrwal != null && this.amountWithdrwal > 0) {
               let entrySpendWithdrwal = this.createSpendEntry(
@@ -229,7 +228,7 @@ try {
           String(entryEmployee) + ", " +
           String(isWithdrwal) + ", ");
         try {
-          message(SAL_MSG_CREATING_SPEND + amount + ", " + ", " + payer);
+          message(SAL_MSG_CREATING_SPEND + amount + ", " + payer);
 
           let entrySpend = new Object();
           let libSpendings = libByName(LIB_SPANDINGS_NAME);
