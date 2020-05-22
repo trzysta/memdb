@@ -320,11 +320,11 @@ try {
         }
       };
 
-    } catch (er) {
+    } catch (err) {
       log("Salary: " + err);
     }
   }
 
-} catch (er) {
+} catch (err) {
   log("salary.js: " + err);
 }
