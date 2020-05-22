@@ -274,8 +274,11 @@ try {
         }
       };
 
-      this.copyToMonth = function (entries, month) {
-        log("copyToMonth: " + String(entries) + " " + month);
+
+      // funkcja kopiuje jako nowey dokument podając nowy miesiąc
+
+      this.copyToMonth = function (month) {
+        log("copyToMonth: " + String(this.entry) + " " + month);
         try {
           let lib = libByName(LIB_SALARIES_NAME);
           let dt = moment(month).startOf("month");
@@ -284,38 +287,33 @@ try {
 
           let i = 1;
           while (i <= dayEnd) {
-            if (dt.isoWeekday() == 6 || dt.isoWeekday() == 7) {
-              weekDays.push(i);
-            }
+            if (dt.isoWeekday() == 6 || dt.isoWeekday() == 7) weekDays.push(i);
             dt = dt.add(1, "day");
             i++;
           }
 
           // kopiowanie
           dt = moment(month).startOf("month");
-          message(MSG_UPDATING + " " + entries.length + " " + MSG_ENTRIES);
-          for (count = 0; count < entries.length; count++) {
-            let entrySource = entries[count];
-            let entryTarget = new Object();
-            entryTarget[SAL_FIELD_MONTH] = dt.toDate();
-            entryTarget[FIELD_EDITOR] = arrEditors;
-            entryTarget[SAL_FIELD_WEEKENDS] = weekDays;
-            entryTarget[SAL_FIELD_EMPLOYEE_LINK] = entrySource.field(SAL_FIELD_EMPLOYEE_LINK)[0];
-            entryTarget[SAL_FIELD_CONTRACT] = entrySource.field(SAL_FIELD_CONTRACT)[0];
-            entryTarget[SAL_FIELD_PAYMENT_TYPE] = entrySource.field(SAL_FIELD_PAYMENT_TYPE);
-            entryTarget[SAL_FIELD_PAYER] = entrySource.field(SAL_FIELD_PAYER);
-            entryTarget[SAL_FIELD_PAYMENT_TYPE] = entrySource.field(SAL_FIELD_PAYMENT_TYPE);
-            entryTarget[SAL_FIELD_RATE_MONTH] = entrySource.field(SAL_FIELD_RATE_MONTH);
-            entryTarget[SAL_FIELD_RATE_BONUS] = entrySource.field(SAL_FIELD_RATE_BONUS);
-            entryTarget[SAL_FIELD_RATE_DUTY] = entrySource.field(SAL_FIELD_RATE_DUTY);
-            entryTarget[SAL_FIELD_WORKINGHOURS] = entrySource.field(SAL_FIELD_WORKINGHOURS);
-            entryTarget[SAL_FIELD_COMMENT] = entrySource.field(SAL_FIELD_COMMENT);
 
-            entryTarget[SAL_FIELD_CLOSED] = SAL_FIELD_CLOSED_VALUE_NO;
-            entryTarget = lib.create(entryTarget);
-            setEntryDefaultValues(entryTarget);
-            this.findAdvances(false);
-          }
+          let entryTarget = new Object();
+          entryTarget[SAL_FIELD_MONTH] = dt.toDate();
+          entryTarget[SAL_FIELD_WEEKENDS] = weekDays;
+          entryTarget[SAL_FIELD_EMPLOYEE_LINK] = this.entry.field(SAL_FIELD_EMPLOYEE_LINK)[0];
+          entryTarget[SAL_FIELD_CONTRACT] = this.entry.field(SAL_FIELD_CONTRACT)[0];
+          entryTarget[SAL_FIELD_PAYMENT_TYPE] = this.entry.field(SAL_FIELD_PAYMENT_TYPE);
+          entryTarget[SAL_FIELD_PAYER] = this.entry.field(SAL_FIELD_PAYER);
+          entryTarget[SAL_FIELD_PAYMENT_TYPE] = this.entry.field(SAL_FIELD_PAYMENT_TYPE);
+          entryTarget[SAL_FIELD_RATE_MONTH] = this.entry.field(SAL_FIELD_RATE_MONTH);
+          entryTarget[SAL_FIELD_RATE_BONUS] = this.entry.field(SAL_FIELD_RATE_BONUS);
+          entryTarget[SAL_FIELD_RATE_DUTY] = this.entry.field(SAL_FIELD_RATE_DUTY);
+          entryTarget[SAL_FIELD_WORKINGHOURS] = this.entry.field(SAL_FIELD_WORKINGHOURS);
+          entryTarget[SAL_FIELD_COMMENT] = this.entry.field(SAL_FIELD_COMMENT);
+
+          entryTarget[SAL_FIELD_CLOSED] = SAL_FIELD_CLOSED_VALUE_NO;
+          entryTarget = lib.create(entryTarget);
+          setEntryDefaultValues(entryTarget);
+          this.findAdvances(false);
+
           message(MSG_FINISHED);
         } catch (err) {
           log("copyToMonth: " + err)
