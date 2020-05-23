@@ -37,7 +37,7 @@ try {
         message(EMP_MSG_HOLIDAY_RECALCED + this.holidayUsed);
         log("recalcHoliday: total:" + this.holidayTotal + "; used:" + this.holidayUsed + "; left:" + this.holidayLeft);
 
-      } catch (er) {
+      } catch (err) {
         log("recalcHoliday: " + err);
       }
     }
