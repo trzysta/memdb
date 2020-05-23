@@ -15,8 +15,8 @@ try {
 
   function getRemaining(e) {
     let result = 0;
-    result = e.field(SAL_FIELD_AMOUNTTOPAY) - (e.field(AL_FIELD_CASH_AMOUNT) + e.field(SAL_FIELD_WITHDRAWAL_AMOUNT));
-    if ((!e.field(SAL_FIELD_CANREAD)) || (result < 0) || (e.field(AL_FIELD_CLOSED) == SAL_FIELD_CLOSED_VALUE_YES)) {
+    result = e.field(SAL_FIELD_AMOUNTTOPAY) - (e.field(SAL_FIELD_CASH_AMOUNT) + e.field(SAL_FIELD_WITHDRAWAL_AMOUNT));
+    if ((!e.field(SAL_FIELD_CANREAD)) || (result < 0) || (e.field(SAL_FIELD_CLOSED) == SAL_FIELD_CLOSED_VALUE_YES)) {
       result = 0
     } else {
       result = Math.round(result);
