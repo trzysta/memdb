@@ -1,6 +1,7 @@
 /*
 Baza Memento Database na Androida. Autor Marceli Matynia 300 Sp. z o.o.
 */
+
 try {
 
   function getLabel(nr, e) {
