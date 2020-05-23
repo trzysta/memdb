@@ -56,6 +56,7 @@ try {
   const MSG_FINISHED = "Zakończono!";
   const VALUE_MAIL = "e-mail";
 
+  const SAL_FIELD_CANREAD = "canAccess";
   const SAL_WITHDRWAL_MAKER = "Marceli Matynia";
   const SAL_FIELD_CLOSED = "Rozliczony";
   const SAL_FIELD_CLOSED_VALUE_YES = "Rozliczony";
@@ -64,6 +65,7 @@ try {
   const SAL_FIELD_CASH_DATE = "Data wypłaty gotówki";
   const SAL_FIELD_WITHDRAWAL_AMOUNT = "Wpłacono na konto";
   const SAL_FIELD_WITHDRAWAL_DATE = "Data przelewu";
+  const SAL_FIELD_TOTALAMOUNT = "Do wypłaty (kary+premie+zaliczki+dyżury)";
   const SAL_FIELD_EMPLOYEE_LINK = "Pracownik";
   const SAL_FIELD_CONTRACT = "Osiedle";
   const SAL_FIELD_SPEND_LINK = "Wydatek";
