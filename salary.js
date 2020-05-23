@@ -5,39 +5,23 @@ Baza Memento Database na Androida. Autor Marceli Matynia 300 Sp. z o.o.
 try {
 
   function getPaid(e) {
-    try {
-      let result = 0;
-      if (e.field(SAL_FIELD_CANREAD)) {
-        result = Math.round(e.field(SAL_FIELD_CASH_AMOUNT) + e.field(SAL_FIELD_WITHDRAWAL_AMOUNT));
-      }
-      return result;
-    } catch (err) {
-      log("getPaid: " + err);
+    let result = 0;
+    if (e.field(SAL_FIELD_CANREAD)) {
+      result = Math.round(e.field(SAL_FIELD_CASH_AMOUNT) + e.field(SAL_FIELD_WITHDRAWAL_AMOUNT));
     }
+    return result;
   }
 
 
   function getRemaining(e) {
-    try {
-
-      let doWyplaty = entry().field(SAL_FIELD_AMOUNTTOPAY);
-      let gotowka = entry().field(AL_FIELD_CASH_AMOUNT);
-      let konto = entry().field(SAL_FIELD_WITHDRAWAL_AMOUNT);
-      let result = 0;
-
-      result = doWyplaty - (konto + gotowka);
-
-      if ((!e.field(SAL_FIELD_CANREAD)) || (result < 0) || (e.field(AL_FIELD_CLOSED) == SAL_FIELD_CLOSED_VALUE_YES)) {
-        result = 0
-      } else {
-        result = Math.round(result);
-      }
-
-      return result;
-
-    } catch (err) {
-      log("getRemaining: " + err);
+    let result = 0;
+    result = e.field(SAL_FIELD_AMOUNTTOPAY) - (e.field(AL_FIELD_CASH_AMOUNT) + e.field(SAL_FIELD_WITHDRAWAL_AMOUNT));
+    if ((!e.field(SAL_FIELD_CANREAD)) || (result < 0) || (e.field(AL_FIELD_CLOSED) == SAL_FIELD_CLOSED_VALUE_YES)) {
+      result = 0
+    } else {
+      result = Math.round(result);
     }
+    return result;
   }
 
 
