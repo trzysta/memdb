@@ -11,6 +11,7 @@ try {
   // const LIB_CHECKS_SHORT_NAME = "CHK";
   // const LIB_ACTIVITIES_SHORT_NAME = "ACT";
 
+
   const LIB_SALARIES_NAME = "Wypłaty";
   const LIB_SPANDINGS_NAME = "Wydatki";
   const LIB_BUDGETS_NAME = "Budżet";
@@ -84,6 +85,7 @@ try {
   const SAL_FIELD_RATE_DUTY = "Stawka za dyżur";
   const SAL_FIELD_WORKINGHOURS = "Ilość godzin pracy dzienne";
   const SAL_FIELD_COMMENT = "Uwagi";
+  const SAL_FIELD_HOUR = "hour";
 
   const SAL_ADD_DESCRIPTION_WITHDRAWAL = " wypłata przelewem za ";
   const SAL_ADD_DESCRIPTION_CASH = " wypłata gotówki za ";
