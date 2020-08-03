@@ -279,7 +279,7 @@ try {
 
 
 
-
+  const ASS_FIELD_UNIQUE_CODE = "Kod";
 
 
 
