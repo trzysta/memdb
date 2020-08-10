@@ -6,7 +6,7 @@ const Task = function (e) {
 
   try {
 
-    const entry = e;
+    this.entry = e;
 
     this.saveEntry = function () {
       const dtStart = this.entry.field(TAS_FIELD_DATE_START);
