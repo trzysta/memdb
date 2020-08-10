@@ -10,34 +10,9 @@ const Task = function (e) {
     const dtStart = entry.field(TAS_FIELD_DATE_START);
 
 
-    const setDefault = function (currentUser) {
-
-      try {
-
-        this.entry.set(TAS_FIELD_COORDINATOR,
-
-          TAS_FIELD_COORDINATOR
 
 
-        );
-        this.entry.set(SAL_FIELD_MONTH, prevMonth.toDate());
-
-
-
-      } catch (err) {
-        log("Task::setDefault " + err);
-      }
-
-
-
-
-
-
-
-
-    };
-
-    const saveEntry = function () {
+    this.saveEntry = function () {
       const dtText =
         moment(dtStart).startOf('week').format('DD') + ' - ' +
         moment(dtStart).startOf('week').moment(dtStart).add(5, 'day').format('DD') + ' ' +
