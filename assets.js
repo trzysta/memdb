@@ -20,10 +20,22 @@ const Asset = function (e) {
           result = lib().find(newNr);
         };
         e.set(ASS_FIELD_UNIQUE_CODE, newNr)
+
       } catch (err) {
         log("Salary:setUniqueNr" + err);
       }
     }
+
+
+    this.saveHistory = function () {
+
+
+    }
+
+
+
+
+
 
 
   } catch (err) {

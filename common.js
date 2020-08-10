@@ -283,7 +283,7 @@ try {
 
 
 
-
+  const TAS_FIELD_COORDINATOR = "Odpowiedzialny koordynator";
 
 
 
