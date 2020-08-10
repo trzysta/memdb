@@ -6,16 +6,14 @@ const Task = function (e) {
 
   try {
 
-    this.entry = e;
-
     this.saveEntry = function () {
-      const dtStart = this.entry.field(TAS_FIELD_DATE_START);
+      const dtStart = e.field(TAS_FIELD_DATE_START);
       const dtText =
         moment(dtStart).startOf('week').format('DD') + ' - ' +
         moment(dtStart).startOf('week').add(5, 'day').format('DD') + ' ' +
         MONTHS_PL[moment(dtStart).format('M') - 1];
 
-      this.entry.set(TAS_FIELD_WEEK, dtText);
+      e.set(TAS_FIELD_WEEK, dtText);
     }
 
   } catch (err) {
