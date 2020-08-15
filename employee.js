@@ -22,7 +22,8 @@ try {
         let newHolidayUsed = 0;
 
         for (let i = 0; i <= arrSalaries.length; i++) {
-          newHolidayUsed += arrSalaries[i].field(SAL_FIELD_HOLIDAY).length
+          log("VERB ______ " + String(arrSalaries[i]));
+          newHolidayUsed += arrSalaries[i].field(SAL_FIELD_HOLIDAY).length;
         }
 
         this.holidayUsed = newHolidayUsed;
