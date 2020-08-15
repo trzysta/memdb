@@ -2,7 +2,7 @@
 try {
 
   const Employee = function (e) {
-    log("Employee: " + String(e));
+    log("employee.js::Employee: " + String(e));
 
     this.holidayUsed = 0;
     this.holidayTotal = 0;
@@ -35,16 +35,13 @@ try {
         this.entry.set(EMP_FIELD_HOLIDAY_TOTAL, this.holidayTotal)
         this.entry.set(EMP_FIELD_HOLIDAY_LEFT, this.holidayLeft)
         message(EMP_MSG_HOLIDAY_RECALCED + this.holidayUsed);
-        log("recalcHoliday: total:" + this.holidayTotal + "; used:" + this.holidayUsed + "; left:" + this.holidayLeft);
+        log("LOG__recalcHoliday: total:" + this.holidayTotal + "; used:" + this.holidayUsed + "; left:" + this.holidayLeft);
 
       } catch (err) {
-        log("recalcHoliday: " + err);
+        log("employee.js::Employee::recalcHoliday: " + err);
       }
     }
   }
-
-
-
 
 
 
