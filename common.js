@@ -195,6 +195,12 @@ try {
 
 
   // // ***** baza BUDŻET
+  const B_VALUE_LIMIT_DESCRIPTION = "Limit na wszystkie wydatki we wszystich kategoriach łącznie. Kwota wydatków na osiedle w ogóle.";
+  const B_VALUE_SALARY_DESCRIPTION = "Wydatki z tego budżetu w kategorii Wynagrodzenia. Kwota jest powiększana za każdym razem jak tworzony jest wydatek i wybierana kategoria Wynagrodzenia.";
+  const B_VALUE_PURCHASE_DESCRIPTION = "Kwota wszystkich zakupów przypisanych do danego osiedla w danym miesiącu.";
+  const B_VALUE_FIXED_DESCRIPTION = "Stałe koszty wpadające w ten budżet. Kwota jest wyliczana za każdym razem kiedy wskazywana jest kategoria wydatku Koszty stałe.";
+
+
   // const B_FIELD_LIMIT = "Limit";
   // const B_FIELD_BALANCE = "Saldo";
   // const B_FIELD_LEFT = "Zostało";
