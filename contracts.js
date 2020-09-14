@@ -10,8 +10,6 @@ const Contract = function (e) {
 
     this.linkEntry_tasks = function (masterEntry) {
 
-      masterEntry.set(TAS_FIELD_COORDINATOR, this.entry.field(CON_FIELD_COORDINATOR));
-      masterEntry.set(TAS_FIELD_RAPORT_RECIPIENT, this.entry.field(CON_FIELD_RAPORT_RECIPIENT));
 
     }
 
