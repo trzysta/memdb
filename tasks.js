@@ -1,4 +1,3 @@
-
 const Task = function (e) {
 
   log("Task: " + String(e));
