@@ -17,11 +17,6 @@ const Task = function (e) {
       let countRunning = 0;
       let countNotclosed = 0;
 
-      //TAS_FIELD_DESCRIPTION
-      TAS_FIELD_TASK = "task"
-      TAS_FIELD_STATUS = "Status"
-      TAS_FIELD_NOTES = "Uwagi"
-
       this.entry.set(TAS_FIELD_WEEK, weekNr)
       this.entry.set(TAS_FIELD_DATE_END, dtEnd);
       let desc = "zadań: ";
@@ -53,6 +48,18 @@ const Task = function (e) {
       this.entry.recalc();
 
     }
+
+
+
+    this.prepareEmail = function () {
+
+      this.entry.field(TAS_FIELD_CONTRACT)[0].field(CON_FIELD_RAPORT_RECIPIENT).sendEmail("temat testowy", "to jest wiadomość testowa");
+
+    }
+
+
+
+
   } catch (err) {
     log("Task: " + err);
   }
