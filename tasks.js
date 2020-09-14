@@ -24,7 +24,7 @@ const Task = function (e) {
 
       this.entry.set(TAS_FIELD_WEEK, weekNr)
       this.entry.set(TAS_FIELD_DATE_END, dtEnd);
-
+      let desc = "zadań: ";
 
       if (this.entry.field(TAS_FIELD_WEEKSTATUS) == TAS_VALUE_WEEKSTATUS_CLOSED) {
 
@@ -33,17 +33,17 @@ const Task = function (e) {
           if (this.entry.field(TAS_FIELD_STATUS + i) == TAS_VALUE_STATUS_CLOSED) countClosed += 1;
           if (this.entry.field(TAS_FIELD_STATUS + i) == TAS_VALUE_STATUS_RUNNING) countRunning += 1;
           if (this.entry.field(TAS_FIELD_STATUS + i) == TAS_VALUE_STATUS_NOTCLOSED) countNotclosed += 1;
-        }
-        let d = "zadań " + countTotal + ", w tym " + countClosed + " zamkniętych, " + countRunning + " w trakcie, " + countNotclosed + " nie zamkniętych";
+        };
+        desc += countTotal + ", w tym " + countClosed + " zamkniętych, " + countRunning + " w trakcie, " + countNotclosed + " nie zamkniętych";
 
       } else {
+
         for (let i = 1; i < 10; i++) {
           if (this.entry.field(TAS_FIELD_TASK + i).length > 0) countTotal += 1;
         }
-        let d = "zadań: " + countTotal;
+        desc += countTotal;
       }
-
-      this.entry.set(TAS_FIELD_DESCRIPTION, d);
+      this.entry.set(TAS_FIELD_DESCRIPTION, desc);
 
     }
   } catch (err) {
