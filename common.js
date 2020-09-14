@@ -318,14 +318,14 @@ try {
   const TAS_VALUE_STATUS_RUNNING = "W trakcie wykonywania";
   const TAS_VALUE_STATUS_NOTCLOSED = "Niewykonane";
   const TAS_FIELD_TASKCOUNT = "Liczba zadań";
-  const TAS_FIELD_RAPORT_RECIPIENT = "Odbiorcy raportów i powiadomień"
+  const TAS_FIELD_RAPORT_RECIPIENT = "Odbiorcy raportów i powiadomień";
 
 
 
 
 
   const CON_FIELD_COORDINATOR = "Koordynator";
-  const CON_FIELD_RAPORT_RECIPIENT = "Odbiorcy raportów i powiadomień"
+  const CON_FIELD_RAPORT_RECIPIENT = "Odbiorcy raportów i powiadomień";
 
 
 
