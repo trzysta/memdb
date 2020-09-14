@@ -5,7 +5,6 @@ const Task = function (e) {
   this.entry = e;
 
   try {
-
     this.postSaveEntry = function () {
 
       const dtStart = this.entry.field(TAS_FIELD_DATE_START);
@@ -49,15 +48,9 @@ const Task = function (e) {
 
     }
 
-
-
     this.prepareEmail = function () {
-
       this.entry.field(TAS_FIELD_CONTRACT)[0].field(CON_FIELD_RAPORT_RECIPIENT).sendEmail("temat testowy", "to jest wiadomość testowa");
-
     }
-
-
 
 
   } catch (err) {
