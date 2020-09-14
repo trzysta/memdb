@@ -47,7 +47,8 @@ const Task = function (e) {
 
       this.entry.set(TAS_FIELD_TASKCOUNT, countTotal);
       this.entry.set(TAS_FIELD_DESCRIPTION, desc);
-
+      this.entry.set(TAS_FIELD_COORDINATOR, this.entry.field(TAS_FIELD_CONTRACT)[0].field(CON_FIELD_COORDINATOR));
+      this.entry.set(TAS_FIELD_RAPORT_RECIPIENT, this.entry.field(TAS_FIELD_CONTRACT)[0].field(CON_FIELD_RAPORT_RECIPIENT))
 
     }
   } catch (err) {

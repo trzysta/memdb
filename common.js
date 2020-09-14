@@ -298,7 +298,7 @@ try {
 
   const ASS_FIELD_UNIQUE_CODE = "Kod";
 
-
+  const TAS_FIELD_CONTRACT = "Osiedle";
   const TAS_FIELD_COORDINATOR = "Odpowiedzialny koordynator";
   const TAS_FIELD_DATE_START = "Zadanie na tydzień rozpoczynający się od dnia";
   const TAS_FIELD_DATE_END = "Koniec tygodnia wyznaczonych zadań";
