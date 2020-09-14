@@ -9,11 +9,11 @@ const Task = function (e) {
     this.saveEntry = function () {
 
       const dtStart = this.entry.field(TAS_FIELD_DATE_START);
-      const dtEnd = moment(dtStart).add(4, 'days').format("DD.MM.YYYY");
+      const dtEnd = moment(dtStart).add(4, 'days').toDate();
       const weekNr = moment(dtStart).week();
 
       this.entry.set(TAS_FIELD_WEEK, weekNr)
-      this.entry.set(TAS_FIELD_DATE_END, dtEnd.toDate());
+      this.entry.set(TAS_FIELD_DATE_END, dtEnd);
 
     }
   } catch (err) {
