@@ -6,7 +6,7 @@ const Task = function (e) {
 
   try {
 
-    this.saveEntry = function () {
+    this.postSaveEntry = function () {
 
       this.entry.recalc();
 
@@ -32,13 +32,13 @@ const Task = function (e) {
 
         for (let i = 1; i < 10; i++) {
           if (this.entry.field(TAS_FIELD_TASK + i).length > 0) countTotal += 1;
-          if (this.entry.field(TAS_FIELD_STATUS + i) == TAS_VALUE_STATUS_CLOSED) countClosed += 1;
-          if (this.entry.field(TAS_FIELD_STATUS + i) == TAS_VALUE_STATUS_RUNNING) countRunning += 1;
-          if (this.entry.field(TAS_FIELD_STATUS + i) == TAS_VALUE_STATUS_NOTCLOSED) countNotclosed += 1;
-        };
+          if (this.entry.field(TAS_FIELD_STATUS + i) == TAS_VALUE_STATUS_CLOSED) { countClosed += 1 };
+          if (this.entry.field(TAS_FIELD_STATUS + i) == TAS_VALUE_STATUS_RUNNING) { countRunning += 1 };
+          if (this.entry.field(TAS_FIELD_STATUS + i) == TAS_VALUE_STATUS_NOTCLOSED) { countNotclosed += 1 };
+        }
         desc += countTotal + "   (" + countClosed + " wykonane, " + countRunning + " w trakcie, " + countNotclosed + " nie wykonane)";
-      } else {
 
+      } else {
         for (let i = 1; i < 10; i++) {
           if (this.entry.field(TAS_FIELD_TASK + i).length > 0) countTotal += 1;
         }
@@ -48,9 +48,10 @@ const Task = function (e) {
       this.entry.set(TAS_FIELD_TASKCOUNT, countTotal);
       this.entry.set(TAS_FIELD_DESCRIPTION, desc);
 
+
     }
   } catch (err) {
-    log("Salary: " + err);
+    log("Task: " + err);
   }
 
 
