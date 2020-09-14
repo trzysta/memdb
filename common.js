@@ -299,9 +299,6 @@ try {
   const ASS_FIELD_UNIQUE_CODE = "Kod";
 
 
-
-
-
   const TAS_FIELD_COORDINATOR = "Odpowiedzialny koordynator";
   const TAS_FIELD_DATE_START = "Zadanie na tydzień rozpoczynający się od dnia";
   const TAS_FIELD_DATE_END = "Koniec tygodnia wyznaczonych zadań";
@@ -320,7 +317,7 @@ try {
   const TAS_VALUE_STATUS_CLOSED = "Wykonane i zakończone";
   const TAS_VALUE_STATUS_RUNNING = "W trakcie wykonywania";
   const TAS_VALUE_STATUS_NOTCLOSED = "Niewykonane";
-
+  const TAS_FIELD_TASKCOUNT = "Liczba zadań";
 
 
 
