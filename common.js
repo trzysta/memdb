@@ -296,13 +296,10 @@ try {
   // const CHK_FIELD_CHEKCS_MAIL_LINK = "Mail z raportem";
 
 
-
-
-
-
-
-
   const ASS_FIELD_UNIQUE_CODE = "Kod";
+
+
+
 
 
   const TAS_FIELD_COORDINATOR = "Odpowiedzialny koordynator";
@@ -311,21 +308,14 @@ try {
 
   const TAS_FIELD_WEEK = "Numer tygodnia";
 
+  const TAS_FIELD_DESCRIPTION = "description";
+  const TAS_FIELD_TASK = "task";
+  const TAS_FIELD_STATUS = "Status";
+  const TAS_FIELD_NOTES = "Uwagi";
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  const TAS_VALUE_STATUS_CLOSED = "Wykonane i zakończone";
+  const TAS_VALUE_STATUS_RUNNING = "W trakcie wykonywania";
+  const TAS_VALUE_STATUS_NOTCLOSED = "Niewykonane";
 
 
 
