@@ -49,7 +49,18 @@ const Task = function (e) {
     }
 
     this.prepareEmail = function () {
-      this.entry.field(TAS_FIELD_CONTRACT)[0].field(CON_FIELD_RAPORT_RECIPIENT).sendEmail("temat testowy", "to jest wiadomość testowa");
+
+      let subject = "Zadnaia na nadchodzący tydzień";
+      let body = "";
+
+      for (let i = 1; i < 10; i++) {
+        if (this.entry.field(TAS_FIELD_TASK + i).length > 0) {
+          body += "Zadanie " + i + " : " + this.entry.field(TAS_FIELD_TASK + i) + "\n" +
+            " ma status: " + this.entry.field(TAS_FIELD_STATUS + i) + "\n" +
+            " opis wykonania: " + this.entry.field(TAS_FIELD_NOTES + i) + "\n\n\n\n";
+        }
+        this.entry.field(TAS_FIELD_CONTRACT)[0].field(CON_FIELD_RAPORT_RECIPIENT).sendEmail(subject, body);
+      }
     }
 
 
