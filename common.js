@@ -307,7 +307,7 @@ try {
 
   const TAS_FIELD_COORDINATOR = "Odpowiedzialny koordynator";
   const TAS_FIELD_DATE_START = "Zadanie na tydzień rozpoczynający się od dnia";
-  const TAS_FIELD_DATE_END = "Koniec tygodnia wyznacoznych zadań";
+  const TAS_FIELD_DATE_END = "Koniec tygodnia wyznaczonych zadań";
 
   const TAS_FIELD_WEEK = "Numer tygodnia";
 
