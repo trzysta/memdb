@@ -8,8 +8,6 @@ const Task = function (e) {
 
     this.postSaveEntry = function () {
 
-      this.entry.recalc();
-
       const dtStart = this.entry.field(TAS_FIELD_DATE_START);
       const dtEnd = moment(dtStart).add(4, 'days').toDate();
       const weekNr = moment(dtStart).week();
@@ -48,7 +46,11 @@ const Task = function (e) {
       this.entry.set(TAS_FIELD_TASKCOUNT, countTotal);
       this.entry.set(TAS_FIELD_DESCRIPTION, desc);
       this.entry.set(TAS_FIELD_COORDINATOR, this.entry.field(TAS_FIELD_CONTRACT)[0].field(CON_FIELD_COORDINATOR));
+
+      message(his.entry.field(TAS_FIELD_CONTRACT)[0].field(CON_FIELD_RAPORT_RECIPIENT));
+
       this.entry.set(TAS_FIELD_RAPORT_RECIPIENT, this.entry.field(TAS_FIELD_CONTRACT)[0].field(CON_FIELD_RAPORT_RECIPIENT))
+      this.entry.recalc();
 
     }
   } catch (err) {
