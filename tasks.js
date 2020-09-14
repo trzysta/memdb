@@ -10,11 +10,12 @@ const Task = function (e) {
 
       const dtStart = moment(this.entry.field(TAS_FIELD_DATE_START)).startOf('week');
       const dtEnd = moment(dtStart).endOf('week');
+
       const weekNr = moment(dtStart).week();
 
       this.entry.set(TAS_FIELD_WEEK, weekNr);
-      this.entry.set(TAS_FIELD_DATE_START, dtStart);
-      this.entry.set(TAS_FIELD_DATE_END, dtEnd);
+      this.entry.set(TAS_FIELD_DATE_START, moment(dtStart).format('DD-MM-YYYY'));
+      this.entry.set(TAS_FIELD_DATE_END, moment(dtEnd).format('DD-MM-YYYY'));
 
     }
   } catch (err) {
