@@ -34,7 +34,7 @@ const Task = function (e) {
           if (this.entry.field(TAS_FIELD_STATUS + i) == TAS_VALUE_STATUS_RUNNING) countRunning += 1;
           if (this.entry.field(TAS_FIELD_STATUS + i) == TAS_VALUE_STATUS_NOTCLOSED) countNotclosed += 1;
         };
-        desc += countTotal + ", w tym " + countClosed + " zamkniętych, " + countRunning + " w trakcie, " + countNotclosed + " nie zamkniętych";
+        desc += countTotal + " (" + countClosed + " zamkn. | " + countRunning + " w trakcie | " + countNotclosed + " nie zamkn.)";
 
       } else {
 
