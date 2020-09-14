@@ -13,7 +13,7 @@ const Task = function (e) {
       const weekNr = moment(dtStart).week();
 
       this.entry.set(TAS_FIELD_WEEK, weekNr)
-      this.entry.set(TAS_FIELD_DATE_END, dtEnd);
+      this.entry.set(TAS_FIELD_DATE_END, dtEnd.toDate());
 
     }
   } catch (err) {
