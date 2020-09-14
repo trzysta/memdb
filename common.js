@@ -195,10 +195,27 @@ try {
 
 
   // // ***** baza BUDŻET
-  const B_VALUE_LIMIT_DESCRIPTION = "Limit na wszystkie wydatki we wszystich kategoriach łącznie. Kwota wydatków na osiedle w ogóle.";
-  const B_VALUE_SALARY_DESCRIPTION = "Wydatki z tego budżetu w kategorii Wynagrodzenia. Kwota jest powiększana za każdym razem jak tworzony jest wydatek i wybierana kategoria Wynagrodzenia.";
-  const B_VALUE_PURCHASE_DESCRIPTION = "Kwota wszystkich zakupów przypisanych do danego osiedla w danym miesiącu.";
-  const B_VALUE_FIXED_DESCRIPTION = "Stałe koszty wpadające w ten budżet. Kwota jest wyliczana za każdym razem kiedy wskazywana jest kategoria wydatku Koszty stałe.";
+
+
+  const BUD_FIELD_CONTRACT = "Osiedle";
+  const BUD_FIELD_MONTH = "Miesiąc";
+  const BUD_FIELD_AMOUNT_LIMIT = "Limit dla osiedla w danym miesiącu";
+  const BUD_FIELD_AMOUNT_SPENT = "Kwota wydana w tym miesiącu";
+  const BUD_FIELD_AMOUNT_LEFT = "Kwota pozostała do wydania";
+
+  const BUD_CATEGORY_SALARY = "Wynagrodzenia"; // to musza być wartości pola wyboru w bazie wydatków przy alokowaniu budetu do osiedla
+  const BUD_CATEGORY_PURCHASE = "Zakupy";
+  const BUD_CATEGORY_FIXED = "Stałe koszty";
+  const BUD_CATEGORY_OTHER = "Inne";
+
+  const BUD_FIELD_SALARY = "Kwota wydana na pensje";
+  const BUD_FIELD_PURCHASE = "Kwota wydana na zakupy";
+  const BUD_FIELD_FIXED = "Kwota wydana na stałe koszty";
+  const BUD_FIELD_OTHER = "Kwota wydana na inne";
+
+
+
+
 
 
   // const B_FIELD_LIMIT = "Limit";
@@ -288,15 +305,9 @@ try {
   const ASS_FIELD_UNIQUE_CODE = "Kod";
 
 
-
   const TAS_FIELD_COORDINATOR = "Odpowiedzialny koordynator";
   const TAS_FIELD_DATE_START = "Zadanie na tydzień rozpoczynający się od dnia";
-  const TAS_FIELD_WEEK = "Tydzień";
-
-
-
-
-
+  const TAS_FIELD_WEEK_NR = "Numer tygodnia";
 
 
 

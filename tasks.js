@@ -7,15 +7,12 @@ const Task = function (e) {
   try {
 
     this.saveEntry = function () {
-      const dtStart = e.field(TAS_FIELD_DATE_START);
-      const dtText =
-        moment(dtStart).startOf('week').format('DD') + ' - ' +
-        moment(dtStart).startOf('week').add(5, 'day').format('DD') + ' ' +
-        MONTHS_PL[moment(dtStart).format('M') - 1];
 
-      e.set(TAS_FIELD_WEEK, dtText);
+      let dtStart = e.field(TAS_FIELD_DATE_START);
+      let weekNr = moment(dtStart).week();
+      e.set(TAS_FIELD_WEEK, weekNr);
+
     }
-
   } catch (err) {
     log("Salary: " + err);
   }
