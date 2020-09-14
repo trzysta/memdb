@@ -8,6 +8,8 @@ const Task = function (e) {
 
     this.saveEntry = function () {
 
+      this.entry.recalc();
+
       const dtStart = this.entry.field(TAS_FIELD_DATE_START);
       const dtEnd = moment(dtStart).add(4, 'days').toDate();
       const weekNr = moment(dtStart).week();
