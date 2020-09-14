@@ -14,7 +14,7 @@ const Task = function (e) {
 
       this.entry.set(TAS_FIELD_WEEK, weekNr);
       this.entry.set(TAS_FIELD_DATE_START, dtStart);
-      this.entry.set(TAS_FIELD_DATE_END, dtEnd));
+      this.entry.set(TAS_FIELD_DATE_END, dtEnd);
 
     }
   } catch (err) {
