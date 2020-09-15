@@ -317,8 +317,10 @@ try {
   const TAS_VALUE_STATUS_RUNNING = "W trakcie wykonywania";
   const TAS_VALUE_STATUS_NOTCLOSED = "Niewykonane";
   const TAS_FIELD_TASKCOUNT = "Liczba zadań";
+  const TAS_FIELD_TASKCOUNT_PREVWEEK = "Liczba zadań poprzednich";
   const TAS_FIELD_RAPORT_RECIPIENT = "Odbiorcy raportów i powiadomień";
   const TAS_FIELD_PREVWEEK = "Poprzedni tydzień";
+
   const TAS_MSG_EMAIL_FOR_CLOSE_ONLY = "Możesz wysłać maila tylko dla zamkniętych zadań"
 
   const CON_FIELD_COORDINATOR = "Koordynator";
@@ -329,7 +331,6 @@ try {
     e.set(FIELD_EDITOR, ARR_EDITORS);
     e.set(FIELD_IS_NEW, true);
   }
-
 
   // *^*^*^*  sprawdza czy entrySearchFor jest w arrayOfLinks
   function isEntryLinked(arrayOfLinks, entrySearchFor) {
