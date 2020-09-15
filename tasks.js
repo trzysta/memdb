@@ -33,9 +33,9 @@ const Task = function (e) {
       this.entryNextWeek = this.libTasks.create(this.entryNextWeek);
       this.entryNextWeek.set(TAS_FIELD_WEEKSTATUS, TAS_VALUE_WEEKSTATUS_RUNNING);
       this.entryNextWeek.set(TAS_FIELD_CONTRACT, this.entryContract);
-      this.entryNextWeek.set(TAS_FIELD_DATE_START, moment(dateStart).add(7, 'days').toDate());
-      this.entryNextWeek.set(TAS_FIELD_DATE_END, moment(dateStart).add(11, 'days').toDate());
-      this.entryNextWeek.set(TAS_FIELD_WEEK, moment(dateStart).add(7, 'days').week());
+      this.entryNextWeek.set(TAS_FIELD_DATE_START, moment(this.dateStart).add(7, 'days').toDate());
+      this.entryNextWeek.set(TAS_FIELD_DATE_END, moment(this.dateStart).add(11, 'days').toDate());
+      this.entryNextWeek.set(TAS_FIELD_WEEK, moment(this.dateStart).add(7, 'days').week());
       this.entryNextWeek.set(TAS_FIELD_COORDINATOR, this.entry.field(TAS_FIELD_COORDINATOR));
       this.entryNextWeek.set(TAS_FIELD_TASKCOUNT, this.tasks.length + 1);
       for (let i = 0; i < this.tasks.length; i++) {
