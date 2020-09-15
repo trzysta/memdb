@@ -16,6 +16,7 @@ const Task = function (e) {
           status: this.entry.field(TAS_FIELD_STATUS + i),
           notes: this.entry.field(TAS_FIELD_DESCRIPTION + i)
         };
+        log(String(t));
         this.tasks.push(task);
       }
     }
