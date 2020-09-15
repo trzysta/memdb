@@ -19,6 +19,7 @@ try {
   const LIB_CHECKS_NAME = "Kontrole";
   const LIB_ACTIVITIES_NAME = "Kalendarz zadań";
   const LIB_EMPLOYEES_NAME = "Pracownicy";
+  const LIB_TASKS_NAME = "Zadania";
 
   const WEEKDAYS_EN = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
   const WEEKDAYS_PL = ["Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota", "Niedziela"];
@@ -302,35 +303,26 @@ try {
   const TAS_FIELD_COORDINATOR = "Odpowiedzialny koordynator";
   const TAS_FIELD_DATE_START = "Zadanie na tydzień rozpoczynający się od dnia";
   const TAS_FIELD_DATE_END = "Koniec tygodnia wyznaczonych zadań";
-
   const TAS_FIELD_WEEK = "Numer tygodnia";
-
   const TAS_FIELD_WEEKSTATUS = "Status główny";
   const TAS_VALUE_WEEKSTATUS_CLOSED = "Zamknięty i rozliczony";
   const TAS_VALUE_WEEKSTATUS_RUNNING = "Bieżący";
   const TAS_VALUE_WEEKSTATUS_FUTURE = "Przyszły";
-
-
   const TAS_FIELD_DESCRIPTION = "description";
   const TAS_FIELD_TASK = "task";
+  const TAS_FIELD_TASK_PREVWEEK = "taskPrevWeek"
   const TAS_FIELD_STATUS = "Status";
   const TAS_FIELD_NOTES = "Uwagi";
-
   const TAS_VALUE_STATUS_CLOSED = "Wykonane i zakończone";
   const TAS_VALUE_STATUS_RUNNING = "W trakcie wykonywania";
   const TAS_VALUE_STATUS_NOTCLOSED = "Niewykonane";
   const TAS_FIELD_TASKCOUNT = "Liczba zadań";
   const TAS_FIELD_RAPORT_RECIPIENT = "Odbiorcy raportów i powiadomień";
-
-
-
-
+  const TAS_FIELD_PREVWEEK = "Poprzedni tydzień";
+  const TAS_MSG_EMAIL_FOR_CLOSE_ONLY = "Możesz wysłać maila tylko dla zamkniętych zadań"
 
   const CON_FIELD_COORDINATOR = "Koordynator";
   const CON_FIELD_RAPORT_RECIPIENT = "Odbiorcy raportów i powiadomień";
-
-
-
 
   // *^*^*^*  odpalana Creating Entry, Opening an Entry Card
   function setEntryDefaultValues(e) {
