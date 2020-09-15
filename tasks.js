@@ -13,7 +13,7 @@ const Task = function (e) {
     this.tasks = new Array;
     this.entryContract = this.entry.field(TAS_FIELD_CONTRACT)[0];
     this.weekNr = this.entry.field(TAS_FIELD_WEEK);
-    this.libTasks = libByName(LIB_TASKS_NAME);
+    this.libTasks = lib();
 
     for (let i = 1; i < 10; i++) {
       if (this.entry.field(TAS_FIELD_TASK + i).length > 0) {
