@@ -1,7 +1,7 @@
 const Task = function (e) {
 
   log("Task: " + String(e));
-  let err;
+
   try {
 
     this.entry = e;
@@ -14,7 +14,7 @@ const Task = function (e) {
         let task = {
           content: this.entry.field(TAS_FIELD_TASK + i),
           status: this.entry.field(TAS_FIELD_STATUS + i),
-          notes: this.entry.field(TAS_FIELD_DESCRIPTION + i)
+          notes: this.entry.field(TAS_FIELD_NOTES + i)
         };
         log(String(t));
         this.tasks.push(task);
