@@ -14,7 +14,6 @@ const Task = function (e) {
     this.entryContract = this.entry.field(TAS_FIELD_CONTRACT)[0];
 
     for (let i = 1; i < 10; i++) {
-
       if (this.entry.field(TAS_FIELD_TASK + i).length > 0) {
         this.tasks[this.tasks.length] = {
           content: this.entry.field(TAS_FIELD_TASK + i),
@@ -22,10 +21,10 @@ const Task = function (e) {
           notes: this.entry.field(TAS_FIELD_NOTES + i)
         };
         log(String(this.tasks[this.tasks.length]));
-
       }
     }
 
+    // * * * * * * * * * * * * * * * * * * * *
 
     this.prepareEmail = function () {
       log("prepareEmail");
