@@ -13,7 +13,7 @@ const Task = function (e) {
     this.tasks = new Array;
     this.entryContract = this.entry.field(TAS_FIELD_CONTRACT)[0];
     this.weekNr = this.entry.field(TAS_FIELD_WEEK);
-    this.libTasks = lib();
+    this.libTasks = libByName(LIB_TASKS_NAME);
 
     for (let i = 1; i < 10; i++) {
       if (this.entry.field(TAS_FIELD_TASK + i).length > 0) {
@@ -30,7 +30,7 @@ const Task = function (e) {
     this.createNewWeekplan = function () {
 
       this.entryNextWeek = new Object();
-      this.entryNextWeek = libTasks.create(this.entryNextWeek);
+      this.entryNextWeek = this.libTasks.create(this.entryNextWeek);
       this.entryNextWeek.set(TAS_FIELD_WEEKSTATUS, TAS_VALUE_WEEKSTATUS_RUNNING);
       this.entryNextWeek.set(TAS_FIELD_CONTRACT, this.entryContract);
       this.entryNextWeek.set(TAS_FIELD_DATE_START, moment(dateStart).add(7, 'days').toDate());
