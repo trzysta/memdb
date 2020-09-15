@@ -2,9 +2,31 @@ const Task = function (e) {
 
   log("Task: " + String(e));
   let err;
-  this.entry = e;
-
   try {
+
+    this.entry = e;
+    this.status = this.entry.field(TAS_FIELD_WEEKSTATUS);
+    this.dateStart = this.entry.field(TAS_FIELD_DATE_START);
+    this.dateEnd = moment(this.dateStart).add(4, 'days').toDate();
+
+    for (let i = 1; i < 10; i++) {
+      if (this.entry.field(TAS_FIELD_TASK + i).length > 0) {
+        let task = {
+          content: this.entry.field(TAS_FIELD_TASK + i),
+          status: this.entry.field(TAS_FIELD_STATUS + i),
+          notes: this.entry.field(TAS_FIELD_DESCRIPTION + i)
+        };
+        this.tasks.push(task);
+      }
+    }
+
+
+
+
+
+
+
+
     this.postSaveEntry = function () {
 
       const dtStart = this.entry.field(TAS_FIELD_DATE_START);
@@ -20,15 +42,30 @@ const Task = function (e) {
       this.entry.set(TAS_FIELD_DATE_END, dtEnd);
       let desc = "zadań: ";
 
+      switch (this.status) {
+        case TAS_VALUE_WEEKSTATUS_CLOSED:
+
+          for (let i = 1; i < 10; i++) {
+            if (this.entry.field(TAS_FIELD_TASK + i).length > 0) countTotal += 1;
+            if (this.entry.field(TAS_FIELD_STATUS + i) == TAS_VALUE_STATUS_CLOSED) { countClosed += 1 };
+            if (this.entry.field(TAS_FIELD_STATUS + i) == TAS_VALUE_STATUS_RUNNING) { countRunning += 1 };
+            if (this.entry.field(TAS_FIELD_STATUS + i) == TAS_VALUE_STATUS_NOTCLOSED) { countNotclosed += 1 };
+          }
+          desc += countTotal + "   (" + countClosed + " wykonane, " + countRunning + " w trakcie, " + countNotclosed + " nie wykonane)";
+          break;
+
+        default:
+          break;
+      }
+
+
+
+
+
+
       if (this.entry.field(TAS_FIELD_WEEKSTATUS) == TAS_VALUE_WEEKSTATUS_CLOSED) {
 
-        for (let i = 1; i < 10; i++) {
-          if (this.entry.field(TAS_FIELD_TASK + i).length > 0) countTotal += 1;
-          if (this.entry.field(TAS_FIELD_STATUS + i) == TAS_VALUE_STATUS_CLOSED) { countClosed += 1 };
-          if (this.entry.field(TAS_FIELD_STATUS + i) == TAS_VALUE_STATUS_RUNNING) { countRunning += 1 };
-          if (this.entry.field(TAS_FIELD_STATUS + i) == TAS_VALUE_STATUS_NOTCLOSED) { countNotclosed += 1 };
-        }
-        desc += countTotal + "   (" + countClosed + " wykonane, " + countRunning + " w trakcie, " + countNotclosed + " nie wykonane)";
+
 
       } else {
         for (let i = 1; i < 10; i++) {
@@ -48,19 +85,25 @@ const Task = function (e) {
 
     }
 
+
+
+
+
+
     this.prepareEmail = function () {
 
-      let subject = "Zadnaia na nadchodzący tydzień";
+      let subject = "Zadania na nadchodzący tydzień";
       let body = "";
 
-      for (let i = 1; i < 10; i++) {
-        if (this.entry.field(TAS_FIELD_TASK + i).length > 0) {
-          body += "Zadanie " + i + " : " + this.entry.field(TAS_FIELD_TASK + i) + "\n" +
-            " ma status: " + this.entry.field(TAS_FIELD_STATUS + i) + "\n" +
-            " opis wykonania: " + this.entry.field(TAS_FIELD_NOTES + i) + "\n\n\n\n";
-        }
-        this.entry.field(TAS_FIELD_CONTRACT)[0].field(CON_FIELD_RAPORT_RECIPIENT).sendEmail(subject, body);
+      for (let i = 1; i < this.tasks.length; i++) {
+
+        body += "Zadanie " + i + " : " + this.tasks[i].content + "\n" +
+          " ma status: " + this.tasks[i].status + "\n" +
+          " opis wykonania: " + this.tasks[i].notes + "\n\n\n\n";
       }
+
+      this.entry.field(TAS_FIELD_CONTRACT)[0].field(CON_FIELD_RAPORT_RECIPIENT).sendEmail(subject, body);
+
     }
 
 

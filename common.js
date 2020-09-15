@@ -306,8 +306,10 @@ try {
   const TAS_FIELD_WEEK = "Numer tygodnia";
 
   const TAS_FIELD_WEEKSTATUS = "Status główny";
-  const TAS_VALUE_WEEKSTATUS_CLOSED = "Zamknięty, rozliczony";
-  const TAS_VALUE_WEEKSTATUS_RUNNING = "Nie rozliczony";
+  const TAS_VALUE_WEEKSTATUS_CLOSED = "Zamknięty i rozliczony";
+  const TAS_VALUE_WEEKSTATUS_RUNNING = "Bieżący";
+  const TAS_VALUE_WEEKSTATUS_FUTURE = "Przyszły";
+
 
   const TAS_FIELD_DESCRIPTION = "description";
   const TAS_FIELD_TASK = "task";
