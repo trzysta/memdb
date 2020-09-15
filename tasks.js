@@ -10,14 +10,15 @@ const Task = function (e) {
     this.dateEnd = moment(this.dateStart).add(4, 'days').toDate();
 
     for (let i = 1; i < 10; i++) {
+
       if (this.entry.field(TAS_FIELD_TASK + i).length > 0) {
-        let task = {
+        this.tasks[this.tasks.length] = {
           content: this.entry.field(TAS_FIELD_TASK + i),
           status: this.entry.field(TAS_FIELD_STATUS + i),
           notes: this.entry.field(TAS_FIELD_NOTES + i)
         };
-        log(String(t));
-        this.tasks.push(task);
+        log(String(this.tasks[this.tasks.length]));
+
       }
     }
 
