@@ -1,6 +1,6 @@
 const Task = function (e) {
 
-  log("Task: " + String(e));
+  log("Task: " + String(e.name));
 
   try {
 
