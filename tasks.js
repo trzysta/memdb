@@ -42,6 +42,8 @@ const Task = function (e) {
         this.entryNextWeek.set(TAS_FIELD_TASK_PREVWEEK + (i + 1), this.tasks[i].content);
       };
       this.entryNextWeek.link(TAS_FIELD_PREVWEEK, this.entry);
+
+      this.entry.set(TAS_FIELD_WEEKSTATUS, TAS_VALUE_WEEKSTATUS_CLOSED);
       this.entryNextWeek.recalc();
       this.entryNextWeek.show();
     }
