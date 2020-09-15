@@ -1,3 +1,5 @@
+
+
 const Task = function (e) {
 
   log("Task: " + String(e.name));
@@ -9,6 +11,7 @@ const Task = function (e) {
     this.dateStart = this.entry.field(TAS_FIELD_DATE_START);
     this.dateEnd = moment(this.dateStart).add(4, 'days').toDate();
     this.tasks = new Array;
+    this.entryContract = this.entry.field(TAS_FIELD_CONTRACT)[0];
 
     for (let i = 1; i < 10; i++) {
 
@@ -22,6 +25,23 @@ const Task = function (e) {
 
       }
     }
+
+
+    this.prepareEmail = function () {
+      log("prepareEmail");
+      let subject = "Zadania na nadchodzący tydzień";
+      let body = "";
+
+      for (let i = 1; i < this.tasks.length; i++) {
+
+        body += "Zadanie " + i + " : " + this.tasks[i].content + "\n" +
+          " ma status: " + this.tasks[i].status + "\n" +
+          " opis wykonania: " + this.tasks[i].notes + "\n\n\n\n";
+      }
+      this.entryContract.field(CON_FIELD_RAPORT_RECIPIENT).sendEmail(subject, body);
+    }
+
+
 
     // this.postSaveEntry = function () {
 
@@ -81,19 +101,7 @@ const Task = function (e) {
 
 
 
-    this.prepareEmail = function () {
 
-      let subject = "Zadania na nadchodzący tydzień";
-      let body = "";
-
-      for (let i = 1; i < this.tasks.length; i++) {
-
-        body += "Zadanie " + i + " : " + this.tasks[i].content + "\n" +
-          " ma status: " + this.tasks[i].status + "\n" +
-          " opis wykonania: " + this.tasks[i].notes + "\n\n\n\n";
-      }
-      this.entry.field(TAS_FIELD_CONTRACT)[0].field(CON_FIELD_RAPORT_RECIPIENT).sendEmail(subject, body);
-    }
 
 
   } catch (err) {
