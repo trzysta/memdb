@@ -38,6 +38,7 @@ const Task = function (e) {
       this.entryNextWeek.set(TAS_FIELD_WEEK, moment(this.dateStart).add(7, 'days').week());
       this.entryNextWeek.set(TAS_FIELD_COORDINATOR, this.entry.field(TAS_FIELD_COORDINATOR));
       this.entryNextWeek.set(TAS_FIELD_TASKCOUNT_PREVWEEK, this.tasks.length);
+
       for (let i = 0; i < this.tasks.length; i++) {
         this.entryNextWeek.set(TAS_FIELD_TASK_PREVWEEK + (i + 1), this.tasks[i].content);
       };

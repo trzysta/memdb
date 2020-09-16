@@ -309,10 +309,11 @@ try {
   const TAS_VALUE_WEEKSTATUS_RUNNING = "Bieżący";
   const TAS_VALUE_WEEKSTATUS_FUTURE = "Przyszły";
   const TAS_FIELD_DESCRIPTION = "description";
-  const TAS_FIELD_TASK = "task";
-  const TAS_FIELD_TASK_PREVWEEK = "taskPrevWeek"
+
+  const TAS_FIELD_TASK = "Zadanie na ten tydzień ";
+  const TAS_FIELD_TASK_PREVWEEK = "tZadanie z poprzedniego tygodnia "
   const TAS_FIELD_STATUS = "Status";
-  const TAS_FIELD_NOTES = "Uwagi";
+  const TAS_FIELD_NOTES = "Wykonanie zadania ";
   const TAS_VALUE_STATUS_CLOSED = "Wykonane i zakończone";
   const TAS_VALUE_STATUS_RUNNING = "W trakcie wykonywania";
   const TAS_VALUE_STATUS_NOTCLOSED = "Niewykonane";
