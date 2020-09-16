@@ -42,9 +42,9 @@ const Task = function (e) {
         // log("search");
 
         this.entryNextWeek = this.libTasks.linksTo(this.entry);
-
         if (this.entryNextWeek === undefined || this.entryNextWeek === null) {
           this.createNewWeekplan();
+
         } else {
           for (let i = 0; i < this.tasks.length; i++) {
             log("this.entryNextWeek.set(TAS_FIELD_TASK_PREVWEEK + String(" + i + " + 1), this.tasks[" + i + "].content);")
