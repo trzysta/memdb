@@ -85,7 +85,7 @@ const Task = function (e) {
       this.entryNextWeek.set(TAS_FIELD_TASKCOUNT_PREVWEEK, this.tasks.length);
 
       for (let i = 0; i < this.tasks.length; i++) {
-        this.entryNextWeek.set(TAS_FIELD_TASK_PREVWEEK + (i + 1), this.tasks[i].content);
+        this.entryNextWeek.set(TAS_FIELD_TASKPREVWEEK + (i + 1), this.tasks[i].content);
       };
       this.entryNextWeek.link(TAS_FIELD_PREVWEEK, this.entry);
 
