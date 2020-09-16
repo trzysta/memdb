@@ -99,7 +99,7 @@ const Task = function (e) {
           " opis wykonania: " + this.tasks[i].notes + "\n\n\n";
       }
       this.entryContract.field(CON_FIELD_RAPORT_RECIPIENT).sendEmail(subject, body);
-    };
+    }
 
     // * * * * * * * * * * * * * * * * * * * *
     this.beforeSavingEntry = function () {
