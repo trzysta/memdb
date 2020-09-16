@@ -37,30 +37,19 @@ const Task = function (e) {
     this.closeWeek = function () {
 
         this.entryNextWeek = this.libTasks.linksTo(this.entry)[0];
-
         if (this.entryNextWeek === undefined || this.entryNextWeek === null) {
-
             this.createNewWeekplan();
-
         } else {
-
             log(this.entryNextWeek.name + ' ' + this.entry.name);
-
             for (let i = 0; i < this.tasks.length; i++) {
-
-                this.entryNextWeek.set(TAS_FIELD_TASK_PREVWEEK + (i + 1), this.tasks[i].content);
-
+                this.entryNextWeek.set(TAS_FIELD_TASKPREVWEEK + (i + 1), this.tasks[i].content);
             }
-
         }
-
         this.entryNextWeek.set(TAS_FIELD_WEEKSTATUS, TAS_VALUE_WEEKSTATUS_RUNNING);
         this.entry.set(TAS_FIELD_WEEKSTATUS, TAS_VALUE_WEEKSTATUS_CLOSED);
         this.entryNextWeek.recalc();
         this.entryNextWeek.show();
-
     }
-
 
     // * * * * * * * * * * * * * * * * * * * *
     this.createNewWeekplan = function () {
@@ -96,17 +85,13 @@ const Task = function (e) {
                 " ma status: " + this.tasks[i].status + "\n" +
                 " opis wykonania: " + this.tasks[i].notes + "\n\n\n";
         }
-
         this.entryContract.field(CON_FIELD_RAPORT_RECIPIENT).sendEmail(subject, body);
-
     }
 
     // * * * * * * * * * * * * * * * * * * * *
     this.beforeSavingEntry = function () {
-
         this.entry.set(TAS_FIELD_TASKCOUNT, this.tasks.length + 1);
         this.entry.set(TAS_FIELD_TASKCOUNT_PREVWEEK, this.tasksPrevWeek.length + 1);
-
     }
 }
 
