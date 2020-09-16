@@ -22,7 +22,7 @@ const Task = function (e) {
             }
         }
 
-        if (this.entry.field(TAS_FIELD_TASK_PREVWEEK + i).length > 0) {
+        if (this.entry.field(TAS_FIELD_TASKPREVWEEK + i).length > 0) {
             this.tasksPrevWeek[this.tasksPrevWeek.length] =
             {
                 content: this.entry.field(AS_FIELD_TASKPREVWEEK + i),
