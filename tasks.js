@@ -20,27 +20,20 @@ const Task = function (e) {
 
       if (this.entry.field(TAS_FIELD_TASK + i).length > 0) {
 
-        this.tasks[this.tasks.length] = {
-
-          content: this.entry.field(TAS_FIELD_TASK + i)
-
-        }
+        this.tasks[this.tasks.length] = { content: this.entry.field(TAS_FIELD_TASK + i) }
 
       }
 
       if (this.entry.field(TAS_FIELD_TASK_PREVWEEK + i).length > 0) {
 
         this.tasksPrevWeek[this.tasksPrevWeek.length] = {
-
           content: this.entry.field(AS_FIELD_TASKPREVWEEK + i),
           status: this.entry.field(TAS_FIELD_STATUSPREVWEEK + i),
           notes: this.entry.field(TAS_FIELD_NOTESPREVWEEK + i)
-
         }
 
       }
-
-    }
+    };
 
     // * * * * * * * * * * * * * * * * * * * *
     this.closeWeek = function () {
