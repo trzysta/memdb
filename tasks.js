@@ -37,10 +37,11 @@ const Task = function (e) {
       //   - otówrz
       try {
 
-        let query = (parseInt(this.weekNr) + 1) + TAS_VALUE_NAME + this.entryContract.name;
-        this.entryNextWeek = this.libTasks.findByKey(query);
-        log("search");
-        // this.entryNextWeek = this.libTasks.linksTo(this.entry);
+        // let query = (parseInt(this.weekNr) + 1) + TAS_VALUE_NAME + this.entryContract.name;
+        // this.entryNextWeek = this.libTasks.findByKey(query);
+        // log("search");
+
+        this.entryNextWeek = this.libTasks.linksTo(this.entry);
 
         if (this.entryNextWeek === undefined) {
           this.createNewWeekplan();
