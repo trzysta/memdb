@@ -28,12 +28,8 @@ const Task = function (e) {
           status: this.entry.field(TAS_FIELD_STATUSPREVWEEK + i),
           notes: this.entry.field(TAS_FIELD_NOTESPREVWEEK + i)
         }
-      };
-      // log("długość" + String(this.tasks[this.tasks.length]));
-    }
-
-
-
+      }
+    };
 
     // * * * * * * * * * * * * * * * * * * * *
     this.closeWeek = function () {
@@ -64,8 +60,6 @@ const Task = function (e) {
       }
     };
 
-
-
     // * * * * * * * * * * * * * * * * * * * *
     this.createNewWeekplan = function () {
       try {
@@ -88,9 +82,7 @@ const Task = function (e) {
       } catch (err) {
         log("Task::createNewWeekplan:" + err);
       }
-    }
-
-
+    };
 
     // * * * * * * * * * * * * * * * * * * * *
     this.prepareEmail = function () {
@@ -107,8 +99,7 @@ const Task = function (e) {
           " opis wykonania: " + this.tasks[i].notes + "\n\n\n";
       }
       this.entryContract.field(CON_FIELD_RAPORT_RECIPIENT).sendEmail(subject, body);
-    }
-
+    };
 
     // * * * * * * * * * * * * * * * * * * * *
     this.beforeSavingEntry = function () {
@@ -117,8 +108,6 @@ const Task = function (e) {
       this.entry.set(TAS_FIELD_TASKCOUNT_PREVWEEK, this.tasksPrevWeek.length + 1);
 
     }
-
-
 
 
   } catch (err) {

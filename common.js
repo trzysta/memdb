@@ -313,9 +313,10 @@ try {
   const TAS_FIELD_DESCRIPTION = "description";
 
   const TAS_FIELD_TASK = "taskThisWeek";
-  const TAS_FIELD_TASK_PREVWEEK = "taskPrevWeek";
-  const TAS_FIELD_STATUS = "Status";
-  const TAS_FIELD_NOTES = "commentPrevWeek";
+  const TAS_FIELD_TASKPREVWEEK = "taskPrevWeek";
+  const TAS_FIELD_STATUSPREVWEEK = "Status";
+  const TAS_FIELD_NOTESPREVWEEK = "commentPrevWeek";
+
   const TAS_VALUE_STATUS_CLOSED = "Wykonane i zakończone";
   const TAS_VALUE_STATUS_RUNNING = "W trakcie wykonywania";
   const TAS_VALUE_STATUS_NOTCLOSED = "Niewykonane";
