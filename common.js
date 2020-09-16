@@ -329,8 +329,24 @@ try {
 
   const TAS_VALUE_NAME = " tydzień dla ";
 
+  const TAS_VALUE_EMAIL_PLAN = "Dzień dobry,\n\n" +
+    "Poniżej przedstawiamy planowane działania na najbliższy tydzień. Plany opisują zadania wykraczające poza standardowe działania, nie opisujemy czynności codziennych chyba że są to czynności z jakiegoś powodu szczególnie istotne.\n\n\n" +
+    "Plan na tydzień nr $WEEK_NR ($DATE_START - $DATE_END)\n\n\n" +
+    "$TASKS"
+
+  const TAS_VALUE_EMAIL_TASKLIST = "): ";
+  const TAS_VALUE_EMAIL_SUBJECT = "Zadania na tydzień ";
+
+  const TAS_VALUE_EMAIL_PREVTASKS = "";
+
+
   const CON_FIELD_COORDINATOR = "Koordynator";
   const CON_FIELD_RAPORT_RECIPIENT = "Odbiorcy raportów i powiadomień";
+
+
+
+
+
 
   // *^*^*^*  odpalana Creating Entry, Opening an Entry Card
   function setEntryDefaultValues(e) {

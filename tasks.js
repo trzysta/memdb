@@ -25,7 +25,7 @@ const Task = function (e) {
         if (this.entry.field(TAS_FIELD_TASKPREVWEEK + i).length > 0) {
             this.tasksPrevWeek[this.tasksPrevWeek.length] =
             {
-                content: this.entry.field(AS_FIELD_TASKPREVWEEK + i),
+                content: this.entry.field(TAS_FIELD_TASKPREVWEEK + i),
                 status: this.entry.field(TAS_FIELD_STATUSPREVWEEK + i),
                 notes: this.entry.field(TAS_FIELD_NOTESPREVWEEK + i)
             }
@@ -75,16 +75,17 @@ const Task = function (e) {
     this.prepareEmail = function () {
 
         log("prepareEmail");
+
         let subject = "Zadania na tydzień " + moment(this.dateStart).format("DD-MM-YYY");
-        let body = "";
+        let body = AS_VALUE_EMAIL_PLAN.toString();
 
+        body = body.replace("$WEEK_NR", this.weekNr);
+        body = body.replace("$DATE_START", moment(this.dateStart).format("DD-MM-YYYY"));
+        body = body.replace("$DATE_END", moment(this.dateEnd).format("DD-MM-YYYY"));
         for (let i = 1; i < this.tasks.length; i++) {
-
-            body += "* * *\n" +
-                "zadanie " + i + ": " + this.tasks[i].content + "\n" +
-                " ma status: " + this.tasks[i].status + "\n" +
-                " opis wykonania: " + this.tasks[i].notes + "\n\n\n";
-        }
+            bodyTasks += i + TAS_VALUE_EMAIL_TASKLIST + this.tasks[i].content + "\n";
+        };
+        body = body.replace("$TASKS", bodyTasks);
         this.entryContract.field(CON_FIELD_RAPORT_RECIPIENT).sendEmail(subject, body);
     }
 
