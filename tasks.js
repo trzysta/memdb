@@ -41,11 +41,13 @@ const Task = function (e) {
         // this.entryNextWeek = this.libTasks.findByKey(query);
 
         this.entryNextWeek = this.libTasks.linksTo(this.entry);
+
         if (this.entryNextWeek === undefined) {
-          this.entryNextWeek.set(TAS_FIELD_TASK_PREVWEEK + 1, "alkjdlaksjdlkasjdlaskdjaslkdj");
-        } else {
           this.createNewWeekplan();
+        } else {
+          this.entryNextWeek.set(TAS_FIELD_TASK_PREVWEEK + 1, "alkjdlaksjdlkasjdlaskdjaslkdj");
         }
+
         this.entryNextWeek.recalc();
         this.entryNextWeek.show();
         this.entry.set(TAS_FIELD_WEEKSTATUS, TAS_VALUE_WEEKSTATUS_CLOSED);
