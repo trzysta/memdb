@@ -20,7 +20,7 @@ const Task = function (e) {
 
       if (this.entry.field(TAS_FIELD_TASK + i).length > 0) {
         this.tasks[this.tasks.length] = {
-          content: this.entry.field(TAS_FIELD_TASK + i),
+          content: this.entry.field(TAS_FIELD_TASK + i)
         }
       }
 
@@ -31,7 +31,6 @@ const Task = function (e) {
           notes: this.entry.field(TAS_FIELD_NOTESPREVWEEK + i)
         }
       }
-
     }
 
     // * * * * * * * * * * * * * * * * * * * *
