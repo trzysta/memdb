@@ -101,10 +101,18 @@ const Task = function (e) {
         body = body.replace("$TASKS", bodyTasks);
         body = body.replace("$PREVTASKS", bodyPrevTasks);
 
-        this.entryContract.field(CON_FIELD_RAPORT_RECIPIENT).sendEmail(subject, body);
+        // this.entryContract.field(CON_FIELD_RAPORT_RECIPIENT).sendEmail(subject, body);
 
         this.entry.set(TAS_FIELD_EMAILBODY, body);
         this.entry.set(TAS_FIELD_EMAILSUBJECT, subject);
+
+        let mail = intent("android.intent.action.SENDTO");
+        mail.data("mailto:marceli@trzysta.pl, heniek@trzysta.pl "); // addresses where to send
+        mail.extra("android.intent.extra.SUBJECT", subject); // 2nd arg is what you want
+        mail.extra("android.intent.extra.TEXT", body); // 2nd arg is what you want
+        // mail.extra("android.intent.extra.ATTACHMENT", "storage/memento/files/myPhoto.jpg"); // THIS IS A GUESS!
+        mail.send(); // send it ou
+
     }
 
     // * * * * * * * * * * * * * * * * * * * *
