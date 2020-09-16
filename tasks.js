@@ -31,6 +31,7 @@ const Task = function (e) {
           notes: this.entry.field(TAS_FIELD_NOTESPREVWEEK + i)
         }
       }
+
     }
 
     // * * * * * * * * * * * * * * * * * * * *
