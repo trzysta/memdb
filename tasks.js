@@ -26,27 +26,60 @@ const Task = function (e) {
       }
     }
 
+
+
+    // * * * * * * * * * * * * * * * * * * * *
+    this.closeWeek = function () {
+      // sprawdź czy istnieje już dokuent na przyszły tydzien - numer tygodnia i osiedle
+      //   - jeśli istnieje i nie ma zadań do sprawdzenia to
+      //     - dopisz wszystkie - sprawdż teksty czy są równe(OCZYŚĆ, MAŁĘLITERY) i jak nie to dopisz do pustego
+      //   - jeśli nie istnieje zrób nowy
+      //   - otówrz
+      try {
+
+        // let query = (parseInt(weekNr) + 1) + TAS_VALUE_NAME + this.entryContract.name;
+        // this.entryNextWeek = this.libTasks.findByKey(query);
+
+        this.entryNextWeek = this.libTasks.linksTo(this.entry);
+        if (this.entryNextWeek === undefined) {
+          this.entryNextWeek.set(TAS_FIELD_TASK_PREVWEEK + 1, "alkjdlaksjdlkasjdlaskdjaslkdj");
+        } else {
+          this.createNewWeekplan();
+        }
+        this.entryNextWeek.recalc();
+        this.entryNextWeek.show();
+        this.entry.set(TAS_FIELD_WEEKSTATUS, TAS_VALUE_WEEKSTATUS_CLOSED);
+
+
+      } catch (err) {
+        log("Task::closeWeek:" + err);
+      }
+    }
+
+
+
     // * * * * * * * * * * * * * * * * * * * *
     this.createNewWeekplan = function () {
+      try {
 
-      this.entryNextWeek = new Object();
-      this.entryNextWeek = this.libTasks.create(this.entryNextWeek);
-      this.entryNextWeek.set(TAS_FIELD_WEEKSTATUS, TAS_VALUE_WEEKSTATUS_RUNNING);
-      this.entryNextWeek.set(TAS_FIELD_CONTRACT, this.entryContract);
-      this.entryNextWeek.set(TAS_FIELD_DATE_START, moment(this.dateStart).add(7, 'days').toDate());
-      this.entryNextWeek.set(TAS_FIELD_DATE_END, moment(this.dateStart).add(11, 'days').toDate());
-      this.entryNextWeek.set(TAS_FIELD_WEEK, moment(this.dateStart).add(7, 'days').week());
-      this.entryNextWeek.set(TAS_FIELD_COORDINATOR, this.entry.field(TAS_FIELD_COORDINATOR));
-      this.entryNextWeek.set(TAS_FIELD_TASKCOUNT_PREVWEEK, this.tasks.length);
+        this.entryNextWeek = new Object();
+        this.entryNextWeek = this.libTasks.create(this.entryNextWeek);
+        this.entryNextWeek.set(TAS_FIELD_WEEKSTATUS, TAS_VALUE_WEEKSTATUS_RUNNING);
+        this.entryNextWeek.set(TAS_FIELD_CONTRACT, this.entryContract);
+        this.entryNextWeek.set(TAS_FIELD_DATE_START, moment(this.dateStart).add(7, 'days').toDate());
+        this.entryNextWeek.set(TAS_FIELD_DATE_END, moment(this.dateStart).add(11, 'days').toDate());
+        this.entryNextWeek.set(TAS_FIELD_WEEK, moment(this.dateStart).add(7, 'days').week());
+        this.entryNextWeek.set(TAS_FIELD_COORDINATOR, this.entry.field(TAS_FIELD_COORDINATOR));
+        this.entryNextWeek.set(TAS_FIELD_TASKCOUNT_PREVWEEK, this.tasks.length);
 
-      for (let i = 0; i < this.tasks.length; i++) {
-        this.entryNextWeek.set(TAS_FIELD_TASK_PREVWEEK + (i + 1), this.tasks[i].content);
-      };
-      this.entryNextWeek.link(TAS_FIELD_PREVWEEK, this.entry);
+        for (let i = 0; i < this.tasks.length; i++) {
+          this.entryNextWeek.set(TAS_FIELD_TASK_PREVWEEK + (i + 1), this.tasks[i].content);
+        };
+        this.entryNextWeek.link(TAS_FIELD_PREVWEEK, this.entry);
 
-      this.entry.set(TAS_FIELD_WEEKSTATUS, TAS_VALUE_WEEKSTATUS_CLOSED);
-      this.entryNextWeek.recalc();
-      this.entryNextWeek.show();
+      } catch (err) {
+        log("Task::createNewWeekplan:" + err);
+      }
     }
 
     // * * * * * * * * * * * * * * * * * * * *

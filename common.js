@@ -305,13 +305,16 @@ try {
   const TAS_FIELD_DATE_END = "Koniec tygodnia wyznaczonych zadań";
   const TAS_FIELD_WEEK = "Numer tygodnia";
   const TAS_FIELD_WEEKSTATUS = "Status główny";
+
   const TAS_VALUE_WEEKSTATUS_CLOSED = "Zamknięty i rozliczony";
   const TAS_VALUE_WEEKSTATUS_RUNNING = "Bieżący";
   const TAS_VALUE_WEEKSTATUS_FUTURE = "Przyszły";
+
   const TAS_FIELD_DESCRIPTION = "description";
 
+
   const TAS_FIELD_TASK = "Zadanie na ten tydzień ";
-  const TAS_FIELD_TASK_PREVWEEK = "tZadanie z poprzedniego tygodnia "
+  const TAS_FIELD_TASK_PREVWEEK = "Zadanie z poprzedniego tygodnia "
   const TAS_FIELD_STATUS = "Status";
   const TAS_FIELD_NOTES = "Wykonanie zadania ";
   const TAS_VALUE_STATUS_CLOSED = "Wykonane i zakończone";
@@ -323,6 +326,10 @@ try {
   const TAS_FIELD_PREVWEEK = "Poprzedni tydzień";
 
   const TAS_MSG_EMAIL_FOR_CLOSE_ONLY = "Możesz wysłać maila tylko dla zamkniętych zadań"
+
+  const TAS_VALUE_NAME = " tydzień dla ";
+
+
 
   const CON_FIELD_COORDINATOR = "Koordynator";
   const CON_FIELD_RAPORT_RECIPIENT = "Odbiorcy raportów i powiadomień";
