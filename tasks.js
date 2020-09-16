@@ -76,17 +76,31 @@ const Task = function (e) {
 
         log("prepareEmail");
 
-        let subject = "Zadania na tydzień " + moment(this.dateStart).format("DD-MM-YYY");
-        let body = TAS_VALUE_EMAIL_PLAN.toString();
+        let subject = TAS_VALUE_EMAIL_SUBJECT.toString();
+        let body = TAS_VALUE_EMAIL_PLAN.toString() + TAS_VALUE_EMAIL_PREVWEEK.toString();
         let bodyTasks = "";
+        let bodyPrevTasks = "";
+
+        for (let i = 1; i < this.tasks.length; i++) {
+            bodyTasks += i + ") " + this.tasks[i].content + "\n\n";
+        };
+        for (let i = 1; i < this.tasksPrevWeek.length; i++) {
+            bodyPrevTasks += i + ") " + this.tasksPrevWeek[i].content + "\n" +
+                TAS_VALUE_EMAIL_PREVWEEK_STATUS + this.tasksPrevWeek[i].status + "\n" +
+                TAS_VALUE_EMAIL_PREVWEEK_NOTES + this.tasksPrevWeek[i].notes + "\n\n"
+        };
+
+        subject = subject.replace("$WEEK_NR", this.weekNr);
+        subject = subject.replace("$DATE_START", moment(this.dateStart).format("DD-MM-YYYY"));
+        subject = subject.replace("$DATE_END", moment(this.dateEnd).format("DD-MM-YYYY"));
+        subject = subject.replace("$CONTRACT", this.entryContract.name);
 
         body = body.replace("$WEEK_NR", this.weekNr);
         body = body.replace("$DATE_START", moment(this.dateStart).format("DD-MM-YYYY"));
         body = body.replace("$DATE_END", moment(this.dateEnd).format("DD-MM-YYYY"));
-        for (let i = 1; i < this.tasks.length; i++) {
-            bodyTasks += i + TAS_VALUE_EMAIL_TASKLIST + this.tasks[i].content + "\n";
-        };
         body = body.replace("$TASKS", bodyTasks);
+        body = body.replace("$PREVTASKS", bodyPrevTasks);
+
         this.entryContract.field(CON_FIELD_RAPORT_RECIPIENT).sendEmail(subject, body);
     }
 
