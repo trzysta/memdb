@@ -43,7 +43,7 @@ const Task = function (e) {
 
         this.entryNextWeek = this.libTasks.linksTo(this.entry);
 
-        if (this.entryNextWeek === undefined) {
+        if (this.entryNextWeek === undefined || this.entryNextWeek === null) {
           this.createNewWeekplan();
         } else {
           for (let i = 0; i < this.tasks.length; i++) {
