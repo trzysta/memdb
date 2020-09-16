@@ -47,8 +47,9 @@ const Task = function (e) {
 
         } else {
           for (let i = 0; i < this.tasks.length; i++) {
-            log("this.entryNextWeek.set(TAS_FIELD_TASK_PREVWEEK + String(" + i + " + 1), this.tasks[" + i + "].content);")
-            this.entryNextWeek.set(TAS_FIELD_TASK_PREVWEEK + String(i + 1), this.tasks[i].content);
+            let n = TAS_FIELD_TASK_PREVWEEK + String(i + 1);
+            log(">" + n + "<");
+            this.entryNextWeek.set(n, this.tasks[i].content);
           }
         }
 
