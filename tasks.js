@@ -37,15 +37,16 @@ const Task = function (e) {
       //   - otówrz
       try {
 
-        // let query = (parseInt(weekNr) + 1) + TAS_VALUE_NAME + this.entryContract.name;
-        // this.entryNextWeek = this.libTasks.findByKey(query);
-
-        this.entryNextWeek = this.libTasks.linksTo(this.entry);
+        let query = (parseInt(weekNr) + 1) + TAS_VALUE_NAME + this.entryContract.name;
+        this.entryNextWeek = this.libTasks.findByKey(query);
+        log("search");
+        // this.entryNextWeek = this.libTasks.linksTo(this.entry);
 
         if (this.entryNextWeek === undefined) {
           this.createNewWeekplan();
         } else {
           for (let i = 0; i < this.tasks.length; i++) {
+            log("this.entryNextWeek.set(TAS_FIELD_TASK_PREVWEEK + String(" + i + " + 1), this.tasks[" + i + "].content);")
             this.entryNextWeek.set(TAS_FIELD_TASK_PREVWEEK + String(i + 1), this.tasks[i].content);
           }
         }
