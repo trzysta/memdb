@@ -81,23 +81,23 @@ const Task = function (e) {
         let bodyTasks = "";
         let bodyPrevTasks = "";
 
-        for (let i = 1; i < this.tasks.length; i++) {
-            bodyTasks += i + ") " + this.tasks[i].content + "\n\n";
+        for (let i = 0; i < this.tasks.length; i++) {
+            bodyTasks += (i + 1) + ") " + this.tasks[i].content + "\n\n";
         };
-        for (let i = 1; i < this.tasksPrevWeek.length; i++) {
-            bodyPrevTasks += i + ") " + this.tasksPrevWeek[i].content + "\n" +
+        for (let i = 0; i < this.tasksPrevWeek.length; i++) {
+            bodyPrevTasks += (i + 1) + ") " + this.tasksPrevWeek[i].content + "\n" +
                 TAS_VALUE_EMAIL_PREVWEEK_STATUS + this.tasksPrevWeek[i].status + "\n" +
                 TAS_VALUE_EMAIL_PREVWEEK_NOTES + this.tasksPrevWeek[i].notes + "\n\n"
         };
 
         subject = subject.replace("$WEEK_NR", this.weekNr);
-        subject = subject.replace("$DATE_START", moment(this.dateStart).format("DD-MM-YYYY"));
-        subject = subject.replace("$DATE_END", moment(this.dateEnd).format("DD-MM-YYYY"));
+        subject = subject.replace("$DATE_START", moment(this.dateStart).format("DD.MM.YYYY"));
+        subject = subject.replace("$DATE_END", moment(this.dateEnd).format("DD.MM.YYYY"));
         subject = subject.replace("$CONTRACT", this.entryContract.name);
 
         body = body.replace("$WEEK_NR", this.weekNr);
-        body = body.replace("$DATE_START", moment(this.dateStart).format("DD-MM-YYYY"));
-        body = body.replace("$DATE_END", moment(this.dateEnd).format("DD-MM-YYYY"));
+        body = body.replace("$DATE_START", moment(this.dateStart).format("DD.MM.YYYY"));
+        body = body.replace("$DATE_END", moment(this.dateEnd).format("DD.MM.YYYY"));
         body = body.replace("$TASKS", bodyTasks);
         body = body.replace("$PREVTASKS", bodyPrevTasks);
 

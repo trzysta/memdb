@@ -332,12 +332,13 @@ try {
   const TAS_VALUE_NAME = " tydzień dla ";
 
   const TAS_VALUE_EMAIL_PLAN = "Dzień dobry,\n\n" +
-    "Poniżej przedstawiamy planowane działania na najbliższy tydzień. Plany opisują zadania wykraczające poza standardowe działania, nie opisujemy czynności codziennych chyba że są to czynności z jakiegoś powodu szczególnie istotne jest by o tych czynnościach informować w tygodniowym planie zadań.\n\n\n" +
+    "Poniżej przedstawiamy planowane działania na najbliższy tydzień. Plany nie opisują dokładnie wszystkich czynności jakie będą wykonane, pomijają np zadania codzienne typu mopowanie klatek. Celem przestawienie poniższego planu jest wskazanie planu na najbliższy tydzień.\n\n\n" +
     "Plan na tydzień nr $WEEK_NR ($DATE_START - $DATE_END)\n\n\n" +
     "$TASKS";
 
-  const TAS_VALUE_EMAIL_PREVWEEK = "\n\n\n" +
+  const TAS_VALUE_EMAIL_PREVWEEK = "\n\n" +
     "Poniżej znajdziecie państwo rozliczenie zadań z poprzedniego tygodnia.\n\n $PREVTASKS";
+
 
   const TAS_VALUE_EMAIL_PREVWEEK_STATUS = "ma status: ";
   const TAS_VALUE_EMAIL_PREVWEEK_NOTES = "komentarz: ";
