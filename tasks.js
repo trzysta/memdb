@@ -102,6 +102,9 @@ const Task = function (e) {
         body = body.replace("$PREVTASKS", bodyPrevTasks);
 
         this.entryContract.field(CON_FIELD_RAPORT_RECIPIENT).sendEmail(subject, body);
+
+        this.entry.set(TAS_FIELD_EMAILBODY, body);
+        this.entry.set(TAS_FIELD_EMAILSUBJECT, subject);
     }
 
     // * * * * * * * * * * * * * * * * * * * *
