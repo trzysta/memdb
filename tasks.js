@@ -77,7 +77,7 @@ const Task = function (e) {
         log("prepareEmail");
 
         let subject = "Zadania na tydzień " + moment(this.dateStart).format("DD-MM-YYY");
-        let body = AS_VALUE_EMAIL_PLAN.toString();
+        let body = TAS_VALUE_EMAIL_PLAN.toString();
 
         body = body.replace("$WEEK_NR", this.weekNr);
         body = body.replace("$DATE_START", moment(this.dateStart).format("DD-MM-YYYY"));
