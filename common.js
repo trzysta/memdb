@@ -328,8 +328,6 @@ try {
 
   const TAS_VALUE_NAME = " tydzień dla ";
 
-
-
   const CON_FIELD_COORDINATOR = "Koordynator";
   const CON_FIELD_RAPORT_RECIPIENT = "Odbiorcy raportów i powiadomień";
 
