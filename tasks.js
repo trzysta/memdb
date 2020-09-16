@@ -45,13 +45,14 @@ const Task = function (e) {
         if (this.entryNextWeek === undefined) {
           this.createNewWeekplan();
         } else {
-          this.entryNextWeek.set((TAS_FIELD_TASK_PREVWEEK + "1"), "alkjdlaksjdlkasjdlaskdjaslkdj");
+          for (let i = 0; i < this.tasks.length; i++) {
+            this.entryNextWeek.set(TAS_FIELD_TASK_PREVWEEK + (i + 1), this.tasks[i].content);
+          }
         }
 
         this.entryNextWeek.recalc();
         this.entryNextWeek.show();
         this.entry.set(TAS_FIELD_WEEKSTATUS, TAS_VALUE_WEEKSTATUS_CLOSED);
-
 
       } catch (err) {
         log("Task::closeWeek:" + err);

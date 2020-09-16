@@ -152,7 +152,7 @@ const Salary = function (e) {
     this.closeSettlement = function (reopenEntry) {
       log("closeSettlement: " + reopenEntry);
       try {
-        message(SAL_MSG_CLOSING + this.entryEmployee.name);
+        log(SAL_MSG_CLOSING + this.entryEmployee.name);
 
         if (this.canCloseSettlement(true)) {
           if (!this.isVisible) entry.set(FIELD_CAN_ACCESS, true);
@@ -197,7 +197,7 @@ const Salary = function (e) {
     this.findAdvances = function (show) {
       log("findAdvances: " + show);
       try {
-        message(SAL_MSG_RUNING_FINDADVANCE);
+        log(SAL_MSG_RUNING_FINDADVANCE);
 
         let libSpendings = libByName(LIB_SPANDINGS_NAME);
         if (libSpendings !== undefined) {
@@ -250,7 +250,7 @@ const Salary = function (e) {
         String(entryEmployee) + ", " +
         String(isWithdrwal) + ", ");
       try {
-        message(SAL_MSG_CREATING_SPEND + amount + ", " + payer);
+        log(SAL_MSG_CREATING_SPEND + amount + ", " + payer);
 
         let entrySpend = new Object();
         let libSpendings = libByName(LIB_SPANDINGS_NAME);
@@ -335,7 +335,7 @@ const Salary = function (e) {
         setEntryDefaultValues(entryTarget);
         this.findAdvances(false);
 
-        message(MSG_FINISHED);
+        log(MSG_FINISHED);
       } catch (err) {
         log("copyToMonth: " + err)
       }
