@@ -22,7 +22,7 @@ const Task = function (e) {
           status: this.entry.field(TAS_FIELD_STATUS + i),
           notes: this.entry.field(TAS_FIELD_NOTES + i)
         };
-        log(String(this.tasks[this.tasks.length]));
+        // log("długość" + String(this.tasks[this.tasks.length]));
       }
     }
 
@@ -42,6 +42,7 @@ const Task = function (e) {
         // log("search");
 
         this.entryNextWeek = this.libTasks.linksTo(this.entry);
+
         if (this.entryNextWeek === undefined || this.entryNextWeek === null) {
           this.createNewWeekplan();
 
@@ -50,8 +51,7 @@ const Task = function (e) {
           log(this.entryNextWeek.name);
           for (let i = 0; i < this.tasks.length; i++) {
             let n = TAS_FIELD_TASK_PREVWEEK + (i + 1);
-            log(">" + n + "<");
-            this.entryNextWeek.set(n, this.tasks[i].content);
+            log(this.entryNextWeek.field(n) + " " + this.tasks[i].content);
           }
         }
 
