@@ -41,14 +41,14 @@ const Task = function (e) {
         // this.entryNextWeek = this.libTasks.findByKey(query);
         // log("search");
 
-        this.entryNextWeek = this.libTasks.linksTo(this.entry);
+        this.entryNextWeek = this.libTasks.linksTo(this.entry)[0];
 
         if (this.entryNextWeek === undefined || this.entryNextWeek === null) {
           this.createNewWeekplan();
 
         } else {
 
-          log(this.entryNextWeek.name);
+          log(this.entryNextWeek.name + ' ' + this.entry.name);
           for (let i = 0; i < this.tasks.length; i++) {
             let n = TAS_FIELD_TASK_PREVWEEK + (i + 1);
             log(this.entryNextWeek.field(n) + " " + this.tasks[i].content);
