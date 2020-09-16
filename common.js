@@ -312,9 +312,8 @@ try {
 
   const TAS_FIELD_DESCRIPTION = "description";
 
-
   const TAS_FIELD_TASK = "Zadanie na ten tydzień ";
-  const TAS_FIELD_TASK_PREVWEEK = "Zadanie z poprzedniego tygodnia "
+  const TAS_FIELD_TASK_PREVWEEK = "Zadanie z poprzedniego tygodnia ";
   const TAS_FIELD_STATUS = "Status";
   const TAS_FIELD_NOTES = "Wykonanie zadania ";
   const TAS_VALUE_STATUS_CLOSED = "Wykonane i zakończone";
@@ -325,7 +324,7 @@ try {
   const TAS_FIELD_RAPORT_RECIPIENT = "Odbiorcy raportów i powiadomień";
   const TAS_FIELD_PREVWEEK = "Poprzedni tydzień";
 
-  const TAS_MSG_EMAIL_FOR_CLOSE_ONLY = "Możesz wysłać maila tylko dla zamkniętych zadań"
+  const TAS_MSG_EMAIL_FOR_CLOSE_ONLY = "Możesz wysłać maila tylko dla zamkniętych zadań";
 
   const TAS_VALUE_NAME = " tydzień dla ";
 

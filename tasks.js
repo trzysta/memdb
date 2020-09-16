@@ -47,9 +47,11 @@ const Task = function (e) {
           this.createNewWeekplan();
         } else {
           log("Task::closeWeek: this.entryNextWeek !== undefined");
+          log(this.entryNextWeek.name);
           for (let i = 0; i < this.tasks.length; i++) {
             log("Task::closeWeek: for (let " + i + " = 0; i < this.tasks.length; i++)");
-            this.entryNextWeek.set((TAS_FIELD_TASK_PREVWEEK + (i + 1)), this.tasks[i].content);
+            let n = i + 1;
+            this.entryNextWeek.set(TAS_FIELD_TASK_PREVWEEK + n, this.tasks[i].content);
           }
         }
 
