@@ -7,7 +7,6 @@ const Task = function (e) {
   try {
 
     this.entry = e;
-
     this.status = this.entry.field(TAS_FIELD_WEEKSTATUS);
     this.dateStart = this.entry.field(TAS_FIELD_DATE_START);
     this.dateEnd = moment(this.dateStart).add(4, 'days').toDate();
