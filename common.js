@@ -325,7 +325,7 @@ try {
   const TAS_FIELD_RAPORT_RECIPIENT = "Odbiorcy raportów i powiadomień";
   const TAS_FIELD_PREVWEEK = "Poprzedni tydzień";
   const TAS_FIELD_EMAILBODY = "mail_body";
-  const TAS_FIELD_EMAILSUBJECT = "mail_subcject";
+  const TAS_FIELD_EMAILSUBJECT = "mail_subject";
 
   const TAS_MSG_EMAIL_FOR_CLOSE_ONLY = "Możesz wysłać maila tylko dla zamkniętych zadań";
 
