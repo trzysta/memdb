@@ -45,7 +45,7 @@ const Task = function (e) {
         if (this.entryNextWeek === undefined) {
           this.createNewWeekplan();
         } else {
-          this.entryNextWeek.set(TAS_FIELD_TASK_PREVWEEK + 1, "alkjdlaksjdlkasjdlaskdjaslkdj");
+          this.entryNextWeek.set((TAS_FIELD_TASK_PREVWEEK + "1"), "alkjdlaksjdlkasjdlaskdjaslkdj");
         }
 
         this.entryNextWeek.recalc();
