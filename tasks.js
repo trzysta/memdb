@@ -16,24 +16,24 @@ const Task = function (e) {
     this.weekNr = this.entry.field(TAS_FIELD_WEEK);
     this.libTasks = libByName(LIB_TASKS_NAME);
 
-    for (let i = 1; i < 10; i++) {
+    // for (let i = 1; i < 10; i++) {
 
-      if (this.entry.field(TAS_FIELD_TASK + i).length > 0) {
+    //   if (this.entry.field(TAS_FIELD_TASK + i).length > 0) {
 
-        this.tasks[this.tasks.length] = { content: this.entry.field(TAS_FIELD_TASK + i) }
+    //     this.tasks[this.tasks.length] = { content: this.entry.field(TAS_FIELD_TASK + i) }
 
-      }
+    //   }
 
-      if (this.entry.field(TAS_FIELD_TASK_PREVWEEK + i).length > 0) {
+    //   if (this.entry.field(TAS_FIELD_TASK_PREVWEEK + i).length > 0) {
 
-        this.tasksPrevWeek[this.tasksPrevWeek.length] = {
-          content: this.entry.field(AS_FIELD_TASKPREVWEEK + i),
-          status: this.entry.field(TAS_FIELD_STATUSPREVWEEK + i),
-          notes: this.entry.field(TAS_FIELD_NOTESPREVWEEK + i)
-        }
+    //     this.tasksPrevWeek[this.tasksPrevWeek.length] = {
+    //       content: this.entry.field(AS_FIELD_TASKPREVWEEK + i),
+    //       status: this.entry.field(TAS_FIELD_STATUSPREVWEEK + i),
+    //       notes: this.entry.field(TAS_FIELD_NOTESPREVWEEK + i)
+    //     }
 
-      }
-    };
+    //   }
+    // };
 
     // * * * * * * * * * * * * * * * * * * * *
     this.closeWeek = function () {
