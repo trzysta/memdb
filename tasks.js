@@ -107,6 +107,7 @@ const Task = function (e) {
         this.entry.set(TAS_FIELD_EMAILSUBJECT, subject);
 
         let intentMail = intent("android.intent.action.SENDTO");
+        log(act);
         let act = "mailto:" + recip + "?cc=" + MAIL_CC_RECIPIENTS + "&subject=" + subject + "&body=" + body;
         intentMail.data(act);
         intentMail.send();
