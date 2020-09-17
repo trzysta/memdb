@@ -26,7 +26,6 @@ const Task = function (e) {
             this.tasksPrevWeek[this.tasksPrevWeek.length] =
             {
                 content: this.entry.field(TAS_FIELD_TASKPREVWEEK + i),
-                status: this.entry.field(TAS_FIELD_STATUSPREVWEEK + i),
                 notes: this.entry.field(TAS_FIELD_NOTESPREVWEEK + i)
             }
         }
@@ -87,7 +86,6 @@ const Task = function (e) {
         };
         for (let i = 0; i < this.tasksPrevWeek.length; i++) {
             bodyPrevTasks += (i + 1) + ") " + this.tasksPrevWeek[i].content + "\n" +
-                TAS_VALUE_EMAIL_PREVWEEK_STATUS + this.tasksPrevWeek[i].status + "\n" +
                 TAS_VALUE_EMAIL_PREVWEEK_NOTES + this.tasksPrevWeek[i].notes + "\n\n"
         };
 
@@ -103,7 +101,6 @@ const Task = function (e) {
         body = body.replace("$PREV_TASK_ADD", this.entry.field(TAS_FIELD_TASKPREVWEEK_ADDITIONAL));
         body = body.replace("$PREV_TASKS", bodyPrevTasks);
 
-
         this.entry.set(TAS_FIELD_EMAILBODY, body);
         this.entry.set(TAS_FIELD_EMAILSUBJECT, subject);
 
@@ -117,8 +114,14 @@ const Task = function (e) {
 
     // * * * * * * * * * * * * * * * * * * * *
     this.beforeSavingEntry = function () {
+
         this.entry.set(TAS_FIELD_TASKCOUNT, this.tasks.length + 1);
         this.entry.set(TAS_FIELD_TASKCOUNT_PREVWEEK, this.tasksPrevWeek.length + 1);
+
+        this.entry.set(TAS_FIELD_DATE_END, this.dateEnd.toDate());
+        this.entry.set(TAS_FIELD_WEEK, this.weekNr);
+        this.entry.set(TAS_FIELD_COORDINATOR, this.entryContract.field(CON_FIELD_COORDINATOR));
+
     }
 }
 

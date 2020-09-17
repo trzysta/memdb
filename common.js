@@ -343,8 +343,7 @@ try {
     "Poniżej znajdziecie państwo rozliczenie zadań z poprzedniego tygodnia.\n\n$PREV_TASK_ADD\n\n$PREV_TASKS";
 
 
-  const TAS_VALUE_EMAIL_PREVWEEK_STATUS = "ma status: ";
-  const TAS_VALUE_EMAIL_PREVWEEK_NOTES = "komentarz: ";
+  const TAS_VALUE_EMAIL_PREVWEEK_NOTES = "opis realizacji: ";
 
 
   const TAS_VALUE_EMAIL_SUBJECT = "Zadania na tydzień $WEEK_NR ($DATE_START - $DATE_END) na osiedlu $CONTRACT";
