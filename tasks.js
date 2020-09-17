@@ -80,6 +80,7 @@ const Task = function (e) {
         let body = TAS_VALUE_EMAIL_PLAN.toString() + TAS_VALUE_EMAIL_PREVWEEK.toString();
         let bodyTasks = "";
         let bodyPrevTasks = "";
+        let recip = this.entryContract.field(CON_FIELD_RAPORT_RECIPIENT);
 
         for (let i = 0; i < this.tasks.length; i++) {
             bodyTasks += (i + 1) + ") " + this.tasks[i].content + "\n\n";
@@ -100,16 +101,15 @@ const Task = function (e) {
         body = body.replace("$DATE_END", moment(this.dateEnd).format("DD.MM.YYYY"));
         body = body.replace("$TASKS", bodyTasks);
         body = body.replace("$PREVTASKS", bodyPrevTasks);
-
-        // this.entryContract.field(CON_FIELD_RAPORT_RECIPIENT).sendEmail(subject, body);
+        body = body.replace("$PREVTASKSADD", this.entry.field(TAS_FIELD_TASKPREVWEEK_ADDITIONAL));
 
         this.entry.set(TAS_FIELD_EMAILBODY, body);
         this.entry.set(TAS_FIELD_EMAILSUBJECT, subject);
 
         let intentMail = intent("android.intent.action.SENDTO");
-        let act = "mailto:zarzady@trzysta.pl?cc=marceli@trzysta.pl&subject=" + subject + "&body=" + body;
+        let act = "mailto:" + recip + "?cc=" + MAIL_CC_RECIPIENTS + "&subject=" + subject + "&body=" + body;
         intentMail.data(act);
-        intentMail.send(); // send it ou
+        intentMail.send();
 
     }
 

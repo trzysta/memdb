@@ -58,6 +58,8 @@ try {
   const MSG_FINISHED = "Zakończono!";
   const VALUE_MAIL = "e-mail";
 
+  const MAIL_CC_RECIPIENTS = "raporty@trzysta.pl";
+
   const SAL_FIELD_CANREAD = "canAccess";
   const SAL_WITHDRWAL_MAKER = "Marceli Matynia";
   const SAL_FIELD_CLOSED = "Rozliczony";
@@ -316,6 +318,7 @@ try {
   const TAS_FIELD_TASKPREVWEEK = "taskPrevWeek";
   const TAS_FIELD_STATUSPREVWEEK = "Status";
   const TAS_FIELD_NOTESPREVWEEK = "commentPrevWeek";
+  const TAS_FIELD_TASKPREVWEEK_ADDITIONAL = "Zadania dodatkowe poza planem, komentarz do poprzedniego tygodnia";
 
   const TAS_VALUE_STATUS_CLOSED = "Wykonane i zakończone";
   const TAS_VALUE_STATUS_RUNNING = "W trakcie wykonywania";
@@ -337,7 +340,7 @@ try {
     "$TASKS";
 
   const TAS_VALUE_EMAIL_PREVWEEK = "\n\n" +
-    "Poniżej znajdziecie państwo rozliczenie zadań z poprzedniego tygodnia.\n\n $PREVTASKS";
+    "Poniżej znajdziecie państwo rozliczenie zadań z poprzedniego tygodnia.\n\n$PREVTASKSADD\n\n$PREVTASKS";
 
 
   const TAS_VALUE_EMAIL_PREVWEEK_STATUS = "ma status: ";
