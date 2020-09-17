@@ -100,8 +100,9 @@ const Task = function (e) {
         body = body.replace("$DATE_START", moment(this.dateStart).format("DD.MM.YYYY"));
         body = body.replace("$DATE_END", moment(this.dateEnd).format("DD.MM.YYYY"));
         body = body.replace("$TASKS", bodyTasks);
-        body = body.replace("$PREVTASKS", bodyPrevTasks);
-        body = body.replace("$PREVTASKSADD", this.entry.field(TAS_FIELD_TASKPREVWEEK_ADDITIONAL));
+        body = body.replace("$PREV_TASK_ADD", this.entry.field(TAS_FIELD_TASKPREVWEEK_ADDITIONAL));
+        body = body.replace("$PREV_TASKS", bodyPrevTasks);
+
 
         this.entry.set(TAS_FIELD_EMAILBODY, body);
         this.entry.set(TAS_FIELD_EMAILSUBJECT, subject);

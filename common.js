@@ -340,7 +340,7 @@ try {
     "$TASKS";
 
   const TAS_VALUE_EMAIL_PREVWEEK = "\n\n" +
-    "Poniżej znajdziecie państwo rozliczenie zadań z poprzedniego tygodnia.\n\n$PREVTASKSADD\n\n$PREVTASKS";
+    "Poniżej znajdziecie państwo rozliczenie zadań z poprzedniego tygodnia.\n\n$PREV_TASK_ADD\n\n$PREV_TASKS";
 
 
   const TAS_VALUE_EMAIL_PREVWEEK_STATUS = "ma status: ";
