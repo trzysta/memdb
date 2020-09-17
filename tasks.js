@@ -123,8 +123,22 @@ const Task = function (e) {
     // * * * * * * * * * * * * * * * * * * * *
     this.getCurrentStatus = function () {
 
-        if 
+        let currentWeek = moment().week();
+        const x = currentWeek - this.weekNr;
 
+        switch (true) {
+            case (x = 0):
+                let result = TAS_VALUE_WEEKSTATUS_RUNNING;
+                break;
+            case (x < 0):
+                let result = TAS_VALUE_WEEKSTATUS_RUNNING;
+                break;
+            case (x > 0):
+                let result = TAS_VALUE_WEEKSTATUS_RUNNING;
+                break;
+        }
+
+        return result;
     }
 }
 
