@@ -5,7 +5,6 @@ const Task = function (e) {
     log("Task: start");
 
     this.entry = e;
-    this.status = this.entry.field(TAS_FIELD_WEEKSTATUS);
     this.dateStart = this.entry.field(TAS_FIELD_DATE_START);
     this.dateEnd = moment(this.dateStart).add(4, 'days').toDate();
     this.tasks = new Array;
@@ -44,8 +43,7 @@ const Task = function (e) {
                 this.entryNextWeek.set(TAS_FIELD_TASKPREVWEEK + (i + 1), this.tasks[i].content);
             }
         }
-        this.entryNextWeek.set(TAS_FIELD_WEEKSTATUS, TAS_VALUE_WEEKSTATUS_RUNNING);
-        this.entry.set(TAS_FIELD_WEEKSTATUS, TAS_VALUE_WEEKSTATUS_CLOSED);
+
         this.entryNextWeek.recalc();
         this.entryNextWeek.show();
     }
@@ -55,7 +53,6 @@ const Task = function (e) {
 
         this.entryNextWeek = new Object();
         this.entryNextWeek = this.libTasks.create(this.entryNextWeek);
-        this.entryNextWeek.set(TAS_FIELD_WEEKSTATUS, TAS_VALUE_WEEKSTATUS_RUNNING);
         this.entryNextWeek.set(TAS_FIELD_CONTRACT, this.entryContract);
         this.entryNextWeek.set(TAS_FIELD_DATE_START, moment(this.dateStart).add(7, 'days').toDate());
         this.entryNextWeek.set(TAS_FIELD_DATE_END, moment(this.dateStart).add(11, 'days').toDate());
@@ -117,10 +114,16 @@ const Task = function (e) {
 
         this.entry.set(TAS_FIELD_TASKCOUNT, this.tasks.length + 1);
         this.entry.set(TAS_FIELD_TASKCOUNT_PREVWEEK, this.tasksPrevWeek.length + 1);
-
         this.entry.set(TAS_FIELD_DATE_END, this.dateEnd.toDate());
         this.entry.set(TAS_FIELD_WEEK, this.weekNr);
         this.entry.set(TAS_FIELD_COORDINATOR, this.entryContract.field(CON_FIELD_COORDINATOR));
+
+    }
+
+    // * * * * * * * * * * * * * * * * * * * *
+    this.getCurrentStatus = function () {
+
+        if 
 
     }
 }
