@@ -21,7 +21,6 @@ const Spending = function (e) {
 function budgetAllocationLeft(entrySpend) {
 
 
-
   let amount = entry().field("Kwota");
   let contracts = entry().field("Przypisanie kosztu do osiedli");
   let left = amount;

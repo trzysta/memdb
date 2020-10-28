@@ -305,7 +305,7 @@ try {
   const TAS_FIELD_COORDINATOR = "Odpowiedzialny koordynator";
   const TAS_FIELD_DATE_START = "Zadanie na tydzień rozpoczynający się od dnia";
   const TAS_FIELD_DATE_END = "Koniec tygodnia wyznaczonych zadań";
-  const TAS_FIELD_WEEK = "Numer tygodnia";
+  const TAS_FIELD_WEEK = "Plan na tydzień numer";
   const TAS_FIELD_WEEKSTATUS = "Status główny";
 
   const TAS_VALUE_WEEKSTATUS_CLOSED = "Zamknięty i rozliczony";
@@ -314,9 +314,11 @@ try {
 
   const TAS_FIELD_DESCRIPTION = "description";
 
-  const TAS_FIELD_TASK = "taskThisWeek";
+  const TAS_FIELD_TASK = "Zadania na bieżacy tydzień";
+
   const TAS_FIELD_TASKPREVWEEK = "taskPrevWeek";
   const TAS_FIELD_STATUSPREVWEEK = "Status";
+
   const TAS_FIELD_NOTESPREVWEEK = "commentPrevWeek";
   const TAS_FIELD_TASKPREVWEEK_ADDITIONAL = "Zadania dodatkowe poza planem, komentarz do poprzedniego tygodnia";
 
