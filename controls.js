@@ -16,10 +16,11 @@ const copyLastValues = function (e) {
   if (allEntries.length > 0) {
     let lastEntry = allEntries[0];
     for (i = 1; i <= 10; i++) {
+
       e.set(i + FIELD_LABEL, lastEntry.field(i + FIELD_LABEL));
       e.set(i + FIELD_PROMPT, lastEntry.field(i + FIELD_PROMPT));
       for (j = 0; e.field(i + FIELD_PROMPT).length; j++) {
-        e.field(i + FIELD_PROMPT)[j].checked = false;
+        message(e.field(i + FIELD_PROMPT)[j].checked);
       }
     }
   }
