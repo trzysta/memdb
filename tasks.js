@@ -1,7 +1,7 @@
 
 const Task = function (e) {
 
-    log("Task: start");
+    log("Task: start nowa wersja");
 
     this.entry = e;
     this.dateStart = this.entry.field(TAS_FIELD_DATE_START);
