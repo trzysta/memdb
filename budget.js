@@ -1,24 +1,48 @@
+// ********
 
 
-const Budget = function (e) {
 
-    log("Budget: " + String(e));
+const SPE_FIELD_AUTOALLOCATION = "Dokonaj automatycznej alokacji kosztów";
+const SPE_FIELD_AUTOALLOCATION_VALUE_MANUALLY = "Nie rób nic, samodzielnie podzielę koszt na osiedla";
+const SPE_FIELD_AUTOALLOCATION_VALUE_ONLY_LISTED = "Podziel kwotę po wskazanych niżej osiedlach";
+const SPE_FIELD_AUTOALLOCATION_VALUE_MY_CONTRACTS = "Podziel kwotę po MOICH osiedlach";
+const SPE_FIELD_AUTOALLOCATION_VALUE_ALL_CONTRACTS = "Podziel kwotę po SZYSTKICH osiedlach";
 
+
+
+
+const assignSpendingToBudgets = function (entrySpending) {
+
+ 
+
+
+
+
+  log("Budget :: assingBudgetToContracts :: " + String(entrySpending));
+
+  if (entrySpending !== undefined) {
     try {
-        this.entry = e;
-        this.amountLimit = this.entry.field(BUD_FIELD_AMOUNT_LIMIT);
-        this.amountLeft = this.entry.field(BUD_FIELD_AMOUNT_LEFT);
-        this.amountSpent = this.entry.field(BUD_FIELD_AMOUNT_SPENT);
-
-
-
-
+     
+     
+     switch (entrySpending.field(SPE_FIELD_AUTOALLOCATION)) {
+         case  SPE_FIELD_AUTOALLOCATION_VALUE_MANUALLY:
+            break;
+         case SPE_FIELD_AUTOALLOCATION_VALUE_ONLY_LISTED:
+            break;
+         case SPE_FIELD_AUTOALLOCATION_VALUE_MY_CONTRACTS:
+            break;
+         case SPE_FIELD_AUTOALLOCATION_VALUE_ALL_CONTRACTS:
+             break;
+     
+         default:
+             // nic nie zaznaczono
+             break;
+     }
+     
         //  linkowanie entry z bazy budzet do bazy wydatki
-        //  1) spradzenie jeśli linked jest do basy wydatki to jedziesz dalej
-
-        //  2) 
-
-        /* 
+      //  1) spradzenie jeśli linked jest do basy wydatki to jedziesz dalej
+      //  2)
+      /* 
         
          function ( entryWydatek, entryBudżet, parametr-kategoria, parametr-kwota,   )
          założenia entry jest zwalidowane. 
@@ -47,44 +71,36 @@ const Budget = function (e) {
         
         
         */
-
-        // *********
-        this.linkBudgetEntry = function (entrySpend, entryBudget, category, amount) {
-
-
-            let entriesBudget = entrySpend.field(SPE_FIELD_BUDGET);
-
-
-
-
-            entrySpend.link(SPE_FIELD_DUBGET, entryBudget);
-
-
-            this.entry.link(SAL_FIELD_SPEND_LINK, entrySpendWithdrwal);
-
-
-
-
-            let amount = entrySpending.field(SPE_FIELD_AMOUNT);
-            this.amountSpent += amount;
-            this.amountLeft -= amount;
-        }
-
-        this.unlinkBudgetEntry = function (entrySpending) {
-        }
-
-        this.recalculateBudget = function () {
-        }
-
-
-        this.countProfitability = function () {
-            // funckja która liczy dochodowość osiedla poprzez 
-        }
-
-
-
-
+      // *********
     } catch (err) {
-        log("Budget: " + err);
+      log("Budget:assingBudgetToContracts:" + err);
     }
-}
+  }
+};
+
+const linkBudgetEntry = function (entrySpend, entryBudget, category, amount) {
+  let amountLimit = entryBudget.field(BUD_FIELD_AMOUNT_LIMIT);
+  let amountLeft = entryBudget.field(BUD_FIELD_AMOUNT_LEFT);
+  let amountSpent = entryBudget.field(BUD_FIELD_AMOUNT_SPENT);
+
+  switch (category) {
+      case value:
+          
+          break;
+  
+      default:
+          break;
+  }
+
+
+
+
+};
+
+const unlinkBudgetEntry = function (entrySpending) {};
+
+const recalculateBudget = function () {};
+
+const countProfitability = function () {
+  // funckja która liczy dochodowość osiedla poprzez
+};
