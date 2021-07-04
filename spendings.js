@@ -5,14 +5,14 @@
 
 
 const assignSpendingToBudgets = function (entrySpending) {
-  log("Budget :: assingBudgetToContracts :: " + String(entrySpending));
+  message("Budget :: assingBudgetToContracts :: " + String(entrySpending));
 
   if (entrySpending !== undefined) {
     try {
       switch (entrySpending.field(SPE_FIELD_AUTOALLOCATION)) {
 
         case SPE_FIELD_AUTOALLOCATION_VALUE_MANUALLY:
-        
+          message(PE_FIELD_AUTOALLOCATION_VALUE_MANUALLY);
           const assignedBudgets = entrySpending.field(SPE_FIELD_COST_ALLOCATION_LINK);
         
           for (let index = 0; index < assignedBudgets.length; index++) {
@@ -20,9 +20,10 @@ const assignSpendingToBudgets = function (entrySpending) {
             const entryBudget = assignedBudgets[index];
             const amount = assignedBudgets[index].attr(SPE_FIELD_COST_ALLOCATION_LINK_ATTR_AMOUNT);
             const category = assignedBudgets[index].attr(SPE_FIELD_COST_ALLOCATION_LINK_ATTR_CATEGORY);
-        
+            message(entryBudget+" "+amount+" "+category);
+
             if ( category !=  BUD_FIELD_CATEGORY_REINVOICE) {
-              linkBudgetEntry(entrySpending, entryBudget, category, amount);
+              updateBudgetEntry(entrySpending, entryBudget, category, amount);
             }
             
           }
