@@ -8,6 +8,7 @@ const assignSpendingToBudgets = function (entrySpending) {
   message("Budget :: assingBudgetToContracts :: " + String(entrySpending));
 
   if (entrySpending !== undefined) {
+    message("Budget :: assingBudgetToContracts :: " + String(entrySpending));
     try {
       switch (entrySpending.field(SPE_FIELD_AUTOALLOCATION)) {
 
