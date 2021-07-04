@@ -30,16 +30,17 @@ try {
   const ARR_EDITORS = [
     "MalgorzataG",
     "ElzbietaZ",
-    "trzystaIZABELA",
     "MarceliM",
+    "WojciechS",
     "trzysta",
   ];
   const ARR_MANAGERS = ["trzysta", "Marceli Matynia"];
+
   const arrNames = [
     "Małgorzata Grabowska",
     "Elżbieta Zdziech",
-    "Izabela Skowrońska",
     "Marceli Matynia",
+    "Wojciech Sygit",
     "Administrator",
   ];
 
@@ -156,8 +157,18 @@ try {
   const SPE_FIELD_BUDGET_LINK_AMOUNT = "Kwota";
 
   const SPE_FIELD_COST_ALLOCATION_LINK = "Robicie kosztu na osiedla";
-  const SPE_FIELD_COST_ALLOCATION_LINK_AMOUNT = "Kwota";
+  const SPE_FIELD_COST_ALLOCATION_LINK_ATTR_AMOUNT = "Kwota";
+  const SPE_FIELD_COST_ALLOCATION_LINK_ATTR_CATEGORY = "Kategoria wydatku";
+  
   const SPE_FIELD_COST_ALLOCATION_LEFT = "Kwota pozostała do rozpisania";
+
+  const SPE_FIELD_AUTOALLOCATION = "Dokonaj automatycznej alokacji kosztów";
+  const SPE_FIELD_AUTOALLOCATION_VALUE_MANUALLY = "Nie rób nic, samodzielnie podzielę koszt na osiedla";
+  const SPE_FIELD_AUTOALLOCATION_VALUE_ONLY_LISTED = "Podziel kwotę po wskazanych niżej osiedlach";
+  const SPE_FIELD_AUTOALLOCATION_VALUE_MY_CONTRACTS = "Podziel kwotę po MOICH osiedlach";
+  const SPE_FIELD_AUTOALLOCATION_VALUE_ALL_CONTRACTS = "Podziel kwotę po SZYSTKICH osiedlach";
+
+
 
   const SPE_FIELD_CREATOR = "Dokonujący transakcji";
   const SPE_FIELD_CATEGORY = "Kategoria";
@@ -174,15 +185,6 @@ try {
   const SPE_FIELD_DESCRIPTION_DISPLAY = "Opis";
 
 
-  Array.prototype.unique = function () {
-    let arr = [];
-    for (let i = 0; i < this.length; i++) {
-      if (arr.indexOf(this[i]) < 0) {
-        arr.push(this[i]);
-      }
-    }
-    return arr;
-  }
 
   // /
 
@@ -202,20 +204,15 @@ try {
 
   const BUD_FIELD_CONTRACT = "Osiedle";
   const BUD_FIELD_MONTH = "Miesiąc";
-  const BUD_FIELD_AMOUNT_LIMIT = "Limit dla osiedla w danym miesiącu";
-  const BUD_FIELD_AMOUNT_SPENT = "Kwota wydana w tym miesiącu";
-  const BUD_FIELD_AMOUNT_LEFT = "Kwota pozostała do wydania";
+  const BUD_FIELD_AMOUNT_LIMIT = "Limit";
+  const BUD_FIELD_AMOUNT_SPENT = "Wydatki";
+  const BUD_FIELD_AMOUNT_LEFT = "Oszczędności";
 
-  const BUD_CATEGORY_SALARY = "Wynagrodzenia"; // to musza być wartości pola wyboru w bazie wydatków przy alokowaniu budetu do osiedla
-  const BUD_CATEGORY_PURCHASE = "Zakupy";
-  const BUD_CATEGORY_FIXED = "Stałe koszty";
-  const BUD_CATEGORY_OTHER = "Inne";
-
-  const BUD_FIELD_SALARY = "Kwota wydana na pensje";
-  const BUD_FIELD_PURCHASE = "Kwota wydana na zakupy";
-  const BUD_FIELD_FIXED = "Kwota wydana na stałe koszty";
-  const BUD_FIELD_OTHER = "Kwota wydana na inne";
-
+  const BUD_FIELD_CATEGORY_PURCHASE = "Zakupy, paliwo, sprzęt, serwis";
+  const BUD_FIELD_CATEGORY_SALARY = "Wynagrodzenia";
+  const BUD_FIELD_CATEGORY_FIXED = "Stałe koszty";
+  const BUD_FIELD_CATEGORY_OTHER = "Inne";
+  const BUD_FIELD_CATEGORY_REINVOICE = "Refaktura";
 
 
 
@@ -471,6 +468,18 @@ try {
   //   currentEntry.link("Link", linkedEntry);
   // }
 
+
+
+
+  Array.prototype.unique = function () {
+    let arr = [];
+    for (let i = 0; i < this.length; i++) {
+      if (arr.indexOf(this[i]) < 0) {
+        arr.push(this[i]);
+      }
+    }
+    return arr;
+  }
 
 } catch (error) {
   log(error);
