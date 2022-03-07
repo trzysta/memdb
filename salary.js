@@ -277,7 +277,7 @@ const Salary = function (e) {
 
           if (jobPositionCode.indexOf("_") > 0 ) {
             let contractCode = jobPositionCode.substr(0, jobPositionCode.indexOf("_"));
-            entrySpend.set(contractCode, 0 - Math.abs(amount));
+            entrySpend.set(contractCode, Math.abs(amount));
           }
           
           entrySpend.set(SPE_FIELD_AMOUNT, 0 - Math.abs(amount));
