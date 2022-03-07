@@ -76,9 +76,9 @@ const Salary = function (e) {
       this.isVisible = this.entry.field(FIELD_CAN_ACCESS);
       if (this.entry.field(SAL_FIELD_EMPLOYEE_LINK).length > 0) {
         this.entryEmployee = this.entry.field(SAL_FIELD_EMPLOYEE_LINK)[0];
-        this.holidayTotal = this.entryEmployee.field(EMP_FIELD_HOLIDAY_TOTAL);
-        this.holidayUsed = this.entryEmployee.field(EMP_FIELD_HOLIDAY_USED);
-        this.holidayCurrent = this.entry.field(SAL_FIELD_HOLIDAY);
+        //this.holidayTotal = this.entryEmployee.field(EMP_FIELD_HOLIDAY_TOTAL);
+        //this.holidayUsed = this.entryEmployee.field(EMP_FIELD_HOLIDAY_USED);
+        //this.holidayCurrent = this.entry.field(SAL_FIELD_HOLIDAY);
       }
       if (!isNaN(this.entry.field(SAL_FIELD_CASH_AMOUNT))) this.amountCash = this.entry.field(SAL_FIELD_CASH_AMOUNT);
       if (!isNaN(this.entry.field(SAL_FIELD_WITHDRAWAL_AMOUNT))) this.amountWithdrwal = this.entry.field(SAL_FIELD_WITHDRAWAL_AMOUNT);
@@ -181,7 +181,7 @@ const Salary = function (e) {
           this.entry.set(FIELD_CAN_ACCESS, this.isVisible);
           this.entry.set(SAL_FIELD_CLOSED, SAL_FIELD_CLOSED_VALUE_YES);
           this.entry.set(FIELD_EDITOR, ARR_MANAGERS);
-          this.entryEmployee.set(EMP_FIELD_HOLIDAY_USED, (this.holidayUsed + this.holidayCurrent));
+          //this.entryEmployee.set(EMP_FIELD_HOLIDAY_USED, (this.holidayUsed + this.holidayCurrent));
           this.entry.recalc();
           if (reopenEntry) this.entry.show();
         } else {
