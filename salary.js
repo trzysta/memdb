@@ -74,6 +74,12 @@ const Salary = function (e) {
       this.holidayTotal = 0;  
       this.holidayUsed = 0;
       this.holidayCurrent = 0;
+      this.allContractsShort = new Array();
+
+      let libContracts = libByName(LIB_CONTRACTS_NAME); 
+      for (i=0; i<libContracts.entries().length; i++ ) {
+        this.allContractsShort.push (libContracts.entries(i).field(CON_FIELD_SHORT_NAME)) 
+      }
 
       this.isVisible = this.entry.field(FIELD_CAN_ACCESS);
       if (this.entry.field(SAL_FIELD_EMPLOYEE_LINK).length > 0) {
@@ -268,6 +274,12 @@ const Salary = function (e) {
         if (libSpendings !== undefined) {
           entrySpend = libSpendings.create(entrySpend);
           setEntryDefaultValues(entrySpend);
+
+          if (jobPositionCode.indexOf("_") > 0 ) {
+            let contractCode = jobPositionCode.substr(0, jobPositionCode.indexOf("_"));
+            entrySpend.set(contractCode, 0 - Math.abs(amount));
+          }
+          
           entrySpend.set(SPE_FIELD_AMOUNT, 0 - Math.abs(amount));
           entrySpend.set(SPE_FIELD_DATE, date);
           entrySpend.set(SPE_FIELD_CREATOR, payer);

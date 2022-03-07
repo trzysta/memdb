@@ -359,11 +359,17 @@ try {
 
   const CON_FIELD_COORDINATOR = "Koordynator";
   const CON_FIELD_RAPORT_RECIPIENT = "Odbiorcy raportów i powiadomień";
+  const CON_FIELD_SHORT_NAME = "Skrót";
 
 
-
-
-
+  function contains(arr, obj) {
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i] === obj) {
+            return true;
+        }
+    }
+    return false;
+  }
 
   // *^*^*^*  odpalana Creating Entry, Opening an Entry Card
   function setEntryDefaultValues(e) {
