@@ -69,7 +69,9 @@ const Salary = function (e) {
       this.payerName = this.entry.field(SAL_FIELD_PAYER);
       this.description = this.entry.field(SAL_FIELD_DESCRIPTION);
       this.type = this.entry.field(SAL_FIELD_PAYMENT_TYPE);
-      this.holidayTotal = 0;
+      this.jobPositionCode = this.entry.field(SAL_FIELD_JOB_POSITION_CODE);
+      this.salaryMonth = this.entry.field(SAL_FIELD_MONTH);
+      this.holidayTotal = 0;  
       this.holidayUsed = 0;
       this.holidayCurrent = 0;
 
@@ -163,7 +165,9 @@ const Salary = function (e) {
               SAL_WITHDRWAL_MAKER,
               this.description,
               this.entryEmployee,
-              true
+              true,
+              this.jobPositionCode,
+              this.salaryMonth
             );
             this.entry.link(SAL_FIELD_SPEND_LINK, entrySpendWithdrwal);
           }
@@ -174,7 +178,9 @@ const Salary = function (e) {
               this.payerName,
               this.description,
               this.entryEmployee,
-              false
+              false,
+              this.jobPositionCode,
+              this.salaryMonth
             );
             this.entry.link(SAL_FIELD_SPEND_LINK, entrySpendCash);
           }
@@ -240,7 +246,9 @@ const Salary = function (e) {
       payer,
       description,
       entryEmployee,
-      isWithdrwal
+      isWithdrwal,
+      jobPositionCode,
+      salaryMonth
     ) {
 
       log("createSpendEntry: " + String(amount) + ", " +
@@ -248,7 +256,9 @@ const Salary = function (e) {
         String(payer) + ", " +
         String(description) + ", " +
         String(entryEmployee) + ", " +
-        String(isWithdrwal) + ", ");
+        String(isWithdrwal) + ", ") +
+        String(jobPositionCode) + ", " +
+        String(salaryMonth);
       try {
         log(SAL_MSG_CREATING_SPEND + amount + ", " + payer);
 
@@ -262,7 +272,8 @@ const Salary = function (e) {
           entrySpend.set(SPE_FIELD_DATE, date);
           entrySpend.set(SPE_FIELD_CREATOR, payer);
           entrySpend.set(SPE_FIELD_EMPLOYEE_LINK, entryEmployee);
-          entrySpend.set(SPE_FIELD_DESCRIPTION, description);
+          entrySpend.set(SPE_FIELD_JOB_POSITION_CODE, jobPositionCode);
+          entrySpend.set(SPE_FIELD_SALARY_MONTH, salaryMonth);        
           if (isWithdrwal) {
             entrySpend.set(SPE_FIELD_TYPE, SPE_FIELD_TYPE_VALUE_EMPLOYEE_WITHDRAWAL);
           } else {

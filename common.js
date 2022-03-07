@@ -90,6 +90,8 @@ try {
   const SAL_FIELD_WORKINGHOURS = "Ilość godzin pracy dzienne";
   const SAL_FIELD_COMMENT = "Uwagi";
   const SAL_FIELD_HOUR = "hour";
+  const SAL_FIELD_JOB_POSITION_CODE = "Kod stanowiska";
+   
 
   const SAL_ADD_DESCRIPTION_WITHDRAWAL = " wypłata przelewem za ";
   const SAL_ADD_DESCRIPTION_CASH = " wypłata gotówki za ";
@@ -183,7 +185,8 @@ try {
   const SPE_FIELD_NR = "Nr";
   const SPE_FIELD_NR_ASSIGNED = "Nr powiązany";
   const SPE_FIELD_DESCRIPTION_DISPLAY = "Opis";
-
+  const SPE_FIELD_JOB_POSITION_CODE = "Kod stanowiska";
+  const SPE_FIELD_SALARY_MONTH = "Wynagrodzenie za miesiąc"; 
 
 
   // /
