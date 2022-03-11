@@ -346,6 +346,7 @@ const Salary = function (e) {
         entryTarget[SAL_FIELD_RATE_DUTY] = this.entry.field(SAL_FIELD_RATE_DUTY);
         entryTarget[SAL_FIELD_WORKINGHOURS] = this.entry.field(SAL_FIELD_WORKINGHOURS);
         entryTarget[SAL_FIELD_COMMENT] = this.entry.field(SAL_FIELD_COMMENT);
+        entryTarget[SAL_FIELD_JOB_POSITION_CODE] = this.entry.field(SAL_FIELD_JOB_POSITION_CODE);
 
         entryTarget[SAL_FIELD_CLOSED] = SAL_FIELD_CLOSED_VALUE_NO;
         entryTarget = lib.create(entryTarget);
@@ -380,4 +381,7 @@ const Salary = function (e) {
     log("Salary: " + err);
   }
 }
+
+
+
 
