@@ -187,6 +187,7 @@ try {
   const SPE_FIELD_DESCRIPTION_DISPLAY = "Opis";
   const SPE_FIELD_JOB_POSITION_CODE = "Kod stanowiska";
   const SPE_FIELD_SALARY_MONTH = "Wynagrodzenie za miesiąc"; 
+  const SPE_CATEGORY_EMPLOYEE = "Wynagrodzenia";
 
 
   // /
