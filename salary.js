@@ -279,7 +279,8 @@ const Salary = function (e) {
           entrySpend.set(SPE_FIELD_CREATOR, payer);
           entrySpend.set(SPE_FIELD_EMPLOYEE_LINK, entryEmployee);
           entrySpend.set(SPE_FIELD_JOB_POSITION_CODE, jobPositionCode);
-          entrySpend.set(SPE_FIELD_SALARY_MONTH, salaryMonth);        
+          entrySpend.set(SPE_FIELD_SALARY_MONTH, salaryMonth);      
+          entrySpend.set(SPE_FIELD_CATEGORY, SPE_CATEGORY_EMPLOYEE);        
           if (isWithdrwal) {
             entrySpend.set(SPE_FIELD_TYPE, SPE_FIELD_TYPE_VALUE_EMPLOYEE_WITHDRAWAL);
           } else {
