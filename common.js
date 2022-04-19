@@ -30,20 +30,20 @@ try {
   const ARR_EDITORS = [
     "MalgorzataG",
     "ElzbietaZ",
-    "MarceliM",
     "WojciechS",
+    "KatarzynaD",
     "trzysta",
   ];
-  const ARR_MANAGERS = ["trzysta", "Marceli Matynia"];
 
   const arrNames = [
     "Małgorzata Grabowska",
     "Elżbieta Zdziech",
-    "Marceli Matynia",
     "Wojciech Sygit",
+    "Katarzyna Deputowska"
     "Administrator",
   ];
 
+  const ARR_MANAGERS = ["trzysta", "Marceli Matynia"];
 
   const FIELD_EDITOR = "Editor";
   const FIELD_IS_NEW = "new";
@@ -374,8 +374,8 @@ try {
 
   // *^*^*^*  odpalana Creating Entry, Opening an Entry Card
   function setEntryDefaultValues(e) {
-    e.set(FIELD_EDITOR, ARR_EDITORS);
-    e.set(FIELD_IS_NEW, true);
+    //e.set(FIELD_EDITOR, ARR_EDITORS);
+    //e.set(FIELD_IS_NEW, true);
   }
 
   // *^*^*^*  sprawdza czy entrySearchFor jest w arrayOfLinks

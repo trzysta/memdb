@@ -4,116 +4,155 @@
 
 
 
-const assignSpendingToBudgets = function (entrySpending) {
-  message("Budget :: assingBudgetToContracts :: " + String(entrySpending));
 
-  if (entrySpending !== undefined) {
-    message("Budget :: assingBudgetToContracts :: " + String(entrySpending));
-    try {
-      switch (entrySpending.field(SPE_FIELD_AUTOALLOCATION)) {
 
-        case SPE_FIELD_AUTOALLOCATION_VALUE_MANUALLY:
-          message(PE_FIELD_AUTOALLOCATION_VALUE_MANUALLY);
-          const assignedBudgets = entrySpending.field(SPE_FIELD_COST_ALLOCATION_LINK);
-        
-          for (let index = 0; index < assignedBudgets.length; index++) {
-        
-            const entryBudget = assignedBudgets[index];
-            const amount = assignedBudgets[index].attr(SPE_FIELD_COST_ALLOCATION_LINK_ATTR_AMOUNT);
-            const category = assignedBudgets[index].attr(SPE_FIELD_COST_ALLOCATION_LINK_ATTR_CATEGORY);
-            message(entryBudget+" "+amount+" "+category);
 
-            if ( category !=  BUD_FIELD_CATEGORY_REINVOICE) {
-              updateBudgetEntry(entrySpending, entryBudget, category, amount);
-            }
-            
+
+
+const ev_new_przedZapisem = function ( e ) {
+
+/*
+  WYD_ev_new_przedZapisem.js
+  walidacja poprawności wypełnienia pól i operacje wykonywane w zależności
+  od rodaju wydatku
+*/
+
+var nll = "- wybierz -";
+var wyd = ["Zakup za gotówkę", "Zakup z karty", "Zakup na przelew"];
+var lib = libByName("Wydatki");
+var e = entry();
+var s = e.field("Kwota");
+var p = e.field("Dokonujący transakcji");
+var k = e.field("Przekazano osobie");
+var t = e.field("Typ transakcji");
+var kat = e.field("Kategoria");
+var editors = ["MalgorzataG", "ElzbietaZ", "trzystaIZABELA", "trzysta"];
+
+e.set("Editor", editors);
+    
+if (t == "Przekazanie gotówki koordynatorowi" && k == p) {
+  message("Nie można przekazać tej samej osobie");
+  cancel();
+} else if (p == nll) {
+  message("Wybierz z listy osobę dokonującą transakcji");
+  cancel();
+} else if (t == "Przekazanie gotówki koordynatorowi" && k == nll) {
+  message("Wybierz komu przekazano gotówkę!");
+  cancel();
+} else if ( wyd.indexOf(t) >= 0 &&  kat == nll ) {
+  message("Wybierz kategorię wydatku");
+  cancel();
+} else {
+
+  // operacje po walidacji
+
+
+
+  switch (t) {
+    case "Zakup z karty":
+    case "Zakup za gotówkę":
+    case "Wypłacona gotówką zaliczka":
+    case "Rozliczenie gotówką z pracownikiem":
+    case "Rozliczenie przelewem z pracownikiem":
+    case "Wypłacona przelewem zaliczka":
+      e.set("Termin płatności", "");
+      e.set("Data dokonania zapłaty", e.field("Data transakcji"));
+      e.set("Do zapłaty", "Zapłacone");
+      e.set("Kwota", 0 - Math.abs(s));
+      if (
+          (t == "Rozliczenie gotówką z pracownikiem") || 
+          (t == "Wypłacona gotówką zaliczka") || 
+          (t == "Rozliczenie przelewem z pracownikiem") || 
+          (t == "Wypłacona przelewem zaliczka")
+         ) {
+             e.set("Kategoria", "Wynagrodzenia") 
           }
-          break;
-        
-        case SPE_FIELD_AUTOALLOCATION_VALUE_ONLY_LISTED:
-          break;
-        case SPE_FIELD_AUTOALLOCATION_VALUE_MY_CONTRACTS:
-          break;
-        case SPE_FIELD_AUTOALLOCATION_VALUE_ALL_CONTRACTS:
-          break;
+      break;
 
-        default:
-          // nic nie zaznaczono
-          break;
+    case "":
+    case "Zakup na przelew":
+      e.set("Kwota", 0 - Math.abs(s));
+      break;
+
+    case "Przekazanie gotówki koordynatorowi":
+
+      log("Przekazanie gotówki koordynatorowi: ");
+
+      try {
+
+        var newE = new Object();
+        var newEntry;
+        var newNr;
+        var sRes;
+
+        e.set("Kategoria", "");
+        e.set("Termin płatności", "");
+        e.set("Kwota", 0 - Math.abs(s));
+        e.set("Data dokonania zapłaty", e.field("Data transakcji"));
+        e.set("Do zapłaty", "Zapłacone");
+
+        newNr = guid().toUpperCase();//Math.floor(10000 + (Math.random() * 90000));
+        sRes = lib.find(newNr);
+
+        while (sRes.length != 0) {
+            newNr = guid().toUpperCase();//Math.floor(10000 + (Math.random() * 90000));
+            sRes = lib.find(newNr);
+        };
+
+        e.set("Nr powiązany", newNr);
+        e.set("Link", null);
+
+        newE["Typ transakcji"] = e.field("Typ transakcji");
+        newE["Opis"] = e.field("Opis");
+        newE["Do zapłaty"] = "Zapłacone";
+        newE["Data dokonania zapłaty"] = e.field("Data transakcji");
+        newE["Data transakcji"] = e.field("Data transakcji");
+        newE["Dokonujący transakcji"] = e.field("Przekazano osobie");
+        newE["Przekazano osobie"] = e.field("Dokonujący transakcji");
+        newE["Editor"] = e.field("Editor");
+        newE["Opis"] = e.field("Opis");
+        newE["Kwota"] = Math.abs(s);
+        newE["Nr"] = newNr;
+        newE["Nr powiązany"] = e.field("Nr");
+        newE["Kategoria", ""];
+
+        newE = lib.create(newE);
+        newE.link("Link", e);
+
+        log("Przekazanie gotówki koordynatorowi: koniec");
+        //e.recalc();
+        //e.link("Link", newE);
+      } catch (err) {
+        log("Przekazanie gotówki koordynatorowi err : " + err);
       }
 
-      //  linkowanie entry z bazy budzet do bazy wydatki
-      //  1) spradzenie jeśli linked jest do basy wydatki to jedziesz dalej
-      //  2)
-      /* 
-        
-         function ( entryWydatek, entryBudżet, parametr-kategoria, parametr-kwota,   )
-         założenia entry jest zwalidowane. 
-        
-         switch pole "co zrobić jak zaalokować"
-         case : - sam przydzielę 
-                - w entry budżet dodaj do wydanych środkó∑ parametr-kwota
-                - swich kategiora 
-                    - przypisz do właściwej kategorii wydane środki 
-                    
-         case: podziel po moich osiedlach
-          - weż z bazy osiedli wszystkie entry osiedli gdzie koordynatorem jest wydatkujący
-          - dla każdego z osiedli wyszukaj entry budzet z datą zgodną z datą wydatku i umieść go w tablicy
-          - dla każdego budżetu z tablicy 
-                - linkuj go do entryWydatek
-                - z kwoty głównej z  entryWydatek wydziel procent opłacalności z budżetu i dodaj kwoty dodaj do wydanych środkó∑ parametr-kwota a potem swich kategiora 
-                    - przypisz do właściwej kategoria z entryWydatek.kategoria wydatku wydane środki 
-        
-
-         
-        //          entry().field("field_name")[0].attr("attribute_name")
-            //          entry().field("field_name")[0].setAttr("attribute_name", newValue)        
-        
-        
-        
-        
-        
-        */
-      // *********
-    } catch (err) {
-      log("Budget:assingBudgetToContracts:" + err);
-    }
-  }
-};
-
-const updateBudgetEntry = function (entrySpend, entryBudget, category, amount) {
-  
-  let amountLimit = entryBudget.field(BUD_FIELD_AMOUNT_LIMIT);
-  let amountLeft = entryBudget.field(BUD_FIELD_AMOUNT_LEFT);
-  let amountSpent = entryBudget.field(BUD_FIELD_AMOUNT_SPENT);
-  let amountCategory = entryBudget.field(category);
-
-  entryBudget.set(BUD_FIELD_AMOUNT_LEFT, amountLeft - amount );
-  entryBudget.set(BUD_FIELD_AMOUNT_SPENT, amountSpent + amount );
-  entryBudget.set(category, amountCategory + amount );
-
-  switch (category) {
-    case BUD_FIELD_CATEGORY_PURCHASE:
       break;
-    case BUD_FIELD_CATEGORY_SALARY:
-      break;
-    case BUD_FIELD_CATEGORY_FIXED:
-      break;
-    case BUD_FIELD_CATEGORY_OTHER:
-      break;
-    default:
-    //SPE_BUDGET_CATEGORY_REINVOICE
+
+    case "Wypłata z bankomatu":
+      e.set("Termin płatności", "");
+      e.set("Data dokonania zapłaty", e.field("Data transakcji"));
+      e.set("Do zapłaty", "Zapłacone");
+      e.set("Kwota", Math.abs(s));
+      e.set("Kategoria", "");
       break;
   }
+}
 
-};
 
-const unlinkBudgetEntry = function (entrySpending) {};
 
-const recalculateBudget = function () {};
 
-const countProfitability = function () {
-};
+
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -121,3 +160,36 @@ const countProfitability = function () {
 
 // 1. Wszystkie pozycje puste = podzial równo po wszystkie pozycje.
 // 2. kwota przypisania mniejsza i istnieją puste. Odejmij od kwoty to co przypisane a resztę podziel.
+
+const FIELD_EDITORS = "Editor";
+
+
+const Spending = function (e) {
+
+  log( "Spending" );
+
+  try {
+
+    this.editors = new Array;
+    this.isEditor = false;
+
+
+    if (e !== undefined) {
+      let ed = e.field(FIELD_EDITORS);
+      while( ed !== null ) {
+        this.editors.push(ed)
+        ed = ed.next;
+      }
+    }
+  } catch (err) {
+    log("Spending: " + err);
+  }
+}
+
+
+
+
+
+
+let e = new Spending(entry()); 
+message ( e.editors ) 
