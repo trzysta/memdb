@@ -32,7 +32,7 @@ try {
     "ElzbietaZ",
     "WojciechS",
     "KatarzynaD",
-    "trzysta",
+    "trzysta"
   ];
 
   const arrNames = [
