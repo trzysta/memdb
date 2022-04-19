@@ -39,8 +39,8 @@ try {
     "Małgorzata Grabowska",
     "Elżbieta Zdziech",
     "Wojciech Sygit",
-    "Katarzyna Deputowska"
-    "Administrator",
+    "Katarzyna Deputowska",
+    "Administrator"
   ];
 
   const ARR_MANAGERS = ["trzysta", "Marceli Matynia"];
