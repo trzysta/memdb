@@ -1,42 +1,4 @@
 
-// *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
-
-const SPE_VALUE_TYPE_1 = "Zakup za gotówkę";
-const SPE_VALUE_TYPE_2 = "Zakup z karty";
-const SPE_VALUE_TYPE_3 = "Zakup na przelew";
-const SPE_VALUE_TYPE_4 = "Wypłacona gotówką zaliczka";
-const SPE_VALUE_TYPE_5 = "Rozliczenie gotówką z pracownikiem";
-const SPE_VALUE_TYPE_6 = "Wypłacona przelewem zaliczka";
-const SPE_VALUE_TYPE_7 = "Rozliczenie przelewem z pracownikiem";
-const SPE_VALUE_TYPE_8 = "Przekazanie gotówki koordynatorowi";
-const SPE_VALUE_TYPE_9 = "Wypłata z bankomatu";
-const SPE_VALUE_ISPAYED_TRUE = "Zapłacone";
-
-const DROP_NULL_PLACEHOLDER = "- wybierz -";
-const SPE_PURCHASES = [SPE_VALUE_TYPE_1, SPE_VALUE_TYPE_2, SPE_VALUE_TYPE_3];
-const SPE_SALARIES  = [SPE_VALUE_TYPE_4, SPE_VALUE_TYPE_5, SPE_VALUE_TYPE_6, SPE_VALUE_TYPE_7];
-const SPE_CASH = [SPE_VALUE_TYPE_8, SPE_VALUE_TYPE_9];
-
-const SPE_FIELD_AMOUNT = "Kwota";
-const SPE_FIELD_PAYER = "Dokonujący transakcji";
-const SPE_FIELD_RECIPIENT = "Przekazano osobie";
-const SPE_FIELD_TRANSTYPE = "Typ transakcji";
-const SPE_FIELD_CATEGORY = "Kategoria";
-const SPE_FIELD_PAYMENTDUE = "Termin płatności";
-const SPE_FILED_DATEPAYED = "Data dokonania zapłaty";
-const SPE_FILED_DATETRANSACTION = "Data transakcji";
-const SPE_FIELD_ISPAYED = "Do zapłaty";
-const SPE_FIELD_NR = "Nr";
-
-const SPE_FIELD_NRLINKED = "Nr powiązany";
-const SPE_FIELD_DESC = "Opis";
-const SPE_FIELD_LINK = "Link";
-
-const FIELD_EDITORS = "Editor";
-
-
-// *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
-// *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*
 
 
 const Spending = function ( e ) {
