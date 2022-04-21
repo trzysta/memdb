@@ -66,7 +66,7 @@ const Spending = function ( e ) {
     this.isEditor = false;
     if (e !== undefined) {
 
-      const saveNewSpending = function () {
+      this.saveNewSpending = function () {
 
           /*
             WYD_ev_new_przedZapisem.js
