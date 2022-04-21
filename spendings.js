@@ -10,7 +10,7 @@ const Spending = function ( e ) {
     if (e !== undefined) {
 
       this.saveNewSpending = function () {
-
+        log( "Spending :: saveNewSpending :: " + e );
           /*
             WYD_ev_new_przedZapisem.js
             walidacja poprawności wypełnienia pól i operacje wykonywane w zależności
@@ -32,7 +32,7 @@ const Spending = function ( e ) {
           } else {
           
             // operacje po walidacji
-          
+            log( "Spending :: saveNewSpending :: " + transactionType );
             switch (transactionType) {
               case SPE_VALUE_TYPE_2:
               case SPE_VALUE_TYPE_1:
