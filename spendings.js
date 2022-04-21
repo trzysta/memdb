@@ -3,7 +3,7 @@
 const Spending = function ( e ) {
 
   log( "Spending :: new" );
-  let res = null;
+  this.res = null;
 
   try {
 
@@ -22,13 +22,13 @@ const Spending = function ( e ) {
           let transactionType = e.field(SPE_FIELD_TRANSTYPE);
           
           if (  transactionType == SPE_VALUE_TYPE_8 && e.field(SPE_FIELD_RECIPIENT) == e.field(SPE_FIELD_PAYER) ) {
-            res = "Nie można przekazać tej samej osobie";
+            this.res = "Nie można przekazać tej samej osobie";
           } else if ( e.field(SPE_FIELD_PAYER) == DROP_NULL_PLACEHOLDER ) {
-            res = "Wybierz z listy osobę dokonującą transakcji";
+            this.res = "Wybierz z listy osobę dokonującą transakcji";
           } else if ( transactionType == SPE_VALUE_TYPE_8 && e.field(SPE_FIELD_RECIPIENT) == DROP_NULL_PLACEHOLDER  ) {
-            res = "Wybierz komu przekazano gotówkę!";
+            this.res = "Wybierz komu przekazano gotówkę!";
           } else if ( SPE_PURCHASES.indexOf(transactionType) >= 0 && e.field(SPE_FIELD_CATEGORY) == DROP_NULL_PLACEHOLDER ) {
-            res = "Wybierz kategorię wydatku";
+            this.res = "Wybierz kategorię wydatku";
           } else {
           
             // operacje po walidacji
@@ -114,7 +114,7 @@ const Spending = function ( e ) {
           }
       }
         
-    return res;  
+    return this.res;  
 
     }
   } catch (err) {
