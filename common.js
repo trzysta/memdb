@@ -216,8 +216,7 @@ try {
   const SPE_FIELD_NRLINKED = "Nr powiązany";
   const SPE_FIELD_DESC = "Opis";
   const SPE_FIELD_LINK = "Link";
-  
-  const FIELD_EDITORS = "Editor";
+
 
   // /
 

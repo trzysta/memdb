@@ -1,6 +1,5 @@
 
 
-
 const Spending = function ( e ) {
 
   log( "Spending :: new" );
