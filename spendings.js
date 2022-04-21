@@ -36,23 +36,7 @@ const FIELD_EDITORS = "Editor";
 
 
 // *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
-// *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
-
-
-
-
-
-
-
-
-
-
-
-// // podziel
-
-// 1. Wszystkie pozycje puste = podzial równo po wszystkie pozycje.
-// 2. kwota przypisania mniejsza i istnieją puste. Odejmij od kwoty to co przypisane a resztę podziel.
-
+// *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*
 
 
 const Spending = function ( e ) {
@@ -62,8 +46,6 @@ const Spending = function ( e ) {
 
   try {
 
-    this.editors = new Array;
-    this.isEditor = false;
     if (e !== undefined) {
 
       this.saveNewSpending = function () {
