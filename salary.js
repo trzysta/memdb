@@ -2,7 +2,7 @@
 Baza Memento Database na Androida. Autor Marceli Matynia 300 Sp. z o.o.
 */
 
-const getPaid = function (e) {
+var getPaid = function (e) {
   let result = 0;
   if (e.field(SAL_FIELD_CANREAD)) {
     result = Math.round(
@@ -13,7 +13,7 @@ const getPaid = function (e) {
   return result;
 };
 
-const getRemaining = function (e) {
+var getRemaining = function (e) {
   let result = 0;
   result =
     e.field(SAL_FIELD_AMOUNTTOPAY) -
@@ -31,17 +31,17 @@ const getRemaining = function (e) {
   return result;
 };
 
-const getLabel = function (nr, e) {
-  const currentDay = nr.toString();
-  const month = e.field(SAL_FIELD_MONTH);
-  const weekday_en = moment(month)
+var getLabel = function (nr, e) {
+  var currentDay = nr.toString();
+  var month = e.field(SAL_FIELD_MONTH);
+  var weekday_en = moment(month)
     .startOf('month')
     .add(nr - 1, 'days')
     .format('dddd');
-  const weekday_pl = WEEKDAYS2_PL[WEEKDAYS_EN.indexOf(weekday_en)];
+  var weekday_pl = WEEKDAYS2_PL[WEEKDAYS_EN.indexOf(weekday_en)];
 
-  const month_pl = MONTHS3_PL[moment(month).format('M') - 1];
-  const day = moment(month)
+  var month_pl = MONTHS3_PL[moment(month).format('M') - 1];
+  var day = moment(month)
     .startOf('month')
     .add(nr - 1, 'days')
     .format('DD');
@@ -62,7 +62,7 @@ const getLabel = function (nr, e) {
   return weekday_pl + ': ' + day + '.' + month_pl + addInfo;
 };
 
-const Salary = function (e) {
+var Salary = function (e) {
   log('Salary: ' + String(e));
 
   try {
