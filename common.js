@@ -283,16 +283,6 @@ try {
   const SPE_FIELD_DESC = 'Opis';
   const SPE_FIELD_LINK = 'Link';
 
-  // /
-
-  // // ****************************************************************************
-  // // ~~~ BAZA OSIEDLA
-  // // ****************************************************************************
-  // //const CHK_FIELD_CONTRACT        = "Osiedle";
-  // const CON_FIELD_TAG = "Skrót";
-  // const CON_FIELD_RAPORT_RECIPIENT = "Lista adresów e-mail odbiorców raportu";
-  // //const CN_FIELD_BUILDINGS        = "Budynki i klatki";
-
   // // ***** baza BUDŻET
 
   const BUD_FIELD_CONTRACT = 'Osiedle';
@@ -442,9 +432,9 @@ try {
 
   const TAS_VALUE_EMAIL_PREVTASKS = '';
 
-  const CON_FIELD_COORDINATOR = 'Koordynator';
-  const CON_FIELD_RAPORT_RECIPIENT =
-    'Odbiorcy raportów i powiadomień';
+  //const CON_FIELD_COORDINATOR = 'Koordynator';
+  //const CON_FIELD_RAPORT_RECIPIENT =
+  //  'Odbiorcy raportów i powiadomień';
   //const CON_FIELD_SHORT_NAME = 'Skrót';
 
   function contains(arr, obj) {
