@@ -289,7 +289,6 @@ try {
   // // ~~~ BAZA OSIEDLA
   // // ****************************************************************************
   // //const CHK_FIELD_CONTRACT        = "Osiedle";
-  // //const CON_FIELD_SHORTNAME       = "Nazwa potoczna";
   // const CON_FIELD_TAG = "Skrót";
   // const CON_FIELD_RAPORT_RECIPIENT = "Lista adresów e-mail odbiorców raportu";
   // //const CN_FIELD_BUILDINGS        = "Budynki i klatki";
