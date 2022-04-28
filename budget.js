@@ -10,7 +10,6 @@ const assignSpendingToBudget = function (entryBudget, entrySpending) {
 
   try {
     entrySpending.recalc();
-    entrySpending.save();
 
     log("start while " + entrySpending.field(SPE_FIELD_BUDGET_LINK).lenght );
 
