@@ -9,7 +9,9 @@ const assignSpendingToBudget = function (entryBudget, entrySpending) {
   let txtAlloc = "";
 
   try {
-    
+    entrySpending.recalc();
+    entrySpending.save();
+
     log("start while " + entrySpending.field(SPE_FIELD_BUDGET_LINK).lenght );
 
     while (budgetLinkNr < entrySpending.field(SPE_FIELD_BUDGET_LINK).lenght && !isFound ) {
