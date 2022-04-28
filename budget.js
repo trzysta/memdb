@@ -1,7 +1,7 @@
 const BUD_FIELD_LINK_ATTR_CATEGORY = 'Kategoria wydatku';
 const BUD_FIELD_LINK_ATTR_AMOUNT = 'Kwota';
 
-const assignSpendingToBudget = function (entrySpending, entryBudget) {
+const assignSpendingToBudget = function (entryBudget, entrySpending) {
   log(
     'Budget :: assignSpendingToBudget :: ' +
       entrySpending.name +
