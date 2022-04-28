@@ -6,12 +6,16 @@ const assignSpendingToBudget = function (entryBudget, entrySpending) {
   log( 'Budget :: assignSpendingToBudget :: spending: ' + entrySpending.name + '; budget:' + entryBudget.name);
   let budgetLinkNr = 0;
   let isFound = false;
+  let txtAlloc = "";
 
   try {
     
     log("start while " + entrySpending.field(SPE_FIELD_BUDGET_LINK).lenght );
 
     while (budgetLinkNr < entrySpending.field(SPE_FIELD_BUDGET_LINK).lenght && !isFound ) {
+      txtAlloc = txtAlloc + entrySpending.field(SPE_FIELD_BUDGET_LINK)[i].field( CON_FIELD_SHORT_NAME ) + ": " +
+                            entrySpending.field(SPE_FIELD_BUDGET_LINK)[i].attr( BUD_FIELD_LINK_ATTR_AMOUNT ) + "\n";
+      log(txtAlloc);
       if ( entryBudget.id == entrySpending.field(SPE_FIELD_BUDGET_LINK)[budgetLinkNr].id) {
         isFound = true;
         log(budgetLinkNr + " found: " + entrySpending.field(SPE_FIELD_BUDGET_LINK)[budgetLinkNr].id)
@@ -31,19 +35,11 @@ const assignSpendingToBudget = function (entryBudget, entrySpending) {
       "currentAmount: " + currentAmount + ", " +
       "prevCategoryAmount: " + prevCategoryAmount 
     )
+
     entryBudget.set( currentCategoryName, prevCategoryAmount + currentAmount );
     entryBudget.recalc();
-    
-    let i = 0;
-    let o = "";
-    while (i < entrySpending.field(SPE_FIELD_BUDGET_LINK).lenght ) {
-      o = o +  entrySpending.field(SPE_FIELD_BUDGET_LINK)[i].field( CON_FIELD_SHORT_NAME ) + ": " +
-               entrySpending.field(SPE_FIELD_BUDGET_LINK)[i].attr( BUD_FIELD_LINK_ATTR_AMOUNT ) + "\n";
-      i++;
-      log( o );
-     }
-     entrySpending.set( SPE_FIELD_ALLOCATION_DESCR, o);
-     entrySpending.recalc();
+    entrySpending.set( SPE_FIELD_ALLOCATION_DESCR, txtAlloc );
+    entrySpending.recalc();
 
   } catch (error) {
     log('ERR: Budget :: assignSpendingToBudget :: ' + error);
