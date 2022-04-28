@@ -134,7 +134,7 @@ let Spending = function (e) {
           this.res = true;
         }
       };
-
+      log(this.res);
       return this.res;
     }
   } catch (err) {
