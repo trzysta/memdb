@@ -9,7 +9,7 @@ const assignSpendingToBudget = function (entryBudget, entrySpending) {
 
   try {
     
-
+    log("start while");
     while (budgetLinkNr > entrySpending.field(SPE_FIELD_BUDGET_LINK).lenght && !isFound ) {
       if ( entryBudget.id == entrySpending.field(SPE_FIELD_BUDGET_LINK)[budgetLinkNr].id) {
         isFound = true;
@@ -18,7 +18,8 @@ const assignSpendingToBudget = function (entryBudget, entrySpending) {
         log(budgetLinkNr + " not found: " + entrySpending.field(SPE_FIELD_BUDGET_LINK)[budgetLinkNr].id)
         budgetLinkNr++;
       }
-    }
+    };
+    log("staend while " + budgetLinkNr);
 
     currentCategoryName = entrySpending.field(SPE_FIELD_BUDGET_LINK)[budgetLinkNr].attr( BUD_FIELD_LINK_ATTR_CATEGORY );
     currentAmount = entrySpending.field(SPE_FIELD_BUDGET_LINK)[budgetLinkNr].attr( BUD_FIELD_LINK_ATTR_AMOUNT );
