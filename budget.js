@@ -33,8 +33,21 @@ const assignSpendingToBudget = function (entryBudget, entrySpending) {
     )
     entryBudget.set( currentCategoryName, prevCategoryAmount + currentAmount );
     entryBudget.recalc();
+    
+    let i = 0;
+    let o = "";
+    while (i < entrySpending.field(SPE_FIELD_BUDGET_LINK).lenght ) {
+      o = o +  entrySpending.field(SPE_FIELD_BUDGET_LINK)[i].field( CON_FIELD_SHORT_NAME ) + ": " +
+               entrySpending.field(SPE_FIELD_BUDGET_LINK)[i].attr( BUD_FIELD_LINK_ATTR_AMOUNT ) + "\n";
+      i++;
+     }
+     entrySpending.set( SPE_FIELD_ALLOCATION_DESCR, o);
+     entrySpending.recalc();
 
   } catch (error) {
     log('ERR: Budget :: assignSpendingToBudget :: ' + error);
   }
 };
+
+
+

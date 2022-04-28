@@ -282,6 +282,8 @@ try {
   var SPE_FIELD_NRLINKED = 'Nr powiązany';
   var SPE_FIELD_DESC = 'Opis';
   var SPE_FIELD_LINK = 'Link';
+  var SPE_FIELD_ALLOCATION_DESCR = 'alokacja';
+
 
   // // ***** baza BUDŻET
 
@@ -433,7 +435,8 @@ try {
   //var CON_FIELD_COORDINATOR = 'Koordynator';
   //var CON_FIELD_RAPORT_RECIPIENT =
   //  'Odbiorcy raportów i powiadomień';
-  //var CON_FIELD_SHORT_NAME = 'Skrót';
+
+  var CON_FIELD_SHORT_NAME = 'Skrót';
 
   function contains(arr, obj) {
     for (var i = 0; i < arr.length; i++) {
