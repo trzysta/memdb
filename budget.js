@@ -31,7 +31,8 @@ const assignSpendingToBudget = function (entryBudget, entrySpending) {
       "currentAmount: " + currentAmount + ", " +
       "prevCategoryAmount: " + prevCategoryAmount 
     )
-    entryBudget.set( currentCategoryName, prevCategoryAmount + thisAmount );
+    entryBudget.set( currentCategoryName, prevCategoryAmount + currentAmount );
+    entryBudget.recalc();
 
   } catch (error) {
     log('ERR: Budget :: assignSpendingToBudget :: ' + error);
