@@ -21,8 +21,8 @@ const assignSpendingToBudget = function (entryBudget, entrySpending) {
     }
 
     currentCategoryName = entrySpending.field(SPE_FIELD_BUDGET_LINK)[budgetLinkNr].attr( BUD_FIELD_LINK_ATTR_CATEGORY );
-    currentAmount = entrySpending.field(SPE_FIELD_BUDGET_LINK)[budgetLinkNr].attr(BUD_FIELD_LINK_ATTR_AMOUNT);
-    prevCategoryAmount = entrySpending.field(SPE_FIELD_BUDGET_LINK)[budgetLinkNr].field( BUD_FIELD_LINK_ATTR_CATEGORY );
+    currentAmount = entrySpending.field(SPE_FIELD_BUDGET_LINK)[budgetLinkNr].attr( BUD_FIELD_LINK_ATTR_AMOUNT );
+    prevCategoryAmount = entrySpending.field(SPE_FIELD_BUDGET_LINK)[budgetLinkNr].field( currentCategoryName );
     entryBudget.set( thisCategoryName, prevCategoryAmount + thisAmount );
 
   } catch (error) {
