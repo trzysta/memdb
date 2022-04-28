@@ -24,7 +24,6 @@ const BUD_FIELD_LINK_ATTR_CATEGORY = 'Kategoria wydatku';
 const BUD_FIELD_LINK_ATTR_AMOUNT = 'Kwota';
 
 const assignSpendingToBudget = function (entrySpending, entryBudget) {
-
   /*
 
 masterLib()             Returns the library from which the current record was referenced.
@@ -41,15 +40,18 @@ setAttr(name , value)   Set the value of the attribute for the current reference
       entryBudget.name
   );
 
-
   try {
-  
-    currentCategoryName = entryBudget.attr(BUD_FIELD_LINK_ATTR_CATEGORY);
+    currentCategoryName = entryBudget.attr(
+      BUD_FIELD_LINK_ATTR_CATEGORY
+    );
     currentAmount = entryBudget.attr(BUD_FIELD_LINK_ATTR_AMOUNT);
-    prevCategoryAmount = entryBudget.field(BUD_FIELD_LINK_ATTR_CATEGORY); 
+    prevCategoryAmount = entryBudget.field(
+      BUD_FIELD_LINK_ATTR_CATEGORY
+    );
 
-    entryBudget.set( thisCategoryName, prevCategoryAmount + thisAmount );
-    
+    entryBudget.set(
+      thisCategoryName,
+      prevCategoryAmount + thisAmount
     );
   } catch (error) {
     log('ERR: Budget :: assignSpendingToBudget :: ' + error);
