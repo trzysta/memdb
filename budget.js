@@ -11,7 +11,7 @@ const assignSpendingToBudget = function (entryBudget, entrySpending) {
   try {
     entrySpending.recalc();
 
-    log("start while " + entrySpending.field(SPE_FIELD_BUDGET_LINK).lenght );
+    log("start while " + budgetLinkNr <  entrySpending.field(SPE_FIELD_BUDGET_LINK).lenght + " isArray: " + entrySpending.field(SPE_FIELD_BUDGET_LINK).isArray() );
 
     while (budgetLinkNr < entrySpending.field(SPE_FIELD_BUDGET_LINK).lenght && !isFound ) {
       txtAlloc = txtAlloc + entrySpending.field(SPE_FIELD_BUDGET_LINK)[i].field( CON_FIELD_SHORT_NAME ) + ": " +
