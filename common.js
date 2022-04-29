@@ -206,7 +206,7 @@ try {
     'Wypłacona gotówką zaliczka';
   var SPE_FIELD_TYPE_VALUE_ADVANCEPAYMENT_WITHDRAWAL =
     'Wypłacona przelewem zaliczka';
-  var SPE_FIELD_BUDGET_LINK = 'Budżet';
+  var SPE_FIELD_BUDGET_LINK = 'Wybierz budżet';
   var SPE_FIELD_BUDGET_LINK_AMOUNT = 'Kwota';
 
   var SPE_FIELD_COST_ALLOCATION_LINK = 'Robicie kosztu na osiedla';

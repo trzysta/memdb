@@ -11,11 +11,11 @@ const assignSpendingToBudget = function (entryBudget, entrySpending) {
   try {
     entrySpending.recalc();
 
-    log("start while " + budgetLinkNr <  entrySpending.field(SPE_FIELD_BUDGET_LINK).lenght + " isArray: " + entrySpending.field(SPE_FIELD_BUDGET_LINK).isArray() );
+    log("start while " + budgetLinkNr <  entrySpending.field(SPE_FIELD_BUDGET_LINK).lenght );
 
     while (budgetLinkNr < entrySpending.field(SPE_FIELD_BUDGET_LINK).lenght && !isFound ) {
-      txtAlloc = txtAlloc + entrySpending.field(SPE_FIELD_BUDGET_LINK)[i].field( CON_FIELD_SHORT_NAME ) + ": " +
-                            entrySpending.field(SPE_FIELD_BUDGET_LINK)[i].attr( BUD_FIELD_LINK_ATTR_AMOUNT ) + "\n";
+      txtAlloc = txtAlloc + entrySpending.field(SPE_FIELD_BUDGET_LINK)[budgetLinkNr].field( CON_FIELD_SHORT_NAME ) + ": " +
+                            entrySpending.field(SPE_FIELD_BUDGET_LINK)[budgetLinkNr].attr( BUD_FIELD_LINK_ATTR_AMOUNT ) + "\n";
       log(txtAlloc);
       if ( entryBudget.id == entrySpending.field(SPE_FIELD_BUDGET_LINK)[budgetLinkNr].id) {
         isFound = true;
@@ -49,3 +49,15 @@ const assignSpendingToBudget = function (entryBudget, entrySpending) {
 
 
 
+
+
+let i = 0;
+let txtAlloc = "";
+log("end while " + SPE_FIELD_BUDGET_LINK + " " + entry().field(SPE_FIELD_BUDGET_LINK).lenght );
+while (i < entry().field(SPE_FIELD_BUDGET_LINK).lenght) {
+  txtAlloc = txtAlloc + entry().field(SPE_FIELD_BUDGET_LINK)[i].field( CON_FIELD_SHORT_NAME ) + ": " +
+                        entry().field(SPE_FIELD_BUDGET_LINK)[i].attr( BUD_FIELD_LINK_ATTR_AMOUNT ) + "\n";
+  log(txtAlloc);
+};
+entry().set("alokacja", txtAlloc);
+log("end while " + i);
