@@ -1,5 +1,3 @@
-
-
 const BUD_FIELD_PROJECTION_TYPE = "Rodzaj wpisu";
 const BUD_FIELD_PROJECTION_CATEGORY = "Kategoria";
 
@@ -13,22 +11,6 @@ const BUD_FIELD_BUDGET_LINKED_ENTRY = "Definicja nadrzędna";
 const BUD_FIELD_PROJECTION_AMOUNT = "Kwota"
 const BUD_FIELD_BUDGET_INCOME_AMOUNT = "Przychody";
 const BUD_FIELD_BUDGET_SPEND_AMOUNT = "Wydatki";
-
-/*
-
-
-
-
-
-
-
-
-
-
-
-
-*/
-
 
 const saveProjection = function (entryProjection, isNew) {
   
