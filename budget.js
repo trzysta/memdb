@@ -12,10 +12,8 @@ const BUD_FIELD_BUDGET_NAME = "Budżet";
 const BUD_FIELD_LINKEDPROJECTIONS = "Powiązane pozycje budżetowe";
 
 const BUD_FIELD_PROJECTION_AMOUNT = "Kwota"
-const BUD_FIELD_BUDGET_INCOME_AMOUNT = "Przychody";
-const BUD_FIELD_BUDGET_SPEND_AMOUNT = "Wydatki";
-
-
+const BUD_FIELD_BUDGET_INCOME_AMOUNT = "Suma przychodów";
+const BUD_FIELD_BUDGET_SPEND_AMOUNT = "Suma wydatków";
 
 const updateBudget = function (entryBudget) {
  
@@ -37,7 +35,7 @@ const updateBudget = function (entryBudget) {
 
       } else {
         spendTotal = spendTotal + e.field( BBUD_PROJECTION_TYPE_SPEND )
-        
+
       }
     }
     entryBudget.set( BUD_FIELD_BUDGET_INCOME_AMOUNT, incomeTotal );
