@@ -14,12 +14,12 @@ const BUD_FIELD_BUDGET_SPEND_AMOUNT = "Wydatki";
 
 const saveProjection = function (entryProjection, isNew) {
   
-  log( 'Budget :: saveProjection:' + entryProjection.name + '; isNew:' + isNew);
+  log( 'Budget :: saveProjection:' + entryProjection().name + '; isNew:' + isNew);
 
   if (isNew) {
   
-    let entryBudget = entryProjection.field( BUD_FIELD_BUDGET_LINKED_ENTRY )[0];
-    let projectionAmount = entryProjection.field( BUD_FIELD_PROJECTION_AMOUNT );
+    let entryBudget = entryProjection().field( BUD_FIELD_BUDGET_LINKED_ENTRY )[0];
+    let projectionAmount = entryProjection().field( BUD_FIELD_PROJECTION_AMOUNT );
     let projectionCategoryName = entryProjection.field( BUD_FIELD_PROJECTION_CATEGORY );
     
     entryProjection.set( BUD_FIELD_BUDGET_NAME, entryBudget.field(BUD_FIELD_BUDGET_NAME) );
@@ -36,7 +36,7 @@ const saveProjection = function (entryProjection, isNew) {
 
       let prevBudgetAmount = entryBudget.field( BUD_FIELD_BUDGET_SPEND_AMOUNT );
       let prevBudgetCategoryAmount = entryBudget.field( projectionCategoryName );
-      entryBudget.set( BUD_FIELD_PARENT_AMOUNT, prevBudgetAmount + Math.abs(projectionAmount) );
+      entryBudget.set( BUD_FIELD_BUDGET_SPEND_AMOUNT, prevBudgetAmount + Math.abs(projectionAmount) );
       entryBudget.set( projectionCategoryName, prevBudgetCategoryAmount + Math.abs(projectionAmount) );
       log ('Budget :: saveProjection - SPEND: ' + projectionCategoryName + " prev:" + prevBudgetCategoryAmount + " totalPrev: " + prevBudgetAmount + " adding: " + projectionAmount);
     } 
