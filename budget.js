@@ -1,6 +1,7 @@
 
 
 const BUD_FIELD_PROJECTION_TYPE = "Rodzaj wpisu";
+const BUD_FIELD_PROJECTION_CATEGORY = "Kategoria";
 
 const BUD_PROJECTION_TYPE_INCOME = "Przychód";
 const BUD_PROJECTION_TYPE_SPEND = "Koszt"
