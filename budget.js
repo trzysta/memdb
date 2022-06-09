@@ -34,7 +34,7 @@ const updateBudget = function (entryBudget) {
         incomeTotal = incomeTotal + e.field( BUD_FIELD_PROJECTION_AMOUNT )
 
       } else {
-        spendTotal = spendTotal + e.field( BBUD_PROJECTION_TYPE_SPEND )
+        spendTotal = spendTotal + e.field( BUD_FIELD_PROJECTION_AMOUNT )
 
       }
     }
