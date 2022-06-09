@@ -40,6 +40,7 @@ const updateBudget = function (entryBudget) {
     }
     entryBudget.set( BUD_FIELD_BUDGET_INCOME_AMOUNT, incomeTotal );
     entryBudget.set( BUD_FIELD_BUDGET_SPEND_AMOUNT, spendTotal );
+    entryBudget.set( BUD_FIELD_PROJECTION_AMOUNT, incomeTotal - spendTotal );
   }
 }
 
