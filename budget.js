@@ -1,5 +1,6 @@
 const BUD_FIELD_PROJECTION_INCOMEORSPEND = "Koszt czy wydatek";
 const BUD_FIELD_ENTRY_TYPE = "Rodzaj wpisu";
+const BUD_FIELD_NAME = "Nazwa budżetu";
 
 const BUD_VALUE_ENTRY_TYPE_BUDGET = "Budżet";
 const BUD_VALUE_ENTRY_TYPE_PROJECTION = "Pozycja w budżecie";
@@ -29,10 +30,10 @@ const updateBudget = function (entryBudget) {
 
       let e = entryBudget.field( BUD_FIELD_LINKEDPROJECTIONS )[i];
       log( 'Budget :: updateBudget:' + entryBudget.name + " for " + i + ", " + e.name );
+      e.set(BUD_FIELD_NAME, entryBudget.field(BUD_FIELD_NAME) );
 
       if (e.field(BUD_FIELD_PROJECTION_INCOMEORSPEND) == BUD_PROJECTION_TYPE_INCOME ) {
-        incomeTotal = incomeTotal + e.field( BUD_FIELD_PROJECTION_AMOUNT )
-
+        incomeTotal = incomeTotal + e.field( BUD_FIELD_PROJECTION_AMOUNT );
       } else {
         spendTotal = spendTotal + e.field( BUD_FIELD_PROJECTION_AMOUNT )
 
