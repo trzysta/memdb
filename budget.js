@@ -1,63 +1,62 @@
-const BUD_FIELD_LINK_ATTR_CATEGORY = 'Kategoria wydatku';
-const BUD_FIELD_LINK_ATTR_AMOUNT = 'Kwota';
 
-const assignSpendingToBudget = function (entryBudget, entrySpending) {
 
-  log( 'Budget :: assignSpendingToBudget :: spending: ' + entrySpending.name + '; budget:' + entryBudget.name);
-  let budgetLinkNr = 0;
-  let isFound = false;
-  let txtAlloc = "";
+const BUD_FIELD_PROJECTION_TYPE = "Rodzaj wpisu";
 
-  try {
-    entrySpending.recalc();
+const BUD_PROJECTION_TYPE_INCOME = "Przychód";
+const BUD_PROJECTION_TYPE_SPEND = "Koszt"
 
-    log("start while " + budgetLinkNr <  entrySpending.field(SPE_FIELD_BUDGET_LINK).lenght );
+const BUD_FIELD_BUDGET_NAME = "Budżet";
 
-    while (budgetLinkNr < entrySpending.field(SPE_FIELD_BUDGET_LINK).lenght && !isFound ) {
-      txtAlloc = txtAlloc + entrySpending.field(SPE_FIELD_BUDGET_LINK)[budgetLinkNr].field( CON_FIELD_SHORT_NAME ) + ": " +
-                            entrySpending.field(SPE_FIELD_BUDGET_LINK)[budgetLinkNr].attr( BUD_FIELD_LINK_ATTR_AMOUNT ) + "\n";
-      log(txtAlloc);
-      if ( entryBudget.id == entrySpending.field(SPE_FIELD_BUDGET_LINK)[budgetLinkNr].id) {
-        isFound = true;
-        log(budgetLinkNr + " found: " + entrySpending.field(SPE_FIELD_BUDGET_LINK)[budgetLinkNr].id)
-      } else {
-        log(budgetLinkNr + " not found: " + entrySpending.field(SPE_FIELD_BUDGET_LINK)[budgetLinkNr].id)
-        budgetLinkNr++;
-      }
-    };
-    log("end while " + budgetLinkNr);
+const BUD_FIELD_BUDGET_LINKED_ENTRY = "Definicja nadrzędna";
 
-    currentCategoryName = entrySpending.field(SPE_FIELD_BUDGET_LINK)[budgetLinkNr].attr( BUD_FIELD_LINK_ATTR_CATEGORY );
-    currentAmount = entrySpending.field(SPE_FIELD_BUDGET_LINK)[budgetLinkNr].attr( BUD_FIELD_LINK_ATTR_AMOUNT );
-    prevCategoryAmount = entrySpending.field(SPE_FIELD_BUDGET_LINK)[budgetLinkNr].field( currentCategoryName );
+const BUD_FIELD_PROJECTION_AMOUNT = "Kwota"
+const BUD_FIELD_BUDGET_INCOME_AMOUNT = "Przychody";
+const BUD_FIELD_BUDGET_SPEND_AMOUNT = "Wydatki";
 
-    log (
-      "currentCategoryName: " + currentCategoryName + ", " +
-      "currentAmount: " + currentAmount + ", " +
-      "prevCategoryAmount: " + prevCategoryAmount 
-    )
+/*
 
-    entryBudget.set( currentCategoryName, prevCategoryAmount + currentAmount );
-    entryBudget.recalc();
-    entrySpending.set( SPE_FIELD_ALLOCATION_DESCR, txtAlloc );
-    entrySpending.recalc();
 
-  } catch (error) {
-    log('ERR: Budget :: assignSpendingToBudget :: ' + error);
+
+
+
+
+
+
+
+
+
+
+*/
+
+
+const saveProjection = function (entryProjection, isNew) {
+  
+  log( 'Budget :: saveProjection:' + entryProjection.name + '; isNew:' + isNew);
+
+  if (isNew) {
+  
+    let entryBudget = entryProjection.field( BUD_FIELD_BUDGET_LINKED_ENTRY )[0];
+    let projectionAmount = entryProjection.field( BUD_FIELD_PROJECTION_AMOUNT );
+    let projectionCategoryName = entryProjection.field( BUD_FIELD_PROJECTION_CATEGORY );
+    
+    entryProjection.set( BUD_FIELD_BUDGET_NAME, entryBudget.field(BUD_FIELD_BUDGET_NAME) );
+
+    if ( entryProjection.field( BUD_FIELD_PROJECTION_TYPE ) == BUD_PROJECTION_TYPE_INCOME ) {    
+  
+      let prevBudgetAmount = entryBudget.field( BUD_FIELD_BUDGET_INCOME_AMOUNT );
+      let prevBudgetCategoryAmount = entryBudget.field( projectionCategoryName );
+      entryBudget.set( BUD_FIELD_BUDGET_INCOME_AMOUNT, prevBudgetAmount + projectionAmount );
+      entryBudget.set( projectionCategoryName, prevBudgetCategoryAmount + projectionAmount );
+      log ('Budget :: saveProjection - INCOME: ' + projectionCategoryName + " prev:" + prevBudgetCategoryAmount + " totalPrev: " + prevBudgetAmount + " adding: " + projectionAmount);
+  
+    } else {
+
+      let prevBudgetAmount = entryBudget.field( BUD_FIELD_BUDGET_SPEND_AMOUNT );
+      let prevBudgetCategoryAmount = entryBudget.field( projectionCategoryName );
+      entryBudget.set( BUD_FIELD_PARENT_AMOUNT, prevBudgetAmount + Math.abs(projectionAmount) );
+      entryBudget.set( projectionCategoryName, prevBudgetCategoryAmount + Math.abs(projectionAmount) );
+      log ('Budget :: saveProjection - SPEND: ' + projectionCategoryName + " prev:" + prevBudgetCategoryAmount + " totalPrev: " + prevBudgetAmount + " adding: " + projectionAmount);
+    } 
   }
-};
+}
 
-
-
-
-
-let i = 0;
-let txtAlloc = "";
-log("end while " + SPE_FIELD_BUDGET_LINK + " " + entry().field(SPE_FIELD_BUDGET_LINK).lenght );
-while (i < entry().field(SPE_FIELD_BUDGET_LINK).lenght) {
-  txtAlloc = txtAlloc + entry().field(SPE_FIELD_BUDGET_LINK)[i].field( CON_FIELD_SHORT_NAME ) + ": " +
-                        entry().field(SPE_FIELD_BUDGET_LINK)[i].attr( BUD_FIELD_LINK_ATTR_AMOUNT ) + "\n";
-  log(txtAlloc);
-};
-entry().set("alokacja", txtAlloc);
-log("end while " + i);
