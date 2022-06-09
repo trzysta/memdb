@@ -28,7 +28,7 @@ const updateBudget = function (entryBudget) {
     for ( i=0; i<links; i++ ) {
 
       let e = entryBudget.field( BUD_FIELD_LINKEDPROJECTIONS )[i];
-      log( 'Budget :: updateBudget:' + entryBudget.name + " for " + i + ", " + e().name );
+      log( 'Budget :: updateBudget:' + entryBudget.name + " for " + i + ", " + e.name );
 
       if (e.field(BUD_FIELD_PROJECTION_INCOMEORSPEND) == BUD_PROJECTION_TYPE_INCOME ) {
         incomeTotal = incomeTotal + e.field( BUD_FIELD_PROJECTION_AMOUNT )
