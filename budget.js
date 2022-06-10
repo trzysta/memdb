@@ -106,7 +106,7 @@ const getEmploymentCost = function (addNetSalary) {
 
     case BUD_VALUE_EMPLTYPE_1:  //etat - student
     case BUD_VALUE_EMPLTYPE_5:  //um. zlecenie - student
-      returnValue = netSalary;
+      returnValue = 0;
       break;
 
     case BUD_VALUE_EMPLTYPE_2:  //etat - osoba do 26 roku życia
@@ -119,7 +119,7 @@ const getEmploymentCost = function (addNetSalary) {
       break;
 
     case BUD_VALUE_EMPLTYPE_6:  //um. zlecenie - do 26 roku życia bez innego zatrudnienia
-      returnValue = netSalary * 0.53 ;
+      returnValue = netSalary * 0.53;
       break;
 
     case BUD_VALUE_EMPLTYPE_7:  //um. zlecenie - ponad 26 roku życia bez innego zatrudnienia
