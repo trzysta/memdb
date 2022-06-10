@@ -16,6 +16,22 @@ const BUD_FIELD_PROJECTION_AMOUNT = "Kwota"
 const BUD_FIELD_BUDGET_INCOME_AMOUNT = "Suma przychodów";
 const BUD_FIELD_BUDGET_SPEND_AMOUNT = "Suma wydatków";
 
+
+
+BUD_FIELD_EMPLTYPE = "Rodzaj zatrudnienia";
+BUD_FIELD_NETSALARY = "Kwota netto na umowie";
+
+BUD_VALUE_EMPLTYPE_0 = "bez umowy";
+BUD_VALUE_EMPLTYPE_1 = "etat - student";
+BUD_VALUE_EMPLTYPE_2 = "etat - osoba do 26 roku życia";
+BUD_VALUE_EMPLTYPE_3 = "etat - powyżej 26 roku życia - do 2900 netto/m-c";
+BUD_VALUE_EMPLTYPE_4 = "etat - powyżej 26 roku życia - ponad 2900 netto/m-c";
+BUD_VALUE_EMPLTYPE_5 = "um. zlecenie - student";
+BUD_VALUE_EMPLTYPE_6 = "um. zlecenie - do 26 roku życia bez innego zatrudnienia";
+BUD_VALUE_EMPLTYPE_7 = "um. zlecenie - ponad 26 roku życia bez innego zatrudnienia";
+BUD_VALUE_EMPLTYPE_8 = "um. zlecenie - ponad 26 roku życia z innym zatrudnienem";
+
+
 const updateBudget = function (entryBudget) {
  
   log( 'Budget :: updateBudget:' + entryBudget.name);
@@ -30,7 +46,7 @@ const updateBudget = function (entryBudget) {
 
       let e = entryBudget.field( BUD_FIELD_LINKEDPROJECTIONS )[i];
       log( 'Budget :: updateBudget:' + entryBudget.name + " for " + i + ", " + e.name );
-      e.set(BUD_FIELD_NAME, entryBudget.field(BUD_FIELD_NAME) );
+      e.set( BUD_FIELD_NAME, entryBudget.field(BUD_FIELD_NAME) );
 
       if (e.field(BUD_FIELD_PROJECTION_INCOMEORSPEND) == BUD_PROJECTION_TYPE_INCOME ) {
         incomeTotal = incomeTotal + e.field( BUD_FIELD_PROJECTION_AMOUNT );
@@ -45,11 +61,6 @@ const updateBudget = function (entryBudget) {
     entryBudget.recalc();
   }
 }
-
-
-
-
-
 
 const saveProjection = function (entryProjection, isNew) {
   
@@ -84,3 +95,50 @@ const saveProjection = function (entryProjection, isNew) {
   }
 }
 
+const getEmploymentCost = function (addNetSalary) {
+
+  let netSalary = field(BUD_FIELD_NETSALARY);
+  let returnValue = 0;
+
+  switch ( field(BUD_FIELD_EMPLTYPE) ) {
+    case BUD_VALUE_EMPLTYPE_0:  //bez umowy
+      break;
+
+    case BUD_VALUE_EMPLTYPE_1:  //etat - student
+    case BUD_VALUE_EMPLTYPE_5:  //um. zlecenie - student
+      returnValue = netSalary;
+      break;
+
+    case BUD_VALUE_EMPLTYPE_2:  //etat - osoba do 26 roku życia
+    case BUD_VALUE_EMPLTYPE_3:  //etat - powyżej 26 roku życia do 2900 netto/m-c
+      returnValue = netSalary * 0.535;
+      break;
+
+    case BUD_VALUE_EMPLTYPE_4:  //etat - powyżej 26 roku życia - ponad 2900 netto/m-c
+      returnValue = netSalary * 0.635;
+      break;
+
+    case BUD_VALUE_EMPLTYPE_6:  //um. zlecenie - do 26 roku życia bez innego zatrudnienia
+      returnValue = netSalary * 0.53 ;
+      break;
+
+    case BUD_VALUE_EMPLTYPE_7:  //um. zlecenie - ponad 26 roku życia bez innego zatrudnienia
+      returnValue = netSalary * 0.803;
+      break;
+
+    case BUD_VALUE_EMPLTYPE_8:  //um. zlecenie - ponad 26 roku życia z innym zatrudnienem
+      returnValue = netSalary * 0.293;
+      break;
+
+    default:
+      break;
+  }
+  
+  if (addNetSalary) {
+    return (netSalary + returnValue);
+  } else {
+    return returnValue;
+  };
+
+
+};
