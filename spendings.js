@@ -346,7 +346,7 @@ function displayName( e ) {
 
 function setStatusAccepted(e) {
   
-  let logLine = moment().format('YYYY-MM-DD HH:mm') + ": Zaakceptowano" + msg + "\n* * *\n";
+  let logLine = moment().format('YYYY-MM-DD HH:mm') + ": Zaakceptowano" + msg + "\n";
 
   e.set(SPE_FIELD_WORKFLOWSTATUS, SPE_VALUE_WORKFLOWSTATUS_ACCEPTED)
   e.set(SPE_VALUE_WORKFLOW_LOG, logLine + e.field(SPE_VALUE_WORKFLOW_LOG));
@@ -357,7 +357,7 @@ function setStatusAccepted(e) {
 
 function setStatusDraft(e, msg) {
 
-  let logLine = moment().format('YYYY-MM-DD HH:mm') + ": " + msg + "\n* * *\n";
+  let logLine = moment().format('YYYY-MM-DD HH:mm') + ": " + msg + "\n";
 
   e.set(SPE_FIELD_WORKFLOWSTATUS, SPE_VALUE_WORKFLOWSTATUS_DRAFT);
   e.set(SPE_VALUE_WORKFLOW_LOG, logLine + e.field(SPE_VALUE_WORKFLOW_LOG));
