@@ -12,7 +12,7 @@ const ARR_EDITORS = [
   'WojciechS',
   'KatarzynaD',
   'Ksiegowosc',
-  'trzysta',
+  'trzysta'
 ];
 
 const ARR_NAMES = [
@@ -20,7 +20,7 @@ const ARR_NAMES = [
   'Wojciech Sygit',
   'Katarzyna Deputowska',
   'Ksiegowosc 300CS',
-  'Administrator',
+  'Marceli Matynia'
 ];
 
 const userAccountant = "Ksiegowosc";
