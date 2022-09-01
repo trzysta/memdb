@@ -280,3 +280,51 @@ function createNewBeforeSave() {
     }
   }
 }
+
+
+function displayName( e ) {
+
+  var t = e.field("Typ transakcji");
+  var o = moment(e.field("Data transakcji")).format('YYYY-MM-DD');
+  var b = "";
+  var uid = " (" + e.field("Unikalny numer wydatku w bazie") + ")";
+  
+  var dokonujacy = e.field("Dokonujący transakcji").substr(0, 1) + e.field("Dokonujący transakcji").substr( e.field("Dokonujący transakcji").indexOf(" ",0) + 1, 3);
+  
+  
+      switch (t) {
+  
+        case "Zakup za gotówkę":
+        case "Zakup z karty":
+          o = o + ': ' + dokonujacy + ', ' + e.field("Kategoria").substring(0, 6) + ', ' + e.field("Dostawca").substring(0, 20);
+          break;
+  
+        case "Zakup na przelew":
+          o += ': ' + dokonujacy + ', ' + e.field("Kategoria").substring(0, 6) + ', ' + e.field("Dostawca").substring(0, 20) + '\ntermin płatności: ' + moment(e.field("Termin płatności")).format('YYYY-MM-DD');
+          if (e.field("Do zapłaty") == "Zapłacone") { o += ', zapłacone: ' + moment(e.field("Data dokonania zapłaty")).format('YYYY-MM-DD') }
+          break;
+  
+        case "Wypłacona gotówką zaliczka":
+        case "Wypłacona przelewem zaliczka":
+        case "Rozliczenie gotówką z pracownikiem":
+        case "Rozliczenie przelewem z pracownikiem":
+          o = o + ': ' + dokonujacy + ' wypłacił(a) ' + e.field("Pracownik")[0].field("Nazwisko i imię");
+          break;
+  
+        case "Przekazanie gotówki koordynatorowi":
+          var przekazano = e.field("Przekazano osobie").substr(0, 1) + e.field("Przekazano osobie").substr( e.field("Przekazano osobie").indexOf(" ",0) + 1, 3);
+  
+          if (e.field("Kwota") >= 0) {
+            o = o + ': ' + przekazano + ' dał(a) gotówkę ' + dokonujacy;
+          } else {
+            o = o + ': ' + dokonujacy + ' dał(a) gotówkę ' + przekazano;
+          } 
+          break;
+  
+        default:
+          o = o + ': ' + dokonujacy + " pobrał(a) gotówkę";
+          break;
+
+  }
+  return o + uid;
+}
