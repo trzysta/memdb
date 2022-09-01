@@ -18,8 +18,14 @@ const SPE_WORKFLOW_DESC =
 
 const SPE_F_ALLOC = "Przypisanie do kontraktu";
 const SPE_F_ALLOC_C = "Kategoria wydatku";
+const SPE_F_ALLOC_AMOUNT = "Kwota";
+
+const SPE_F_ALLOC_REINV_SUM = "Kwota zaalokowana jako refaktura";
+const SPE_F_ALLOC_COST_SUM = "Kwota zaalokowana jako koszt";
+
 const SPE_V_ALLOC_C_REINVOICE = "REFAKTURA";
 const SPE_V_ALLOC_C_REINVOICE_ISSUED_NR = "Nr refaktury (wprowadza wystawiający faktury)";
+
 
 const SPE_F_REINVOICE_FLAG = "Status refaktury";
 const SPE_V_REINVOICE_FLAG_TOISSUE = "do wystawienia";
@@ -393,19 +399,34 @@ function setStatusWerify(e) {
 
 function saveSpending( e ) {
 
-  let isIssued = false;
+  let isReinvoiceNrEmpty = true;
+  let isReinvoice = false;
+  let isAllIssued = false; 
+
+  let sumReinvoice = 0;
+  let sumCost = 0;
 
   for (i=0; i < e.field(SPE_F_ALLOC).length; i++ ) {  
-    if ( e.field(SPE_F_ALLOC)[i].attr(SPE_F_ALLOC_C) == SPE_V_ALLOC_C_REINVOICE && e.field(SPE_F_ALLOC)[i].attr(SPE_V_ALLOC_C_REINVOICE_ISSUED_NR) == "" ) 
-      {
+
+    if (e.field(SPE_F_ALLOC)[i].attr(SPE_F_ALLOC_C) === SPE_V_ALLOC_C_REINVOICE) isReinvoice = true;
+    if (e.field(SPE_F_ALLOC)[i].attr(SPE_V_ALLOC_C_REINVOICE_ISSUED_NR) !== "") isReinvoiceNrEmpty = false;
+    if ( isReinvoice && isReinvoiceNrEmpty ) {
         e.set(SPE_F_REINVOICE_FLAG, SPE_V_REINVOICE_FLAG_TOISSUE);
-        isIssued = false;
-      } else if ( e.field(SPE_F_ALLOC)[i].attr(SPE_F_ALLOC_C) == SPE_V_ALLOC_C_REINVOICE && e.field(SPE_F_ALLOC)[i].attr(SPE_V_ALLOC_C_REINVOICE_ISSUED_NR) != "" ) 
-      {
-        isIssued = true;
-      }
+        isAllIssued = false;
+    } else if ( isReinvoice && !isReinvoiceNrEmpty ) {
+        isAllIssued = true;
+    }
+
+    if (isReinvoice) {
+      sumReinvoice += e.field(SPE_F_ALLOC)[i].attr(SPE_F_ALLOC_AMOUNT);
+    } else {
+      sumCost += e.field(SPE_F_ALLOC)[i].attr(SPE_F_ALLOC_AMOUNT);
+    }
+    
   }
 
-  if (isIssued) e.set(SPE_F_REINVOICE_FLAG, SPE_V_REINVOICE_FLAG_ISSUEED); 
+  e.set(SPE_F_ALLOC_REINV_SUM, sumReinvoice );
+  e.set(SPE_F_ALLOC_COST_SUM , sumCost );
+  if (isAllIssued) e.set(SPE_F_REINVOICE_FLAG, SPE_V_REINVOICE_FLAG_ISSUEED ) ; 
 
 }
