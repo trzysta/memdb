@@ -312,7 +312,7 @@ function displayName( e ) {
           break;
   
         case "Przekazanie gotówki koordynatorowi":
-          var przekazano = e.field("Przekazano osobie").substr(0, 1) + e.field("Przekazano osobie").substr( e.field("Przekazano osobie").indexOf(" ",0) + 1, 3);
+          var przekazano = e.field("Przekazano osobie").substr(0, 1) + e.field("Przekazano osobie").substr( e.field("Przekazano osobie").indexOf(" ",0) + 1, 1);
   
           if (e.field("Kwota") >= 0) {
             o = o + ': ' + przekazano + ' dał(a) gotówkę ' + dokonujacy;
