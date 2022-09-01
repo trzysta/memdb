@@ -287,7 +287,7 @@ function displayName( e ) {
   var t = e.field("Typ transakcji");
   var o = moment(e.field("Data transakcji")).format('YYYY-MM-DD');
   var b = "";
-  var uid = " (" + e.field("Unikalny numer wydatku w bazie") + ")";
+  var uid = " •" + e.field("Unikalny numer wydatku w bazie");
   
   var dokonujacy = e.field("Dokonujący transakcji").substr(0, 1) + e.field("Dokonujący transakcji").substr( e.field("Dokonujący transakcji").indexOf(" ",0) + 1, 1);
   
