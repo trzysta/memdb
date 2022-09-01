@@ -388,7 +388,7 @@ function setStatusAccepted(e) {
 
 function setStatusDraft(e, user, msg) {
 
-  let logLine = moment().format('YYYY-MM-DD HH:mm') + ": " + msg + "\n";
+  let logLine = moment().format('YYYY-MM-DD HH:mm') + ": przekazano " + user + ", " + msg + "\n";
 
   e.set(SPE_FIELD_WORKFLOWSTATUS, SPE_VALUE_WORKFLOWSTATUS_DRAFT);
   e.set(SPE_VALUE_WORKFLOW_LOG, logLine + e.field(SPE_VALUE_WORKFLOW_LOG));
