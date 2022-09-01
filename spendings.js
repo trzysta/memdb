@@ -406,7 +406,7 @@ function saveSpending( e ) {
 
     for (i=0; i < e.field(SPE_F_ALLOC).length; i++ ) {  
 
-      csvLine =  csvLine + 
+      csvLine = csvLine + 
                   e.field(SPE_F_ALLOC)[i].field(SPE_F_CON_SHORT) + colChar + 
                   e.field(SPE_F_ALLOC)[i].attr(SPE_F_ALLOC_AMOUNT) + colChar +
                   e.field(SPE_F_ALLOC)[i].attr(SPE_F_ALLOC_C) + "\n";
@@ -432,6 +432,7 @@ function saveSpending( e ) {
     e.set(SPE_F_ALLOC_REINV_SUM, sumReinvoice );
     e.set(SPE_F_ALLOC_COST_SUM , sumCost );
     if (isAllIssued) e.set(SPE_F_REINVOICE_FLAG, SPE_V_REINVOICE_FLAG_ISSUEED ) ; 
+ 
   } catch (err) {
     log('Spending :: saveSpending :: ' + err);
   }
