@@ -3,6 +3,16 @@ const SPE_VALUE_WORKFLOWSTATUS_ACCEPTED = "zatwierdzone";
 const SPE_VALUE_WORKFLOWSTATUS_TOWERIFY = "w weryfikacji";
 const SPE_VALUE_WORKFLOWSTATUS_DRAFT = "w trakcie opisywania";
 
+const SPE_FIELD_AUTHOR = "Edytor";
+const SPE_FIELD_EDITOR = "Edytor";
+
+const SPE_WORKFLOW_DESC = 
+  "Każdy wpis w bazie wydatków musi być przydzielony do osiedla, lub skategoryzowany. Wydatki gotówkowi wypłaty z bankomaty są weryfikowane z listą operacji w banku. Są trzy statusy dokumentu: \n\n" +
+  "-- zatwierdzone - oznacza że wydatek jest rozliczony, zaakceptowany i jeśli jest potrzeba skierowany do płatności. \n"+ 
+  "-- w weryfikacji - wydatek nie został jeszcze zweryfikowany, czeka aż księgowość zweryfikuje z kontem, zasadnością itp. \n"+ 
+  "-- w trakcie opisywania - oznacza że konieczne jest działanie, albo trzeba poprzypisywać do osiedla wydatek albo opisać w treści szerzej. "+ 
+  "Ten status także oznacza że nie ma dostarczonej papierowej faktury do biura.\n";
+
 
 let Spending = function (e) {
   log('Spending :: new' + String(e));
@@ -149,10 +159,7 @@ let Spending = function (e) {
 };
 
 
-
-
 /* stare */
-
 
 /*
   WYD_ev_new_przedZapisem.js
@@ -339,5 +346,14 @@ function displayName( e ) {
 function setStatusAccepted(e) {
 
   e.set(SPE_FIELD_WORKFLOWSTATUS, SPE_VALUE_WORKFLOWSTATUS_ACCEPTED)
+
+}
+
+
+function setStatusDraft(e) {
+
+  e.set(SPE_FIELD_WORKFLOWSTATUS, SPE_VALUE_WORKFLOWSTATUS_DRAFT);
+  e.set(SPE_FIELD_WORKFLOWSTATUS, SPE_VALUE_WORKFLOWSTATUS_DRAFT);
+
 
 }
