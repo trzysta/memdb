@@ -392,43 +392,47 @@ function setStatusWerify(e) {
 
 
 function saveSpending( e ) {
+  log('Spending :: saveSpending :: ' + String(e));
+  try {
 
-  let isReinvoiceNrEmpty = true;
-  let isReinvoice = false;
-  let isAllIssued = false; 
+    let isReinvoiceNrEmpty = true;
+    let isReinvoice = false;
+    let isAllIssued = false; 
 
-  let sumReinvoice = 0;
-  let sumCost = 0;
-  let csvLine = "";
-  let colChar = ";"; 
+    let sumReinvoice = 0;
+    let sumCost = 0;
+    let csvLine = "";
+    let colChar = ";"; 
 
-  for (i=0; i < e.field(SPE_F_ALLOC).length; i++ ) {  
+    for (i=0; i < e.field(SPE_F_ALLOC).length; i++ ) {  
 
-    csvLine =  csvLine + 
-                e.field(SPE_F_ALLOC)[i].field(SPE_F_CON_SHORT) + colChar + 
-                e.field(SPE_F_ALLOC)[i].attr(SPE_F_ALLOC_AMOUNT) + colChar +
-                e.field(SPE_F_ALLOC)[i].attr(SPE_F_ALLOC_C) + "\n";
+      csvLine =  csvLine + 
+                  e.field(SPE_F_ALLOC)[i].field(SPE_F_CON_SHORT) + colChar + 
+                  e.field(SPE_F_ALLOC)[i].attr(SPE_F_ALLOC_AMOUNT) + colChar +
+                  e.field(SPE_F_ALLOC)[i].attr(SPE_F_ALLOC_C) + "\n";
 
-    if (e.field(SPE_F_ALLOC)[i].attr(SPE_F_ALLOC_C) === SPE_V_ALLOC_C_REINVOICE) isReinvoice = true;
-    if (e.field(SPE_F_ALLOC)[i].attr(SPE_V_ALLOC_C_REINVOICE_ISSUED_NR) !== "") isReinvoiceNrEmpty = false;
-    if ( isReinvoice && isReinvoiceNrEmpty ) {
-        e.set(SPE_F_REINVOICE_FLAG, SPE_V_REINVOICE_FLAG_TOISSUE);
-        isAllIssued = false;
-    } else if ( isReinvoice && !isReinvoiceNrEmpty ) {
-        isAllIssued = true;
+      if (e.field(SPE_F_ALLOC)[i].attr(SPE_F_ALLOC_C) === SPE_V_ALLOC_C_REINVOICE) isReinvoice = true;
+      if (e.field(SPE_F_ALLOC)[i].attr(SPE_V_ALLOC_C_REINVOICE_ISSUED_NR) !== "") isReinvoiceNrEmpty = false;
+      if ( isReinvoice && isReinvoiceNrEmpty ) {
+          e.set(SPE_F_REINVOICE_FLAG, SPE_V_REINVOICE_FLAG_TOISSUE);
+          isAllIssued = false;
+      } else if ( isReinvoice && !isReinvoiceNrEmpty ) {
+          isAllIssued = true;
+      }
+
+      if (isReinvoice) {
+        sumReinvoice += e.field(SPE_F_ALLOC)[i].attr(SPE_F_ALLOC_AMOUNT);
+      } else {
+        sumCost += e.field(SPE_F_ALLOC)[i].attr(SPE_F_ALLOC_AMOUNT);
+      }
+
     }
 
-    if (isReinvoice) {
-      sumReinvoice += e.field(SPE_F_ALLOC)[i].attr(SPE_F_ALLOC_AMOUNT);
-    } else {
-      sumCost += e.field(SPE_F_ALLOC)[i].attr(SPE_F_ALLOC_AMOUNT);
-    }
-
+    e.set(SPE_F_ALLOC_CSV, csvLine );
+    e.set(SPE_F_ALLOC_REINV_SUM, sumReinvoice );
+    e.set(SPE_F_ALLOC_COST_SUM , sumCost );
+    if (isAllIssued) e.set(SPE_F_REINVOICE_FLAG, SPE_V_REINVOICE_FLAG_ISSUEED ) ; 
+  } catch (err) {
+    log('Spending :: saveSpending :: ' + err);
   }
-
-  e.set(SPE_F_ALLOC_CSV, csvLine );
-  e.set(SPE_F_ALLOC_REINV_SUM, sumReinvoice );
-  e.set(SPE_F_ALLOC_COST_SUM , sumCost );
-  if (isAllIssued) e.set(SPE_F_REINVOICE_FLAG, SPE_V_REINVOICE_FLAG_ISSUEED ) ; 
-
 }
