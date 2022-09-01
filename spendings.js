@@ -7,6 +7,8 @@ const SPE_VALUE_WORKFLOW_LOG = "Zmiany statusów i komunikaty";
 const SPE_FIELD_AUTHOR = "Author";
 const SPE_FIELD_EDITOR = "Osoba aktualnie odpowiedzialna za działanie w obiegu";
 
+const userAccountant = "Ksiegowosc";
+
 const SPE_WORKFLOW_DESC = 
   "Każdy wpis w bazie wydatków musi być przydzielony do osiedla, lub skategoryzowany. Wydatki gotówkowi wypłaty z bankomaty są weryfikowane z listą operacji w banku. Są trzy statusy dokumentu: \n\n" +
   "-- zatwierdzone - oznacza że wydatek jest rozliczony, zaakceptowany i jeśli jest potrzeba skierowany do płatności. \n"+ 
@@ -362,5 +364,17 @@ function setStatusDraft(e, msg) {
   e.set(SPE_FIELD_WORKFLOWSTATUS, SPE_VALUE_WORKFLOWSTATUS_DRAFT);
   e.set(SPE_VALUE_WORKFLOW_LOG, logLine + e.field(SPE_VALUE_WORKFLOW_LOG));
   e.set(SPE_FIELD_EDITOR, e.field(SPE_FIELD_AUTHOR));
+
+}
+
+
+
+function setStatusWerify(e) {
+  
+  let logLine = moment().format('YYYY-MM-DD HH:mm') + ": przekazano do weryfikacji" + msg + "\n";
+
+  e.set(SPE_FIELD_WORKFLOWSTATUS, SPE_VALUE_WORKFLOWSTATUS_TOWERIFY);
+  e.set(SPE_VALUE_WORKFLOW_LOG, logLine + e.field(SPE_VALUE_WORKFLOW_LOG));
+  e.set(SPE_FIELD_EDITOR, userAccountant );
 
 }
