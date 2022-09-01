@@ -2,6 +2,7 @@ const SPE_FIELD_WORKFLOWSTATUS = "Status wpisu w bazie";
 const SPE_VALUE_WORKFLOWSTATUS_ACCEPTED = "zatwierdzone";
 const SPE_VALUE_WORKFLOWSTATUS_TOWERIFY = "w weryfikacji";
 const SPE_VALUE_WORKFLOWSTATUS_DRAFT = "w trakcie opisywania";
+const SPE_VALUE_WORKFLOW_LOG = "Zmiany statusów i komunikaty";
 
 const SPE_FIELD_AUTHOR = "Autor";
 const SPE_FIELD_EDITOR = "Osoba aktualnie odpowiedzialna za działanie w obiegu";
@@ -350,9 +351,13 @@ function setStatusAccepted(e) {
 }
 
 
-function setStatusDraft(e) {
+function setStatusDraft(e, msg) {
+
+  let logLine = moment().format('YYYY-MM-DD hh:mm') + ": " + msg;
 
   e.set(SPE_FIELD_WORKFLOWSTATUS, SPE_VALUE_WORKFLOWSTATUS_DRAFT);
+  e.set(SPE_VALUE_WORKFLOW_LOG, e.field(SPE_VALUE_WORKFLOW_LOG) + "\n* * *\n" + logLine ) 
+
   e.set(SPE_FIELD_EDITOR, e.field(SPE_FIELD_AUTHOR));
 
 }
