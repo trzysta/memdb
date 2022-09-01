@@ -1,3 +1,9 @@
+const SPE_FIELD_WORKFLOWSTATUS = "Status wpisu w bazie";
+const SPE_VALUE_WORKFLOWSTATUS_ACCEPTED = "zatwierdzone";
+const SPE_VALUE_WORKFLOWSTATUS_TOWERIFY = "w weryfikacji";
+const SPE_VALUE_WORKFLOWSTATUS_DRAFT = "w trakcie opisywania";
+
+
 let Spending = function (e) {
   log('Spending :: new' + String(e));
   this.res = false;
@@ -327,4 +333,11 @@ function displayName( e ) {
 
   }
   return o + uid;
+}
+
+
+function setStatusAccepted(e) {
+
+  e.set(SPE_FIELD_WORKFLOWSTATUS, SPE_VALUE_WORKFLOWSTATUS_ACCEPTED)
+
 }
