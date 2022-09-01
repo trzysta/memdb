@@ -7,6 +7,22 @@ const SPE_VALUE_WORKFLOW_LOG = "Zmiany statusów i komunikaty";
 const SPE_FIELD_AUTHOR = "Author";
 const SPE_FIELD_EDITOR = "Osoba aktualnie odpowiedzialna za działanie w obiegu";
 
+const ARR_EDITORS = [
+  'MalgorzataG',
+  'WojciechS',
+  'KatarzynaD',
+  'Ksiegowosc',
+  'trzysta',
+];
+
+const ARR_NAMES = [
+  'Małgorzata Grabowska',
+  'Wojciech Sygit',
+  'Katarzyna Deputowska',
+  'Ksiegowosc 300CS',
+  'Administrator',
+];
+
 const userAccountant = "Ksiegowosc";
 
 const SPE_WORKFLOW_DESC = 
@@ -370,13 +386,13 @@ function setStatusAccepted(e) {
 
 }
 
-function setStatusDraft(e, msg) {
+function setStatusDraft(e, user, msg) {
 
   let logLine = moment().format('YYYY-MM-DD HH:mm') + ": " + msg + "\n";
 
   e.set(SPE_FIELD_WORKFLOWSTATUS, SPE_VALUE_WORKFLOWSTATUS_DRAFT);
   e.set(SPE_VALUE_WORKFLOW_LOG, logLine + e.field(SPE_VALUE_WORKFLOW_LOG));
-  e.set(SPE_FIELD_EDITOR, e.field(SPE_FIELD_AUTHOR));
+  e.set(SPE_FIELD_EDITOR, ARR_EDITORS[ ARR_NAMES.indexOf(user) ]);
 
 }
 
