@@ -22,6 +22,7 @@ const SPE_F_ALLOC_AMOUNT = "Kwota";
 
 const SPE_F_ALLOC_REINV_SUM = "Kwota zaalokowana jako refaktura";
 const SPE_F_ALLOC_COST_SUM = "Kwota zaalokowana jako koszt";
+const SPE_F_ALLOC_CSV = "AlokacjaCSV";
 
 const SPE_V_ALLOC_C_REINVOICE = "REFAKTURA";
 const SPE_V_ALLOC_C_REINVOICE_ISSUED_NR = "Nr refaktury (wprowadza wystawiający faktury)";
@@ -31,6 +32,8 @@ const SPE_F_REINVOICE_FLAG = "Status refaktury";
 const SPE_V_REINVOICE_FLAG_TOISSUE = "do wystawienia";
 const SPE_V_REINVOICE_FLAG_ISSUEED = "wystawiona";
 
+
+const SPE_F_CON_SHORT = "Skrót";
 
 let Spending = function (e) {
   log('Spending :: new' + String(e));
@@ -186,8 +189,6 @@ let Spending = function (e) {
 */
 
 
-
-
 function createNewBeforeSave() {
 
   var nll = "- wybierz -";
@@ -312,7 +313,6 @@ function createNewBeforeSave() {
   }
 }
 
-
 function displayName( e ) {
 
   var t = e.field("Typ transakcji");
@@ -360,7 +360,6 @@ function displayName( e ) {
   return o + uid;
 }
 
-
 function setStatusAccepted(e) {
   
   let logLine = moment().format('YYYY-MM-DD HH:mm') + ": Zaakceptowano\n";
@@ -371,7 +370,6 @@ function setStatusAccepted(e) {
 
 }
 
-
 function setStatusDraft(e, msg) {
 
   let logLine = moment().format('YYYY-MM-DD HH:mm') + ": " + msg + "\n";
@@ -381,8 +379,6 @@ function setStatusDraft(e, msg) {
   e.set(SPE_FIELD_EDITOR, e.field(SPE_FIELD_AUTHOR));
 
 }
-
-
 
 function setStatusWerify(e) {
   
@@ -395,8 +391,6 @@ function setStatusWerify(e) {
 }
 
 
-
-
 function saveSpending( e ) {
 
   let isReinvoiceNrEmpty = true;
@@ -405,8 +399,15 @@ function saveSpending( e ) {
 
   let sumReinvoice = 0;
   let sumCost = 0;
+  let csvLine = "";
+  let colChar = ";"; 
 
   for (i=0; i < e.field(SPE_F_ALLOC).length; i++ ) {  
+
+    csvLine =  csvLine + 
+                e.field(SPE_F_ALLOC)[i].field(SPE_F_CON_SHORT) + colChar + 
+                e.field(SPE_F_ALLOC)[i].attr(SPE_F_ALLOC_AMOUNT) + colChar +
+                e.field(SPE_F_ALLOC)[i].attr(SPE_F_ALLOC_C) + "\n";
 
     if (e.field(SPE_F_ALLOC)[i].attr(SPE_F_ALLOC_C) === SPE_V_ALLOC_C_REINVOICE) isReinvoice = true;
     if (e.field(SPE_F_ALLOC)[i].attr(SPE_V_ALLOC_C_REINVOICE_ISSUED_NR) !== "") isReinvoiceNrEmpty = false;
@@ -422,9 +423,10 @@ function saveSpending( e ) {
     } else {
       sumCost += e.field(SPE_F_ALLOC)[i].attr(SPE_F_ALLOC_AMOUNT);
     }
-    
+
   }
 
+  e.set(SPE_F_ALLOC_CSV, csvLine );
   e.set(SPE_F_ALLOC_REINV_SUM, sumReinvoice );
   e.set(SPE_F_ALLOC_COST_SUM , sumCost );
   if (isAllIssued) e.set(SPE_F_REINVOICE_FLAG, SPE_V_REINVOICE_FLAG_ISSUEED ) ; 
