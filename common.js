@@ -72,6 +72,7 @@ try {
     'ElzbietaZ',
     'WojciechS',
     'KatarzynaD',
+    'Ksiegowosc',
     'trzysta',
   ];
 
@@ -80,6 +81,7 @@ try {
     'Elżbieta Zdziech',
     'Wojciech Sygit',
     'Katarzyna Deputowska',
+    'Ksiegowosc 300CS',
     'Administrator',
   ];
 
