@@ -402,14 +402,15 @@ function saveSpending( e ) {
     let sumReinvoice = 0;
     let sumCost = 0;
     let csvLine = "";
-    let colChar = ";"; 
+    let csvChar = ";"; 
+    let colChar = "!";
 
     for (i=0; i < e.field(SPE_F_ALLOC).length; i++ ) {  
 
       csvLine = csvLine + 
                   e.field(SPE_F_ALLOC)[i].field(SPE_F_CON_SHORT) + colChar + 
                   e.field(SPE_F_ALLOC)[i].attr(SPE_F_ALLOC_AMOUNT) + colChar +
-                  e.field(SPE_F_ALLOC)[i].attr(SPE_F_ALLOC_C) + "\n";
+                  e.field(SPE_F_ALLOC)[i].attr(SPE_F_ALLOC_C) + csvChar;
 
       if (e.field(SPE_F_ALLOC)[i].attr(SPE_F_ALLOC_C) === SPE_V_ALLOC_C_REINVOICE) isReinvoice = true;
       if (e.field(SPE_F_ALLOC)[i].attr(SPE_V_ALLOC_C_REINVOICE_ISSUED_NR) !== "") isReinvoiceNrEmpty = false;
@@ -436,4 +437,5 @@ function saveSpending( e ) {
   } catch (err) {
     log('Spending :: saveSpending :: ' + err);
   }
+
 }
