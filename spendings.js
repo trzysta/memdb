@@ -393,7 +393,7 @@ function saveSpending( e ) {
   const SPE_V_REINVOICE_FLAG_TOISSUE = "do wystawienia";
 
   for (i=0; i < e.field(SPE_F_ALLOC).length; i++ ) {  
-    if ( e.field(SPE_F_ALLOC)[i].attr(SPE_F_ALLOC_C) == SPE_V_ALLOC_C_REINVOICE && SPE_V_ALLOC_C_REINVOICE_ISSUED_NR = "" ) {
+    if ( e.field(SPE_F_ALLOC)[i].attr(SPE_F_ALLOC_C) == SPE_V_ALLOC_C_REINVOICE && SPE_V_ALLOC_C_REINVOICE_ISSUED_NR == "" ) {
       e.set(SPE_F_REINVOICE_FLAG, SPE_V_REINVOICE_FLAG_TOISSUE)
     }  
   }
