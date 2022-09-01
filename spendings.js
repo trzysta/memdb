@@ -378,3 +378,27 @@ function setStatusWerify(e) {
   e.set(SPE_FIELD_EDITOR, userAccountant );
 
 }
+
+
+
+
+function saveSpending( e ) {
+
+  const SPE_F_ALLOC = "Przypisanie do kontraktu";
+  const SPE_F_ALLOC_C = "Kategoria wydatku";
+  const SPE_V_ALLOC_C_REINVOICE = "REFAKTURA";
+  const SPE_V_ALLOC_C_REINVOICE_ISSUED_NR = "Nr refaktury (wprowadza wystawiający faktury)";
+
+  const SPE_F_REINVOICE_FLAG = "Status refaktury";
+  const SPE_V_REINVOICE_FLAG_TOISSUE = "do wystawienia";
+
+  for (i=0; i < e.field(SPE_F_ALLOC).length; i++ ) {  
+    if ( e.field(SPE_F_ALLOC)[i].attr(SPE_F_ALLOC_C) == SPE_V_ALLOC_C_REINVOICE && SPE_V_ALLOC_C_REINVOICE_ISSUED_NR = "" ) {
+      e.set(SPE_F_REINVOICE_FLAG, SPE_V_REINVOICE_FLAG_TOISSUE)
+    }  
+  }
+  
+
+
+
+}
