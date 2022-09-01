@@ -168,7 +168,7 @@ function createNewBeforeSave() {
   var k = e.field("Przekazano osobie");
   var t = e.field("Typ transakcji");
   var kat = e.field("Kategoria");
-  var editors = ["MalgorzataG", "ElzbietaZ", "trzystaIZABELA", "trzysta"];
+  var editors = ["MalgorzataG", "KatarzynaD", "WojciechS", "Ksiegowosc", "trzysta"];
 
   e.set("Editor", editors);
       
