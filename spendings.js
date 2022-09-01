@@ -16,6 +16,15 @@ const SPE_WORKFLOW_DESC =
   "-- w trakcie opisywania - oznacza że konieczne jest działanie, albo trzeba poprzypisywać do osiedla wydatek albo opisać w treści szerzej. "+ 
   "Ten status także oznacza że nie ma dostarczonej papierowej faktury do biura.\n";
 
+const SPE_F_ALLOC = "Przypisanie do kontraktu";
+const SPE_F_ALLOC_C = "Kategoria wydatku";
+const SPE_V_ALLOC_C_REINVOICE = "REFAKTURA";
+const SPE_V_ALLOC_C_REINVOICE_ISSUED_NR = "Nr refaktury (wprowadza wystawiający faktury)";
+
+const SPE_F_REINVOICE_FLAG = "Status refaktury";
+const SPE_V_REINVOICE_FLAG_TOISSUE = "do wystawienia";
+const SPE_V_REINVOICE_FLAG_ISSUEED = "wystawiona";
+
 
 let Spending = function (e) {
   log('Spending :: new' + String(e));
@@ -384,24 +393,19 @@ function setStatusWerify(e) {
 
 function saveSpending( e ) {
 
-  const SPE_F_ALLOC = "Przypisanie do kontraktu";
-  const SPE_F_ALLOC_C = "Kategoria wydatku";
-  const SPE_V_ALLOC_C_REINVOICE = "REFAKTURA";
-  const SPE_V_ALLOC_C_REINVOICE_ISSUED_NR = "Nr refaktury (wprowadza wystawiający faktury)";
-
-  const SPE_F_REINVOICE_FLAG = "Status refaktury";
-  const SPE_V_REINVOICE_FLAG_TOISSUE = "do wystawienia";
+  let isIssued = false;
 
   for (i=0; i < e.field(SPE_F_ALLOC).length; i++ ) {  
-    if (  
-        e.field(SPE_F_ALLOC)[i].attr(SPE_F_ALLOC_C) == SPE_V_ALLOC_C_REINVOICE && 
-        e.field(SPE_F_ALLOC)[i].attr(SPE_V_ALLOC_C_REINVOICE_ISSUED_NR) == "" ) 
+    if ( e.field(SPE_F_ALLOC)[i].attr(SPE_F_ALLOC_C) == SPE_V_ALLOC_C_REINVOICE && e.field(SPE_F_ALLOC)[i].attr(SPE_V_ALLOC_C_REINVOICE_ISSUED_NR) == "" ) 
       {
-        e.set(SPE_F_REINVOICE_FLAG, SPE_V_REINVOICE_FLAG_TOISSUE)
-      }  
+        e.set(SPE_F_REINVOICE_FLAG, SPE_V_REINVOICE_FLAG_TOISSUE);
+        isIssued = false;
+      } else if ( e.field(SPE_F_ALLOC)[i].attr(SPE_F_ALLOC_C) == SPE_V_ALLOC_C_REINVOICE && e.field(SPE_F_ALLOC)[i].attr(SPE_V_ALLOC_C_REINVOICE_ISSUED_NR) != "" ) 
+      {
+        isIssued = true;
+      }
   }
-  
 
-
+  if (isIssued) e.set(SPE_F_REINVOICE_FLAG, SPE_V_REINVOICE_FLAG_ISSUEED); 
 
 }
