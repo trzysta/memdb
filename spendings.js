@@ -3,8 +3,8 @@ const SPE_VALUE_WORKFLOWSTATUS_ACCEPTED = "zatwierdzone";
 const SPE_VALUE_WORKFLOWSTATUS_TOWERIFY = "w weryfikacji";
 const SPE_VALUE_WORKFLOWSTATUS_DRAFT = "w trakcie opisywania";
 
-const SPE_FIELD_AUTHOR = "Edytor";
-const SPE_FIELD_EDITOR = "Edytor";
+const SPE_FIELD_AUTHOR = "Autor";
+const SPE_FIELD_EDITOR = "Osoba aktualnie odpowiedzialna za działanie w obiegu";
 
 const SPE_WORKFLOW_DESC = 
   "Każdy wpis w bazie wydatków musi być przydzielony do osiedla, lub skategoryzowany. Wydatki gotówkowi wypłaty z bankomaty są weryfikowane z listą operacji w banku. Są trzy statusy dokumentu: \n\n" +
@@ -353,7 +353,6 @@ function setStatusAccepted(e) {
 function setStatusDraft(e) {
 
   e.set(SPE_FIELD_WORKFLOWSTATUS, SPE_VALUE_WORKFLOWSTATUS_DRAFT);
-  e.set(SPE_FIELD_WORKFLOWSTATUS, SPE_VALUE_WORKFLOWSTATUS_DRAFT);
-
+  e.set(SPE_FIELD_EDITOR, e.field(SPE_FIELD_AUTHOR));
 
 }
