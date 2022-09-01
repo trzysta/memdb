@@ -345,19 +345,22 @@ function displayName( e ) {
 
 
 function setStatusAccepted(e) {
+  
+  let logLine = moment().format('YYYY-MM-DD HH:mm') + ": Zaakceptowano" + msg + "\n* * *\n";
 
   e.set(SPE_FIELD_WORKFLOWSTATUS, SPE_VALUE_WORKFLOWSTATUS_ACCEPTED)
+  e.set(SPE_VALUE_WORKFLOW_LOG, logLine + e.field(SPE_VALUE_WORKFLOW_LOG));
+  e.set(SPE_FIELD_EDITOR, "" );
 
 }
 
 
 function setStatusDraft(e, msg) {
 
-  let logLine = moment().format('YYYY-MM-DD HH:mm') + ": " + msg;
+  let logLine = moment().format('YYYY-MM-DD HH:mm') + ": " + msg + "\n* * *\n";
 
   e.set(SPE_FIELD_WORKFLOWSTATUS, SPE_VALUE_WORKFLOWSTATUS_DRAFT);
-  e.set(SPE_VALUE_WORKFLOW_LOG, e.field(SPE_VALUE_WORKFLOW_LOG) + "\n* * *\n" + logLine );
-
+  e.set(SPE_VALUE_WORKFLOW_LOG, logLine + e.field(SPE_VALUE_WORKFLOW_LOG));
   e.set(SPE_FIELD_EDITOR, e.field(SPE_FIELD_AUTHOR));
 
 }
