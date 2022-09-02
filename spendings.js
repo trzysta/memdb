@@ -6,6 +6,7 @@ const SPE_VALUE_WORKFLOW_LOG = "Zmiany statusów i komunikaty";
 
 const SPE_FIELD_AUTHOR = "Author";
 const SPE_FIELD_EDITOR = "Osoba aktualnie odpowiedzialna za działanie w obiegu";
+const SPE_F_TRANSACTION_TYPE = "Typ transakcji";
 
 const ARR_EDITORS = [
   'MalgorzataG',
@@ -450,5 +451,54 @@ function saveSpending( e ) {
   } catch (err) {
     log('Spending :: saveSpending :: ' + err);
   }
+
+}
+
+
+function displayCashTypeOperation() {
+
+  let r = SPE_F_CASHTYPE_OTHER;
+
+  const SPE_V_TRAN_TYPE_PURCHASE_CASH = "Zakup za gotówkę";
+  const SPE_V_TRAN_TYPE_PURCHASE_CARD = "Zakup z karty";
+  const SPE_V_TRAN_TYPE_PURCHASE_BANK_TRANSFER = "Zakup na przelew";
+  const SPE_V_TRAN_TYPE_ADVANCE_CASH = "Wypłacona gotówką zaliczka";
+  const SPE_V_TRAN_TYPE_ADVANCE_BANK_TRANSFER = "Wypłacona przelewem zaliczka";
+  const SPE_V_TRAN_TYPE_EMPLOYEE_PAYMENT_CASH = "Rozliczenie gotówką z pracownikiem";
+  const SPE_V_TRAN_TYPE_EMPLOYEE_BANK_TRANSFER = "Rozliczenie przelewem z pracownikiem";
+  const SPE_V_TRAN_TYPE_CASH_HANDOVER = "Przekazanie gotówki koordynatorowi";
+  const SPE_V_TRAN_TYPE_CASH_WITHDRAWAL = "Wypłata z bankomatu";
+
+  const SPE_F_CASHTYPE_CASH = "operacje gotówkowe";
+  const SPE_F_CASHTYPE_CARD = "operacje na karcie";
+  const SPE_F_CASHTYPE_BANK = "operacje na rachunku";
+  
+  const SPE_F_CASHTYPE_OTHER = "operacje inne";
+  
+  switch (field(SPE_F_TRANSACTION_TYPE)) {
+    case SPE_V_TRAN_TYPE_PURCHASE_CASH:
+    case SPE_V_TRAN_TYPE_ADVANCE_CASH:
+    case SPE_V_TRAN_TYPE_EMPLOYEE_PAYMENT_CASH:
+    case SPE_V_TRAN_TYPE_CASH_HANDOVER:
+    case SPE_V_TRAN_TYPE_CASH_WITHDRAWAL:
+
+      return SPE_F_CASHTYPE_CASH;
+      break;
+    
+    case SPE_V_TRAN_TYPE_PURCHASE_CARD:
+      return SPE_F_CASHTYPE_CARD;
+      break;
+    
+    case SPE_V_TRAN_TYPE_PURCHASE_BANK_TRANSFER:
+    case SPE_V_TRAN_TYPE_ADVANCE_BANK_TRANSFER:
+    case SPE_V_TRAN_TYPE_EMPLOYEE_BANK_TRANSFER:
+        return SPE_F_CASHTYPE_BANK;
+        break;
+
+    default:
+      return SPE_F_CASHTYPE_OTHER;
+      break;
+  }
+
 
 }
