@@ -216,9 +216,6 @@ function createNewBeforeSave() {
   var k = e.field("Przekazano osobie");
   var t = e.field("Typ transakcji");
   var kat = e.field("Kategoria");
-  var editors = ["MalgorzataG", "KatarzynaD", "WojciechS", "Ksiegowosc", "trzysta"];
-
-  e.set("Editor", editors);
       
   if (t == "Przekazanie gotówki koordynatorowi" && k == p) {
     message("Nie można przekazać tej samej osobie");
