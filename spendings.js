@@ -516,7 +516,9 @@ function migrateSelected( selectedEntry ) {
       log('Spending :: migrateSelected :: loop1 i:' + i); 
           
       let entrySpend = selectedEntry[i];
-      for (c=0; c < CONTRACTS.LENGTH; J++) {
+      log('Spending :: migrateSelected :: loop1 i:' + i + ' entrySpend' + entrySpend.name ); 
+
+      for (c=0; c < CONTRACTS.length; c++) {
         log('Spending :: migrateSelected :: loop2 c:' + c); 
 
           if ( entrySpend.field(CONTRACTS[c]) != "" ) {
