@@ -404,7 +404,6 @@ function setStatusWerify(e) {
 
 }
 
-
 function saveSpending( e ) {
   log('Spending :: saveSpending :: ' + String(e));
   try {
@@ -454,7 +453,6 @@ function saveSpending( e ) {
 
 }
 
-
 function displayCashTypeOperation() {
 
   let r = SPE_F_CASHTYPE_OTHER;
@@ -501,4 +499,49 @@ function displayCashTypeOperation() {
   }
 
 
+}
+
+
+
+function migrateSelected( selectedEntry ) {
+
+  try {
+    log('Spending :: migrateSelected :: start'); 
+
+    const CONTRACTS = {'ZIEL', 'WOL45', 'WLO64', 'WLO62', 'WLO30', 'WIT6', 'TUR9', 'TAS', 'PLO6', 'PLO2', 'SZA', 'SKA', 'SAR20', 'SAB', 'BRO', 'BUK2', 'CER37', 'CER5', 'DER16', 'DYW', 'GOR224', 'KAL4', 'KLU1', 'LIP10', 'MAR2', 'MAR3', 'OBR25', 'ORD5'};
+    
+    let libContracts = libByName("Osiedla");
+
+    for (i=0; i< selectedEntry.length; i++) {
+      log('Spending :: migrateSelected :: loop1 i:' + i); 
+          
+      let entrySpend = selectedEntry[i];
+      for (c=0; c < CONTRACTS.LENGTH; J++) {
+        log('Spending :: migrateSelected :: loop2 c:' + c); 
+
+          if ( entrySpend.field(CONTRACTS[c]) != "" ) {
+
+            log('Spending :: migrateSelected :: CONTRACTS[c]: ' + entrySpend.field( CONTRACTS[c] ); 
+
+            let arrContracts = libContracts.findByKey( CONTRACTS[c] );
+            let amount = entrySpend.field(CONTRACTS[c]);
+            let comm = entrySpend.field( "Opis" );
+            
+            if (arrContracts.length > 0) {
+              
+              log('Spending :: migrateSelected :: arrContracts.length ' + arrContracts.length  );
+
+              entrySpend.link ( SPE_F_ALLOC, arrContracts[0] ) ;
+              entrySpend.recalc() ;
+              entrySpend.field(SPE_F_ALLOC)[ entrySpend.field(SPE_F_ALLOC).length-1 ].setAttr(SPE_F_ALLOC_AMOUNT, amount );
+              entrySpend.field(SPE_F_ALLOC)[ entrySpend.field(SPE_F_ALLOC).length-1 ].setAttr(SPE_F_ALLOC_C, comm );
+
+            }
+          }     
+      }    
+
+    }
+  } catch (err) {
+    log('Spending :: migrateSelected');
+  }
 }
