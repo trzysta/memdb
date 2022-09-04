@@ -508,7 +508,7 @@ function migrateSelected( selectedEntry ) {
   try {
     log('Spending :: migrateSelected :: start'); 
 
-    const CONTRACTS = {'ZIEL', 'WOL45', 'WLO64', 'WLO62', 'WLO30', 'WIT6', 'TUR9', 'TAS', 'PLO6', 'PLO2', 'SZA', 'SKA', 'SAR20', 'SAB', 'BRO', 'BUK2', 'CER37', 'CER5', 'DER16', 'DYW', 'GOR224', 'KAL4', 'KLU1', 'LIP10', 'MAR2', 'MAR3', 'OBR25', 'ORD5'};
+    const CONTRACTS = [ 'ZIEL', 'WOL45', 'WLO64', 'WLO62', 'WLO30', 'WIT6', 'TUR9', 'TAS', 'PLO6', 'PLO2', 'SZA', 'SKA', 'SAR20', 'SAB', 'BRO', 'BUK2', 'CER37', 'CER5', 'DER16', 'DYW', 'GOR224', 'KAL4', 'KLU1', 'LIP10', 'MAR2', 'MAR3', 'OBR25', 'ORD5' ];
     
     let libContracts = libByName("Osiedla");
 
@@ -542,6 +542,7 @@ function migrateSelected( selectedEntry ) {
 
     }
   } catch (err) {
-    log('Spending :: migrateSelected');
+
+    log('spendings: ' + err);
   }
 }
