@@ -519,14 +519,17 @@ function migrateSelected( selectedEntry ) {
       log('Spending :: migrateSelected :: loop1 i:' + i + ' entrySpend' + entrySpend.name ); 
 
       for (c=0; c < CONTRACTS.length; c++) {
+
+        let short = CONTRACTS[ c ] ;
+
         log('Spending :: migrateSelected :: loop2 c:' + c); 
 
-          if ( entrySpend.field( CONTRACTS[c] ) !== "" && entrySpend.field( CONTRACTS[c] ) !== null ) {
+          if ( entrySpend.field( short ) !== "" && entrySpend.field( short ) !== null ) {
 
-            log('Spending :: migrateSelected :: CONTRACTS[c]: ' + CONTRACTS[c]  ); 
+            log('Spending :: migrateSelected :: CONTRACTS[c]: ' + short  ); 
 
-            let arrContracts = libContracts.findByKey( CONTRACTS[c] );
-            let amount = entrySpend.field(CONTRACTS[c]);
+            let arrContracts = libContracts.findByKey( short );
+            let amount = entrySpend.field( short );
             let comm = entrySpend.field( "Opis" );
             
             if (arrContracts.length > 0) {
