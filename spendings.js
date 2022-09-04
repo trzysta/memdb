@@ -521,7 +521,7 @@ function migrateSelected( selectedEntry ) {
 
           if ( entrySpend.field(CONTRACTS[c]) != "" ) {
 
-            log('Spending :: migrateSelected :: CONTRACTS[c]: ' + entrySpend.field( CONTRACTS[c] ); 
+            log('Spending :: migrateSelected :: CONTRACTS[c]: ' + entrySpend.field( CONTRACTS[c] )); 
 
             let arrContracts = libContracts.findByKey( CONTRACTS[c] );
             let amount = entrySpend.field(CONTRACTS[c]);
