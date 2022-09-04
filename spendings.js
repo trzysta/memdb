@@ -511,7 +511,7 @@ function migrateSelected( selectedEntry ) {
     const CONTRACTS = [ 'ZIEL', 'WOL45', 'WLO64', 'WLO62', 'WLO30', 'WIT6', 'TUR9', 'TAS', 'PLO6', 'PLO2', 'SZA', 'SKA', 'SAR20', 'SAB', 'BRO', 'BUK2', 'CER37', 'CER5', 'DER16', 'DYW', 'GOR224', 'KAL4', 'KLU1', 'LIP10', 'MAR2', 'MAR3', 'OBR25', 'ORD5' ];
     
     let libContracts = libByName("Osiedla");
-
+     
     for (i=0; i< selectedEntry.length; i++) {
       log('Spending :: migrateSelected :: loop1 i:' + i); 
           
@@ -527,12 +527,14 @@ function migrateSelected( selectedEntry ) {
           if ( entrySpend.field( short ) !== "" && entrySpend.field( short ) !== null ) {
 
             log('Spending :: migrateSelected :: CONTRACTS[c]: ' + short  ); 
-            let arrContracts = libContracts.find( short );
+            
+            let eContract = libContracts.findByKey( short );
+            log('Spending :: migrateSelected :: eContract ' + eContract.name  ); 
 
             let amount = entrySpend.field( short );
             let comm = entrySpend.field( "Opis" );
             
-            if (arrContracts.length !== null ) {
+            if ( eContract !== null ) {
               
               log('Spending :: migrateSelected :: arrContracts.length ' + arrContracts.length  );
 
