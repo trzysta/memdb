@@ -529,7 +529,7 @@ function migrateSelected( selectedEntry ) {
             log('Spending :: migrateSelected :: CONTRACTS[c]: ' + short  ); 
             
             let eContract = libContracts.findByKey( short );
-            log('Spending :: migrateSelected :: eContract ' + eContract.name  ); 
+            log('Spending :: migrateSelected :: ' + libContracts.title + '.findByKey( ' + short + ' ); ' ); 
 
             let amount = entrySpend.field( short );
             let comm = entrySpend.field( "Opis" );
