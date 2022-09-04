@@ -527,12 +527,12 @@ function migrateSelected( selectedEntry ) {
           if ( entrySpend.field( short ) !== "" && entrySpend.field( short ) !== null ) {
 
             log('Spending :: migrateSelected :: CONTRACTS[c]: ' + short  ); 
+            let arrContracts = libContracts.find( short );
 
-            let arrContracts = libContracts.findByKey( short );
             let amount = entrySpend.field( short );
             let comm = entrySpend.field( "Opis" );
             
-            if (arrContracts.length > 0) {
+            if (arrContracts.length !== null ) {
               
               log('Spending :: migrateSelected :: arrContracts.length ' + arrContracts.length  );
 
