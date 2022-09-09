@@ -57,13 +57,18 @@ function prepareSMS (e) {
   try {
 
     let msg0 = "do poprawy natychmiast: ";
-    let msg1 = "do poprawy przy następnym sprzątaniu: ";
+    let msg1 = " do poprawy przy następnym sprzątaniu: ";
 
     for (i=0; i < KLATKI_FIELDS.length; i++ ) {
-      if ( e.field( KLATKI_FIELDS[i]) > 0 && e.field( KLATKI_FIELDS[i] < 2 )) {
+      
+      log (KLATKI_FIELDS[i] + ": " +e.field( KLATKI_FIELDS[i]) );
+
+      if ( e.field( KLATKI_FIELDS[i]) > 0 && e.field( KLATKI_FIELDS[i]) < 2 ) {
         msg0 += KLATKI_FIELDS[i] + "; ";
-      } else if ( e.field( KLATKI_FIELDS[i]) > 2 && e.field( KLATKI_FIELDS[i] < 4 ))
+
+      } else if ( e.field( KLATKI_FIELDS[i]) > 2 && e.field( KLATKI_FIELDS[i]) < 4 )
         msg1 += KLATKI_FIELDS[i] + "; ";
+
     }
 
     AndroidMessages.sms("+48509999046", msg0 + msg1 )
