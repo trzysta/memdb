@@ -61,7 +61,7 @@ function prepareSMS (e) {
 
     for (i=0; i < KLATKI_FIELDS.length; i++ ) {
       
-      log (KLATKI_FIELDS[i] + ": " +e.field( KLATKI_FIELDS[i]) );
+      log ( KLATKI_FIELDS[i] + ": " + e.field( KLATKI_FIELDS[i]) );
 
       if ( e.field( KLATKI_FIELDS[i]) > 0 && e.field( KLATKI_FIELDS[i]) < 2 ) {
         msg0 += KLATKI_FIELDS[i] + "; ";
