@@ -32,22 +32,22 @@ const KLATKI_FIELDS = [
                       ]
 
 const KLATKI_SMS = [
-                        'pajęczyny przed klat',
-                        'part dywaniki',
-                        'part domofon',
-                        'part pajęcz',
-                        'part podłoga',
-                        'part zapach',
-                        'part drzwi',
-                        'part skrzynki',
-                        'part włączn i ściany',
+                        'pajęcz przed wejśc',
+                        'parter dywaniki',
+                        'parter domofon',
+                        'parter pajęcz',
+                        'parter podłoga',
+                        'parter zapach',
+                        'parter drzwi',
+                        'parter skrzynki',
+                        'parter włączn+ściany',
                         'półpięt podłoga',
                         'półpięt podstop',
                         'półpięt zacieki',
                         'półpięt poręcze',
                         'piętra podłoga',
                         'piętra fugi',
-                        'piętra włączniki i ściany',
+                        'piętra włączn+ściany',
                         'piętra zapach',
                         'piętra parapety',
                         'piętra przeszkl',
@@ -57,7 +57,7 @@ const KLATKI_SMS = [
                         'windy podłoga',
                         'windy ściany',
                         'windy panel',
-                        'windy lustr0'
+                        'windy lustro'
                       ]
 
 
@@ -90,9 +90,10 @@ const copyLastValues = function (e) {
 } 
 
 
-function prepareSMS (e) {
+function prepareSMS (en) {
   try {
 
+    let e = entry();
     let msg0 = "DO POPRAWY PILNIE: ";
     let msg1 = "DO POPRAWY: ";
 
@@ -109,7 +110,7 @@ function prepareSMS (e) {
 
     }
 
-    AndroidMessages.sms("+48509999046", msg0 + msg1 );;
+    AndroidMessages.sms("+48509999046", msg0 + msg1 + " KONIEC");;
 
   } catch (error) {
     log(error)
