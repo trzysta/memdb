@@ -28,7 +28,11 @@ const KLATKI_FIELDS = [
                         'Windy - czystość posadzki',
                         'Windy - czystość ścian, sufitu i drzwi',
                         'Windy - czystość panelu sterowania',
-                        'Windy - czystość lustra'
+                        'Windy - czystość lustra',
+                        'Minusy - czystość posadzki',
+                        'Minusy - kratki wentylacyjne i ściany wokół',
+                        'Minusy - drzwi',
+                        'Minusy - pajęczyny'
                       ]
 
 const KLATKI_SMS = [
@@ -57,10 +61,48 @@ const KLATKI_SMS = [
                         'windy podłoga',
                         'windy ściany',
                         'windy panel',
-                        'windy lustro'
+                        'windy lustro',
+                        'minus podłog',
+                        'minus wentylat+ściany',
+                        'minus drzwi',
+                        'minus pajecz'
                       ]
 
+const GARAZ_FIELDS = [
+                        'Posadzka - piach',
+                        'Posadzka - czystość',
+                        'Posadzka - rogi i przy ścianach',
+                        'Posadzka - śmieci i liście',
+                        'Czystość rur i instalacji',
+                        'Skrzynki ppoż.',
+                        'Gaśnice',
+                        'Drzwi do klatek',
+                        'Pajęczyny',
+                        'Drzwi do pomieszczeń technicznych',
+                        'Pomieszczenia techniczne - posadzka',
+                        'Pomieszczenia techniczne - śmieci',
+                        'Pomieszczenia techniczne - graty',
+                        'Pomieszczenia techniczne - kurz',
+                        'Brama garażowa'
+                      ]
 
+ const GARAZ_SMS = [
+                        'posadz piach',
+                        'posadz brud',
+                        'posadz rogi',
+                        'śmieci liście',
+                        'rury i instal',
+                        'skrzyn ppoż.',
+                        'gaśnic',
+                        'drzwi do klatek',
+                        'pajęcz',
+                        'drzwi pom. techn',
+                        'pom. tech podloga',
+                        'pom. tech śmieci',
+                        'pom. tech graty',
+                        'pom. tech kurz',
+                        'brama garaż'
+                      ]
 
 // var entries = lib().entries();                   // Get current library & array of its entries
 // if (entries.length > 0) {                        // Check that array is not empty;
@@ -96,16 +138,20 @@ function prepareSMS (en) {
     let e = entry();
     let msg0 = "DO POPRAWY PILNIE: ";
     let msg1 = "DO POPRAWY: ";
+    let oceny = [];
 
     for (i=0; i < KLATKI_FIELDS.length; i++ ) {
       
+      oceny.push(KLATKI_FIELDS[i]);
+    
       let ocena = e.field( KLATKI_FIELDS[i]);
-      log ( KLATKI_SMS[i] + ": " + ocena );
 
-      if ( ocena > 0 && ocena <= 2 ) {
+      log ( KLATKI_SMS[i] + ": " + oceny[i] );
+
+      if ( oceny[i] > 0 && oceny[i] <= 2 ) {
         msg0 = msg0 + KLATKI_SMS[i] + "; ";
 
-      } else if ( ocena > 2 && ocena < 5 )
+      } else if ( oceny[i] > 2 && oceny[i] < 5 )
         msg1 = msg1 + KLATKI_SMS[i] + "; ";
 
     }
@@ -116,3 +162,16 @@ function prepareSMS (en) {
     log(error)
   }
 } 
+
+
+
+function countAve(e) {
+
+  let oceny_klatki = [];
+  KLATKI_FIELDS.forEach(element => {
+    oceny_klatki.push( e.field(element) );
+    log(element + ": " + oceny_klatki[oceny_klatki.length])
+  });
+
+
+}
