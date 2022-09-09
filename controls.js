@@ -72,14 +72,3 @@ function prepareSMS (e) {
     log(error)
   }
 } 
-
-
-
-try {
- 
-  AndroidMessages.sms("+48509999046",
-  "asasasasasa")
-} catch (error) {
-  log(error)
-}
- 
