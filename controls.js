@@ -93,18 +93,18 @@ const copyLastValues = function (e) {
 function prepareSMS (e) {
   try {
 
-    let msg0 = "do poprawy juz: ";
-    let msg1 = "do poprawy potem: ";
+    let msg0 = "DO POPRAWY PILNIE: ";
+    let msg1 = "DO POPRAWY: ";
 
     for (i=0; i < KLATKI_FIELDS.length; i++ ) {
       
       let ocena = e.field( KLATKI_FIELDS[i]);
       log ( KLATKI_SMS[i] + ": " + ocena );
 
-      if ( ocena > 0 && ocena < 2 ) {
+      if ( ocena > 0 && ocena <= 2 ) {
         msg0 = msg0 + KLATKI_SMS[i] + "; ";
 
-      } else if ( ocena >= 2 && ocena < 5 )
+      } else if ( ocena > 2 && ocena < 5 )
         msg1 = msg1 + KLATKI_SMS[i] + "; ";
 
     }
