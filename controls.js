@@ -31,6 +31,34 @@ const KLATKI_FIELDS = [
                         'Windy - czystość lustra'
                       ]
 
+const KLATKI_SMS = [
+                        'pajęczyny przed klat',
+                        'part dywaniki',
+                        'part domofon',
+                        'part pajęcz',
+                        'part podłoga',
+                        'part zapach',
+                        'part drzwi',
+                        'part skrzynki',
+                        'part włączn i ściany',
+                        'półpięt podłoga',
+                        'półpięt podstop',
+                        'półpięt zacieki',
+                        'półpięt poręcze',
+                        'piętra podłoga',
+                        'piętra fugi',
+                        'piętra włączniki i ściany',
+                        'piętra zapach',
+                        'piętra parapety',
+                        'piętra przeszkl',
+                        'piętra wentylatory',
+                        'piętra cokoły',
+                        'windy prowadnic',
+                        'windy podłoga',
+                        'windy ściany',
+                        'windy panel',
+                        'windy lustr0'
+                      ]
 
 
 
@@ -65,23 +93,23 @@ const copyLastValues = function (e) {
 function prepareSMS (e) {
   try {
 
-    let msg0 = "do poprawy natychmiast: ";
-    let msg1 = " do poprawy przy następnym sprzątaniu: ";
+    let msg0 = "do poprawy juz: ";
+    let msg1 = "do poprawy potem: ";
 
     for (i=0; i < KLATKI_FIELDS.length; i++ ) {
       
       let ocena = e.field( KLATKI_FIELDS[i]);
-      log ( KLATKI_FIELDS[i] + ": " + ocena );
+      log ( KLATKI_SMS[i] + ": " + ocena );
 
       if ( ocena > 0 && ocena < 2 ) {
-        msg0 = msg0 + KLATKI_FIELDS[i] + "; ";
+        msg0 = msg0 + KLATKI_SMS[i] + "; ";
 
-      } else if ( ocena > 2 && ocena < 5 )
-        msg1 = msg1 + KLATKI_FIELDS[i] + "; ";
+      } else if ( ocena >= 2 && ocena < 5 )
+        msg1 = msg1 + KLATKI_SMS[i] + "; ";
 
     }
 
-    AndroidMessages.sms("+48509999046", msg0 + msg1 )
+    AndroidMessages.sms("+48509999046", msg0 + msg1 );;
 
   } catch (error) {
     log(error)
