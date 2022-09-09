@@ -3,6 +3,15 @@ const FIELD_LABEL = ") Czynność";
 const FIELD_PROMPT = ") Cechy";
 
 const KLATKI_FIELDS = [
+                        'Pajęczyny przed klatką lub w przedsionku',
+                        'Partery - czystość dywaników, wykładzin (jeśli są)',
+                        'Partery - czystość panelu domofonu i ściany wokół',
+                        'Partery - pajęczyny pod sufitem i w rogach',
+                        'Partery - czystość posadzki',
+                        'Partery - zapach',
+                        'Partery - czystość przeszkleń i ram drzwi',
+                        'Partery - czystość skrzynek na listy',
+                        'Partery - kurz na włącznikach, czystość włączników i ścian wokół',
                         'Schody i półpiętra - czystość posadzki',
                         'Schody i półpiętra - czystość podstopnic',
                         'Schody i półpiętra - boki schodów, zacieki',
@@ -61,13 +70,14 @@ function prepareSMS (e) {
 
     for (i=0; i < KLATKI_FIELDS.length; i++ ) {
       
-      log ( KLATKI_FIELDS[i] + ": " + e.field( KLATKI_FIELDS[i]) );
+      let ocena = e.field( KLATKI_FIELDS[i]);
+      log ( KLATKI_FIELDS[i] + ": " + ocena );
 
-      if ( e.field( KLATKI_FIELDS[i]) > 0 && e.field( KLATKI_FIELDS[i]) < 2 ) {
-        msg0 += KLATKI_FIELDS[i] + "; ";
+      if ( ocena > 0 && ocena < 2 ) {
+        msg0 = msg0 + KLATKI_FIELDS[i] + "; ";
 
-      } else if ( e.field( KLATKI_FIELDS[i]) > 2 && e.field( KLATKI_FIELDS[i]) < 4 )
-        msg1 += KLATKI_FIELDS[i] + "; ";
+      } else if ( ocena > 2 && ocena < 5 )
+        msg1 = msg1 + KLATKI_FIELDS[i] + "; ";
 
     }
 
