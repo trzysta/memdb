@@ -167,11 +167,13 @@ function prepareSMS (en) {
 
 function countAve(e) {
 
-  let oceny_klatki = [];
+  let klatki_eval = [];
   KLATKI_FIELDS.forEach(element => {
-    oceny_klatki.push( e.field(element) );
-    log(element + ": " + oceny_klatki[oceny_klatki.length])
+    if ( e.field(element) > 0 ) {
+      klatki_eval.push( e.field(element) );
+    };
   });
 
+  (klatki_eval.reduce((a, b) => a + b, 0) / klatki_eval.length).toFixed(2)
 
 }
