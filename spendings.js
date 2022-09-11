@@ -501,8 +501,7 @@ function displayCashTypeOperation() {
 
 }
 
-
-
+/*
 function migrateSelected( selectedEntry ) {
 
   try {
@@ -551,11 +550,15 @@ function migrateSelected( selectedEntry ) {
 
             }
           }     
-      }    
+          
 
-    }
+    
   } catch (err) {
 
     log('spendings: ' + err);
   }
+
+  
 }
+
+*/
