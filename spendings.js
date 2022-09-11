@@ -371,7 +371,7 @@ function displayName( e ) {
           break;
 
   }
-  return o + uid;
+  return o;
 }
 
 function setStatusAccepted(e) {
