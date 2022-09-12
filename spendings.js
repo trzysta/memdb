@@ -4,6 +4,7 @@ const SPE_VALUE_WORKFLOWSTATUS_TOWERIFY = "w weryfikacji";
 const SPE_VALUE_WORKFLOWSTATUS_DRAFT = "w trakcie opisywania";
 const SPE_VALUE_WORKFLOW_LOG = "Zmiany statusów i komunikaty";
 
+
 const SPE_FIELD_AUTHOR = "Author";
 const SPE_FIELD_EDITOR = "Osoba aktualnie odpowiedzialna za działanie w obiegu";
 const SPE_F_TRANSACTION_TYPE = "Typ transakcji";
@@ -32,6 +33,8 @@ const SPE_WORKFLOW_DESC =
   "-- w weryfikacji - wydatek nie został jeszcze zweryfikowany, czeka aż księgowość zweryfikuje z kontem, zasadnością itp. \n"+ 
   "-- w trakcie opisywania - oznacza że konieczne jest działanie, albo trzeba poprzypisywać do osiedla wydatek albo opisać w treści szerzej. "+ 
   "Ten status także oznacza że nie ma dostarczonej papierowej faktury do biura.\n";
+
+  const SPE_F_CATEGORY = "Kategoria";
 
 const SPE_F_ALLOC = "Przypisanie do kontraktu";
 const SPE_F_ALLOC_C = "Kategoria wydatku";
@@ -336,16 +339,22 @@ function displayName( e ) {
   
   var dokonujacy = e.field("Dokonujący transakcji").substr(0, 1) + e.field("Dokonujący transakcji").substr( e.field("Dokonujący transakcji").indexOf(" ",0) + 1, 1);
   
+  let category = e.field (SPE_F_CATEGORY);
+  if (e.field(SPE_F_ALLOC).length > 0) {
+    category = e.field(SPE_F_ALLOC)[0].attr(SPE_F_ALLOC_C).substring(0, 6);
+  }
+
+
   
       switch (t) {
   
         case "Zakup za gotówkę":
         case "Zakup z karty":
-          o = o + ': ' + dokonujacy + ', ' + e.field("Kategoria").substring(0, 6) + ', ' + e.field("Dostawca").substring(0, 20);
+          o = o + ': ' + dokonujacy + ', ' + category + ', ' + e.field("Dostawca").substring(0, 20);
           break;
   
         case "Zakup na przelew":
-          o += ': ' + dokonujacy + ', ' + e.field("Kategoria").substring(0, 6) + ', ' + e.field("Dostawca").substring(0, 20) + '\ntermin płatności: ' + moment(e.field("Termin płatności")).format('YYYY-MM-DD');
+          o += ': ' + dokonujacy + ', ' + category + ', ' + e.field("Dostawca").substring(0, 20) + '\nter. płatn: ' + moment(e.field("Termin płatności")).format('YYYY-MM-DD');
           if (e.field("Do zapłaty") == "Zapłacone") { o += ', zapłacone: ' + moment(e.field("Data dokonania zapłaty")).format('YYYY-MM-DD') }
           break;
   
@@ -440,6 +449,10 @@ function saveSpending( e ) {
         sumCost += e.field(SPE_F_ALLOC)[i].attr(SPE_F_ALLOC_AMOUNT);
       }
 
+    }
+
+    if (e.field(SPE_F_ALLOC).length > 0 ) {
+      e.set( SPE_F_CATEGORY, e.field(SPE_F_ALLOC)[0].attr(SPE_F_ALLOC_C) );
     }
 
     e.set(SPE_F_ALLOC_CSV, csvLine );
