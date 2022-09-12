@@ -1,16 +1,16 @@
-const SPE_FIELD_WORKFLOWSTATUS = "Status wpisu w bazie";
-const SPE_VALUE_WORKFLOWSTATUS_ACCEPTED = "zatwierdzone";
-const SPE_VALUE_WORKFLOWSTATUS_TOWERIFY = "w weryfikacji";
-const SPE_VALUE_WORKFLOWSTATUS_DRAFT = "w trakcie opisywania";
-const SPE_VALUE_WORKFLOW_LOG = "Zmiany statusów i komunikaty";
+let SPE_FIELD_WORKFLOWSTATUS = "Status wpisu w bazie";
+let SPE_VALUE_WORKFLOWSTATUS_ACCEPTED = "zatwierdzone";
+let SPE_VALUE_WORKFLOWSTATUS_TOWERIFY = "w weryfikacji";
+let SPE_VALUE_WORKFLOWSTATUS_DRAFT = "w trakcie opisywania";
+let SPE_VALUE_WORKFLOW_LOG = "Zmiany statusów i komunikaty";
 
 
-const SPE_FIELD_AUTHOR = "Author";
-const SPE_FIELD_EDITOR = "Osoba aktualnie odpowiedzialna za działanie w obiegu";
-const SPE_F_TRANSACTION_TYPE = "Typ transakcji";
+let SPE_FIELD_AUTHOR = "Author";
+let SPE_FIELD_EDITOR = "Osoba aktualnie odpowiedzialna za działanie w obiegu";
+let SPE_F_TRANSACTION_TYPE = "Typ transakcji";
 
 
-const ARR_NAMES = [
+let ARR_NAMES = [
   'Małgorzata Grabowska',
   'Wojciech Sygit',
   'Katarzyna Deputowska',
@@ -18,36 +18,36 @@ const ARR_NAMES = [
   'Marceli Matynia'
 ];
 
-const userAccountant = "MagdalenaM";
+let userAccountant = "MagdalenaM";
 
-const SPE_WORKFLOW_DESC = 
+let SPE_WORKFLOW_DESC = 
   "Każdy wpis w bazie wydatków musi być przydzielony do osiedla, lub skategoryzowany. Wydatki gotówkowi wypłaty z bankomaty są weryfikowane z listą operacji w banku. Są trzy statusy dokumentu: \n\n" +
   "-- zatwierdzone - oznacza że wydatek jest rozliczony, zaakceptowany i jeśli jest potrzeba skierowany do płatności. \n"+ 
   "-- w weryfikacji - wydatek nie został jeszcze zweryfikowany, czeka aż księgowość zweryfikuje z kontem, zasadnością itp. \n"+ 
   "-- w trakcie opisywania - oznacza że konieczne jest działanie, albo trzeba poprzypisywać do osiedla wydatek albo opisać w treści szerzej. "+ 
   "Ten status także oznacza że nie ma dostarczonej papierowej faktury do biura.\n";
 
-const SPE_F_CATEGORY = "Kategoria";
-const SPE_F_NOTALLOCATED = "Koszt nie przypisany do osiedla";
+let SPE_F_CATEGORY = "Kategoria";
+let SPE_F_NOTALLOCATED = "Koszt nie przypisany do osiedla";
 
-const SPE_F_ALLOC = "Przypisanie do kontraktu";
-const SPE_F_ALLOC_C = "Kategoria wydatku";
-const SPE_F_ALLOC_AMOUNT = "Kwota";
+let SPE_F_ALLOC = "Przypisanie do kontraktu";
+let SPE_F_ALLOC_C = "Kategoria wydatku";
+let SPE_F_ALLOC_AMOUNT = "Kwota";
 
-const SPE_F_ALLOC_REINV_SUM = "Kwota zaalokowana jako refaktura";
-const SPE_F_ALLOC_COST_SUM = "Kwota zaalokowana jako koszt";
-const SPE_F_ALLOC_CSV = "AlokacjaCSV";
+let SPE_F_ALLOC_REINV_SUM = "Kwota zaalokowana jako refaktura";
+let SPE_F_ALLOC_COST_SUM = "Kwota zaalokowana jako koszt";
+let SPE_F_ALLOC_CSV = "AlokacjaCSV";
 
-const SPE_V_ALLOC_C_REINVOICE = "REFAKTURA";
-const SPE_V_ALLOC_C_REINVOICE_ISSUED_NR = "Nr refaktury (wprowadza wystawiający faktury)";
-
-
-const SPE_F_REINVOICE_FLAG = "Status refaktury";
-const SPE_V_REINVOICE_FLAG_TOISSUE = "do wystawienia";
-const SPE_V_REINVOICE_FLAG_ISSUEED = "wystawiona";
+let SPE_V_ALLOC_C_REINVOICE = "REFAKTURA";
+let SPE_V_ALLOC_C_REINVOICE_ISSUED_NR = "Nr refaktury (wprowadza wystawiający faktury)";
 
 
-const SPE_F_CON_SHORT = "Skrót";
+let SPE_F_REINVOICE_FLAG = "Status refaktury";
+let SPE_V_REINVOICE_FLAG_TOISSUE = "do wystawienia";
+let SPE_V_REINVOICE_FLAG_ISSUEED = "wystawiona";
+
+
+let SPE_F_CON_SHORT = "Skrót";
 
 let Spending = function (e) {
   log('Spending :: new' + String(e));
@@ -114,9 +114,9 @@ let Spending = function (e) {
               log(SPE_VALUE_TYPE_8);
 
               try {
-                var newE = new Object();
-                var newNr;
-                var sRes;
+                let newE = new Object();
+                let newNr;
+                let sRes;
 
                 e.set(SPE_FIELD_CATEGORY, '');
                 e.set(SPE_FIELD_PAYMENTDUE, '');
@@ -205,17 +205,17 @@ let Spending = function (e) {
 
 function createNewBeforeSave() {
 
-  const SPE_FIELD_AUTOALLOCATION = "Przypisanie do kontraktu";
+  let SPE_FIELD_AUTOALLOCATION = "Przypisanie do kontraktu";
 
-  var nll = "- wybierz -";
-  var wyd = ["Zakup za gotówkę", "Zakup z karty", "Zakup na przelew"];
-  var lib = libByName("Wydatki");
-  var e = entry();
-  var s = e.field("Kwota");
-  var p = e.field("Dokonujący transakcji");
-  var k = e.field("Przekazano osobie");
-  var t = e.field("Typ transakcji");
-  var kat = e.field("Kategoria");
+  let nll = "- wybierz -";
+  let wyd = ["Zakup za gotówkę", "Zakup z karty", "Zakup na przelew"];
+  let lib = libByName("Wydatki");
+  let e = entry();
+  let s = e.field("Kwota");
+  let p = e.field("Dokonujący transakcji");
+  let k = e.field("Przekazano osobie");
+  let t = e.field("Typ transakcji");
+  let kat = e.field("Kategoria");
       
   if (t == "Przekazanie gotówki koordynatorowi" && k == p) {
     message("Nie można przekazać tej samej osobie");
@@ -265,10 +265,10 @@ function createNewBeforeSave() {
 
         try {
 
-          var newE = new Object();
-          var newEntry;
-          var newNr;
-          var sRes;
+          let newE = new Object();
+          let newEntry;
+          let newNr;
+          let sRes;
 
           e.set("Kategoria", "");
           e.set("Termin płatności", "");
@@ -326,12 +326,12 @@ function createNewBeforeSave() {
 
 function displayName( e ) {
 
-  var t = e.field("Typ transakcji");
-  var o = moment(e.field("Data transakcji")).format('YYYY-MM-DD');
-  var b = "";
-  var uid = " • " + e.field("Unikalny numer wydatku w bazie");
+  let t = e.field("Typ transakcji");
+  let o = moment(e.field("Data transakcji")).format('YYYY-MM-DD');
+  let b = "";
+  let uid = " • " + e.field("Unikalny numer wydatku w bazie");
   
-  var dokonujacy = e.field("Dokonujący transakcji").substr(0, 1) + e.field("Dokonujący transakcji").substr( e.field("Dokonujący transakcji").indexOf(" ",0) + 1, 1);
+  let dokonujacy = e.field("Dokonujący transakcji").substr(0, 1) + e.field("Dokonujący transakcji").substr( e.field("Dokonujący transakcji").indexOf(" ",0) + 1, 1);
   
   let category = "brak kateg.";
   if (e.field(SPE_F_ALLOC).length > 0 && (!e.field(SPE_F_NOTALLOCATED)) ) {
@@ -360,7 +360,7 @@ function displayName( e ) {
           break;
   
         case "Przekazanie gotówki koordynatorowi":
-          var przekazano = e.field("Przekazano osobie").substr(0, 1) + e.field("Przekazano osobie").substr( e.field("Przekazano osobie").indexOf(" ",0) + 1, 1);
+          let przekazano = e.field("Przekazano osobie").substr(0, 1) + e.field("Przekazano osobie").substr( e.field("Przekazano osobie").indexOf(" ",0) + 1, 1);
   
           if (e.field("Kwota") >= 0) {
             o = o + ': ' + przekazano + ' dał(a) gotówkę ' + dokonujacy;
@@ -464,21 +464,21 @@ function displayCashTypeOperation() {
 
   let r = SPE_F_CASHTYPE_OTHER;
 
-  const SPE_V_TRAN_TYPE_PURCHASE_CASH = "Zakup za gotówkę";
-  const SPE_V_TRAN_TYPE_PURCHASE_CARD = "Zakup z karty";
-  const SPE_V_TRAN_TYPE_PURCHASE_BANK_TRANSFER = "Zakup na przelew";
-  const SPE_V_TRAN_TYPE_ADVANCE_CASH = "Wypłacona gotówką zaliczka";
-  const SPE_V_TRAN_TYPE_ADVANCE_BANK_TRANSFER = "Wypłacona przelewem zaliczka";
-  const SPE_V_TRAN_TYPE_EMPLOYEE_PAYMENT_CASH = "Rozliczenie gotówką z pracownikiem";
-  const SPE_V_TRAN_TYPE_EMPLOYEE_BANK_TRANSFER = "Rozliczenie przelewem z pracownikiem";
-  const SPE_V_TRAN_TYPE_CASH_HANDOVER = "Przekazanie gotówki koordynatorowi";
-  const SPE_V_TRAN_TYPE_CASH_WITHDRAWAL = "Wypłata z bankomatu";
+  let SPE_V_TRAN_TYPE_PURCHASE_CASH = "Zakup za gotówkę";
+  let SPE_V_TRAN_TYPE_PURCHASE_CARD = "Zakup z karty";
+  let SPE_V_TRAN_TYPE_PURCHASE_BANK_TRANSFER = "Zakup na przelew";
+  let SPE_V_TRAN_TYPE_ADVANCE_CASH = "Wypłacona gotówką zaliczka";
+  let SPE_V_TRAN_TYPE_ADVANCE_BANK_TRANSFER = "Wypłacona przelewem zaliczka";
+  let SPE_V_TRAN_TYPE_EMPLOYEE_PAYMENT_CASH = "Rozliczenie gotówką z pracownikiem";
+  let SPE_V_TRAN_TYPE_EMPLOYEE_BANK_TRANSFER = "Rozliczenie przelewem z pracownikiem";
+  let SPE_V_TRAN_TYPE_CASH_HANDOVER = "Przekazanie gotówki koordynatorowi";
+  let SPE_V_TRAN_TYPE_CASH_WITHDRAWAL = "Wypłata z bankomatu";
 
-  const SPE_F_CASHTYPE_CASH = "operacje gotówkowe";
-  const SPE_F_CASHTYPE_CARD = "operacje na karcie";
-  const SPE_F_CASHTYPE_BANK = "operacje na rachunku";
+  let SPE_F_CASHTYPE_CASH = "operacje gotówkowe";
+  let SPE_F_CASHTYPE_CARD = "operacje na karcie";
+  let SPE_F_CASHTYPE_BANK = "operacje na rachunku";
   
-  const SPE_F_CASHTYPE_OTHER = "operacje inne";
+  let SPE_F_CASHTYPE_OTHER = "operacje inne";
   
   switch (field(SPE_F_TRANSACTION_TYPE)) {
     case SPE_V_TRAN_TYPE_PURCHASE_CASH:
@@ -532,7 +532,7 @@ function migrateSelected( selectedEntry ) {
   try {
     log('Spending :: migrateSelected :: start'); 
 
-    const CONTRACTS = [ 'ZIEL', 'WOL45', 'WLO64', 'WLO62', 'WLO30', 'WIT6', 'TUR9', 'TAS', 'PLO6', 'PLO2', 'SZA', 'SKA', 'SAR20', 'SAB', 'BRO', 'BUK2', 'CER37', 'CER5', 'DER16', 'DYW', 'GOR224', 'KAL4', 'KLU1', 'LIP10', 'MAR2', 'MAR3', 'OBR25', 'ORD5' ];
+    let CONTRACTS = [ 'ZIEL', 'WOL45', 'WLO64', 'WLO62', 'WLO30', 'WIT6', 'TUR9', 'TAS', 'PLO6', 'PLO2', 'SZA', 'SKA', 'SAR20', 'SAB', 'BRO', 'BUK2', 'CER37', 'CER5', 'DER16', 'DYW', 'GOR224', 'KAL4', 'KLU1', 'LIP10', 'MAR2', 'MAR3', 'OBR25', 'ORD5' ];
     
     let libContracts = libByName("Osiedla");
     let allContracts = libContracts.entries();
