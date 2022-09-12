@@ -34,7 +34,8 @@ const SPE_WORKFLOW_DESC =
   "-- w trakcie opisywania - oznacza że konieczne jest działanie, albo trzeba poprzypisywać do osiedla wydatek albo opisać w treści szerzej. "+ 
   "Ten status także oznacza że nie ma dostarczonej papierowej faktury do biura.\n";
 
-  const SPE_F_CATEGORY = "Kategoria";
+const SPE_F_CATEGORY = "Kategoria";
+const SPE_F_NOTALLOCATED = "Koszt nie przypisany do osiedla";
 
 const SPE_F_ALLOC = "Przypisanie do kontraktu";
 const SPE_F_ALLOC_C = "Kategoria wydatku";
@@ -339,12 +340,12 @@ function displayName( e ) {
   
   var dokonujacy = e.field("Dokonujący transakcji").substr(0, 1) + e.field("Dokonujący transakcji").substr( e.field("Dokonujący transakcji").indexOf(" ",0) + 1, 1);
   
-  let category = e.field (SPE_F_CATEGORY);
-  if (e.field(SPE_F_ALLOC).length > 0) {
+  let category = "brak kateg.";
+  if (e.field(SPE_F_ALLOC).length > 0 && (!e.field(SPE_F_NOTALLOCATED)) ) {
     category = e.field(SPE_F_ALLOC)[0].attr(SPE_F_ALLOC_C).substring(0, 6);
+  } else {
+    category = e.field (SPE_F_CATEGORY);
   }
-
-
   
       switch (t) {
   
@@ -519,6 +520,21 @@ function displayCashTypeOperation() {
 
 /*
 function migrateSelected( selectedEntry ) {
+
+  let sel = selectedEntries()
+  for (let i=0; i < sel.length; i++) {
+      sel[i].set(SPE_F_CATEGORY, "Biuro i koszty administracyjne")
+  }
+
+
+
+  sel = selectedEntr  
+  for (i=0; i < sel; i++ ) {
+
+    
+
+  }
+
 
   try {
     log('Spending :: migrateSelected :: start'); 
