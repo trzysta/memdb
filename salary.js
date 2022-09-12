@@ -62,7 +62,7 @@ var getLabel = function (nr, e) {
   return weekday_pl + ': ' + day + '.' + month_pl + addInfo;
 };
 
-var Salary = function (e) {
+const Salary = function (e) {
   log('Salary: ' + String(e));
 
   try {
