@@ -344,7 +344,7 @@ function displayName( e ) {
   if (e.field(SPE_F_ALLOC).length > 0 && (!e.field(SPE_F_NOTALLOCATED)) ) {
     category = e.field(SPE_F_ALLOC)[0].attr(SPE_F_ALLOC_C).substring(0, 6);
   } else {
-    category = e.field (SPE_F_CATEGORY);
+    category = e.field (SPE_F_CATEGORY).substring(0, 6);
   }
   
       switch (t) {
