@@ -208,6 +208,8 @@ let Spending = function (e) {
 
 function createNewBeforeSave() {
 
+  const SPE_FIELD_AUTOALLOCATION = "Przypisanie do kontraktu";
+
   var nll = "- wybierz -";
   var wyd = ["Zakup za gotówkę", "Zakup z karty", "Zakup na przelew"];
   var lib = libByName("Wydatki");
@@ -227,14 +229,12 @@ function createNewBeforeSave() {
   } else if (t == "Przekazanie gotówki koordynatorowi" && k == nll) {
     message("Wybierz komu przekazano gotówkę!");
     cancel();
-  } else if ( wyd.indexOf(t) >= 0 &&  kat == nll ) {
-    message("Wybierz kategorię wydatku");
-    cancel();
   } else {
 
     // operacje po walidacji
-
-
+    if (e.field(SPE_F_ALLOC).length > 0 ) {
+      e.set( "Kategoria", e.field(SPE_F_ALLOC)[0].attr(SPE_F_ALLOC_C) );
+    }
 
     switch (t) {
       case "Zakup z karty":
@@ -500,6 +500,9 @@ function displayCashTypeOperation() {
 
 
 }
+
+
+
 
 /*
 function migrateSelected( selectedEntry ) {
