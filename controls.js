@@ -33,9 +33,8 @@ const KLATKI_FIELDS = [
                         'Minusy - kratki wentylacyjne i ściany wokół',
                         'Minusy - drzwi',
                         'Minusy - pajęczyny'
-                      ]
-
-const KLATKI_SMS = [
+                      ];
+const KLATKI_SMS =    [
                         'pajęcz przed wejśc',
                         'parter dywaniki',
                         'parter domofon',
@@ -66,9 +65,8 @@ const KLATKI_SMS = [
                         'minus wentylat+ściany',
                         'minus drzwi',
                         'minus pajecz'
-                      ]
-
-const GARAZ_FIELDS = [
+                      ];
+const GARAZ_FIELDS =  [
                         'Posadzka - piach',
                         'Posadzka - czystość',
                         'Posadzka - rogi i przy ścianach',
@@ -84,9 +82,8 @@ const GARAZ_FIELDS = [
                         'Pomieszczenia techniczne - graty',
                         'Pomieszczenia techniczne - kurz',
                         'Brama garażowa'
-                      ]
-
- const GARAZ_SMS = [
+                      ];
+const GARAZ_SMS =    [
                         'posadz piach',
                         'posadz brud',
                         'posadz rogi',
@@ -102,15 +99,9 @@ const GARAZ_FIELDS = [
                         'pom. tech graty',
                         'pom. tech kurz',
                         'brama garaż'
-                      ]
-
-// var entries = lib().entries();                   // Get current library & array of its entries
-// if (entries.length > 0) {                        // Check that array is not empty;
-//   //   otherwise exit,
-//   //   since there is no previous entry.
-//   prevMileage = entries[0].field("Mileage");
-
-
+                      ];
+const TEREN_FIELDS = [];
+const ZIELEN_FIELDS = [];
 
 
 const copyLastValues = function (e) {
@@ -164,16 +155,35 @@ function prepareSMS (en) {
 } 
 
 
+function countAverageRating (e, scope) {
 
-function countAve(e) {
+  let arrFieldNames = [];
+  let arrRatings = [];
 
-  let klatki_eval = [];
-  KLATKI_FIELDS.forEach(element => {
+  switch (scope) {
+    case "K":
+      arrFieldNames = KLATKI_FIELDS;
+      break;
+    case "G":
+      arrFieldNames = GARAZ_FIELDS;
+      break;
+    case "T":
+      arrFieldNames = TEREN_FIELDS;
+      break;   
+    case "Z":
+      arrFieldNames = ZIELEN_FIELDS;
+      break;      
+    default:
+      arrFieldNames = KLATKI_FIELDS.concat(GARAZ_FIELDS.concat(TEREN_FIELDS.concat(ZIELEN_FIELDS)));
+      break;
+  }
+
+  arrFieldNames.forEach(element => {
     if ( e.field(element) > 0 ) {
-      klatki_eval.push( e.field(element) );
+     arrRatings.push( e.field(element) );
     };
   });
 
-  (klatki_eval.reduce((a, b) => a + b, 0) / klatki_eval.length).toFixed(2)
+  if (arrRatings.length > 0) (arrRatings.reduce((a, b) => a + b, 0) / arrRatings.length).toFixed(2) ;
 
 }
