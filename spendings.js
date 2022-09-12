@@ -18,6 +18,16 @@ let ARR_NAMES = [
   'Marceli Matynia'
 ];
 
+let ARR_EDITORS = [
+  'MalgorzataG',
+  'ElzbietaZ',
+  'WojciechS',
+  'KatarzynaD',
+  'Ksiegowosc',
+  'trzysta',
+  'MagdalenaM'
+];
+
 let userAccountant = "MagdalenaM";
 
 let SPE_WORKFLOW_DESC = 
