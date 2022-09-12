@@ -2,7 +2,7 @@
 Baza Memento Database na Androida. Autor Marceli Matynia 300 Sp. z o.o.
 */
 
-var getPaid = function (e) {
+const getPaid = function (e) {
   let result = 0;
   if (e.field(SAL_FIELD_CANREAD)) {
     result = Math.round(
@@ -13,7 +13,7 @@ var getPaid = function (e) {
   return result;
 };
 
-var getRemaining = function (e) {
+const getRemaining = function (e) {
   let result = 0;
   result =
     e.field(SAL_FIELD_AMOUNTTOPAY) -
@@ -31,7 +31,7 @@ var getRemaining = function (e) {
   return result;
 };
 
-var getLabel = function (nr, e) {
+const getLabel = function (nr, e) {
   var currentDay = nr.toString();
   var month = e.field(SAL_FIELD_MONTH);
   var weekday_en = moment(month)
@@ -115,7 +115,6 @@ const Salary = function (e) {
     }
 
     // funckja opis
-
     this.creatingNewEntry_setValues = function () {
       log('creatingNewEntry_setValues');
       try {
@@ -154,7 +153,6 @@ const Salary = function (e) {
     };
 
     // funckja waliduje
-
     this.updatingEntry_validateBeforeSave = function () {
       log('updatingEntry_validateBeforeSave');
       try {
@@ -182,7 +180,6 @@ const Salary = function (e) {
     };
 
     // funkcja zamyka rozliczenie, tj tworzy wpisu w bazie wydatków, ustawia wartość pola SAL_FIELD_CLOSED na SAL_FIELD_CLOSED_VALUE_YES i ustawia pole  edytorów żeby nie można było edytować
-
     this.closeSettlement = function (reopenEntry) {
       log('closeSettlement: ' + reopenEntry);
       try {
@@ -240,7 +237,6 @@ const Salary = function (e) {
     };
 
     // funkcja zamyka rozliczenie, tj tworzy wpisu w bazie wydatków, ustawia wartość pola zamknięte na
-
     this.findAdvances = function (show) {
       log('findAdvances: ' + show);
       try {
@@ -293,7 +289,6 @@ const Salary = function (e) {
     };
 
     // funkcja tworzy nowy wpis w bazie wydatków
-
     this.createSpendEntry = function (
       amount,
       date,
@@ -372,7 +367,6 @@ const Salary = function (e) {
     };
 
     // funkcja sprawdza czy można zamknąć rozliczenie tj czy aktualny user jest managerem i czy są wpisane kwoty i daty
-
     this.canCloseSettlement = function (showAlert) {
       log('canCloseSettlement: ' + showAlert);
       try {
@@ -394,7 +388,6 @@ const Salary = function (e) {
     };
 
     // funkcja kopiuje jako nowey dokument podając nowy miesiąc
-
     this.copyToMonth = function (month) {
       log('copyToMonth: ' + String(this.entry) + ' ' + month);
       try {
@@ -463,7 +456,6 @@ const Salary = function (e) {
     };
 
     // funkcja wypełnia wszystkie pola godzin roboczych wskazaną w parametrach liczbą godzin
-
     this.fillAllHours = function (hours) {
       try {
         let freeDays = this.entry.field(SAL_FIELD_WEEKENDS);
@@ -478,6 +470,7 @@ const Salary = function (e) {
         log('Salary.fillAllWorkdays: ' + err);
       }
     };
+
   } catch (err) {
     log('Salary: ' + err);
   }
