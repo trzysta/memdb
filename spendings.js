@@ -24,7 +24,7 @@ const ARR_NAMES = [
   'Marceli Matynia'
 ];
 
-const userAccountant = "Ksiegowosc";
+const userAccountant = "MagdalenaM";
 
 const SPE_WORKFLOW_DESC = 
   "Każdy wpis w bazie wydatków musi być przydzielony do osiedla, lub skategoryzowany. Wydatki gotówkowi wypłaty z bankomaty są weryfikowane z listą operacji w banku. Są trzy statusy dokumentu: \n\n" +

@@ -74,6 +74,7 @@ try {
     'KatarzynaD',
     'Ksiegowosc',
     'trzysta',
+    'MagdalenaM'
   ];
 
   var arrNames = [
@@ -83,6 +84,7 @@ try {
     'Katarzyna Deputowska',
     'Ksiegowosc 300CS',
     'Administrator',
+    'Magdalena Matynia'
   ];
 
   var ARR_MANAGERS = ['trzysta', 'Marceli Matynia'];
