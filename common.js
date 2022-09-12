@@ -67,7 +67,7 @@ try {
     'GRU',
   ];
 
-  let ARR_EDITORS = [
+  let arrEditors = [
     'MalgorzataG',
     'ElzbietaZ',
     'WojciechS',
@@ -453,7 +453,7 @@ try {
 
   // *^*^*^*  odpalana Creating Entry, Opening an Entry Card
   function setEntryDefaultValues(e) {
-    //e.set(FIELD_EDITOR, ARR_EDITORS);
+    //e.set(FIELD_EDITOR, arrEditors);
     //e.set(FIELD_IS_NEW, true);
   }
 
