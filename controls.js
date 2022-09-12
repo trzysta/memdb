@@ -159,6 +159,7 @@ function countAverageRating (e, scope) {
 
   let arrFieldNames = [];
   let arrRatings = [];
+  let res = 0;
 
   switch (scope) {
     case "K":
@@ -184,6 +185,10 @@ function countAverageRating (e, scope) {
     };
   });
 
-  if (arrRatings.length > 0) (arrRatings.reduce((a, b) => a + b, 0) / arrRatings.length).toFixed(2) ;
+  if (arrRatings.length > 0) {
+    res = (arrRatings.reduce((a, b) => a + b, 0) / arrRatings.length).toFixed(2) ;
+  }
+
+  return res;
 
 }
