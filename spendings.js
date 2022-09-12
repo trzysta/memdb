@@ -9,13 +9,6 @@ const SPE_FIELD_AUTHOR = "Author";
 const SPE_FIELD_EDITOR = "Osoba aktualnie odpowiedzialna za działanie w obiegu";
 const SPE_F_TRANSACTION_TYPE = "Typ transakcji";
 
-const ARR_EDITORS = [
-  'MalgorzataG',
-  'WojciechS',
-  'KatarzynaD',
-  'Ksiegowosc',
-  'trzysta'
-];
 
 const ARR_NAMES = [
   'Małgorzata Grabowska',
