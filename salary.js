@@ -63,6 +63,7 @@ var getLabel = function (nr, e) {
 };
 
 const Salary = function (e) {
+ 
   log('Salary: ' + String(e));
 
   try {
