@@ -17,7 +17,8 @@ let ARR_NAMES = [
   'Katarzyna Deputowska',
   'Ksiegowosc 300CS',
   'Marceli Matynia',
-  'Magdalena Matynia'
+  'Magdalena Matynia',
+  'Agata Reweda'
 ];
 
 let ARR_EDITORS = [
@@ -27,7 +28,8 @@ let ARR_EDITORS = [
   'KatarzynaD',
   'Ksiegowosc',
   'trzysta',
-  'MagdalenaM'
+  'MagdalenaM',
+  'Agata Reweda'
 ];
 
 let userAccountant = "MagdalenaM";
