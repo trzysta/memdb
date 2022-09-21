@@ -12,10 +12,12 @@ let SPE_F_TRANSACTION_TYPE = "Typ transakcji";
 
 let ARR_NAMES = [
   'Małgorzata Grabowska',
+  'Elbieta Zdziech',
   'Wojciech Sygit',
   'Katarzyna Deputowska',
   'Ksiegowosc 300CS',
-  'Marceli Matynia'
+  'Marceli Matynia',
+  'Magdalena Matynia'
 ];
 
 let ARR_EDITORS = [
@@ -333,6 +335,15 @@ function createNewBeforeSave() {
     }
   }
 }
+
+
+function getEntryName(e) {
+
+/** funckka ma zastąpić dispayName */
+
+}
+
+
 
 function displayName( e ) {
 

@@ -64,7 +64,7 @@ var getLabel = function (nr, e) {
 
 const Salary = function (e) {
  
-  log('Salary: ' + String(e));
+  log('Salary: ' + String(e.name));
 
   try {
     if (e !== undefined) {
@@ -397,7 +397,7 @@ const Salary = function (e) {
     // funkcja kopiuje jako nowey dokument podając nowy miesiąc
 
     this.copyToMonth = function (month) {
-      log('copyToMonth: ' + String(this.entry) + ' ' + month);
+      log('copyToMonth: ' + String(this.entry.name) + ' ' + month);
       try {
         let lib = libByName(LIB_SALARIES_NAME);
         let dt = moment(month).startOf('month');

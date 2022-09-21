@@ -142,3 +142,15 @@ const getEmploymentCost = function (addNetSalary) {
 
 
 };
+
+
+
+
+const f_countBudgetUsage(e) {
+  
+  var libSpendings = getlibByName("Wydatki");
+  var links = libSpendings.linksTo(e);
+  var sum = 0;
+
+ 
+}
