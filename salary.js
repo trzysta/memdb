@@ -71,7 +71,7 @@ var setHours = function (e, setHours) {
   let absences = [];
   let tmpStr = e.field(SAL_FIELD_HOLIDAY) + e.field(SAL_FIELD_ABSENCE) + e.field(SAL_FIELD_SICK);
 
-  tmpStr.replace(/[\[\]']+/g, ',').split(',').forEach(element => absences.push(parseInt(element)));
+  tmpStr.replace(/[\[\]']+/g, ',').split(',').forEach(element => { if(!isNaN(parseInt(element))) absences.push(parseInt(element)) });
   
   let holidays = HOLYDAYS_2022[parseInt(m) - 1];
   if (y == 2023) holidays = HOLYDAYS_2023[parseInt(m) - 1];
@@ -166,6 +166,7 @@ const Salary = function (e) {
 
         setEntryDefaultValues(this.entry);
 
+        
         let i = 1;
         while (i <= dayEnd) {
           if (
