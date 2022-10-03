@@ -62,6 +62,16 @@ var getLabel = function (nr, e) {
   return weekday_pl + ': ' + day + '.' + month_pl + addInfo;
 };
 
+
+const getHolidays (e) {
+
+  let y = moment(e.field(SAL_FIELD_MONTH).format('Y'));
+  let m = moment(e.field(SAL_FIELD_MONTH).format('M'));
+  e.set(SAL_FIELD_WEEKENDS, HOLYDAYS_2022[parseInt(m) - 1]);
+
+}
+
+
 const Salary = function (e) {
  
   log('Salary: ' + String(e.name));
