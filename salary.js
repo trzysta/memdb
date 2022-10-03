@@ -63,11 +63,25 @@ var getLabel = function (nr, e) {
 };
 
 
-const getHolidays (e) {
+const setHours = function (e, setHours) {
 
-  let y = moment(e.field(SAL_FIELD_MONTH).format('Y'));
-  let m = moment(e.field(SAL_FIELD_MONTH).format('M'));
-  e.set(SAL_FIELD_WEEKENDS, HOLYDAYS_2022[parseInt(m) - 1]);
+  let y = moment(e.field(SAL_FIELD_MONTH)).format('Y');
+  let m = moment(e.field(SAL_FIELD_MONTH)).format('M');
+  let lastDay = parseInt(moment(e.field(SAL_FIELD_MONTH)).endOf('month').format('D'));
+
+  let holidays = HOLYDAYS_2022[parseInt(m) - 1];
+  if (y == 2023) holidays = HOLYDAYS_2023[parseInt(m) - 1];
+
+  e.set(SAL_FIELD_WEEKENDS, holidays);
+
+  for (i=1; i<=31; i++) {
+    if (i <= lastDay && !holidays.includes(i)) {
+      e.set("hour" + i, setHours) 
+    } 
+  }
+  
+  for (i=lastDay+1; i<=31; i++) {e.set("hour" + i, "");
+  e.recalc();
 
 }
 
