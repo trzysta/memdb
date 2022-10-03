@@ -79,7 +79,7 @@ var setHours = function (e, setHours) {
     } 
   }
   
-  for (i=lastDay+1; i<=31; i++) {e.set("hour" + i, "");
+  for (i=lastDay+1; i<=31; i++) {e.set("hour" + i, "")};
   e.recalc();
 
 }
