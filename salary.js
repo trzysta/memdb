@@ -68,17 +68,13 @@ var setHours = function (e, setHours) {
   let m = moment(e.field(SAL_FIELD_MONTH)).format('M');
   let lastDay = parseInt(moment(e.field(SAL_FIELD_MONTH)).endOf('month').format('D'));
   
- let tmpStr = e.field(SAL_FIELD_HOLIDAY) + e.field(SAL_FIELD_ABSENCE) + e.field(SAL_FIELD_SICK);
-  log("tmpStr: " + tmpStr );
-  tmpStr = tmpStr.replace('[', '');
-  tmpStr = tmpStr.replace('[', '');
-  tmpStr = tmpStr.replace(' ', '');
-  tmpStr.split(',').forEach(element => absences.push(element));
-  log("absences: " + absences );
+  let absences = [];
+  let tmpStr = e.field(SAL_FIELD_HOLIDAY) + e.field(SAL_FIELD_ABSENCE) + e.field(SAL_FIELD_SICK);
+
+  tmpStr.replace(/[\[\]']+/g, ',').split(',').forEach(element => absences.push(parseInt(element)));
   
   let holidays = HOLYDAYS_2022[parseInt(m) - 1];
   if (y == 2023) holidays = HOLYDAYS_2023[parseInt(m) - 1];
-  log("holidays: " + holidays );
 
   e.set(SAL_FIELD_WEEKENDS, holidays);
 
@@ -91,7 +87,6 @@ var setHours = function (e, setHours) {
   }
   
   for (i=lastDay+1; i<=31; i++) {e.set("hour" + i, "")};
-  
   e.recalc();
 
 }
