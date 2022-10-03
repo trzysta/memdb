@@ -67,8 +67,11 @@ var setHours = function (e, setHours) {
   let y = moment(e.field(SAL_FIELD_MONTH)).format('Y');
   let m = moment(e.field(SAL_FIELD_MONTH)).format('M');
   let lastDay = parseInt(moment(e.field(SAL_FIELD_MONTH)).endOf('month').format('D'));
+  let absences = [];
 
-  let absences = e.field(SAL_FIELD_WEEKENDS).concat(e.field(SAL_FIELD_ABSENCE), e.field(SAL_FIELD_SICK));
+  e.field(SAL_FIELD_HOLIDAY).forEach(element => absences.push(element));
+  e.field(SAL_FIELD_ABSENCE).forEach(element => absences.push(element));
+  e.field(SAL_FIELD_SICK).forEach(element => absences.push(element));
   log("absences: " + absences );
 
   let holidays = HOLYDAYS_2022[parseInt(m) - 1];
