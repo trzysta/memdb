@@ -62,8 +62,7 @@ var getLabel = function (nr, e) {
   return weekday_pl + ': ' + day + '.' + month_pl + addInfo;
 };
 
-
-const setHours = function (e, setHours) {
+var setHours = function (e, setHours) {
 
   let y = moment(e.field(SAL_FIELD_MONTH)).format('Y');
   let m = moment(e.field(SAL_FIELD_MONTH)).format('M');
