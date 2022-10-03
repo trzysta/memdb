@@ -62,7 +62,7 @@ var getLabel = function (nr, e) {
   return weekday_pl + ': ' + day + '.' + month_pl + addInfo;
 };
 
-var setHours = function (e, setHours) {
+var setHolidaysAndHours = function (e, setHour) {
 
   let y = moment(e.field(SAL_FIELD_MONTH)).format('Y');
   let m = moment(e.field(SAL_FIELD_MONTH)).format('M');
@@ -80,7 +80,11 @@ var setHours = function (e, setHours) {
 
   for (i=1; i<=31; i++) {
     if (i <= lastDay && !holidays.includes(i) && !absences.includes(i) ) {
-      e.set("hour" + i, setHours) 
+      if (setHour<=0) {
+        e.set("hour" + i, e.field("hour"+i)) 
+      } else {
+        e.set("hour" + i, setHour) 
+      }
     } else if ( holidays.includes(i) || absences.includes(i) ) {
       e.set("hour" + i, "") 
     }
