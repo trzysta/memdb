@@ -386,7 +386,7 @@ function displayName( e ) {
           let przekazano = e.field("Przekazano osobie").substr(0, 1) + e.field("Przekazano osobie").substr( e.field("Przekazano osobie").indexOf(" ",0) + 1, 1);
   
           if (e.field("Kwota") >= 0) {
-            o = o + ': ' + przekazano + ' wziął gotówkę od ' + dokonujacy;
+            o = o + ': ' + dokonujacy + ' wziął gotówkę od ' + przekazano;
           } else {
             o = o + ': ' + dokonujacy + ' dał(a) gotówkę ' + przekazano;
           } 
