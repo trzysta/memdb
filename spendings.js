@@ -388,7 +388,7 @@ function displayName( e ) {
           if (e.field("Kwota") >= 0) {
             o = o + ': ' + dokonujacy + ' wziął gotówkę od ' + przekazano;
           } else {
-            o = o + ': ' + dokonujacy + ' dał(a) gotówkę ' + przekazano;
+            o = o + ': ' + przekazano + ' dał(a) gotówkę ' + dokonujacy;
           } 
           break;
   
