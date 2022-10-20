@@ -473,8 +473,8 @@ function saveSpending( e ) {
     }
 
     e.set(SPE_F_ALLOC_CSV, csvLine );
-    e.set(SPE_F_ALLOC_REINV_SUM, sumReinvoice );
-    e.set(SPE_F_ALLOC_COST_SUM , sumCost );
+    e.set(SPE_F_ALLOC_REINV_SUM, sumReinvoice.toFixed(2) );
+    e.set(SPE_F_ALLOC_COST_SUM , sumCost.toFixed(2) );
     if (isAllIssued) e.set(SPE_F_REINVOICE_FLAG, SPE_V_REINVOICE_FLAG_ISSUEED ) ; 
  
   } catch (err) {
